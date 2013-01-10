@@ -1199,19 +1199,56 @@ Canvace.Stage = function (data, canvas) {
 	 *
 	 * It receives one single argument of type `Canvace.Stage.Instance` and can
 	 * interrupt the enumeration by returning `false`.
-	 * @param [properties] {Object} The optional filtering properties.
+	 * @param [properties={}] {Object} The optional filtering properties.
 	 * @return {Boolean} `true` if the callback function returned `false` and
 	 * the enumeration was interrupted, `false` otherwise.
 	 */
 	this.forEachInstance = function (action, properties) {
-		if (!properties) {
-			properties = {};
-		}
 		return instances.forEach(function (instance) {
-			if (assertObject(instance.getProperties(), properties, instance.getEntity().getProperties())) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
 				return action(instance);
 			}
 		});
+	};
+
+	/**
+	 * Returns an array of entity instances among the ones currently in the
+	 * stage and not filtered by the specified filtering properties.
+	 *
+	 * Entity instances are filtered based on their custom properties. The
+	 * `properties` argument contains the filtering properties: an instance is
+	 * returned only if all of its filtered properties' values correspond to
+	 * those declared in the `properties` argument. All other properties in the
+	 * instance are not taken into account. This means that if you specify an
+	 * empty `properties` object, an array containing all the instances is
+	 * returned.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * `properties` object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The entity instances are filtered based on its custom *instance*
+	 * properties, but its custom *entity* properties are used as a fallback: if
+	 * an instance does not contain a required property it is still returned if
+	 * its entity does.
+	 *
+	 * The chosen instances are returned as an array of `Canvace.Stage.Instance`
+	 * objects.
+	 *
+	 * @method getInstance
+	 * @param [properties={}] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Instance[]} An array of `Canvace.Stage.Instance`
+	 * objects representing the returned entity instances.
+	 */
+	this.getInstances = function (properties) {
+		var array = [];
+		instances.forEach(function (instance) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
+				array.push(instance);
+			}
+		});
+		return array;
 	};
 
 	/**
@@ -1238,14 +1275,14 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen instance is returned as a `Canvace.Stage.Instance` object.
 	 *
 	 * @method getInstance
-	 * @param properties {Object} The filtering properties.
+	 * @param [properties={}] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Instance} A `Canvace.Stage.Instance` object
 	 * representing the returned entity instance.
 	 */
 	this.getInstance = function (properties) {
 		var result = null;
 		instances.forEach(function (instance) {
-			if (assertObject(instance.getProperties(), properties, instance.getEntity().getProperties())) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
 				result = instance;
 				return false;
 			}
