@@ -114,7 +114,7 @@ Canvace.Stage = function (data, canvas) {
 		 *
 		 * @method getBoundingBox
 		 * @return {Object} An object containing four fields, `i0`, `j0`,
-		 * `iSpan` and `jSpan`, describing the bounding box.
+		 *	`iSpan` and `jSpan`, describing the bounding box.
 		 */
 		this.getBoundingBox = function () {
 			return entity.box;
