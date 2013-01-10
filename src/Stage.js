@@ -101,7 +101,10 @@ Canvace.Stage = function (data, canvas) {
 		};
 
 		/**
-		 * Returns an object describing the bounding box of this entity.
+		 * Returns a reference to an object describing the bounding box of this
+		 * entity. Any modification made to the returned object will affect the
+		 * way instances of this entity interact with the surrounding
+		 * environment.
 		 *
 		 * The returned object contains four real number fields: `i0`, `j0`,
 		 * `iSpan` and `jSpan`. The `i0` and `j0` fields are the offsets of the
@@ -109,24 +112,13 @@ Canvace.Stage = function (data, canvas) {
 		 * I and J axis, respectively. The `iSpan` and `jSpan` fields are the
 		 * span of the bounding box along the I and J axis, respectively.
 		 *
-		 * The bounding box is used internally to implement collisions against
-		 * tiles or other entities.
-		 *
 		 * @method getBoundingBox
 		 * @return {Object} An object containing four fields, `i0`, `j0`,
 		 * `iSpan` and `jSpan`, describing the bounding box.
 		 */
-		this.getBoundingBox = (function () {
-			var result = {
-				i0: entity.box.i0,
-				j0: entity.box.j0,
-				iSpan: entity.box.iSpan,
-				jSpan: entity.box.jSpan
-			};
-			return function () {
-				return result;
-			};
-		})();
+		this.getBoundingBox = function () {
+			return entity.box;
+		};
 
 		/**
 		 * Enumerates all the instances of this entity currently present in the
