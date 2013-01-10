@@ -6,6 +6,9 @@
   "options": {
     "outdir": "doc",
     "linkNatives": "true",
-    "exclude": "Test, Theme, grunt.js"
+    "paths": [
+        "src/*.js"
+    ],
+    "exclude": "bin, doc, theme, grunt.js"
   }
 }
