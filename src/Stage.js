@@ -905,7 +905,7 @@ Canvace.Stage = function (data, canvas) {
 		 * be enumerated any more by the `DefaultRenderer.forEachEntity` method.
 		 *
 		 * This method does not do anything if the instance has already been
-		 * removed or replaced with another entity using the `replaceEntity`
+		 * removed or replaced with another entity using the `replaceWith`
 		 * method.
 		 *
 		 * @method remove
@@ -914,6 +914,15 @@ Canvace.Stage = function (data, canvas) {
 			element.remove();
 			remove();
 		};
+
+		/**
+		 * Indicates whether this instance has been removed from the stage.
+		 *
+		 * @method isRemoved
+		 * @return {Boolean} `true` if this instance has been removed, `false`
+		 * otherwise.
+		 */
+		this.isRemoved = element.isRemoved;
 
 		/**
 		 * Replaces this entity instance with a new instance of another entity.

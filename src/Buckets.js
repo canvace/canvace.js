@@ -228,6 +228,17 @@ Canvace.Buckets = (function () {
 			this.remove = remove;
 
 			/**
+			 * Indicates whether this entity has been removed from the buckets.
+			 *
+			 * @method isRemoved
+			 * @return {Boolean} `true` if this element has been removed,
+			 * `false` otherwise.
+			 */
+			this.isRemoved = function () {
+				return removed;
+			};
+
+			/**
 			 * Replaces the entity with another one identified by the specified
 			 * ID. This entity is removed as if the `remove` method was called,
 			 * and this `Entity` object becomes useless and should be discarded.
