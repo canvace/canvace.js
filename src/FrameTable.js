@@ -18,14 +18,10 @@ Canvace.FrameTable = function (data) {
 	}
 
 	function Animation(frames) {
-		var makeFrameIdGetter = function (frame) {
-			return function () {
-				return frame.id;
-			};
-		};
-
 		if (frames.length < 2) {
-			return makeFrameIdGetter(frames[0]);
+			return function () {
+				return frames[0].id;
+			};
 		} else {
 			var partialUnit = 0;
 			var fullDuration = 0;
@@ -34,7 +30,11 @@ Canvace.FrameTable = function (data) {
 					partialUnit = gcd(partialUnit, frames[i].duration);
 					fullDuration += frames[i].duration;
 				} else {
-					return makeFrameIdGetter(frames[i]);
+					return (function (id) {
+						return function () {
+							return id;
+						};
+					})(frames[i].id);
 				}
 			}
 
