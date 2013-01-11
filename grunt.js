@@ -8,8 +8,8 @@ module.exports = function (grunt) {
 					'* http://www.canvace.com/\n' +
 					'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 					'Canvace Srl */',
-			header: '/*jshint strict:true */\n' +
-					'var Canvace = (function () {\n' +
+			header: 'var Canvace = (function () {\n' +
+					'/*jshint strict:true */\n' +
 					'\'use strict\';\n' +
 					'\tvar Canvace = {};\n',
 			footer: '\treturn Canvace;\n' +
@@ -106,6 +106,7 @@ module.exports = function (grunt) {
 				expr: true,
 				loopfunc: true,
 				multistr: true,
+				smarttabs: true,
 				supernew: true,
 				browser: true
 			},
