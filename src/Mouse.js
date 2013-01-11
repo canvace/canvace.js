@@ -49,7 +49,7 @@ Canvace.Mouse = function (element) {
 		});
 	}, false);
 
-	if (typeof element.onwheel !== "undefined") {
+	if (typeof element.onwheel !== 'undefined') {
 		element.addEventListener('wheel', function (event) {
 			var x = event.clientX - element.style.left;
 			var y = event.clientY - element.style.top;
@@ -57,7 +57,7 @@ Canvace.Mouse = function (element) {
 				handler(x, y, -event.deltaX, -event.deltaY);
 			});
 		}, false);
-	} else if (typeof element.onmousewheel !== "undefined") {
+	} else if (typeof element.onmousewheel !== 'undefined') {
 		element.addEventListener('mousewheel', function (event) {
 			var x = event.clientX - element.style.left;
 			var y = event.clientY - element.style.top;

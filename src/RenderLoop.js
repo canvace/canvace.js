@@ -45,8 +45,8 @@ Canvace.RenderLoop = (function () {
 		var stepInterface = range || stage;
 		var canvas = stage.getCanvas();
 
-		var requestAnimationFrame = Canvace.Polyfill.getPrefixedProperty("requestAnimationFrame");
-		var cancelAnimationFrame = Canvace.Polyfill.getPrefixedProperty("cancelAnimationFrame");
+		var requestAnimationFrame = Canvace.Polyfill.getPrefixedProperty('requestAnimationFrame');
+		var cancelAnimationFrame = Canvace.Polyfill.getPrefixedProperty('cancelAnimationFrame');
 		var token;
 
 		renderer.synchronize(period);
@@ -143,7 +143,7 @@ Canvace.RenderLoop = (function () {
 
 		function step(dt) {
 			stepInterface.tick(dt);
-			if (typeof userTick === "function") {
+			if (typeof userTick === 'function') {
 				userTick(dt);
 			}
 		}
@@ -155,7 +155,7 @@ Canvace.RenderLoop = (function () {
 			}
 			step(delta / 1000.0);
 			stepInterface.update();
-			if (typeof synchronizeView === "function") {
+			if (typeof synchronizeView === 'function') {
 				synchronizeView();
 			}
 

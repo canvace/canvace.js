@@ -79,7 +79,7 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		context.setTransform(1, 0, 0, 1, origin.x, origin.y);
 		context.clearRect(-origin.x, -origin.y, width, height);
 
-		if (typeof preProcess === "function") {
+		if (typeof preProcess === 'function') {
 			preProcess(context);
 		}
 
@@ -87,7 +87,7 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 			context.drawImage(loader.getImage(id), x, y);
 		});
 
-		if (typeof postProcess === "function") {
+		if (typeof postProcess === 'function') {
 			postProcess(context);
 		}
 	};

@@ -3,7 +3,7 @@
  * browser.
  *
  * @method onVisibilityChange
- * @param callback {Function} 
+ * @param callback {Function} TODO
  * @return {Boolean} A boolean value indicating whether the browser supports the
  *	event or not.
  * @for Canvace

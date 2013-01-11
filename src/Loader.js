@@ -31,7 +31,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onProgress = function (callback) {
-		if (typeof callback === "function") {
+		if (typeof callback === 'function') {
 			loadProgress = callback;
 		}
 		return thisObject;
@@ -46,7 +46,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onComplete = function (callback) {
-		if (typeof callback === "function") {
+		if (typeof callback === 'function') {
 			loadComplete = callback;
 		}
 		return thisObject;
@@ -60,7 +60,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onError = function (callback) {
-		if (typeof callback === "function") {
+		if (typeof callback === 'function') {
 			loadError = callback;
 		}
 		return thisObject;
@@ -120,8 +120,8 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		function batchImages(descriptor) {
 			var loadIt = function (id) {
 				var image = new Image();
-				image.addEventListener("load", progress, false);
-				image.setAttribute("src", [basePath, id].join("/"));
+				image.addEventListener('load', progress, false);
+				image.setAttribute('src', [basePath, id].join('/'));
 				imageset[id] = image;
 			};
 
@@ -157,10 +157,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		}
 
 		var image = new Image();
-		if (typeof callback === "function") {
-			image.addEventListener("load", callback, false);
+		if (typeof callback === 'function') {
+			image.addEventListener('load', callback, false);
 		}
-		image.setAttribute("src", [basePath, id].join("/"));
+		image.setAttribute('src', [basePath, id].join('/'));
 		return imageset[id] = image;
 	};
 
@@ -198,7 +198,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			for (var j in sources[i]) {
 				try {
 					var info = Canvace.Loader.getSourceInfo(sources[i][j]);
-					var source = [basePath, info.url].join("/");
+					var source = [basePath, info.url].join('/');
 
 					if (audio.canPlayType(info.mimeType)) {
 						suitable = true;
@@ -243,38 +243,38 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 *
 	 * @example
 	 *	var soundResources = null;
-	 *	
+	 *
 	 *	// Explicit description of the sources, complete with MIME type and URL
 	 *	soundResources = {
-	 *		"first-sound": [{
-	 *			mimeType: "audio/mp3",
-	 *			url: "first.mp3"
+	 *		'first-sound': [{
+	 *			mimeType: 'audio/mp3',
+	 *			url: 'first.mp3'
 	 *		}, {
-	 *			mimeType: "application/ogg",
-	 *			url: "first.ogg"
+	 *			mimeType: 'application/ogg',
+	 *			url: 'first.ogg'
 	 *		}],
-	 *		"second-sound": [{
-	 *			mimeType: "audio/mp3",
-	 *			url: "second.mp3"
+	 *		'second-sound': [{
+	 *			mimeType: 'audio/mp3',
+	 *			url: 'second.mp3'
 	 *		}, {
-	 *			mimeType: "application/ogg",
-	 *			url: "second.ogg"
+	 *			mimeType: 'application/ogg',
+	 *			url: 'second.ogg'
 	 *		}]
 	 *	};
-	 *	
+	 *
 	 *	// Implicit description of the sources, with just the URL specified
 	 *	soundResources = {
-	 *		"first-sound": ["first.mp3", "first.ogg"],
-	 *		"second-sound": ["second.mp3", "second.ogg"]
+	 *		'first-sound': ['first.mp3', 'first.ogg'],
+	 *		'second-sound': ['second.mp3', 'second.ogg']
 	 *	};
-	 *	
+	 *
 	 *	var xhr = new XMLHttpRequest();
-	 *	xhr.addEventListener("load", function () {
-	 *		var loader = new Canvace.Loader("media");
+	 *	xhr.addEventListener('load', function () {
+	 *		var loader = new Canvace.Loader('media');
 	 *		loader.loadAssets(JSON.parse(xhr.responseText), soundResources);
 	 *	}, false);
-	 *	xhr.open("GET", "stage.json", true);
-	 *	xhr.responseType = "text";
+	 *	xhr.open('GET', 'stage.json', true);
+	 *	xhr.responseType = 'text';
 	 *	xhr.send();
 	 *
 	 * @method loadAssets
@@ -283,7 +283,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param [soundsData] {Object} A map where the keys indicate the name of
 	 * the sound to load, and the values are `Array`s of source descriptors,
 	 * which are either `Object`s (each containing the string properties
-	 * "mimeType" and "url") or `String`s (indicating the URL of the
+	 * 'mimeType' and 'url') or `String`s (indicating the URL of the
 	 * resource to load, in which case the loader tries to infer the MIME type
 	 * from the file extension). Object and String source descriptors can be
 	 * mixed.
@@ -292,8 +292,8 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * playing the specified MIME type.
 	 */
 	this.loadAssets = function (imagesData, soundsData) {
-		imagesLoaded = (typeof imagesData === "undefined" || typeof imagesData === "null");
-		soundsLoaded = (typeof soundsData === "undefined" || typeof soundsData === "null");
+		imagesLoaded = (typeof imagesData === 'undefined' || typeof imagesData === 'null');
+		soundsLoaded = (typeof soundsData === 'undefined' || typeof soundsData === 'null');
 
 		if (imagesLoaded && soundsLoaded) {
 			loadFinished();
@@ -312,9 +312,9 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 
 Canvace.Loader.guessMimeType = function (source) {
 	var mimeMap = [
-		[/\.aac$/i, "audio/aac"],
-		[/\.mp3$/i, "audio/mp3"],
-		[/\.ogg$/i, "application/ogg"]
+		[/\.aac$/i, 'audio/aac'],
+		[/\.mp3$/i, 'audio/mp3'],
+		[/\.ogg$/i, 'application/ogg']
 	];
 
 	for (var i in mimeMap) {
@@ -323,24 +323,24 @@ Canvace.Loader.guessMimeType = function (source) {
 		}
 	}
 
-	throw "Couldn't guess the MIME type from the resource URL";
+	throw 'Couldn\'t guess the MIME type from the resource URL';
 };
 
 Canvace.Loader.getSourceInfo = function (source) {
-	if (typeof source === "string") {
+	if (typeof source === 'string') {
 		return {
 			url: source,
 			mimeType: Canvace.Loader.guessMimeType(source)
 		};
 	}
 
-	if (typeof source === "object") {
-		if (source.hasOwnProperty("url") && source.hasOwnProperty("mimeType")) {
+	if (typeof source === 'object') {
+		if (source.hasOwnProperty('url') && source.hasOwnProperty('mimeType')) {
 			return source;
 		}
 	}
 
-	throw "Invalid source specified";
+	throw 'Invalid source specified';
 };
 
 /**

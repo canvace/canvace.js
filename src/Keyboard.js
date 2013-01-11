@@ -1,4 +1,4 @@
-if (typeof window.KeyEvent === "undefined") {
+if (typeof window.KeyEvent === 'undefined') {
 	window.KeyEvent = {
 		DOM_VK_CANCEL: 3,
 		DOM_VK_HELP: 6,
@@ -194,7 +194,7 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 				}
 				return function () {
 					for (var i in removers) {
-						removers();
+						removers[i]();
 					}
 				};
 			}

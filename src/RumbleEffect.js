@@ -17,10 +17,10 @@
  * vertically. Defaults to `true`.
  */
 Canvace.RumbleEffect = function (duration, period, amplitude, horizontal, vertical) {
-	period     = (typeof period !== "undefined")     ? (~~period)     : Canvace.RumbleEffect.defaultPeriod;
-	amplitude  = (typeof amplitude !== "undefined")  ? (~~amplitude)  : Canvace.RumbleEffect.defaultAmplitude;
-	horizontal = (typeof horizontal !== "undefined") ? (!!horizontal) : true;
-	vertical   = (typeof vertical !== "undefined")   ? (!!vertical)   : true;
+	period     = (typeof period !== 'undefined')     ? (~~period)     : Canvace.RumbleEffect.defaultPeriod;
+	amplitude  = (typeof amplitude !== 'undefined')  ? (~~amplitude)  : Canvace.RumbleEffect.defaultAmplitude;
+	horizontal = (typeof horizontal !== 'undefined') ? (!!horizontal) : true;
+	vertical   = (typeof vertical !== 'undefined')   ? (!!vertical)   : true;
 
 	/**
 	 * Modifies the canvas's projection matrix so as to simulate a rumble

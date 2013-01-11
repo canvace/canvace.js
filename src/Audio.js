@@ -12,12 +12,12 @@ Canvace.Audio = function () {
 			try {
 				return new Audio();
 			} catch (e) {
-				return document.createElement("audio");
+				return document.createElement('audio');
 			}
 		}());
 	};
 
-	var AudioContext = Canvace.Polyfill.getPrefixedProperty("AudioContext");
+	var AudioContext = Canvace.Polyfill.getPrefixedProperty('AudioContext');
 	var audioElement = createAudioElement();
 
 	/**
@@ -48,13 +48,12 @@ Canvace.Audio = function () {
 	 *	var playSound = function (node) {
 	 *		node.play();
 	 *	};
-	 *	
-	 *	if (audio.canPlayType("audio/mp3")) {
-	 *		audio.load("audio/foo.mp3", playSound);
-	 *	} else if (audio.canPlayType("application/ogg")) {
-	 *		audio.load("audio/bar.ogg", playSound);
+	 *	if (audio.canPlayType('audio/mp3')) {
+	 *		audio.load('audio/foo.mp3', playSound);
+	 *	} else if (audio.canPlayType('application/ogg')) {
+	 *		audio.load('audio/bar.ogg', playSound);
 	 *	} else {
-	 *		alert("No suitable audio resource available!");
+	 *		alert('No suitable audio resource available!');
 	 *	}
 	 *
 	 * @method canPlayType
@@ -62,12 +61,12 @@ Canvace.Audio = function () {
 	 * @return {Boolean} A boolean result.
 	 */
 	this.canPlayType = function (mimeType) {
-		return (audioElement.canPlayType(mimeType) !== "");
+		return (audioElement.canPlayType(mimeType) !== '');
 	};
 
 	var SourceNode = null;
 
-	if (typeof AudioContext !== "undefined") {
+	if (typeof AudioContext !== 'undefined') {
 		var context = new AudioContext();
 
 		/**
@@ -174,38 +173,38 @@ Canvace.Audio = function () {
 				return thisObject;
 			};
 
-			if (typeof source !== "string") {
+			if (typeof source !== 'string') {
 				bufferData = source;
 				return this;
 			}
 
 			var request = new XMLHttpRequest();
-			request.addEventListener("load", function () {
+			request.addEventListener('load', function () {
 				context.decodeAudioData(request.response, function (buffer) {
 					bufferData = buffer;
 					loaded = true;
-					if (typeof onload === "function") {
+					if (typeof onload === 'function') {
 						onload(thisObject);
 					}
 				}, function () {
-					if (typeof onerror === "function") {
+					if (typeof onerror === 'function') {
 						// FIXME: we should pass back something about the error
 						// occurred, not the requested URL that failed loading.
 						onerror(source);
 					}
 				});
 			}, false);
-			request.addEventListener("error", function (e) {
-				if (typeof onerror === "function") {
+			request.addEventListener('error', function (e) {
+				if (typeof onerror === 'function') {
 					onerror(e);
 				}
 			}, false);
-			request.open("GET", source, true);
-			request.responseType = "arraybuffer";
+			request.open('GET', source, true);
+			request.responseType = 'arraybuffer';
 			request.send();
 			return this;
 		};
-	} else if (typeof audioElement !== "undefined") {
+	} else if (typeof audioElement !== 'undefined') {
 		SourceNode = function (source, onload, onerror) {
 			var thisObject = this;
 			var appended = false;
@@ -241,27 +240,27 @@ Canvace.Audio = function () {
 				return thisObject;
 			};
 
-			if (typeof source !== "string") {
+			if (typeof source !== 'string') {
 				context = source;
 				loaded = true;
 			} else {
 				context = createAudioElement();
-				context.addEventListener("canplay", function () {
+				context.addEventListener('canplay', function () {
 					loaded = true;
-					if (typeof onload === "function") {
+					if (typeof onload === 'function') {
 						onload(thisObject);
 					}
 				}, false);
-				context.addEventListener("error", function (e) {
-					if (typeof onerror === "function") {
+				context.addEventListener('error', function (e) {
+					if (typeof onerror === 'function') {
 						onerror(e);
 					}
 				}, false);
-				context.setAttribute("src", source);
+				context.setAttribute('src', source);
 				context.load();
 			}
 
-			context.addEventListener("ended", function () {
+			context.addEventListener('ended', function () {
 				if (appended && !context.loop) {
 					document.body.removeChild(context);
 					appended = false;
