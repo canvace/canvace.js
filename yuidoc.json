@@ -8,7 +8,6 @@
     "linkNatives": "true",
     "paths": [
         "src/*.js"
-    ],
-    "exclude": "bin, doc, theme, grunt.js"
+    ]
   }
 }
