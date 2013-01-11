@@ -1,4 +1,4 @@
-if (typeof Array.prototype.forEach !== "function") {
+if (typeof Array.prototype.forEach !== 'function') {
 	Array.prototype.forEach = function (fn, scope) {
 		for (var i = 0, len = this.length; i < len; ++i) {
 			fn.call(scope, this[i], i, this);
@@ -6,9 +6,9 @@ if (typeof Array.prototype.forEach !== "function") {
 	};
 }
 
-if (typeof Array.isArray !== "function") {
+if (typeof Array.isArray !== 'function') {
 	Array.isArray = function (arg) {
-		return (Object.prototype.toString.call(arg) === "[object Array]");
+		return (Object.prototype.toString.call(arg) === '[object Array]');
 	};
 }
 
@@ -20,7 +20,7 @@ if (typeof Array.isArray !== "function") {
  * @static
  */
 Canvace.Polyfill = (function () {
-	var prefixes = ["webkit", "moz", "ms", "o"];
+	var prefixes = ['webkit', 'moz', 'ms', 'o'];
 
 	var getSinglePrefixedProperty = function (object, name) {
 		var capitalName = name.charAt(0).toUpperCase() + name.substr(1);
@@ -42,11 +42,11 @@ Canvace.Polyfill = (function () {
 		 *
 		 * @example
 		 *	// Get a prefixed property from the `window` object.
-		 *	var requestAnimationFrame = Canvace.Polyfill.getPrefixedProperty("requestAnimationFrame");
-		 *	
+		 *	var requestAnimationFrame = Canvace.Polyfill.getPrefixedProperty('requestAnimationFrame');
+		 *
 		 *	// Get a prefixed property from a DOM element.
-		 *	var canvas = document.getElementById("canvas");
-		 *	var requestFullscreen = Canvace.Polyfill.getPrefixedProperty(canvas, ["requestFullscreen", "requestFullScreen"]);
+		 *	var canvas = document.getElementById('canvas');
+		 *	var requestFullscreen = Canvace.Polyfill.getPrefixedProperty(canvas, ['requestFullscreen', 'requestFullScreen']);
 		 *
 		 * @method getPrefixedProperty
 		 * @param [object] {Object} An optional reference to the object holding

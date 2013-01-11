@@ -206,11 +206,16 @@ Canvace.Buckets = (function () {
 					if ((p1[2] !== p[2]) || (bi1 !== bi) || (bj1 !== bj)) {
 						remove();
 						removed = false;
-						p[0] = p1[0], p[1] = p1[1], p[2] = p1[2];
-						bi = bi1, bj = bj1;
+						p[0] = p1[0];
+						p[1] = p1[1];
+						p[2] = p1[2];
+						bi = bi1;
+						bj = bj1;
 						addToBuckets();
 					} else {
-						p[0] = p1[0], p[1] = p1[1], p[2] = p1[2];
+						p[0] = p1[0];
+						p[1] = p1[1];
+						p[2] = p1[2];
 					}
 				}
 			};

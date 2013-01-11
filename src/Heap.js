@@ -83,7 +83,7 @@ Canvace.Heap = function (compare, same) {
 	function find(element, index, callback) {
 		if (index < heap.length) {
 			if (same(element, heap[index])) {
-				if (typeof callback === "function") {
+				if (typeof callback === 'function') {
 					callback(index);
 				}
 				return true;
@@ -186,7 +186,7 @@ Canvace.Heap = function (compare, same) {
 	 * The return value is defined _only_ if the element is found, otherwise
 	 * this method does not return anything. You can test whether an element was
 	 * found or not using the `typeof` operator and checking against the string
-	 * `"undefined"`, as in the following example:
+	 * `'undefined'`, as in the following example:
 	 *
 	 *	var result = heap.find(...);
 	 *	if (typeof result !== 'undefined') {

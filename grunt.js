@@ -8,11 +8,11 @@ module.exports = function (grunt) {
 					'* http://www.canvace.com/\n' +
 					'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 					'Canvace Srl */',
-			header: '/*jshint strict:true */' +
+			header: '/*jshint strict:true */\n' +
 					'var Canvace = (function () {\n' +
-					'"use strict";\n' +
-					'var Canvace = {};\n',
-			footer: 'return Canvace;\n' +
+					'\'use strict\';\n' +
+					'\tvar Canvace = {};\n',
+			footer: '\treturn Canvace;\n' +
 					'}());'
 		},
 		concat: {

@@ -81,10 +81,13 @@ Canvace.Astar = function (epsilon) {
 	 * optimal one, where `epsilon` is the parameter specified to the `Astar`
 	 * constructor.
 	 *
-	 * The `startNode` and `targetNode` are `Astar.Node`-like objects
-	 * representing the first and last node of the path to find, respectively;
-	 * `Astar.Node`-like means they have to provide the same properties and
-	 * methods described by the documentation of the `Astar.Node` pseudo-class.
+	 * `startNode` is an `Astar.Node`-like object representing the first node of
+	 * the path to find, respectively; `Astar.Node`-like means it has to provide
+	 * the same properties and methods described by the documentation of the
+	 * `Astar.Node` pseudo-class.
+	 *
+	 * The target node is identified when the estimated distance from it,
+	 * provided by each node, is zero; the algorithm stops when this happens.
 	 *
 	 * `Astar.Node` objects allow to specify a directed graph with weighted and
 	 * labeled edges. Edge weights are real numbers and are used to compute the
@@ -98,11 +101,10 @@ Canvace.Astar = function (epsilon) {
 	 * @method findPath
 	 * @for Canvace.Astar
 	 * @param startNode {Canvace.Astar.Node} The starting node.
-	 * @param targetNode {Canvace.Astar.Node} The node to reach.
 	 * @return {String[]} An array of edge labels that identify the edges that
 	 * form the computed path, or `null` if no path can be found.
 	 */
-	this.findPath = function (startNode, targetNode) {
+	this.findPath = function (startNode) {
 		var closedSet = {};
 		var openScore = {};
 		var backLink = {};
