@@ -1153,6 +1153,41 @@ Canvace.Stage = function (data, canvas) {
 	};
 
 	/**
+	 * Returns an array of entities not filtered by the specified filtering
+	 * properties.
+	 *
+	 * Entities are filtered based on their custom properties. The `properties`
+	 * argument contains the filtering properties: an entity is returned only if
+	 * all of its filtered properties' values correspond to those declared in
+	 * the `properties` argument. All other properties in the entity are not
+	 * taken into account. This means that if you specify an empty `properties`
+	 * object, all the entities are returned.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * `properties` object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The chosen entities are returned as an array of `Stage.Entity` objects.
+	 *
+	 * @method getEntity
+	 * @param [properties={}] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Entity} An array of `Canvace.Stage.Entity` objects
+	 * representing the returned entities.
+	 */
+	this.getEntities = function (properties) {
+		var array = [];
+		for (var id in data.entities) {
+			if (data.entities.hasOwnProperty(id)) {
+				if (assertObject(data.entities[id].properties, properties || {}, {})) {
+					array.push(entities[id] || new Entity(id));
+				}
+			}
+		}
+		return array;
+	};
+
+	/**
 	 * Returns an arbitrarily chosen entity among the ones not filtered by the
 	 * specified filtering properties.
 	 *
@@ -1171,14 +1206,14 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen entity is returned as a `Stage.Entity` object.
 	 *
 	 * @method getEntity
-	 * @param properties {Object} The filtering properties.
+	 * @param [properties={}] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Entity} A `Canvace.Stage.Entity` object
 	 * representing the returned entity.
 	 */
 	this.getEntity = function (properties) {
 		for (var id in data.entities) {
 			if (data.entities.hasOwnProperty(id)) {
-				if (assertObject(data.entities[id].properties, properties, {})) {
+				if (assertObject(data.entities[id].properties, properties || {}, {})) {
 					return entities[id] || new Entity(id);
 				}
 			}
