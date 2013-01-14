@@ -14,6 +14,8 @@
 Canvace.TileMap = function (data, buckets) {
 	var map = data.map;
 
+	var tileCache = {};
+
 	/**
 	 * This class wraps a tile descriptor.
 	 *
@@ -176,7 +178,7 @@ Canvace.TileMap = function (data, buckets) {
 	 */
 	this.getTile = function (id) {
 		if (id in data.tiles) {
-			return new Tile(id);
+			return tileCache[id] || (tileCache[id] = new Tile(id));
 		} else {
 			throw 'invalid tile id: ' + id;
 		}
