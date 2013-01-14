@@ -63,8 +63,13 @@ Canvace.DebugEffect = function (stage, options) {
 		}
 		if (options.drawSolidMap) {
 			context.fillStyle = options.solidMapStyle || '#FF0000';
-			stage.getTileMap().forEachTile(function (id) {
-				// TODO draw box if solid and in view
+			var map = stage.getTileMap();
+			map.forEachTile(function (i, j, k) {
+				if (view.intersects(i, j, k, 1, 1, 1)) {
+					if (map.getTile(map.getAt(i, j, k)).isWalkable()) {
+						// TODO draw box
+					}
+				}
 			});
 		}
 		context.restore();
