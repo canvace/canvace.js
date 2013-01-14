@@ -182,7 +182,7 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 			if (!(keyCode in handlers)) {
 				handlers[keyCode] = new Canvace.MultiSet();
 			}
-			return handlers[keyCode].add(handler);
+			return handlers[keyCode].add(handler || function () {});
 		}
 		this.register = function (keyCode, handler) {
 			if (typeof keyCode === 'number') {
@@ -318,8 +318,10 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 	 *
 	 * You can safely use DOM\_VK\_XXX codes from the `KeyEvent` global object:
 	 * Canvace normalizes it across browsers.
-	 * @param handler {Function} A user-defined function that gets called when
+	 * @param [handler] {Function} A user-defined function that gets called when
 	 * the event occurs. It receives one argument, the virtual key code.
+	 *
+	 * When not specified defaults to an empty function.
 	 * @return {Function} A function that unregisters the registered handler.
 	 *
 	 * The returned function does not receive any arguments and does not return
@@ -352,8 +354,10 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 	 *
 	 * You can safely use DOM\_VK\_XXX codes from the `KeyEvent` global object:
 	 * Canvace normalizes it across browsers.
-	 * @param handler {Function} A user-defined function that gets called when
+	 * @param [handler] {Function} A user-defined function that gets called when
 	 * the event occurs. It receives one argument, the virtual key code.
+	 *
+	 * When not specified defaults to an empty function.
 	 * @return {Function} A function that unregisters the registered handler.
 	 *
 	 * The returned function does not receive any arguments and does not return
@@ -406,8 +410,10 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 	 *
 	 * You can safely use DOM\_VK\_XXX codes from the `KeyEvent` global object:
 	 * Canvace normalizes it across browsers.
-	 * @param handler {Function} A user-defined function that gets called when
+	 * @param [handler] {Function} A user-defined function that gets called when
 	 * the event occurs. It receives one argument, the virtual key code.
+	 *
+	 * When not specified defaults to an empty function.
 	 * @return {Function} A function that unregisters the registered handler.
 	 *
 	 * The returned function does not receive any arguments and does not return
