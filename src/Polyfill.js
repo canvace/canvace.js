@@ -1,6 +1,6 @@
 if (typeof Array.prototype.forEach !== 'function') {
 	Array.prototype.forEach = function (fn, scope) {
-		for (var i = 0, len = this.length; i < len; ++i) {
+		for (var i = 0, length = this.length; i < length; ++i) {
 			fn.call(scope, this[i], i, this);
 		}
 	};
