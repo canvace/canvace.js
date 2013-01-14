@@ -20,38 +20,87 @@ Canvace.DebugEffect = function (stage, options) {
 	var enabled = true;
 	var view = stage.getView();
 
+	/**
+	 * TODO
+	 *
+	 * @method enable
+	 */
 	this.enable = function () {
 		enabled = true;
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method disable
+	 */
 	this.disable = function () {
 		enabled = false;
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method toggle
+	 * @return {Boolean} TODO
+	 */
 	this.toggle = function (on) {
 		if (arguments.length < 1) {
-			enabled = !enabled;
+			return enabled = !enabled;
 		} else {
-			enabled = !!on;
+			return enabled = !!on;
 		}
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method isEnabled
+	 * @return {Boolean} TODO
+	 */
 	this.isEnabled = function () {
 		return enabled;
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method getOption
+	 * @param name {String} TODO
+	 * @return {Any} TODO
+	 */
 	this.getOption = function (name) {
 		return options[name];
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method setOption
+	 * @param name {String} TODO
+	 * @param value {Any} TODO
+	 */
 	this.setOption = function (name, value) {
 		options[name] = value;
 	};
 
+	/**
+	 * Returns `false`.
+	 *
+	 * @method isOver
+	 * @return {Boolean} `false`.
+	 */
 	this.isOver = function () {
 		return false;
 	};
 
+	/**
+	 * TODO
+	 *
+	 * @method postProcess
+	 * @param context {CanvasRenderingContext2D} the rendering context of the
+	 * HTML5 canvas.
+	 */
 	this.postProcess = function (context) {
 		if (enabled) {
 			context.save();
