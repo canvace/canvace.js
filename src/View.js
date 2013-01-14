@@ -253,6 +253,27 @@ Canvace.View = function (data, canvas) {
 	};
 
 	/**
+	 * TODO
+	 *
+	 * @method intersects
+	 * @param i {Number} TODO
+	 * @param j {Number} TODO
+	 * @param di {Number} TODO
+	 * @param dj {Number} TODO
+	 * @return {Boolean} TODO
+	 */
+	this.intersects = function (i, j, k, di, dj, dk) {
+		var x0 = mat[0][0] * i + mat[0][1] * j + mat[0][2] * k;
+		var y0 = mat[1][0] * i + mat[1][1] * j + mat[1][2] * k;
+		var x1 = mat[0][0] * (i + di) + mat[0][1] * (j + dj) + mat[0][2] * (k + dk);
+		var y1 = mat[1][0] * (i + di) + mat[1][1] * (j + dj) + mat[1][2] * (k + dk);
+		return (Math.min(x0, x1) < width - x0) &&
+			(Math.max(x0, x1) > -x0) &&
+			(Math.min(y0, y1) < height - y0) &&
+			(Math.max(y0, y1) > -y0);
+	};
+
+	/**
 	 * Manages the synchronization of the view on some specified entity instance
 	 * of a stage, making the view always point at that entity.
 	 *

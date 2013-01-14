@@ -78,17 +78,10 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		var origin = view.getOrigin();
 		context.setTransform(1, 0, 0, 1, origin.x, origin.y);
 		context.clearRect(-origin.x, -origin.y, width, height);
-
-		if (typeof preProcess === 'function') {
-			preProcess(context);
-		}
-
+		preProcess && preProcess(context);
 		buckets.forEachElement(counter, function (x, y, id) {
 			context.drawImage(loader.getImage(id), x, y);
 		});
-
-		if (typeof postProcess === 'function') {
-			postProcess(context);
-		}
+		postProcess && postProcess(context);
 	};
 };
