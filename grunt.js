@@ -11,10 +11,8 @@ module.exports = function (grunt) {
 			header: 'var Canvace = (function () {\n' +
 					'\t/*jshint strict:true */\n' +
 					'\t\'use strict\';\n' +
-					'\tvar Canvace = {};\n' +
-					'/*jshint indent:0 */',
-			footer: '\t/*jshint indent:1*/' +
-					'\treturn Canvace;\n' +
+					'\tvar Canvace = {};\n',
+			footer: '\treturn Canvace;\n' +
 					'}());'
 		},
 		concat: {
@@ -117,5 +115,6 @@ module.exports = function (grunt) {
 			}
 		},
 	});
-	grunt.registerTask('default', 'lint:beforeconcat concat min lint:afterconcat');
+	grunt.registerTask('default', 'lint:beforeconcat concat min');
+	// grunt.registerTask('default', 'lint:beforeconcat concat min lint:afterconcat');
 };
