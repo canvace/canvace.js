@@ -9,10 +9,12 @@ module.exports = function (grunt) {
 					'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 					'Canvace Srl */',
 			header: 'var Canvace = (function () {\n' +
-					'/*jshint strict:true */\n' +
-					'\'use strict\';\n' +
-					'\tvar Canvace = {};\n',
-			footer: '\treturn Canvace;\n' +
+					'\t/*jshint strict:true */\n' +
+					'\t\'use strict\';\n' +
+					'\tvar Canvace = {};\n' +
+					'/*jshint indent:0 */',
+			footer: '\t/*jshint indent:1*/' +
+					'\treturn Canvace;\n' +
 					'}());'
 		},
 		concat: {
