@@ -1110,6 +1110,7 @@ Canvace.Stage = function (data, canvas) {
 			};
 			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
 		}
+		map = new Canvace.TileMap(data, buckets);
 	})();
 
 	/**
@@ -1185,7 +1186,7 @@ Canvace.Stage = function (data, canvas) {
 	 * tile map.
 	 */
 	this.getTileMap = function () {
-		return map || (map = new Canvace.TileMap(data, buckets));
+		return map;
 	};
 
 	/**
