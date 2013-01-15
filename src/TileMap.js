@@ -352,6 +352,8 @@ Canvace.TileMap = function (data, buckets) {
 	 * This may be a real number.
 	 * @param dj {Number} The span of the rectangular area along the J axis.
 	 * This may be a real number.
+	 * @param Di {Number} TODO
+	 * @param Dj {Number} TODO
 	 * @param [collides] {Function} An optional user-defined callback function
 	 * that is invoked by the `rectangleCollision` method for every tile that
 	 * collides with the specified rectangle.
@@ -360,12 +362,10 @@ Canvace.TileMap = function (data, buckets) {
 	 * properties, and must return a boolean value indicating whether the tile
 	 * must be taken into account as a colliding tile. If the function returns
 	 * `false` the tile is _not_ taken into account.
-	 * @param Di {Number} TODO
-	 * @param Dj {Number} TODO
 	 * @return {Object} An object containing two number fields, `i` and `j`,
 	 * specifying the I and J components of the computed vector.
 	 */
-	this.rectangleCollision = function (k, i, j, di, dj, collides, Di, Dj) {
+	this.rectangleCollision = function (k, i, j, di, dj, Di, Dj, collides) {
 		var viu = 0;
 		var vio = 0;
 		var vju = 0;
