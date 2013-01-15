@@ -37,6 +37,7 @@ module.exports = function (grunt) {
 					'<file_strip_banner:src/TileMap.js>',
 					'<file_strip_banner:src/Stage.js>',
 					'<file_strip_banner:src/StageRenderer.js>',
+					'<file_strip_banner:src/DebugEffect.js>',
 					'<file_strip_banner:src/RumbleEffect.js>',
 					'<file_strip_banner:src/RenderLoop.js>',
 					'<file_strip_banner:src/Audio.js>',
