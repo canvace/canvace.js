@@ -9,7 +9,6 @@ module.exports = function (grunt) {
 					'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 					'Canvace Srl */',
 			header: 'var Canvace = (function () {\n' +
-					'\t/*jshint strict:true */\n' +
 					'\t\'use strict\';\n' +
 					'\tvar Canvace = {};\n',
 			footer: '\treturn Canvace;\n' +
@@ -58,27 +57,28 @@ module.exports = function (grunt) {
 		},
 		lint: {
 				beforeconcat: [
-					'src/Polyfill.js',
-					'src/MultiSet.js',
-					'src/List.js',
-					'src/Heap.js',
-					'src/StateMachine.js',
-					'src/ParametricStateMachine.js',
 					'src/Astar.js',
-					'src/Mobile.js',
-					'src/Keyboard.js',
-					'src/Mouse.js',
-					'src/Loader.js',
-					'src/View.js',
-					'src/FrameTable.js',
+					'src/Audio.js',
 					'src/Buckets.js',
+					'src/DebugEffect.js',
+					'src/FrameTable.js',
+					'src/Heap.js',
+					'src/Keyboard.js',
+					'src/List.js',
+					'src/Loader.js',
+					'src/Mobile.js',
+					'src/Mouse.js',
+					'src/MultiSet.js',
+					'src/ParametricStateMachine.js',
+					'src/Polyfill.js',
 					'src/Renderer.js',
-					'src/TileMap.js',
+					'src/RenderLoop.js',
+					'src/RumbleEffect.js',
 					'src/Stage.js',
 					'src/StageRenderer.js',
-					'src/RumbleEffect.js',
-					'src/RenderLoop.js',
-					'src/Audio.js',
+					'src/StateMachine.js',
+					'src/TileMap.js',
+					'src/View.js',
 					'src/Visibility.js',
 				],
 				afterconcat: '<config:concat.dist.dest>'
@@ -116,5 +116,4 @@ module.exports = function (grunt) {
 		},
 	});
 	grunt.registerTask('default', 'lint:beforeconcat concat min');
-	// grunt.registerTask('default', 'lint:beforeconcat concat min lint:afterconcat');
 };

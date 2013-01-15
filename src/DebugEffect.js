@@ -114,7 +114,7 @@ Canvace.DebugEffect = function (stage, options) {
 			context.shadowColor = 'transparent';
 			if (options.drawBoundingBoxes) {
 				context.strokeStyle = options.boundingBoxStyle || '#FF0000';
-				stage.forEachInstance(function (instance) {
+				stage.forEachInstance(function () {
 					// TODO draw bounding box
 				});
 			}
