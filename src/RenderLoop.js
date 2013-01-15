@@ -87,10 +87,10 @@ Canvace.RenderLoop = (function () {
 		 * is not currently running.
 		 */
 		this.getActualRate = (function () {
-			var lastTimestamp = Date.now();
+			var lastTimestamp = Canvace.Timing.now();
 			return function () {
 				if (running && !banned) {
-					var currentTimestamp = Date.now();
+					var currentTimestamp = Canvace.Timing.now();
 					var result = counter * 1000 / (currentTimestamp - lastTimestamp);
 					counter = 0;
 					lastTimestamp = currentTimestamp;
@@ -168,7 +168,7 @@ Canvace.RenderLoop = (function () {
 				running = true;
 				banned = false;
 
-				var startTimestamp = Date.now();
+				var startTimestamp = Canvace.Timing.now();
 				var lastTimestamp = startTimestamp;
 				token = requestAnimationFrame(function tick(timestamp) {
 					var elapsed = (timestamp - startTimestamp);
@@ -186,10 +186,10 @@ Canvace.RenderLoop = (function () {
 				running = true;
 				banned = false;
 
-				var startTimestamp = Date.now();
+				var startTimestamp = Canvace.Timing.now();
 				var lastTimestamp = startTimestamp;
 				token = setInterval(function () {
-					var timestamp = Date.now();
+					var timestamp = Canvace.Timing.now();
 					var elapsed = (timestamp - startTimestamp);
 					var delta = (timestamp - lastTimestamp);
 					lastTimestamp = timestamp;
