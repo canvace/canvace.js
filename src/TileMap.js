@@ -320,36 +320,26 @@ Canvace.TileMap = function (data, buckets) {
 	 * arguments.
 	 *
 	 * The implementation of this method assumes the rectangular area represents
-	 * a moving entity (though not necessarily a Canvace entity) which is
-	 * characterized by its own velocity and acceleration vectors; these vectors
-	 * are used in the collision algorithm in that it assumes the moving entity
-	 * cannot have compenetrated a tile along the I or J axis more than a
-	 * certain amount that is computed using the velocity and acceleration
-	 * vectors. This is necessary in order to obtain a functional physics
+	 * a moving entity (though not necessarily a Canvace entity). The collision
+	 * algorithm assumes the moving entity cannot have compenetrated a tile
+	 * along the I or J axis more than specified amounts `Di` and `Dj`,
+	 * respectively; this is necessary in order to obtain a functional physics
 	 * algorithm.
-	 *
-	 * If the rectangular area actually is the bounding box of a Canvace entity,
-	 * you can specify the I and J components of its actual velocity and
-	 * acceleration vectors to the `vi`, `vj`, `ai` and `aj` arguments. Use the
-	 * `getAcceleration` method of the `Stage.Instance` class to get the
-	 * acceleration vector; the velocity vector can be retrieved by adding the
-	 * two vectors returned by the `getVelocity` and `getUniformVelocity` of the
-	 * `Stage.Instance` class. This is actually what the `testTileCollision`
-	 * method of the `Stage.Instance` class does.
 	 *
 	 * This method can be used to implement in-layer, bounding box based, entity
 	 * vs. tiles collisions. If the rectangular area represents the bounding box
 	 * of an entity, its origin's `i` and `j` coordinates can be obtained using
 	 * the `Stage.Instance.getPosition` method, while the `di` and `dj` span
-	 * values are usually constant and must be arbitrarily determined by the
-	 * developer.
+	 * values are usually per-entity constant and must be arbitrarily determined
+	 * by the developer.
 	 *
-	 * `rectangleCollision` method is typically invoked for one or more entities
-	 * or other rectangular areas each time a stage is ticked. To compute the
-	 * maximum amount a rectangle can overlap one or more tiles along the I and
-	 * J axes, the `rectangleCollision` algorithm also needs to know the time
-	 * span (in milliseconds) between the current timestamp and the last time it
-	 * was called.
+	 * If the rectangular area actually is the bounding box of a Canvace entity,
+	 * you can specify the distance the entity has gone along the I and J axes
+	 * since the last step as values for the `Di` and `Dj` arguments; you can do
+	 * that by caching the values of the `i` and `j` components of the entity's
+	 * position and subtracting them to their respective values of the current
+	 * position at each step. This is actually what the `testTileCollision`
+	 * method of the `Stage.Instance` class does.
 	 *
 	 * @method rectangleCollision
 	 * @param k {Number} The number of the layer containing the tiles against
@@ -362,20 +352,6 @@ Canvace.TileMap = function (data, buckets) {
 	 * This may be a real number.
 	 * @param dj {Number} The span of the rectangular area along the J axis.
 	 * This may be a real number.
-	 * @param vi {Number} The I component of the velocity vector. This may be a
-	 * real number.
-	 * @param vj {Number} The J component of the velocity vector. This may be a
-	 * real number.
-	 * @param ai {Number} The I component of the acceleration vector. This may
-	 * be a real number.
-	 * @param aj {Number} The J component of the acceleration vector. This may
-	 * be a real number.
-	 * @param dt {Number} The time span, in milliseconds, between the current
-	 * time and the last time this method was called for the same entity or
-	 * rectangular area.
-	 *
-	 * You can specify 0 if the method is being invoked for the first time, but
-	 * it will assume that there are no collisions.
 	 * @param [collides] {Function} An optional user-defined callback function
 	 * that is invoked by the `rectangleCollision` method for every tile that
 	 * collides with the specified rectangle.
@@ -384,10 +360,12 @@ Canvace.TileMap = function (data, buckets) {
 	 * properties, and must return a boolean value indicating whether the tile
 	 * must be taken into account as a colliding tile. If the function returns
 	 * `false` the tile is _not_ taken into account.
+	 * @param Di {Number} TODO
+	 * @param Dj {Number} TODO
 	 * @return {Object} An object containing two number fields, `i` and `j`,
 	 * specifying the I and J components of the computed vector.
 	 */
-	this.rectangleCollision = function (k, i, j, di, dj, vi, vj, ai, aj, dt, collides) {
+	this.rectangleCollision = function (k, i, j, di, dj, collides, Di, Dj) {
 		var viu = 0;
 		var vio = 0;
 		var vju = 0;
@@ -459,11 +437,10 @@ Canvace.TileMap = function (data, buckets) {
 			v.j = vjo;
 		}
 
-		var dt2 = dt * dt * 0.5;
-		if (Math.abs(v.i) > Math.abs(vi * dt + ai * dt2) + 0.001) {
+		if (Di && (Math.abs(v.i) > Math.abs(Di) + 0.001)) {
 			v.i = 0;
 		}
-		if (Math.abs(v.j) > Math.abs(vj * dt + aj * dt2) + 0.001) {
+		if (Dj && (Math.abs(v.j) > Math.abs(Dj) + 0.001)) {
 			v.j = 0;
 		}
 
