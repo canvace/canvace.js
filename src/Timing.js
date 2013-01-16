@@ -16,7 +16,7 @@ Canvace.Timing = (function () {
 			if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
 				return function () {
 					return Date.now();
-				}
+				};
 			} else {
 				return function () {
 					return window.performance.now();
