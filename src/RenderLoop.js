@@ -168,7 +168,7 @@ Canvace.RenderLoop = (function () {
 				running = true;
 				banned = false;
 
-				var startTimestamp = Canvace.Timing.now();
+				var startTimestamp = Canvace.Timing.startTime();
 				var lastTimestamp = startTimestamp;
 				token = requestAnimationFrame(function tick(timestamp) {
 					var elapsed = (timestamp - startTimestamp);
