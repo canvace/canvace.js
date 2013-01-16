@@ -1,13 +1,10 @@
 {
-  "name": "Canvace Client Library",
-  "description": "The JavaScript library part of the Canvace Development Kit",
-  "version": "0.2.5",
-  "url": "http://www.canvace.com/",
-  "options": {
-    "outdir": "doc",
-    "linkNatives": "true",
-    "paths": [
-        "src"
-    ]
-  }
+	"name": "Canvace Client Library",
+	"description": "The JavaScript library part of the Canvace Development Kit",
+	"version": "0.2.5",
+	"url": "http://www.canvace.com/",
+	"options": {
+		"outdir": "doc",
+		"linkNatives": "true"
+	}
 }
