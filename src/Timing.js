@@ -5,6 +5,18 @@
  * @static
  */
 Canvace.Timing = (function () {
+	var now = (function () {
+		if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
+			return function () {
+				return Date.now();
+			};
+		} else {
+			return function () {
+				return window.performance.now();
+			};
+		}
+	})();
+
 	return {
 		/**
 		 * TODO
@@ -12,17 +24,7 @@ Canvace.Timing = (function () {
 		 * @method now
 		 * @return {Number} TODO
 		 */
-		now: (function () {
-			if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
-				return function () {
-					return Date.now();
-				};
-			} else {
-				return function () {
-					return window.performance.now();
-				};
-			}
-		})(),
+		now: now,
 
 		/**
 		 * TODO
@@ -36,7 +38,7 @@ Canvace.Timing = (function () {
 					return window.mozAnimationStartTime;
 				};
 			} else {
-				return Canvace.Timing.now;
+				return now;
 			}
 		})()
 	};
