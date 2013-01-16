@@ -8,9 +8,13 @@ Canvace.Timing = (function () {
 	return {
 		now: (function () {
 			if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
-				return Date.now;
+				return function () {
+					return Date.now();
+				}
 			} else {
-				return window.performance.now;
+				return function () {
+					return window.performance.now();
+				};
 			}
 		})(),
 		startTime: (function () {
