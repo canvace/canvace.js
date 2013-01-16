@@ -938,6 +938,9 @@ Canvace.Stage = function (data, canvas) {
 		 */
 		this.tick = function (dt) {
 			var dt2 = dt * dt * 0.5;
+			instance.previousPosition.i = instance.position.i;
+			instance.previousPosition.j = instance.position.j;
+			instance.previousPosition.k = instance.position.k;
 			instance.position.i += (instance.velocity.i + instance.uniformVelocity.i) * dt + instance.acceleration.i * dt2;
 			instance.position.j += (instance.velocity.j + instance.uniformVelocity.j) * dt + instance.acceleration.j * dt2;
 			instance.position.k += (instance.velocity.k + instance.uniformVelocity.k) * dt + instance.acceleration.k * dt2;
@@ -1043,6 +1046,11 @@ Canvace.Stage = function (data, canvas) {
 					j: instance.position.j,
 					k: instance.position.k
 				},
+				previousPosition: {
+					i: instance.previousPosition.i,
+					j: instance.previousPosition.j,
+					k: instance.previousPosition.k
+				},
 				velocity: {
 					i: instance.velocity.i,
 					j: instance.velocity.j,
@@ -1077,6 +1085,11 @@ Canvace.Stage = function (data, canvas) {
 		for (var id in data.instances) {
 			var instance = data.instances[id];
 			instance.position = {
+				i: instance.i,
+				j: instance.j,
+				k: instance.k
+			};
+			instance.previousPosition = {
 				i: instance.i,
 				j: instance.j,
 				k: instance.k
