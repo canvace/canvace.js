@@ -6,6 +6,12 @@
  */
 Canvace.Timing = (function () {
 	return {
+		/**
+		 * TODO
+		 *
+		 * @method now
+		 * @return {Number} TODO
+		 */
 		now: (function () {
 			if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
 				return function () {
@@ -17,6 +23,13 @@ Canvace.Timing = (function () {
 				};
 			}
 		})(),
+
+		/**
+		 * TODO
+		 *
+		 * @method startTime
+		 * @return {Number} TODO
+		 */
 		startTime: (function () {
 			if ('mozAnimationStartTime' in window) {
 				return function () {
