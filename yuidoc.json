@@ -7,7 +7,7 @@
     "outdir": "doc",
     "linkNatives": "true",
     "paths": [
-        "src/*.js"
+        "src"
     ]
   }
 }
