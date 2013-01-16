@@ -16,7 +16,7 @@ Canvace.Timing = (function () {
 		startTime: (function () {
 			if ('mozAnimationStartTime' in window) {
 				return function () {
-					return mozAnimationStartTime;
+					return window.mozAnimationStartTime;
 				};
 			} else {
 				return Canvace.Timing.now;
