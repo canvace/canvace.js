@@ -559,7 +559,6 @@ Canvace.Stage = function (data, canvas) {
 		 * `Canvace.TileMap.rectangleCollision` method to the caller.
 		 *
 		 * @method testTileCollision
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} An optional user-defined callback
 		 * function that is invoked by the `testTileCollision` method for every
 		 * tile that collides with the instance.
@@ -579,18 +578,15 @@ Canvace.Stage = function (data, canvas) {
 		 * See the `Canvace.TileMap.rectangleCollision` method for more
 		 * information, the return value is the same.
 		 */
-		this.testTileCollision = function (dt, collides, tileMap) {
+		this.testTileCollision = function (collides, tileMap) {
 			return (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 		};
@@ -622,7 +618,6 @@ Canvace.Stage = function (data, canvas) {
 		 * forwarded to the caller.
 		 *
 		 * @method tileCollision
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} TODO
 		 * @param [tileMap] {Canvace.TileMap} A `Canvace.TileMap` object whose
 		 * tiles are tested for collisions with this entity instance.
@@ -630,18 +625,15 @@ Canvace.Stage = function (data, canvas) {
 		 * `rectangleCollision` method of
 		 * {{#crossLink "Canvace.TileMap"}}{{/crossLink}}.
 		 */
-		this.tileCollision = function (dt, collides, tileMap) {
+		this.tileCollision = function (collides, tileMap) {
 			var v = (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 			instance.position.i += v.i;
@@ -663,23 +655,19 @@ Canvace.Stage = function (data, canvas) {
 		 * TODO
 		 *
 		 * @method collidesWithTiles
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} TODO
 		 * @param [tileMap] {Canvace.TileMap} TODO
 		 * @return {Boolean} TODO
 		 */
-		this.collidesWithTiles = function (dt, collides, tileMap) {
+		this.collidesWithTiles = function (collides, tileMap) {
 			var v = (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 			instance.position.i += v.i;
