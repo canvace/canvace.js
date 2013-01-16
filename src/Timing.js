@@ -8,7 +8,7 @@ Canvace.Timing = (function () {
 	var thisObject = {};
 
 	thisObject.now = (function () {
-		if (typeof window.performance.now !== 'function') {
+		if (typeof window.performance !== 'object' || typeof window.performance.now !== 'function') {
 			return Date.now;
 		}
 
