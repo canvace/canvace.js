@@ -1256,7 +1256,7 @@ Canvace.Stage = function (data, canvas) {
 	 *
 	 * @method getEntities
 	 * @param [properties={}] {Object} The filtering properties.
-	 * @return {Canvace.Stage.Entity} An array of `Canvace.Stage.Entity` objects
+	 * @return {Canvace.Stage.Entity[]} An array of `Canvace.Stage.Entity` objects
 	 * representing the returned entities.
 	 */
 	this.getEntities = function (properties) {
