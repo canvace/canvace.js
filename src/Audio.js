@@ -108,7 +108,7 @@ Canvace.Audio = function () {
 					sourceNode.loop = looping;
 					sourceNode.connect(context.destination);
 
-					noteOnAt = Date.now();
+					noteOnAt = Canvace.Timing.now();
 					sourceNode.noteGrainOn(0, position, remaining);
 				}
 				return thisObject;
@@ -125,7 +125,7 @@ Canvace.Audio = function () {
 					sourceNode.noteOff(0);
 					sourceNode.disconnect();
 
-					currentTime += Date.now() - noteOnAt;
+					currentTime += Canvace.Timing.now() - noteOnAt;
 				}
 				return thisObject;
 			};
