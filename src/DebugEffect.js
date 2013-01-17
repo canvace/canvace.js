@@ -94,6 +94,20 @@ Canvace.DebugEffect = function (stage, options) {
 		return false;
 	};
 
+	function drawQuadrilateral(context, i0, j0, k, iSpan, jSpan) {
+		var points = [
+			view.project(i0, j0, k),
+			view.project(i0 + iSpan, j0, k),
+			view.project(i0 + iSpan, j0 + jSpan, k),
+			view.project(i0, j0 + jSpan, k)
+		];
+		context.moveTo(points[0][0], points[0][1]);
+		context.lineTo(points[1][0], points[1][1]);
+		context.lineTo(points[2][0], points[2][1]);
+		context.lineTo(points[3][0], points[3][1]);
+		context.lineTo(points[0][0], points[0][1]);
+	}
+
 	/**
 	 * TODO
 	 *
@@ -114,9 +128,13 @@ Canvace.DebugEffect = function (stage, options) {
 			context.shadowColor = 'transparent';
 			if (options.drawBoundingBoxes) {
 				context.strokeStyle = options.boundingBoxStyle || '#FF0000';
-				stage.forEachInstance(function () {
-					// TODO draw bounding box
+				context.beginPath();
+				stage.forEachInstance(function (instance) {
+					var position = instance.getPosition();
+					var box = instance.getBoundingBox();
+					drawQuadrilateral(context, position.i + box.i0, position.j + box.j0, position.k, box.iSpan, box.jSpan);
 				});
+				context.stroke();
 			}
 			if (options.drawVelocity) {
 				context.strokeStyle = options.velocityStyle || '#FF0000';
@@ -149,17 +167,7 @@ Canvace.DebugEffect = function (stage, options) {
 				map.forEachTile(function (i, j, k) {
 					if (view.intersects(i, j, k, 1, 1, 1)) {
 						if (map.getTile(map.getAt(i, j, k)).isWalkable()) {
-							var points = [
-								view.project(i, j, k),
-								view.project(i, j + 1, k),
-								view.project(i + 1, j + 1, k),
-								view.project(i + 1, j, k)
-							];
-							context.moveTo(points[0][0], points[0][1]);
-							context.lineTo(points[1][0], points[1][1]);
-							context.lineTo(points[2][0], points[2][1]);
-							context.lineTo(points[3][0], points[3][1]);
-							context.lineTo(points[0][0], points[0][1]);
+							drawQuadrilateral(context, i, j, k, 1, 1);
 						}
 					}
 				});
