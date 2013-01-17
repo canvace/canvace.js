@@ -108,6 +108,14 @@ Canvace.DebugEffect = function (stage, options) {
 		context.lineTo(points[0][0], points[0][1]);
 	}
 
+	function drawVector(origin, vector) {
+		var p0 = view.project(origin.i, origin.j, origin.k);
+		var p1 = view.project(origin.i + vector.i, origin.j + vector.j, origin.k + vector.k);
+		context.moveTo(p0[0], p0[1]);
+		context.lineTo(p1[0], p1[1]);
+		// TODO draw arrow tip
+	}
+
 	/**
 	 * TODO
 	 *
@@ -138,27 +146,33 @@ Canvace.DebugEffect = function (stage, options) {
 			}
 			if (options.drawVelocity) {
 				context.strokeStyle = options.velocityStyle || '#FF0000';
+				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						// TODO draw velocity
+						drawVector(instance.getPosition(), instance.getVelocity());
 					}
 				});
+				context.stroke();
 			}
 			if (options.drawUniformVelocity) {
 				context.strokeStyle = options.uniformVelocityStyle || '#FF0000';
+				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						// TODO draw uniform velocity
+						drawVector(instance.getPosition(), instance.getUniformVelocity());
 					}
 				});
+				context.stroke();
 			}
 			if (options.drawAcceleration) {
 				context.strokeStyle = options.accelerationStyle || '#FF0000';
+				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						// TODO draw acceleration
+						drawVector(instance.getPosition(), instance.getAcceleration());
 					}
 				});
+				context.stroke();
 			}
 			if (options.drawSolidMap) {
 				var map = stage.getTileMap();
