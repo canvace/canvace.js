@@ -108,7 +108,7 @@ Canvace.DebugEffect = function (stage, options) {
 		context.lineTo(points[0][0], points[0][1]);
 	}
 
-	function drawVector(origin, vector) {
+	function drawVector(context, origin, vector) {
 		var p0 = view.project(origin.i, origin.j, origin.k);
 		var p1 = view.project(origin.i + vector.i, origin.j + vector.j, origin.k + vector.k);
 		context.moveTo(p0[0], p0[1]);
@@ -149,7 +149,7 @@ Canvace.DebugEffect = function (stage, options) {
 				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						drawVector(instance.getPosition(), instance.getVelocity());
+						drawVector(context, instance.getPosition(), instance.getVelocity());
 					}
 				});
 				context.stroke();
@@ -159,7 +159,7 @@ Canvace.DebugEffect = function (stage, options) {
 				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						drawVector(instance.getPosition(), instance.getUniformVelocity());
+						drawVector(context, instance.getPosition(), instance.getUniformVelocity());
 					}
 				});
 				context.stroke();
@@ -169,7 +169,7 @@ Canvace.DebugEffect = function (stage, options) {
 				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					if (instance.isPhysicsEnabled()) {
-						drawVector(instance.getPosition(), instance.getAcceleration());
+						drawVector(context, instance.getPosition(), instance.getAcceleration());
 					}
 				});
 				context.stroke();
