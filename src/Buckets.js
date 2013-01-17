@@ -49,7 +49,7 @@ Canvace.Buckets = (function () {
 		function Bucket() {
 			var sections = {};
 			var minS = 0, maxS = 0;
-			this.add = function (p, width, height, getFrame) {
+			this.add = function (p, width, height, getFrame, timeOffset) {
 				minS = Math.min(minS, p[2]);
 				maxS = Math.max(maxS, p[2]);
 				if (!sections[p[2]]) {
@@ -60,7 +60,7 @@ Canvace.Buckets = (function () {
 					width: width,
 					height: height,
 					getFrame: getFrame,
-					timeOffset: Canvace.Timing.now()
+					timeOffset: timeOffset
 				});
 			};
 			this.forEach = function (action) {
@@ -98,6 +98,7 @@ Canvace.Buckets = (function () {
 			var bj = Math.floor(p[0] / width);
 
 			var animation = getAnimation();
+			var timeOffset = Canvace.Timing.now();
 
 			var removers = [];
 			var removed = false;
@@ -107,7 +108,7 @@ Canvace.Buckets = (function () {
 				if (!buckets.hasOwnProperty(key)) {
 					buckets[key] = new Bucket();
 				}
-				removers.push(buckets[key].add(p, element.width, element.height, animation));
+				removers.push(buckets[key].add(p, element.width, element.height, animation, timeOffset));
 			}
 
 			function addToBuckets() {
