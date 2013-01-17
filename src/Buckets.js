@@ -48,7 +48,7 @@ Canvace.Buckets = (function () {
 		function Bucket() {
 			var sections = {};
 			var minS = 0, maxS = 0;
-			this.add = function (p, width, height, getFrame) {
+			this.add = function (p, width, height, getFrame, timeOffset) {
 				minS = Math.min(minS, p[2]);
 				maxS = Math.max(maxS, p[2]);
 				if (!sections[p[2]]) {
@@ -58,7 +58,8 @@ Canvace.Buckets = (function () {
 					p: p,
 					width: width,
 					height: height,
-					getFrame: getFrame
+					getFrame: getFrame,
+					timeOffset: timeOffset
 				});
 			};
 			this.forEach = function (action) {
@@ -86,7 +87,7 @@ Canvace.Buckets = (function () {
 		 *
 		 * @class Canvace.Buckets.Entity
 		 */
-		function Element(element, getAnimation, i, j, k) {
+		function Element(element, getAnimation, timestamp, i, j, k) {
 			if (!element.frames.length) {
 				return new MockElement();
 			}
@@ -105,7 +106,7 @@ Canvace.Buckets = (function () {
 				if (!buckets.hasOwnProperty(key)) {
 					buckets[key] = new Bucket();
 				}
-				removers.push(buckets[key].add(p, element.width, element.height, animation));
+				removers.push(buckets[key].add(p, element.width, element.height, animation, timestamp));
 			}
 
 			function addToBuckets() {
@@ -253,7 +254,7 @@ Canvace.Buckets = (function () {
 			 * @return {Canvace.Buckets.Entity} A new `Entity` object
 			 * representing the new entity.
 			 */
-			this.replace = function (id) {
+			this.replace = function (id, timestamp) {
 				if (!removed) {
 					if (!(id in data.entities)) {
 						throw {
@@ -267,14 +268,14 @@ Canvace.Buckets = (function () {
 
 					return new Element(entity, function () {
 						return frameTable.getEntityAnimation(id);
-					}, i, j, k);
+					}, timestamp, i, j, k);
 				}
 			};
 		}
 
 		var eraser = {};
 
-		function addTile(id, i, j, k) {
+		function addTile(id, timestamp, i, j, k) {
 			if (!(id in data.tiles)) {
 				throw {
 					message: 'invalid tile ID',
@@ -286,7 +287,7 @@ Canvace.Buckets = (function () {
 
 			var remover = new Element(tile, function () {
 				return frameTable.getTileAnimation(id);
-			}, i, j, k).remove;
+			}, timestamp, i, j, k).remove;
 
 			if (tile.mutable) {
 				if (!eraser[k]) {
@@ -325,6 +326,7 @@ Canvace.Buckets = (function () {
 		 * @method addTile
 		 * @for Canvace.Buckets
 		 * @param id {Number} The tile's ID.
+		 * @param timestamp {Number} TODO
 		 * @param i {Number} The integer I position where the tile is located.
 		 * @param j {Number} The integer J position where the tile is located.
 		 * @param k {Number} The integer K position where the tile is located.
@@ -341,13 +343,14 @@ Canvace.Buckets = (function () {
 		 *
 		 * @method addEntity
 		 * @param id {Number} The entity's ID.
+		 * @param timestamp {Number} TODO
 		 * @param i {Number} The I coordinate where the entity is located.
 		 * @param j {Number} The J coordinate where the entity is located.
 		 * @param k {Number} The K coordinate where the entity is located.
 		 * @return {Canvace.Buckets.Entity} An `Entity` object representing the
 		 * inserted entity.
 		 */
-		this.addEntity = function (id, i, j, k) {
+		this.addEntity = function (id, timestamp, i, j, k) {
 			if (!(id in data.entities)) {
 				throw {
 					message: 'invalid entity ID',
@@ -359,7 +362,7 @@ Canvace.Buckets = (function () {
 
 			return new Element(entity, function () {
 				return frameTable.getEntityAnimation(id);
-			}, i, j, k);
+			}, timestamp, i, j, k);
 		};
 
 		/**
@@ -399,6 +402,7 @@ Canvace.Buckets = (function () {
 		 * @param k {Number} The K coordinate where the tile to replace is
 		 * located.
 		 * @param newTileId {Number} The new tile's ID.
+		 * @param timestamp {Number} TODO
 		 * @return {Function} A function that removes the inserted tile, or
 		 * `undefined` if a mutable tile could not be found at the specified
 		 * position.
@@ -407,9 +411,9 @@ Canvace.Buckets = (function () {
 		 * `true` and is idempotent: it does not have any effets when called
 		 * again after the first time.
 		 */
-		this.replaceTile = function (i, j, k, newTileId) {
+		this.replaceTile = function (i, j, k, newTileId, timestamp) {
 			if (eraser[k] && eraser[k][i] && eraser[k][i][j] && eraser[k][i][j]()) {
-				return addTile(newTileId, i, j, k);
+				return addTile(newTileId, timestamp, i, j, k);
 			}
 		};
 
@@ -447,7 +451,7 @@ Canvace.Buckets = (function () {
 						(element.p[0] + element.width >= -origin.x) &&
 						(element.p[1] + element.height >= -origin.y))
 					{
-						action(element.p[0], element.p[1], element.getFrame(timestamp));
+						action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
 					}
 				});
 			}

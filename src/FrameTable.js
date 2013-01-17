@@ -66,7 +66,7 @@ Canvace.FrameTable = function (data) {
 					if (timestamp >= fullDuration) {
 						return lastFrameId;
 					} else {
-						return table[Math.floor((timestamp % fullDuration) / unit) * unit];
+						return table[Math.floor(timestamp / unit) * unit];
 					}
 				};
 			}
