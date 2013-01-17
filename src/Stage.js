@@ -201,6 +201,11 @@ Canvace.Stage = function (data, canvas) {
 					j: j,
 					k: k
 				},
+				previousPosition: {
+					i: i,
+					j: j,
+					k: k
+				},
 				velocity: {
 					i: 0,
 					j: 0,
@@ -559,7 +564,6 @@ Canvace.Stage = function (data, canvas) {
 		 * `Canvace.TileMap.rectangleCollision` method to the caller.
 		 *
 		 * @method testTileCollision
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} An optional user-defined callback
 		 * function that is invoked by the `testTileCollision` method for every
 		 * tile that collides with the instance.
@@ -579,18 +583,15 @@ Canvace.Stage = function (data, canvas) {
 		 * See the `Canvace.TileMap.rectangleCollision` method for more
 		 * information, the return value is the same.
 		 */
-		this.testTileCollision = function (dt, collides, tileMap) {
+		this.testTileCollision = function (collides, tileMap) {
 			return (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 		};
@@ -622,7 +623,6 @@ Canvace.Stage = function (data, canvas) {
 		 * forwarded to the caller.
 		 *
 		 * @method tileCollision
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} TODO
 		 * @param [tileMap] {Canvace.TileMap} A `Canvace.TileMap` object whose
 		 * tiles are tested for collisions with this entity instance.
@@ -630,18 +630,15 @@ Canvace.Stage = function (data, canvas) {
 		 * `rectangleCollision` method of
 		 * {{#crossLink "Canvace.TileMap"}}{{/crossLink}}.
 		 */
-		this.tileCollision = function (dt, collides, tileMap) {
+		this.tileCollision = function (collides, tileMap) {
 			var v = (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 			instance.position.i += v.i;
@@ -663,23 +660,19 @@ Canvace.Stage = function (data, canvas) {
 		 * TODO
 		 *
 		 * @method collidesWithTiles
-		 * @param dt {Number} TODO
 		 * @param [collides] {Function} TODO
 		 * @param [tileMap] {Canvace.TileMap} TODO
 		 * @return {Boolean} TODO
 		 */
-		this.collidesWithTiles = function (dt, collides, tileMap) {
+		this.collidesWithTiles = function (collides, tileMap) {
 			var v = (tileMap || map).rectangleCollision(
 				Math.floor(instance.k),
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
 				collides
 				);
 			instance.position.i += v.i;
@@ -950,6 +943,9 @@ Canvace.Stage = function (data, canvas) {
 		 */
 		this.tick = function (dt) {
 			var dt2 = dt * dt * 0.5;
+			instance.previousPosition.i = instance.position.i;
+			instance.previousPosition.j = instance.position.j;
+			instance.previousPosition.k = instance.position.k;
 			instance.position.i += (instance.velocity.i + instance.uniformVelocity.i) * dt + instance.acceleration.i * dt2;
 			instance.position.j += (instance.velocity.j + instance.uniformVelocity.j) * dt + instance.acceleration.j * dt2;
 			instance.position.k += (instance.velocity.k + instance.uniformVelocity.k) * dt + instance.acceleration.k * dt2;
@@ -1055,6 +1051,11 @@ Canvace.Stage = function (data, canvas) {
 					j: instance.position.j,
 					k: instance.position.k
 				},
+				previousPosition: {
+					i: instance.previousPosition.i,
+					j: instance.previousPosition.j,
+					k: instance.previousPosition.k
+				},
 				velocity: {
 					i: instance.velocity.i,
 					j: instance.velocity.j,
@@ -1089,6 +1090,11 @@ Canvace.Stage = function (data, canvas) {
 		for (var id in data.instances) {
 			var instance = data.instances[id];
 			instance.position = {
+				i: instance.i,
+				j: instance.j,
+				k: instance.k
+			};
+			instance.previousPosition = {
 				i: instance.i,
 				j: instance.j,
 				k: instance.k

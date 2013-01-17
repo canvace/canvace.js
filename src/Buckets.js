@@ -8,7 +8,8 @@
  * the current view.
  *
  * The `Buckets` class also supports animated elements by enumerating the
- * correct frame for each element depending on a given timestamp.
+ * correct frame for each element depending on the current timestamp as per
+ * `Canvace.Timing.now`.
  *
  * Before adding tiles and entities with the `addXxx` methods, tile and entity
  * descriptors must be registered using the provided `registerXxx` methods. This
@@ -48,7 +49,7 @@ Canvace.Buckets = (function () {
 		function Bucket() {
 			var sections = {};
 			var minS = 0, maxS = 0;
-			this.add = function (p, width, height, getFrame) {
+			this.add = function (p, width, height, getFrame, timeOffset) {
 				minS = Math.min(minS, p[2]);
 				maxS = Math.max(maxS, p[2]);
 				if (!sections[p[2]]) {
@@ -58,7 +59,8 @@ Canvace.Buckets = (function () {
 					p: p,
 					width: width,
 					height: height,
-					getFrame: getFrame
+					getFrame: getFrame,
+					timeOffset: timeOffset
 				});
 			};
 			this.forEach = function (action) {
@@ -96,6 +98,7 @@ Canvace.Buckets = (function () {
 			var bj = Math.floor(p[0] / width);
 
 			var animation = getAnimation();
+			var timeOffset = Canvace.Timing.now();
 
 			var removers = [];
 			var removed = false;
@@ -105,7 +108,7 @@ Canvace.Buckets = (function () {
 				if (!buckets.hasOwnProperty(key)) {
 					buckets[key] = new Bucket();
 				}
-				removers.push(buckets[key].add(p, element.width, element.height, animation));
+				removers.push(buckets[key].add(p, element.width, element.height, animation, timeOffset));
 			}
 
 			function addToBuckets() {
@@ -429,25 +432,23 @@ Canvace.Buckets = (function () {
 		 * Y coordinate and image ID, respectively.
 		 *
 		 * @method forEachElement
-		 * @param timestamp {Number} A timestamp expressed in milliseconds. This
-		 * is necessary in order to return the correct image IDs for animated
-		 * elements.
 		 * @param action {Function} A callback function to invoke for each
 		 * enumerated element.
 		 */
-		this.forEachElement = function (timestamp, action) {
+		this.forEachElement = function (action) {
 			var origin = view.getOrigin();
 			var i = Math.floor(-origin.y / height);
 			var j = Math.floor(-origin.x / width);
 			var key = i + ' ' + j;
 			if (buckets.hasOwnProperty(key)) {
+				var timestamp = Canvace.Timing.now();
 				buckets[key].forEach(function (element) {
 					if ((element.p[0] < -origin.x + actualWidth) &&
 						(element.p[1] < -origin.y + actualHeight) &&
 						(element.p[0] + element.width >= -origin.x) &&
 						(element.p[1] + element.height >= -origin.y))
 					{
-						action(element.p[0], element.p[1], element.getFrame(timestamp));
+						action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
 					}
 				});
 			}
