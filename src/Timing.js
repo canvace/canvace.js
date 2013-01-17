@@ -6,27 +6,25 @@
  * @class Canvace.Timing
  * @static
  */
-Canvace.Timing = (function () {
-	return {
-		/**
-		 * This method returns a timestamp using `window.performance.now()`, if
-		 * available, or `Date.now()` otherwise.
-		 *
-		 * @method now
-		 * @return {Number} A number indicating a timestamp.
-		 */
-		now: (function () {
-			if (!!window.performance) {
-				var now = Canvace.Polyfill.getPrefixedProperty(window.performance, 'now');
-				if (!!now) {
-					return function () {
-						return now.call(window.performance);
-					};
-				}
+Canvace.Timing = {
+	/**
+	 * This method returns a timestamp using `window.performance.now()`, if
+	 * available, or `Date.now()` otherwise.
+	 *
+	 * @method now
+	 * @return {Number} A number indicating a timestamp.
+	 */
+	now: (function () {
+		if (!!window.performance) {
+			var now = Canvace.Polyfill.getPrefixedProperty(window.performance, 'now');
+			if (!!now) {
+				return function () {
+					return now.call(window.performance);
+				};
 			}
-			return function () {
-				return Date.now();
-			};
-		})()
-	};
-})();
+		}
+		return function () {
+			return Date.now();
+		};
+	})()
+};
