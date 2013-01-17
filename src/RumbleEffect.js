@@ -11,9 +11,9 @@
  * change. Defaults to `Canvace.RumbleEffect.defaultPeriod`.
  * @param [amplitude] {Number} The displacement (in pixels) of the viewport in
  * each shake direction. Defaults to `Canvace.RumbleEffect.defaultAmplitude`.
- * @param [horizontal] {Boolean} Indicates wether the viewport should be shaken
+ * @param [horizontal] {Boolean} Indicates whether the viewport should be shaken
  * horizontally. Defaults to `true`.
- * @param [vertical] {Boolean} Indicates wether the viewport should be shaken
+ * @param [vertical] {Boolean} Indicates whether the viewport should be shaken
  * vertically. Defaults to `true`.
  */
 Canvace.RumbleEffect = function (duration, period, amplitude, horizontal, vertical) {
