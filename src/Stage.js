@@ -1255,9 +1255,9 @@ Canvace.Stage = function (data, canvas) {
 	 *
 	 * The chosen entities are returned as an array of `Stage.Entity` objects.
 	 *
-	 * @method getEntity
+	 * @method getEntities
 	 * @param [properties={}] {Object} The filtering properties.
-	 * @return {Canvace.Stage.Entity} An array of `Canvace.Stage.Entity` objects
+	 * @return {Canvace.Stage.Entity[]} An array of `Canvace.Stage.Entity` objects
 	 * representing the returned entities.
 	 */
 	this.getEntities = function (properties) {
@@ -1356,7 +1356,7 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen instances are returned as an array of `Canvace.Stage.Instance`
 	 * objects.
 	 *
-	 * @method getInstance
+	 * @method getInstances
 	 * @param [properties={}] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Instance[]} An array of `Canvace.Stage.Instance`
 	 * objects representing the returned entity instances.
