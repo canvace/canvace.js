@@ -12,7 +12,7 @@ Canvace.Timing = {
 	 * available, or `Date.now()` otherwise.
 	 *
 	 * @method now
-	 * @return {Number} A number indicating a timestamp.
+	 * @return {Number} A number indicating a timestamp in milliseconds.
 	 */
 	now: (function () {
 		if (!!window.performance) {
