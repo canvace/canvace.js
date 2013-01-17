@@ -71,15 +71,13 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 	 * Renders the stage to the canvas.
 	 *
 	 * @method render
-	 * @param counter {Number} A timestamp expressed in milliseconds. This is
-	 * necessary in order to render the correct frame for animated elements.
 	 */
-	this.render = function (counter) {
+	this.render = function () {
 		var origin = view.getOrigin();
 		context.setTransform(1, 0, 0, 1, origin.x, origin.y);
 		context.clearRect(-origin.x, -origin.y, width, height);
 		preProcess && preProcess(context);
-		buckets.forEachElement(counter, function (x, y, id) {
+		buckets.forEachElement(function (x, y, id) {
 			context.drawImage(loader.getImage(id), x, y);
 		});
 		postProcess && postProcess(context);
