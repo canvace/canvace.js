@@ -201,6 +201,11 @@ Canvace.Stage = function (data, canvas) {
 					j: j,
 					k: k
 				},
+				previousPosition: {
+					i: i,
+					j: j,
+					k: k
+				},
 				velocity: {
 					i: 0,
 					j: 0,
