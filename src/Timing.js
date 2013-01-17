@@ -7,22 +7,6 @@
  * @static
  */
 Canvace.Timing = (function () {
-	var now = (function () {
-		if (!!window.performance) {
-			var now = Canvace.Polyfill.getPrefixedProperty(window.performance, 'now');
-
-			if (!!now) {
-				return function () {
-					return now.call(window.performance);
-				};
-			}
-		}
-
-		return function () {
-			return Date.now();
-		};
-	})();
-
 	return {
 		/**
 		 * This method returns a timestamp using `window.performance.now()`, if
@@ -31,6 +15,18 @@ Canvace.Timing = (function () {
 		 * @method now
 		 * @return {Number} A number indicating a timestamp.
 		 */
-		now: now
+		now: (function () {
+			if (!!window.performance) {
+				var now = Canvace.Polyfill.getPrefixedProperty(window.performance, 'now');
+				if (!!now) {
+					return function () {
+						return now.call(window.performance);
+					};
+				}
+			}
+			return function () {
+				return Date.now();
+			};
+		})()
 	};
 })();
