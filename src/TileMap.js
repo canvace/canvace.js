@@ -164,24 +164,106 @@ Canvace.TileMap = function (data, buckets) {
 		return false;
 	};
 
+	function assertObject(object, properties) {
+		for (var key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				var value;
+				if (key in object) {
+					value = object[key];
+				} else {
+					return false;
+				}
+				if (typeof properties[key] !== 'object') {
+					if (value !== properties[key]) {
+						return false;
+					}
+				} else if ((typeof value !== 'object') ||
+					!assertObject(value, properties[key]))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	function getTileIds(properties) {
+		var ids = [];
+		for (var id in data.tiles) {
+			if (assertObject(data.tiles[id].properties, properties)) {
+				ids.push(id);
+			}
+		}
+		return ids;
+	}
+
 	/**
-	 * Returns a `Tile` object that describes the tile identified by the
-	 * specified ID.
+	 * TODO
+	 *
+	 * @method getTileIds
+	 * @param [properties] {Object} TODO
+	 * @return {Number[]} TODO
+	 */
+	this.getTileIds = getTileIds;
+
+	function getTileId(properties) {
+		for (var id in data.tiles) {
+			if (assertObject(data.tiles[id].properties, properties)) {
+				return id;
+			}
+		}
+	}
+
+	/**
+	 * TODO
+	 *
+	 * @method getTileId
+	 * @param [properties] {Object} TODO
+	 * @return {Number} TODO
+	 */
+	this.getTileId = getTileId;
+
+	/**
+	 * Returns a `Tile` object that describes the requested tile.
+	 *
+	 * A tile can be identified either by ID or filtering properties; TODO
 	 *
 	 * This method throws an exception if the ID is not valid, i.e. it is not
 	 * present in the JSON data output by the Canvace Development Environment.
 	 *
 	 * @method getTile
-	 * @param id {Number} A tile ID.
-	 * @return {Canvace.TileMap.Tile} A `Tile` object describing the specified
+	 * @param idOrProperties {Mixed} A tile ID or filtering properties object.
+	 * @return {Canvace.TileMap.Tile} A `Tile` object describing the requested
 	 * tile.
 	 */
-	this.getTile = function (id) {
-		if (id in data.tiles) {
-			return tileCache[id] || (tileCache[id] = new Tile(id));
+	this.getTile = function (idOrProperties) {
+		if (typeof idOrProperties !== 'object') {
+			var id = idOrProperties;
+			if (id in data.tiles) {
+				return tileCache[id] || (tileCache[id] = new Tile(id));
+			} else {
+				throw 'invalid tile id: ' + id;
+			}
 		} else {
-			throw 'invalid tile id: ' + id;
+			var id = getTileId(idOrProperties);
+			return tileCache[id] || (tileCache[id] = new Tile(id));
 		}
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @method getTiles
+	 * @param [properties] {Object} TODO
+	 * @return {Canvace.TileMap.Tile[]} TODO
+	 */
+	this.getTiles = function (properties) {
+		var ids = getTileIds(properties);
+		var tiles = [];
+		for (var i in ids) {
+			tiles.push(tileCache[ids[i]] || (tileCache[ids[i]] = new Tile(ids[i])));
+		}
+		return tiles;
 	};
 
 	/**
