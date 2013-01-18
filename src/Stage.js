@@ -739,17 +739,12 @@ Canvace.Stage = function (data, canvas) {
 		 * This may be a real number.
 		 * @param dj {Number} The span of the rectangular area along the J axis.
 		 * This may be a real number.
-		 * @param vi {Number} The I component of the velocity vector. This may
-		 * be a real number.
-		 * @param vj {Number} The J component of the velocity vector. This may
-		 * be a real number.
-		 * @param ai {Number} TODO
-		 * @param aj {Number} TODO
-		 * @param dt {Number} TODO
+		 * @param Di {Number} TODO
+		 * @param Dj {Number} TODO
 		 * @return {Object} An object containing two number fields, `i` and `j`,
 		 * specifying the I and J components of the computed vector.
 		 */
-		this.rectangleCollision = function (i, j, di, dj, vi, vj, ai, aj, dt) {
+		this.rectangleCollision = function (i, j, di, dj, Di, Dj) {
 			var v = {
 				i: 0,
 				j: 0
@@ -791,11 +786,10 @@ Canvace.Stage = function (data, canvas) {
 					}
 				}
 			}
-			var dt2 = dt * dt * 0.5;
-			if (Math.abs(v.i) > Math.abs((instance.velocity.i + instance.uniformVelocity.i - vi) * dt + (instance.acceleration.i - ai) * dt2) + 0.001) {
+			if (Math.abs(v.i) > Math.abs(instance.position.i - instance.previousPosition.i - Di) + 0.001) {
 				v.i = 0;
 			}
-			if (Math.abs(v.j) > Math.abs((instance.velocity.j + instance.uniformVelocity.j - vj) * dt + (instance.acceleration.j - aj) * dt2) + 0.001) {
+			if (Math.abs(v.j) > Math.abs(instance.position.j - instance.previousPosition.j - Dj) + 0.001) {
 				v.j = 0;
 			}
 			return v;
@@ -824,17 +818,14 @@ Canvace.Stage = function (data, canvas) {
 		 * See the `Canvace.Stage.Instance.rectangleCollision` method for more
 		 * information, the return value is the same.
 		 */
-		this.testCollision = function (otherInstance, dt) {
+		this.testCollision = function (otherInstance) {
 			return otherInstance.rectangleCollision(
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
 				);
 		};
 
@@ -869,17 +860,14 @@ Canvace.Stage = function (data, canvas) {
 		 * @return {Object} The vector object returned by the
 		 * `Canvace.Stage.Instance.rectangleCollision` method.
 		 */
-		this.collision = function (otherInstance, dt) {
+		this.collision = function (otherInstance) {
 			var v = otherInstance.rectangleCollision(
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
 				);
 			instance.position.i += v.i;
 			instance.position.j += v.j;
@@ -901,20 +889,16 @@ Canvace.Stage = function (data, canvas) {
 		 *
 		 * @method collidesWithInstance
 		 * @param otherInstance {Canvace.Instance} TODO
-		 * @param dt {Number} TODO
 		 * @return {Boolean} TODO
 		 */
-		this.collidesWithInstance = function (otherInstance, dt) {
+		this.collidesWithInstance = function (otherInstance) {
 			var v = otherInstance.rectangleCollision(
 				instance.position.i + entity.box.i0,
 				instance.position.j + entity.box.j0,
 				entity.box.iSpan,
 				entity.box.jSpan,
-				instance.velocity.i + instance.uniformVelocity.i,
-				instance.velocity.j + instance.uniformVelocity.j,
-				instance.acceleration.i,
-				instance.acceleration.j,
-				dt
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
 				);
 			instance.position.i += v.i;
 			instance.position.j += v.j;
