@@ -237,15 +237,16 @@ Canvace.TileMap = function (data, buckets) {
 	 * tile.
 	 */
 	this.getTile = function (idOrProperties) {
+		var id;
 		if (typeof idOrProperties !== 'object') {
-			var id = idOrProperties;
+			id = idOrProperties;
 			if (id in data.tiles) {
 				return tileCache[id] || (tileCache[id] = new Tile(id));
 			} else {
 				throw 'invalid tile id: ' + id;
 			}
 		} else {
-			var id = getTileId(idOrProperties);
+			id = getTileId(idOrProperties);
 			return tileCache[id] || (tileCache[id] = new Tile(id));
 		}
 	};
