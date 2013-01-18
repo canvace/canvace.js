@@ -520,10 +520,10 @@ Canvace.TileMap = function (data, buckets) {
 			v.j = vjo;
 		}
 
-		if (Di && (Math.abs(v.i) > Math.abs(Di) + 0.001)) {
+		if (Math.abs(v.i) > Math.abs(Di) + 0.001) {
 			v.i = 0;
 		}
-		if (Dj && (Math.abs(v.j) > Math.abs(Dj) + 0.001)) {
+		if (Math.abs(v.j) > Math.abs(Dj) + 0.001) {
 			v.j = 0;
 		}
 
