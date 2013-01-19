@@ -139,7 +139,7 @@ Canvace.DebugEffect = function (stage, options) {
 				context.beginPath();
 				stage.forEachInstance(function (instance) {
 					var position = instance.getPosition();
-					var box = instance.getBoundingBox();
+					var box = instance.getEntity().getBoundingBox();
 					drawQuadrilateral(context, position.i + box.i0, position.j + box.j0, position.k, box.iSpan, box.jSpan);
 				});
 				context.stroke();
@@ -179,10 +179,8 @@ Canvace.DebugEffect = function (stage, options) {
 				context.fillStyle = options.solidMapStyle || '#FF0000';
 				context.beginPath();
 				map.forEachTile(function (i, j, k) {
-					if (view.intersects(i, j, k, 1, 1, 1)) {
-						if (map.getTile(map.getAt(i, j, k)).isWalkable()) {
-							drawQuadrilateral(context, i, j, k, 1, 1);
-						}
+					if (view.intersects(i, j, k, 1, 1, 1) && !map.getTile(map.getAt(i, j, k)).isWalkable()) {
+						drawQuadrilateral(context, i, j, k, 1, 1);
 					}
 				});
 				context.fill();
