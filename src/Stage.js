@@ -353,6 +353,16 @@ Canvace.Stage = function (data, canvas) {
 		};
 
 		/**
+		 * Indicates whether physics is enabled for this instance's entity.
+		 *
+		 * @method isPhysicsEnabled
+		 * @return {Boolean} `true` if physics is enabled, `false` otherwise.
+		 */
+		this.isPhysicsEnabled = function () {
+			return entity.enablePhysics;
+		};
+
+		/**
 		 * Returns the instance's `(i, j, k)` position vector as an object
 		 * containing three fields, `i`, `j` and `k`.
 		 *
