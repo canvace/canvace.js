@@ -246,9 +246,11 @@ Canvace.Audio = function () {
 			} else {
 				context = createAudioElement();
 				context.addEventListener('canplay', function () {
-					loaded = true;
-					if (typeof onload === 'function') {
-						onload(thisObject);
+					if (!loaded) {
+						loaded = true;
+						if (typeof onload === 'function') {
+							onload(thisObject);
+						}
 					}
 				}, false);
 				context.addEventListener('error', function (e) {
