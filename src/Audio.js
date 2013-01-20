@@ -245,7 +245,7 @@ Canvace.Audio = function () {
 				loaded = true;
 			} else {
 				context = createAudioElement();
-				context.addEventListener('canplay', function () {
+				context.addEventListener('canplaythrough', function () {
 					if (!loaded) {
 						loaded = true;
 						if (typeof onload === 'function') {
