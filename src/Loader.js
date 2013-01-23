@@ -292,8 +292,8 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * playing the specified MIME type.
 	 */
 	this.loadAssets = function (imagesData, soundsData) {
-		imagesLoaded = (typeof imagesData === 'undefined' || typeof imagesData === 'null');
-		soundsLoaded = (typeof soundsData === 'undefined' || typeof soundsData === 'null');
+		imagesLoaded = (typeof imagesData === 'undefined' || imagesData === null);
+		soundsLoaded = (typeof soundsData === 'undefined' || soundsData === null);
 
 		if (imagesLoaded && soundsLoaded) {
 			loadFinished();
