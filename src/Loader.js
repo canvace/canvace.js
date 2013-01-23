@@ -76,8 +76,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	var soundsLoaded = false;
 	var soundsProgress = 0.0;
 
+	var divisor = 2.0;
+
 	var updateProgress = function () {
-		loadProgress((imagesProgress + soundsProgress) / 2.0);
+		loadProgress((imagesProgress + soundsProgress) / divisor);
 	};
 
 	var loadFinished = function () {
@@ -298,6 +300,8 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		if (imagesLoaded && soundsLoaded) {
 			loadFinished();
 			return;
+		} else if (imagesLoaded ^ soundsLoaded) {
+			divisor = 1.0;
 		}
 
 		if (!imagesLoaded) {
