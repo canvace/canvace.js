@@ -148,7 +148,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * image.
 	 */
 	this.getImage = function (id, callback) {
-		if (id in imageset) {
+		if (imageset.hasOwnProperty(id)) {
 			return imageset[id];
 		}
 
@@ -227,7 +227,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * the sound back if the specified name is known, `null` otherwise.
 	 */
 	this.getSound = function (name) {
-		if (name in soundset) {
+		if (soundset.hasOwnProperty(name)) {
 			return soundset[name];
 		}
 		return null;
