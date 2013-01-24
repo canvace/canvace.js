@@ -245,18 +245,35 @@ Canvace.Audio = function () {
 				loaded = true;
 			} else {
 				context = createAudioElement();
-				context.addEventListener('canplaythrough', function _oncanplaythrough() {
-					context.removeEventListener('canplaythrough', _oncanplaythrough, false);
-					loaded = true;
-					if (typeof onload === 'function') {
-						onload(thisObject);
-					}
-				}, false);
+
+				(function () {
+					var setLoadCallback = function (eventName) {
+						var _onload = function () {
+							context.removeEventListener(eventName, _onload, false);
+
+							if (!loaded) {
+								loaded = true;
+
+								if (typeof onload === 'function') {
+									onload(thisObject);
+								}
+							}
+						};
+
+						context.addEventListener(eventName, _onload, false);
+					};
+
+					setLoadCallback('canplay');
+					setLoadCallback('canplaythrough');
+				})();
+
 				context.addEventListener('error', function (e) {
 					if (typeof onerror === 'function') {
 						onerror(e);
 					}
 				}, false);
+
+				context.setAttribute('preload', 'auto');
 				context.setAttribute('src', source);
 				context.load();
 			}
