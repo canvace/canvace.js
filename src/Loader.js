@@ -64,16 +64,16 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 
 	var imageset = {};
 	var imagesLoaded = false;
-	var imagesProgress = 0.0;
+	var imagesProgress = 0;
 
 	var soundset = {};
 	var soundsLoaded = false;
-	var soundsProgress = 0.0;
+	var soundsProgress = 0;
 
-	var divisor = 2.0;
+	var jobCount = 2;
 
 	var updateProgress = function () {
-		loadProgress((imagesProgress + soundsProgress) / divisor);
+		loadProgress((imagesProgress + soundsProgress) / jobCount);
 	};
 
 	var loadFinished = function () {
@@ -98,7 +98,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			var count = 0;
 
 			return function () {
-				imagesProgress = (100.0 * ++count / Math.max(1, totalCount));
+				imagesProgress = (100 * ++count / Math.max(1, totalCount));
 				updateProgress();
 
 				if (count >= totalCount) {
@@ -167,7 +167,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			var count = 0;
 
 			return function () {
-				soundsProgress = (100.0 * ++count / Math.max(1, totalCount));
+				soundsProgress = (100 * ++count / Math.max(1, totalCount));
 				updateProgress();
 
 				if (count >= totalCount) {
@@ -295,7 +295,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			loadFinished();
 			return;
 		} else if (imagesLoaded ^ soundsLoaded) {
-			divisor = 1.0;
+			jobCount = 1;
 		}
 
 		if (!imagesLoaded) {
