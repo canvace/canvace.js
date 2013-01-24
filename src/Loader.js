@@ -308,37 +308,62 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	};
 };
 
+/**
+ * TODO
+ *
+ * @method guessMimeType
+ * @static
+ * @param source {String} TODO
+ * @return {String} TODO
+ * @example
+ *	TODO
+ */
 Canvace.Loader.guessMimeType = function (source) {
 	var mimeMap = [
-		[/\.aac$/i, 'audio/aac'],
-		[/\.mp3$/i, 'audio/mp3'],
-		[/\.ogg$/i, 'application/ogg']
+		{
+			pattern: /\.aac$/i,
+			mime: 'audio/aac'
+		},
+		{
+			pattern: /\.mp3$/i,
+			mime: 'audio/mp3'
+		},
+		{
+			pattern: /\.ogg$/i,
+			mime: 'application/ogg'
+		},
 	];
-
 	for (var i in mimeMap) {
-		if (mimeMap[i][0].test(source)) {
-			return mimeMap[i][1];
+		if (mimeMap[i].pattern.test(source)) {
+			return mimeMap[i].mime;
 		}
 	}
-
 	throw 'Couldn\'t guess the MIME type from the resource URL';
 };
 
+/**
+ * TODO
+ *
+ * @method getSourceInfo
+ * @static
+ * @param source {Mixed} TODO
+ * @return {Object} TODO
+ * @example
+ *	TODO
+ */
 Canvace.Loader.getSourceInfo = function (source) {
 	if (typeof source === 'string') {
 		return {
 			url: source,
 			mimeType: Canvace.Loader.guessMimeType(source)
 		};
-	}
-
-	if (typeof source === 'object') {
+	} else if (typeof source === 'object') {
 		if (source.hasOwnProperty('url') && source.hasOwnProperty('mimeType')) {
 			return source;
 		}
+	} else {
+		throw 'Invalid source specified';
 	}
-
-	throw 'Invalid source specified';
 };
 
 /**
@@ -357,8 +382,8 @@ Canvace.Loader.getSourceInfo = function (source) {
  *
  * @method playSound
  * @param name {String} A name identifying the audio asset.
- * @param [loop] {Boolean} An optional boolean value that indicates whether
- * the sound must be looped. It defaults to `false` when not specified.
+ * @param [loop=false] {Boolean} An optional boolean value that indicates
+ * whether the sound must be looped. It defaults to `false` when not specified.
  * @return {Canvace.Audio.SourceNode} An object that can be used to play
  * the sound back if the specified name is known, `null` otherwise.
  */
