@@ -153,7 +153,7 @@ Canvace.StateMachine = function (states, initialState) {
 
 	setState(initialState);
 
-	(function ($this) {
+	(function (thisObject) {
 		var makeState = function (action) {
 			return function () {
 				if (action in currentState) {
@@ -180,7 +180,7 @@ Canvace.StateMachine = function (states, initialState) {
 
 		for (var action in actions) {
 			if (actions.hasOwnProperty(action)) {
-				$this[action] = makeState(action);
+				thisObject[action] = makeState(action);
 			}
 		}
 	})(this);

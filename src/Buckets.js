@@ -29,7 +29,7 @@ Canvace.Buckets = (function () {
 	var widthFactor = 1;
 	var heightFactor = 1;
 
-	var $this = function (view, data) {
+	var thisObject = function (view, data) {
 		var actualWidth = view.getWidth();
 		var actualHeight = view.getHeight();
 		var width = Math.round(actualWidth * widthFactor);
@@ -470,7 +470,7 @@ Canvace.Buckets = (function () {
 	 * @param heightFactorValue {Number} The bucket height factor parameter. The
 	 * default and minimum value is 1.
 	 */
-	$this.setBucketSizeFactors = function (widthFactorValue, heightFactorValue) {
+	thisObject.setBucketSizeFactors = function (widthFactorValue, heightFactorValue) {
 		if (widthFactorValue < 1) {
 			throw 'illegal width factor: ' + widthFactorValue;
 		}
@@ -481,5 +481,5 @@ Canvace.Buckets = (function () {
 		heightFactor = heightFactorValue;
 	};
 
-	return $this;
+	return thisObject;
 })();

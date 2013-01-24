@@ -59,9 +59,9 @@ Canvace.ParametricStateMachine = function (transitions, states, initialState) {
 
 	setState(initialState);
 
-	(function ($this) {
+	(function (thisObject) {
 		var makeState = function (transition) {
-			$this[transition] = function () {
+			thisObject[transition] = function () {
 				if (transition in currentState) {
 					if (typeof currentState[transition] !== 'function') {
 						setState(currentState[transition]);

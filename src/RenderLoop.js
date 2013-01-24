@@ -34,7 +34,7 @@ Canvace.RenderLoop = (function () {
 	var loopType = 'auto';
 	var loopRate = 60;
 
-	var $this = function (stage, range, loader, userTick, synchronizeView) {
+	var thisObject = function (stage, range, loader, userTick, synchronizeView) {
 		var renderer = new Canvace.StageRenderer(stage, loader);
 
 		var rate = loopRate;
@@ -304,7 +304,7 @@ Canvace.RenderLoop = (function () {
 	 * is only meaningful when the `setInterval` API is used. The default value
 	 * is 60.
 	 */
-	$this.setLoop = function (type, rate) {
+	thisObject.setLoop = function (type, rate) {
 		if (type in {
 			'request': true,
 			'interval': true,
@@ -319,5 +319,5 @@ Canvace.RenderLoop = (function () {
 		}
 	};
 
-	return $this;
+	return thisObject;
 })();
