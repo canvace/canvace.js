@@ -331,7 +331,7 @@ Canvace.Loader.guessMimeType = function (source) {
 		{
 			pattern: /\.ogg$/i,
 			mime: 'application/ogg'
-		},
+		}
 	];
 	for (var i in mimeMap) {
 		if (mimeMap[i].pattern.test(source)) {
