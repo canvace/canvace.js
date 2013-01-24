@@ -45,7 +45,7 @@ Canvace.MultiSet = function () {
 		for (var i in elements) {
 			add(elements[i]);
 		}
-	})(arguments);
+	}(arguments));
 
 	/**
 	 * Inserts an element into the container in amortized constant time. The

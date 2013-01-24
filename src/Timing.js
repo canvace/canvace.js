@@ -26,5 +26,5 @@ Canvace.Timing = {
 		return function () {
 			return Date.now();
 		};
-	})()
+	}())
 };

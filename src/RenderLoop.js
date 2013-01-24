@@ -99,7 +99,7 @@ Canvace.RenderLoop = (function () {
 					return null;
 				}
 			};
-		})();
+		}());
 
 		/**
 		 * Returns the "period", which is the inverse of the specified rate.
@@ -320,4 +320,4 @@ Canvace.RenderLoop = (function () {
 	};
 
 	return thisObject;
-})();
+}());

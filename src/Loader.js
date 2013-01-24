@@ -98,7 +98,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			var count = 0;
 
 			return function () {
-				imagesProgress = (100 * ++count / Math.max(1, totalCount));
+				imagesProgress = 100 * ++count / Math.max(1, totalCount);
 				updateProgress();
 
 				if (count >= totalCount) {

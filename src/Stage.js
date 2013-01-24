@@ -298,7 +298,7 @@ Canvace.Stage = function (data, canvas) {
 				return function () {
 					return remove1() && remove2();
 				};
-			})(remove, instancesWithPhysics.add(this));
+			}(remove, instancesWithPhysics.add(this)));
 		}
 
 		/**
@@ -460,7 +460,7 @@ Canvace.Stage = function (data, canvas) {
 					(position.y >= -origin.y - frameHeight) &&
 					(position.y <= -origin.y + viewportHeight + frameHeight);
 			};
-		})();
+		}());
 
 		/**
 		 * Returns the velocity vector of this instance as an object containing
@@ -537,7 +537,7 @@ Canvace.Stage = function (data, canvas) {
 				fullVelocity.k = instance.velocity.k + instance.uniformVelocity.k;
 				return fullVelocity;
 			};
-		})();
+		}());
 
 		/**
 		 * Returns the instance's own acceleration vector as an object
@@ -1111,7 +1111,7 @@ Canvace.Stage = function (data, canvas) {
 			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
 		}
 		map = new Canvace.TileMap(data, buckets);
-	})();
+	}());
 
 	/**
 	 * Returns the stage's name.

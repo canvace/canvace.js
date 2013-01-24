@@ -69,4 +69,4 @@ Canvace.Polyfill = (function () {
 			return getSinglePrefixedProperty(object, property.toString());
 		}
 	};
-})();
+}());

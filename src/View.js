@@ -35,7 +35,7 @@ Canvace.View = function (data, canvas) {
 				(mat[0][1] * mat[2][0] - mat[2][1] * mat[0][0]) / det,
 				(mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]) / det]
 		];
-	})();
+	}());
 
 	var x0 = data.x0;
 	var y0 = data.y0;

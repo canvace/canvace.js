@@ -265,7 +265,7 @@ Canvace.Audio = function () {
 
 					setLoadCallback('canplay');
 					setLoadCallback('canplaythrough');
-				})();
+				}());
 
 				context.addEventListener('error', function (e) {
 					if (typeof onerror === 'function') {

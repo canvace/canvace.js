@@ -44,7 +44,7 @@ Canvace.Buckets = (function () {
 			for (id in data.entities) {
 				frameTable.registerEntity(id);
 			}
-		})();
+		}());
 
 		function Bucket() {
 			var sections = {};
@@ -482,4 +482,4 @@ Canvace.Buckets = (function () {
 	};
 
 	return thisObject;
-})();
+}());

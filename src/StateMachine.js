@@ -139,7 +139,7 @@ Canvace.StateMachine = function (states, initialState) {
 			}
 		}
 		return set;
-	})();
+	}());
 
 	var currentState, currentStateName;
 
@@ -183,7 +183,7 @@ Canvace.StateMachine = function (states, initialState) {
 				thisObject[action] = makeState(action);
 			}
 		}
-	})(this);
+	}(this));
 
 	/**
 	 * Indicates the current state.

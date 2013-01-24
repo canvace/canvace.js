@@ -384,9 +384,9 @@ Canvace.TileMap = function (data, buckets) {
 						}
 					}
 				}
-			})();
+			}());
 			return node;
-		})(i, j);
+		}(i, j));
 	};
 
 	/**
@@ -469,7 +469,7 @@ Canvace.TileMap = function (data, buckets) {
 						return (i in map[k]) && (j in map[k][i]) && collides(tile.walkable, tile.properties);
 					};
 				}
-			})();
+			}());
 
 			var i0 = Math.floor(i);
 			var j0 = Math.floor(j);

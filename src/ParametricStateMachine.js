@@ -79,7 +79,7 @@ Canvace.ParametricStateMachine = function (transitions, states, initialState) {
 		for (var i in transitions) {
 			makeState(transitions[i]);
 		}
-	})(this);
+	}(this));
 
 	/**
 	 * Indicates the current state.
