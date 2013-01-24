@@ -31,9 +31,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onProgress = function (callback) {
-		if (typeof callback === 'function') {
-			loadProgress = callback;
-		}
+		loadProgress = callback;
 		return thisObject;
 	};
 
@@ -46,9 +44,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onComplete = function (callback) {
-		if (typeof callback === 'function') {
-			loadComplete = callback;
-		}
+		loadComplete = callback;
 		return thisObject;
 	};
 
@@ -60,9 +56,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * @param callback {Function} The callback function.
 	 */
 	this.onError = function (callback) {
-		if (typeof callback === 'function') {
-			loadError = callback;
-		}
+		loadError = callback;
 		return thisObject;
 	};
 
