@@ -34,11 +34,13 @@ Canvace.RenderLoop = (function () {
 	var loopType = 'auto';
 	var loopRate = 60;
 
-	var thisObject = function (stage, range, loader, userTick, synchronizeView) {
+	var RenderLoop = function (stage, range, loader, userTick, synchronizeView) {
 		var renderer = new Canvace.StageRenderer(stage, loader);
 
 		var rate = loopRate;
 		var period = Math.floor(1000.0 / rate);
+		var maxPeriod = 5000;
+
 		var running = false;
 		var banned = false;
 
@@ -120,6 +122,26 @@ Canvace.RenderLoop = (function () {
 		};
 
 		/**
+		 * TODO
+		 *
+		 * @method getMaximumPeriod
+		 * @return {Number} TODO
+		 */
+		this.getMaximumPeriod = function () {
+			return maxPeriod;
+		};
+
+		/**
+		 * TODO
+		 *
+		 * @method setMaximumPeriod
+		 * @param {Number} value TODO
+		 */
+		this.setMaximumPeriod = function (value) {
+			maxPeriod = value;
+		};
+
+		/**
 		 * Returns the `Stage` rendererd by this render loop. This is the same
 		 * object specified to the constructor.
 		 *
@@ -149,6 +171,7 @@ Canvace.RenderLoop = (function () {
 		}
 
 		function updateLoop(delta, elapsed) {
+			delta = Math.min(delta, maxPeriod);
 			while (delta > period) {
 				step(period / 1000.0);
 				delta -= period;
@@ -304,7 +327,7 @@ Canvace.RenderLoop = (function () {
 	 * is only meaningful when the `setInterval` API is used. The default value
 	 * is 60.
 	 */
-	thisObject.setLoop = function (type, rate) {
+	RenderLoop.setLoop = function (type, rate) {
 		if (type in {
 			'request': true,
 			'interval': true,
@@ -319,5 +342,5 @@ Canvace.RenderLoop = (function () {
 		}
 	};
 
-	return thisObject;
+	return RenderLoop;
 }());
