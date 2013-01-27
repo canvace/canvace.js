@@ -17,8 +17,8 @@ Canvace.Mouse = function (element) {
 	var x0, y0;
 
 	element.addEventListener('mousedown', function (event) {
-		var x = event.clientX - element.style.left;
-		var y = event.clientY - element.style.top;
+		var x = event.clientX - parseInt(element.style.left, 10);
+		var y = event.clientY - parseInt(element.style.top, 10);
 		dragging = true;
 		x0 = x;
 		y0 = y;
@@ -27,8 +27,8 @@ Canvace.Mouse = function (element) {
 		});
 	}, false);
 	element.addEventListener('mousemove', function (event) {
-		var x = event.clientX - element.style.left;
-		var y = event.clientY - element.style.top;
+		var x = event.clientX - parseInt(element.style.left, 10);
+		var y = event.clientY - parseInt(element.style.top, 10);
 		moveHandlers.fastForEach(function (handler) {
 			handler(x, y);
 		});
@@ -41,8 +41,8 @@ Canvace.Mouse = function (element) {
 		}
 	}, false);
 	element.addEventListener('mouseup', function (event) {
-		var x = event.clientX - element.style.left;
-		var y = event.clientY - element.style.top;
+		var x = event.clientX - parseInt(element.style.left, 10);
+		var y = event.clientY - parseInt(element.style.top, 10);
 		dragging = false;
 		upHandlers.fastForEach(function (handler) {
 			handler(x, y);
@@ -51,16 +51,16 @@ Canvace.Mouse = function (element) {
 
 	if (typeof element.onwheel !== 'undefined') {
 		element.addEventListener('wheel', function (event) {
-			var x = event.clientX - element.style.left;
-			var y = event.clientY - element.style.top;
+			var x = event.clientX - parseInt(element.style.left, 10);
+			var y = event.clientY - parseInt(element.style.top, 10);
 			wheelHandlers.fastForEach(function (handler) {
 				handler(x, y, -event.deltaX, -event.deltaY);
 			});
 		}, false);
 	} else if (typeof element.onmousewheel !== 'undefined') {
 		element.addEventListener('mousewheel', function (event) {
-			var x = event.clientX - element.style.left;
-			var y = event.clientY - element.style.top;
+			var x = event.clientX - parseInt(element.style.left, 10);
+			var y = event.clientY - parseInt(element.style.top, 10);
 			wheelHandlers.fastForEach(function (handler) {
 				handler(x, y, event.wheelDeltaX, event.wheelDeltaY);
 			});
