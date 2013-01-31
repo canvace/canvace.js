@@ -42,6 +42,7 @@ Canvace.DebugEffect = function (stage, options) {
 	 * TODO
 	 *
 	 * @method toggle
+	 * @param {Boolean} [on] TODO
 	 * @return {Boolean} TODO
 	 */
 	this.toggle = function (on) {

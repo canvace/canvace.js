@@ -150,14 +150,14 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	this.getImage = function (id, callback) {
 		if (imageset.hasOwnProperty(id)) {
 			return imageset[id];
+		} else {
+			var image = new Image();
+			if (typeof callback === 'function') {
+				image.addEventListener('load', callback, false);
+			}
+			image.setAttribute('src', [basePath, id].join('/'));
+			return imageset[id] = image;
 		}
-
-		var image = new Image();
-		if (typeof callback === 'function') {
-			image.addEventListener('load', callback, false);
-		}
-		image.setAttribute('src', [basePath, id].join('/'));
-		return imageset[id] = image;
 	};
 
 	var loadSounds = function (sources) {
