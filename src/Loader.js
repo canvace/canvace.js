@@ -85,22 +85,35 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	var loadImages = function (data) {
 		var totalCount = 0;
 		var id;
+		var frames;
 
+		var reverseTileFrameTable = {};
 		for (id in data.tiles) {
-			totalCount += data.tiles[id].frames.length;
+			if (data.tiles.hasOwnProperty(id)) {
+				frames = data.tiles[id].frames;
+				totalCount += frames.length;
+				if (frames.length) {
+					reverseTileFrameTable[frames[0].id] = data.tiles[id];
+				}
+			}
 		}
 
+		var reverseEntityFrameTable = {};
 		for (id in data.entities) {
-			totalCount += data.entities[id].frames.length;
+			if (data.entities.hasOwnProperty(id)) {
+				frames = data.entities[id].frames;
+				totalCount += frames.length;
+				if (frames.length) {
+					reverseEntityFrameTable[frames[0].id] = data.entities[id];
+				}
+			}
 		}
 
-		var progress = (function () {
+		var doProgress = (function () {
 			var count = 0;
-
-			return function () {
+			return function doProgress() {
 				imagesProgress = 100 * ++count / Math.max(1, totalCount);
 				updateProgress();
-
 				if (count >= totalCount) {
 					imagesLoaded = true;
 					loadFinished();
@@ -108,17 +121,31 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			};
 		}());
 
+		function bindProgress(id) {
+			return function () {
+				if (reverseTileFrameTable.hasOwnProperty(id)) {
+					reverseTileFrameTable[id].width = imageset[id].width;
+					reverseTileFrameTable[id].height = imageset[id].height;
+				}
+				if (reverseEntityFrameTable.hasOwnProperty(id)) {
+					reverseEntityFrameTable[id].width = imageset[id].width;
+					reverseEntityFrameTable[id].height = imageset[id].height;
+				}
+				doProgress();
+			};
+		}
+
 		if (totalCount === 0) {
-			progress();
+			doProgress();
 			return thisObject;
 		}
 
 		function batchImages(descriptor) {
 			var loadIt = function (id) {
 				var image = new Image();
-				image.addEventListener('load', progress, false);
-				image.setAttribute('src', [basePath, id].join('/'));
 				imageset[id] = image;
+				image.addEventListener('load', bindProgress(id), false);
+				image.setAttribute('src', [basePath, id].join('/'));
 			};
 
 			for (var i in descriptor.frames) {
