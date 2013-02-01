@@ -4,7 +4,7 @@
  * @class Canvace.Ajax
  * @static
  */
-Canvace.Ajax = (function () {
+Canvace.Ajax = new (function () {
 	/**
 	 * Represents an open AJAX request.
 	 *
@@ -13,6 +13,7 @@ Canvace.Ajax = (function () {
 	 * {{#crossLink "Canvace.Ajax"}}{{/crossLink}}.
 	 *
 	 * @class Canvace.Ajax.Request
+	 * @constructor
 	 * @param options {Object} A dictionary containing the options to use for
 	 * the request.
 	 * @param options.method {String} Indicates the HTTP method to use.
@@ -31,9 +32,8 @@ Canvace.Ajax = (function () {
 	 * the loading is complete. See the `onLoad` method for details.
 	 * @param [options.onerror] {Function} The callback function to invoke when
 	 * the loading aborts with an error. See the `onError` method for details.
-	 * @constructor
 	 */
-	var Request = function (options) {
+	function Request(options) {
 		var thisObject = this;
 
 		if (typeof options.async === 'undefined') {
@@ -60,13 +60,10 @@ Canvace.Ajax = (function () {
 					case '':
 					case 'text':
 						return xhr.responseText;
-
 					case 'json':
 						return JSON.parse(xhr.responseText);
-
 					case 'document':
 						return xhr.responseXML;
-
 					default:
 						return xhr.response;
 					}
@@ -121,9 +118,9 @@ Canvace.Ajax = (function () {
 			options.onerror = callback;
 			return thisObject;
 		};
-	};
+	}
 
-	var _ajaxRequest = function (method, parameters) {
+	function ajaxRequest(method, parameters) {
 		var options = {
 			method: method
 		};
@@ -141,75 +138,72 @@ Canvace.Ajax = (function () {
 
 		options.url = parameters[0];
 		return new Request(options);
+	}
+
+	/**
+	 * Retrieves a resource by using a `GET` HTTP request.
+	 *
+	 * @method get
+	 * @for Canvace.Ajax
+	 * @param url {Mixed} This first parameter is either a string representing
+	 * the URL of the requested resource, or a dictionary of options to pass to
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 *
+	 * See its documentation for more details about the allowed options.
+	 * @param [type] {String} Indicates how the browser should interpret the
+	 * resource contents like. Ignored if the first parameter is not a string.
+	 * Defaults to an empty string.
+	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 */
+	this.get = function () {
+		return ajaxRequest('GET', arguments);
 	};
 
-	return {
-		/**
-		 * Retrieves a resource by using a `GET` HTTP request.
-		 *
-		 * @method get
-		 * @for Canvace.Ajax
-		 * @param url {Mixed} This first parameter is either a string
-		 * representing the URL of the requested resource, or a dictionary
-		 * of options to pass to the constructor of
-		 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
-		 * See its documentation for more details about the allowed options.
-		 * @param [type] {String} Indicates how the browser should interpret
-		 * the resource contents like. Ignored if the first parameter is not a
-		 * string. Defaults to an empty string.
-		 * @return {Canvace.Ajax.Request} The instantiated request object.
-		 */
-		get: function () {
-			return _ajaxRequest('GET', arguments);
-		},
+	/**
+	 * Retrieves a resource by using a `POST` HTTP request.
+	 *
+	 * @method post
+	 * @param url {Mixed} This first parameter is either a string representing
+	 * the URL of the requested resource, or a dictionary of options to pass to
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 *
+	 * See its documentation for more details about the allowed options.
+	 * @param [type] {String} Indicates how the browser should interpret the
+	 * resource contents like. Ignored if the first parameter is not a string.
+	 * Defaults to an empty string.
+	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 */
+	this.post = function () {
+		return ajaxRequest('POST', arguments);
+	};
 
-		/**
-		 * Retrieves a resource by using a `POST` HTTP request.
-		 *
-		 * @method post
-		 * @param url {Mixed} This first parameter is either a string
-		 * representing the URL of the requested resource, or a dictionary
-		 * of options to pass to the constructor of
-		 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
-		 * See its documentation for more details about the allowed options.
-		 * @param [type] {String} Indicates how the browser should interpret
-		 * the resource contents like. Ignored if the first parameter is not a
-		 * string. Defaults to an empty string.
-		 * @return {Canvace.Ajax.Request} The instantiated request object.
-		 */
-		post: function () {
-			return _ajaxRequest('POST', arguments);
-		},
-
-		/**
-		 * Retrieves a resource by using a `GET` HTTP request, and interprets
-		 * its contents as JSON.
-		 *
-		 * @example
-		 *	var req = Canvace.Ajax.getJson('loadstage.php?id=10');
-		 *	req.onLoad(function (response) {
-		 *		console.dir(response);
-		 *	}).onError(function () {
-		 *		alert('Load error! :(');
-		 *	});
-		 *
-		 * @method getJson
-		 * @param url {String} The URL of the requested JSON resource.
-		 * @param [onload] {Function} The callback function to invoke when the
-		 * loading is complete. See the `onLoad` method of
-		 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
-		 * @param [onerror] {Function} The callback function to invoke when the
-		 * loading aborts with an error. See the `onError` method of
-		 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
-		 * @return {Canvace.Ajax.Request} The instantiated request object.
-		 */
-		getJson: function (url, onload, onerror) {
-			return Canvace.Ajax.get({
-				url: url,
-				type: 'json',
-				onload: onload,
-				onerror: onerror
-			});
-		}
+	/**
+	 * Retrieves a resource by using a `GET` HTTP request and interprets its
+	 * contents as JSON.
+	 *
+	 * @method getJson
+	 * @param url {String} The URL of the requested JSON resource.
+	 * @param [onload] {Function} The callback function to invoke when the
+	 * loading is complete. See the `onLoad` method of
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
+	 * @param [onerror] {Function} The callback function to invoke when the
+	 * loading aborts with an error. See the `onError` method of
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
+	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 * @example
+	 *	var req = Canvace.Ajax.getJson('loadstage.php?id=10');
+	 *	req.onLoad(function (response) {
+	 *		console.dir(response);
+	 *	}).onError(function () {
+	 *		alert('Load error! :(');
+	 *	});
+	 */
+	this.getJSON = function (url, onload, onerror) {
+		return Canvace.Ajax.get({
+			url: url,
+			type: 'json',
+			onload: onload,
+			onerror: onerror
+		});
 	};
 }());
