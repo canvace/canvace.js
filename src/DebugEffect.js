@@ -1,5 +1,6 @@
 /**
- * TODO
+ * This effect draws some overlays useful for diagnostic purposes during the
+ * post-processing rendering stage.
  *
  * @class Canvace.DebugEffect
  * @constructor

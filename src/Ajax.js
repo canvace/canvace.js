@@ -28,9 +28,9 @@ Canvace.Ajax = new (function () {
 	 * authentication is required. Defaults to an empty string.
 	 * @param [options.password] {String} The user password to use when an
 	 * authentication is required. Defaults to an empty string.
-	 * @param [options.onload] {Function} The callback function to invoke when
+	 * @param [options.onLoad] {Function} The callback function to invoke when
 	 * the loading is complete. See the `onLoad` method for details.
-	 * @param [options.onerror] {Function} The callback function to invoke when
+	 * @param [options.onError] {Function} The callback function to invoke when
 	 * the loading aborts with an error. See the `onError` method for details.
 	 */
 	function Request(options) {
@@ -51,8 +51,8 @@ Canvace.Ajax = new (function () {
 
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function () {
-			if (typeof options.onload === 'function') {
-				options.onload.call(thisObject, (function () {
+			if (typeof options.onLoad === 'function') {
+				options.onLoad.call(thisObject, (function () {
 					switch (options.type) {
 					case '':
 					case 'text':
@@ -68,8 +68,8 @@ Canvace.Ajax = new (function () {
 			}
 		}, false);
 		xhr.addEventListener('error', function () {
-			if (typeof options.onerror === 'function') {
-				options.onerror.call(thisObject, xhr.status, xhr.statusText);
+			if (typeof options.onError === 'function') {
+				options.onError.call(thisObject, xhr.status, xhr.statusText);
 			}
 		}, false);
 
@@ -98,7 +98,7 @@ Canvace.Ajax = new (function () {
 		 * @chainable
 		 */
 		this.onLoad = function (callback) {
-			options.onload = callback;
+			options.onLoad = callback;
 			return thisObject;
 		};
 
@@ -113,7 +113,7 @@ Canvace.Ajax = new (function () {
 		 * @chainable
 		 */
 		this.onError = function (callback) {
-			options.onerror = callback;
+			options.onError = callback;
 			return thisObject;
 		};
 	}
@@ -181,10 +181,10 @@ Canvace.Ajax = new (function () {
 	 *
 	 * @method getJSON
 	 * @param url {String} The URL of the requested JSON resource.
-	 * @param [onload] {Function} The callback function to invoke when the
+	 * @param [onLoad] {Function} The callback function to invoke when the
 	 * loading is complete. See the `onLoad` method of
 	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
-	 * @param [onerror] {Function} The callback function to invoke when the
+	 * @param [onError] {Function} The callback function to invoke when the
 	 * loading aborts with an error. See the `onError` method of
 	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
@@ -196,12 +196,12 @@ Canvace.Ajax = new (function () {
 	 *		alert('Load error! :(');
 	 *	});
 	 */
-	this.getJSON = function (url, onload, onerror) {
+	this.getJSON = function (url, onLoad, onError) {
 		return Canvace.Ajax.get({
 			url: url,
 			type: 'json',
-			onload: onload,
-			onerror: onerror
+			onLoad: onLoad,
+			onError: onError
 		});
 	};
 })();
