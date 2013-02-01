@@ -24,6 +24,7 @@ module.exports = function (grunt) {
 					'<file_strip_banner:src/MultiSet.js>',
 					'<file_strip_banner:src/List.js>',
 					'<file_strip_banner:src/Heap.js>',
+					'<file_strip_banner:src/Ajax.js>',
 					'<file_strip_banner:src/StateMachine.js>',
 					'<file_strip_banner:src/ParametricStateMachine.js>',
 					'<file_strip_banner:src/Astar.js>',
@@ -59,6 +60,7 @@ module.exports = function (grunt) {
 		},
 		lint: {
 				beforeconcat: [
+					'src/Ajax.js',
 					'src/Astar.js',
 					'src/Audio.js',
 					'src/Buckets.js',
