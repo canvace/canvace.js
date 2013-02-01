@@ -55,7 +55,7 @@ Canvace.Ajax = new (function () {
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function () {
 			if (typeof options.onload === 'function') {
-				options.onload((function () {
+				options.onload.call(thisObject, (function () {
 					switch (options.type) {
 					case '':
 					case 'text':
@@ -72,7 +72,7 @@ Canvace.Ajax = new (function () {
 		}, false);
 		xhr.addEventListener('error', function () {
 			if (typeof options.onerror === 'function') {
-				options.onerror(xhr.status, xhr.statusText);
+				options.onerror.call(thisObject, xhr.status, xhr.statusText);
 			}
 		}, false);
 
@@ -191,8 +191,8 @@ Canvace.Ajax = new (function () {
 	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
 	 * @example
-	 *	var req = Canvace.Ajax.getJSON('loadstage.php?id=10');
-	 *	req.onLoad(function (response) {
+	 *	var request = Canvace.Ajax.getJSON('data.json');
+	 *	request.onLoad(function (response) {
 	 *		console.dir(response);
 	 *	}).onError(function () {
 	 *		alert('Load error! :(');
