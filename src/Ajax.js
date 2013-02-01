@@ -9,7 +9,7 @@ Canvace.Ajax = new (function () {
 	 * Represents an open AJAX request.
 	 *
 	 * You cannot instantiate this class directly: you can obtain a new
-	 * instance by using the `get`, `post` and `getJson` methods of
+	 * instance by using the `get`, `post` and `getJSON` methods of
 	 * {{#crossLink "Canvace.Ajax"}}{{/crossLink}}.
 	 *
 	 * @class Canvace.Ajax.Request
@@ -181,7 +181,7 @@ Canvace.Ajax = new (function () {
 	 * Retrieves a resource by using a `GET` HTTP request and interprets its
 	 * contents as JSON.
 	 *
-	 * @method getJson
+	 * @method getJSON
 	 * @param url {String} The URL of the requested JSON resource.
 	 * @param [onload] {Function} The callback function to invoke when the
 	 * loading is complete. See the `onLoad` method of
@@ -191,7 +191,7 @@ Canvace.Ajax = new (function () {
 	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
 	 * @example
-	 *	var req = Canvace.Ajax.getJson('loadstage.php?id=10');
+	 *	var req = Canvace.Ajax.getJSON('loadstage.php?id=10');
 	 *	req.onLoad(function (response) {
 	 *		console.dir(response);
 	 *	}).onError(function () {
