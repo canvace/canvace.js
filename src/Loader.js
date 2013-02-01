@@ -141,15 +141,13 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		}
 
 		function batchImages(descriptor) {
-			var loadIt = function (id) {
-				var image = new Image();
-				imageset[id] = image;
-				image.addEventListener('load', bindProgress(id), false);
-				image.src = [basePath, id].join('/');
-			};
-
 			for (var i in descriptor.frames) {
-				loadIt(descriptor.frames[i].id);
+				(function (id) {
+					var image = new Image();
+					imageset[id] = image;
+					image.addEventListener('load', bindProgress(id), false);
+					image.src = [basePath, id].join('/');
+				}(descriptor.frames[i].id));
 			}
 		}
 
