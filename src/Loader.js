@@ -145,7 +145,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 				var image = new Image();
 				imageset[id] = image;
 				image.addEventListener('load', bindProgress(id), false);
-				image.setAttribute('src', [basePath, id].join('/'));
+				image.src = [basePath, id].join('/');
 			};
 
 			for (var i in descriptor.frames) {
@@ -182,7 +182,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			if (typeof callback === 'function') {
 				image.addEventListener('load', callback, false);
 			}
-			image.setAttribute('src', [basePath, id].join('/'));
+			image.src = [basePath, id].join('/');
 			return imageset[id] = image;
 		}
 	};
