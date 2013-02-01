@@ -2,16 +2,29 @@
  * This effect draws some overlays useful for diagnostic purposes during the
  * post-processing rendering stage.
  *
+ * The effect may be disabled and reenabled using the provided `disable`,
+ * `enable` or `toggle` methods, and is initially enabled.
+ *
  * @class Canvace.DebugEffect
  * @constructor
- * @param stage {Canvace.Stage} TODO
- * @param options {Object} TODO
- * @param options.drawBoundingBoxes {Boolean} TODO
- * @param options.boundingBoxStyle {Mixed} TODO
- * @param options.drawVelocity {Boolean} TODO
- * @param options.velocityStyle {Mixed} TODO
- * @param options.drawUniformVelocity {Boolean} TODO
- * @param options.uniformVelocityStyle {Mixed} TODO
+ * @param stage {Canvace.Stage} The stage being rendered.
+ * @param options {Object} An options object specifying what overlays must be
+ * drawn and their drawing style.
+ * @param [options.drawBoundingBoxes=false] {Boolean} Indicates whether
+ * entities' bounding boxes must be draw. Only entities with physics enabled are
+ * taken into account.
+ * @param [options.boundingBoxStyle='red'] {Mixed} Indicates the CSS color to
+ * use to draw the bounding boxes.
+ * @param [options.drawVelocity=false] {Boolean} Indicates whether velocity
+ * vectors must be drawn. Only entities with physics enabled are taken into
+ * account.
+ * @param [options.velocityStyle='red'] {Mixed} Indicates the CSS color to use
+ * to draw velocity vectors.
+ * @param [options.drawUniformVelocity=false] {Boolean} Indicates whether
+ * uniform velocity vectors must be drawn. Only entities with physics enabled
+ * are taken into account.
+ * @param [options.uniformVelocityStyle='red'] {Mixed} Indicates the CSS color
+ * to use to draw uniform velocity vectors.
  * @param options.drawAcceleration {Boolean} TODO
  * @param options.accelerationStyle {Mixed} TODO
  * @param options.drawSolidMap {Boolean} TODO
@@ -22,7 +35,7 @@ Canvace.DebugEffect = function (stage, options) {
 	var view = stage.getView();
 
 	/**
-	 * TODO
+	 * Enables the effect.
 	 *
 	 * @method enable
 	 */
@@ -31,7 +44,9 @@ Canvace.DebugEffect = function (stage, options) {
 	};
 
 	/**
-	 * TODO
+	 * Disables the effect.
+	 *
+	 * The effect can then be reenabled using the `enable` method.
 	 *
 	 * @method disable
 	 */
@@ -40,11 +55,17 @@ Canvace.DebugEffect = function (stage, options) {
 	};
 
 	/**
-	 * TODO
+	 * Toggles the effect and returns a boolean value indicating whether the
+	 * effect was enabled or disabled.
 	 *
 	 * @method toggle
-	 * @param {Boolean} [on] TODO
-	 * @return {Boolean} TODO
+	 * @param {Boolean} [on] When specified, the effect is enabled or disabled
+	 * depending on the specified boolean value (respectively `true` or
+	 * `false`).
+	 *
+	 * When not specified, the effect's enable status is inverted.
+	 * @return {Boolean} `true` if the effect has been enabled, `false`
+	 * otherwise.
 	 */
 	this.toggle = function (on) {
 		if (arguments.length < 1) {
@@ -55,10 +76,10 @@ Canvace.DebugEffect = function (stage, options) {
 	};
 
 	/**
-	 * TODO
+	 * Indicates whether the effect is currently enabled.
 	 *
 	 * @method isEnabled
-	 * @return {Boolean} TODO
+	 * @return {Boolean} `true` if the effect is enabled, `false` otherwise.
 	 */
 	this.isEnabled = function () {
 		return enabled;
