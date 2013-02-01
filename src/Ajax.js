@@ -18,15 +18,15 @@ Canvace.Ajax = new (function () {
 	 * the request.
 	 * @param options.method {String} Indicates the HTTP method to use.
 	 * @param options.url {String} Indicates the URL of the requested resource.
-	 * @param [options.type] {String} Indicates the way the browser should
+	 * @param [options.type=''] {String} Indicates the way the browser should
 	 * interpret the resource contents like. This can be an empty string,
 	 * `'text'`, `'json'`, `'document'`, `'blob'` or `'arraybuffer'`.
 	 * Defaults to an empty string, which means the same as `'text'`.
-	 * @param [options.async] {Boolean} Indicates whether the request is
+	 * @param [options.async=true] {Boolean} Indicates whether the request is
 	 * asynchronous (`true`) or blocking (`false`). Defaults to `true`.
-	 * @param [options.user] {String} The user name to use when an
+	 * @param [options.user=''] {String} The user name to use when an
 	 * authentication is required. Defaults to an empty string.
-	 * @param [options.password] {String} The user password to use when an
+	 * @param [options.password=''] {String} The user password to use when an
 	 * authentication is required. Defaults to an empty string.
 	 * @param [options.onLoad] {Function} The callback function to invoke when
 	 * the loading is complete. See the `onLoad` method for details.
