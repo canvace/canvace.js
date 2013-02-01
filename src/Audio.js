@@ -178,30 +178,32 @@ Canvace.Audio = function () {
 				return this;
 			}
 
-			var request = new XMLHttpRequest();
-			request.addEventListener('load', function () {
-				context.decodeAudioData(request.response, function (buffer) {
-					bufferData = buffer;
-					loaded = true;
-					if (typeof onload === 'function') {
-						onload(thisObject);
-					}
-				}, function () {
+			Canvace.Ajax.get({
+				type: 'arraybuffer',
+				url: source,
+				onLoad: function (response) {
+					context.decodeAudioData(response, function (buffer) {
+						bufferData = buffer;
+						loaded = true;
+						if (typeof onload === 'function') {
+							onload(thisObject);
+						}
+					}, function () {
+						if (typeof onerror === 'function') {
+							// FIXME: we should pass back something about the
+							// error occurred, not the requested URL that failed
+							// loading.
+							onerror(source);
+						}
+					});
+				},
+				onError: function () {
 					if (typeof onerror === 'function') {
-						// FIXME: we should pass back something about the error
-						// occurred, not the requested URL that failed loading.
-						onerror(source);
+						onerror();
 					}
-				});
-			}, false);
-			request.addEventListener('error', function (e) {
-				if (typeof onerror === 'function') {
-					onerror(e);
 				}
-			}, false);
-			request.open('GET', source, true);
-			request.responseType = 'arraybuffer';
-			request.send();
+			});
+
 			return this;
 		};
 	} else if (typeof audioElement !== 'undefined') {

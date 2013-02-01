@@ -39,15 +39,12 @@ Canvace.Ajax = new (function () {
 		if (typeof options.async === 'undefined') {
 			options.async = true;
 		}
-
 		if (typeof options.type === 'undefined') {
 			options.type = '';
 		}
-
 		if (typeof options.user === 'undefined') {
 			options.user = '';
 		}
-
 		if (typeof options.password === 'undefined') {
 			options.password = '';
 		}
@@ -81,7 +78,8 @@ Canvace.Ajax = new (function () {
 			options.url,
 			options.async,
 			options.user,
-			options.password);
+			options.password
+			);
 
 		// Currently 'json' is not equally supported across browsers
 		xhr.responseType = (options.type === 'json') ? 'text' : options.type;
@@ -206,4 +204,4 @@ Canvace.Ajax = new (function () {
 			onerror: onerror
 		});
 	};
-}());
+})();

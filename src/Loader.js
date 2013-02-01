@@ -72,17 +72,17 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 
 	var jobCount = 2;
 
-	var updateProgress = function () {
+	function updateProgress() {
 		loadProgress((imagesProgress + soundsProgress) / jobCount);
-	};
+	}
 
-	var loadFinished = function () {
+	function loadFinished() {
 		if (imagesLoaded && soundsLoaded) {
 			loadComplete(thisObject);
 		}
-	};
+	}
 
-	var loadImages = function (data) {
+	function loadImages(data) {
 		var totalCount = 0;
 		var id;
 		var frames;
@@ -162,7 +162,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		}
 
 		return thisObject;
-	};
+	}
 
 	/**
 	 * Loads an image from the exported image set.
@@ -187,7 +187,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		}
 	};
 
-	var loadSounds = function (sources) {
+	function loadSounds(sources) {
 		var totalCount = Object.keys(sources).length;
 
 		var progress = (function () {
@@ -240,7 +240,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		}
 
 		return thisObject;
-	};
+	}
 
 	/**
 	 * Returns a `Canvace.Audio.SourceNode` representing the audio asset
@@ -291,14 +291,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 *		'second-sound': ['second.mp3', 'second.ogg']
 	 *	};
 	 *
-	 *	var xhr = new XMLHttpRequest();
-	 *	xhr.addEventListener('load', function () {
+	 *	Canvace.Ajax.getJSON('stage.json', function (stage) {
 	 *		var loader = new Canvace.Loader('media');
-	 *		loader.loadAssets(JSON.parse(xhr.responseText), soundResources);
-	 *	}, false);
-	 *	xhr.open('GET', 'stage.json', true);
-	 *	xhr.responseType = 'text';
-	 *	xhr.send();
+	 *		loader.loadAssets(stage, soundResources);
+	 *	});
 	 *
 	 * @method loadAssets
 	 * @param [imagesData] {Object} The JSON data output by the Canvace
