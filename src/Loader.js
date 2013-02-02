@@ -93,7 +93,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 				frames = data.tiles[id].frames;
 				totalCount += frames.length;
 				if (frames.length) {
-					reverseTileFrameTable[frames[0].id] = data.tiles[id];
+					if (!reverseTileFrameTable.hasOwnProperty(frames[0].id)) {
+						reverseTileFrameTable[frames[0].id] = new Canvace.MultiSet();
+					}
+					reverseTileFrameTable[frames[0].id].add(data.tiles[id]);
 				}
 			}
 		}
@@ -104,7 +107,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 				frames = data.entities[id].frames;
 				totalCount += frames.length;
 				if (frames.length) {
-					reverseEntityFrameTable[frames[0].id] = data.entities[id];
+					if (!reverseEntityFrameTable.hasOwnProperty(frames[0].id)) {
+						reverseEntityFrameTable[frames[0].id] = new Canvace.MultiSet();
+					}
+					reverseEntityFrameTable[frames[0].id].add(data.entities[id]);
 				}
 			}
 		}
@@ -124,12 +130,16 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 		function bindProgress(id) {
 			return function () {
 				if (reverseTileFrameTable.hasOwnProperty(id)) {
-					reverseTileFrameTable[id].width = imageset[id].width;
-					reverseTileFrameTable[id].height = imageset[id].height;
+					reverseTileFrameTable[id].fastForEach(function (tile) {
+						tile.width = imageset[id].width;
+						tile.height = imageset[id].height;
+					});
 				}
 				if (reverseEntityFrameTable.hasOwnProperty(id)) {
-					reverseEntityFrameTable[id].width = imageset[id].width;
-					reverseEntityFrameTable[id].height = imageset[id].height;
+					reverseEntityFrameTable[id].fastForEach(function (entity) {
+						entity.width = imageset[id].width;
+						entity.height = imageset[id].height;
+					});
 				}
 				doProgress();
 			};
