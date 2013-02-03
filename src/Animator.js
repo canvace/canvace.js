@@ -132,9 +132,11 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
-	 * - must be defined in the range `[0, 1]`
-	 * - `f(0) = 0`
-	 * - `f(1) = 1`
+	 * <ul>
+	 * <li>must be defined in the range `[0, 1]`</li>
+	 * <li>`f(0) = 0`</li>
+	 * <li>`f(1) = 1`</li>
+	 * </ul>
 	 *
 	 * This option defaults to the identity function when not specified, which
 	 * produces a linear transition. Using quadratic functions produces
@@ -143,15 +145,15 @@ Canvace.Animator = function (tick) {
 	 *	function linearTransition(x) {
 	 *		return x;
 	 *	}
-	 *
+	 *	
 	 *	function accelerationTransition(x) {
 	 *		return x * x;
 	 *	}
-	 *
+	 *	
 	 *	function decelerationTransition(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
-	 *
+	 *	
 	 *	function backAndForthTransition(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
