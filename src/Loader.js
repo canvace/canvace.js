@@ -221,33 +221,40 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			return thisObject;
 		}
 
-		var triggerError = function (i) {
+		function triggerError(i) {
 			return function () {
 				loadError(i);
 			};
-		};
+		}
 
-		for (var i in sources) {
-			var suitable = false;
-
-			for (var j in sources[i]) {
+		function getSuitableSource(sourceList) {
+			for (var i in sourceList) {
 				try {
-					var info = Canvace.Loader.getSourceInfo(sources[i][j]);
-					var source = [basePath, info.url].join('/');
+					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
 
 					if (audio.canPlayType(info.mimeType)) {
-						suitable = true;
-						soundset[i] = audio.load(source, progress, triggerError(i));
-						break;
+						return [basePath, info.url].join('/');
 					}
 				} catch (e) {
-					loadError(e);
+					return false;
 				}
 			}
 
-			if (!suitable) {
-				loadError(i);
+			return false;
+		}
+
+		for (var i in sources) {
+			if (i in soundset) {
 				progress();
+			} else {
+				var source = getSuitableSource(sources[i]);
+
+				if (false === source) {
+					loadError(i);
+					progress();
+				} else {
+					soundset[i] = audio.load(source, progress, triggerError(i));
+				}
 			}
 		}
 
