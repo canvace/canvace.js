@@ -38,7 +38,7 @@ Canvace.RenderLoop = (function () {
 		var renderer = new Canvace.StageRenderer(stage, loader);
 
 		var rate = loopRate;
-		var period = Math.floor(1000.0 / rate);
+		var period = Math.floor(1000 / rate);
 		var maxPeriod = 5000;
 
 		var running = false;
@@ -173,10 +173,10 @@ Canvace.RenderLoop = (function () {
 		function updateLoop(delta, elapsed) {
 			delta = Math.min(delta, maxPeriod);
 			while (delta > period) {
-				step(period / 1000.0);
+				step(period / 1000);
 				delta -= period;
 			}
-			step(delta / 1000.0);
+			step(delta / 1000);
 			stepInterface.update();
 			if (typeof synchronizeView === 'function') {
 				synchronizeView();
