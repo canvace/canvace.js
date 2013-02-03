@@ -25,7 +25,10 @@
  * @class Canvace.Animator
  * @extends Function
  * @constructor
- * @param [tick] {Function} TODO
+ * @param [tick] {Function} An optional user-defined `tick` callback function.
+ * It is invoked at each tick using this `Animator` object as `this`.
+ *
+ * You can also specify this later using the `tick` method.
  * @example
  *	TODO
  */
