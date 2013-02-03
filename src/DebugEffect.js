@@ -25,10 +25,13 @@
  * are taken into account.
  * @param [options.uniformVelocityStyle='red'] {Mixed} Indicates the CSS color
  * to use to draw uniform velocity vectors.
- * @param options.drawAcceleration {Boolean} TODO
- * @param options.accelerationStyle {Mixed} TODO
- * @param options.drawSolidMap {Boolean} TODO
- * @param options.solidMapStyle {Mixed} TODO
+ * @param [options.drawAcceleration=false] {Boolean} Indicates whether
+ * acceleration vectors must be drawn. Only entities with physics enabled are
+ * taken into account.
+ * @param [options.accelerationStyle='red'] {Mixed} Indicates the CSS color to
+ * use to draw acceleration vectors.
+ * @param [options.drawSolidMap=false] {Boolean} TODO
+ * @param [options.solidMapStyle='red'] {Mixed} TODO
  */
 Canvace.DebugEffect = function (stage, options) {
 	var enabled = true;
@@ -86,22 +89,28 @@ Canvace.DebugEffect = function (stage, options) {
 	};
 
 	/**
-	 * TODO
+	 * Returns the current value for the specified option.
+	 *
+	 * See the constructor reference for more details about the available
+	 * options.
 	 *
 	 * @method getOption
-	 * @param name {String} TODO
-	 * @return {Any} TODO
+	 * @param name {String} The option name.
+	 * @return {Any} The current value for the option.
 	 */
 	this.getOption = function (name) {
 		return options[name];
 	};
 
 	/**
-	 * TODO
+	 * Sets the specified option.
+	 *
+	 * See the constructor reference for more details about the available
+	 * options.
 	 *
 	 * @method setOption
-	 * @param name {String} TODO
-	 * @param value {Any} TODO
+	 * @param name {String} The name of the option to set.
+	 * @param value {Any} The new value for the option.
 	 */
 	this.setOption = function (name, value) {
 		options[name] = value;
@@ -140,7 +149,7 @@ Canvace.DebugEffect = function (stage, options) {
 	}
 
 	/**
-	 * TODO
+	 * Draws the enabled overlay elements.
 	 *
 	 * @method postProcess
 	 * @param context {CanvasRenderingContext2D} the rendering context of the
