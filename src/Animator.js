@@ -72,6 +72,13 @@ Canvace.Animator = function (tick) {
 			if (typeof options.transition === 'undefined') {
 				options.transition = linearTransition;
 			}
+			if (typeof options.callback !== 'undefined') {
+				options.callback = (function (callback) {
+					return function () {
+						callback.call(instance);
+					};
+				}(options.callback));
+			}
 			animations.add(new Animation(instance[getter](), target, duration, options.transition, options.callback));
 		};
 	}
