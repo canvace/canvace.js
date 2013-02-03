@@ -44,7 +44,7 @@ Canvace.Animator = function (tick) {
 			if ('k' in stop) {
 				object.k = start.k + (stop.k - start.k) * progress;
 			}
-			return timestamp >= endTime;
+			return timestamp < endTime;
 		};
 		this.callback = callback;
 	}
