@@ -36,23 +36,24 @@ Canvace.Animator = function (tick) {
 	var animations = new Canvace.MultiSet();
 
 	function Animation(object, stop, duration, transition, callback) {
-		var start = {
-			i: object.i,
-			j: object.j,
-			k: object.k
-		};
+		var i0 = object.i;
+		var j0 = object.j;
+		var k0 = object.k;
+		var di = stop.i - object.i;
+		var dj = stop.j - object.j;
+		var dk = stop.k - object.k;
 		var startTime = Canvace.Timing.now();
 		var endTime = startTime + duration;
 		this.tick = function (timestamp) {
 			var progress = transition((timestamp - startTime) / duration);
 			if ('i' in stop) {
-				object.i = start.i + (stop.i - start.i) * progress;
+				object.i = i0 + di * progress;
 			}
 			if ('j' in stop) {
-				object.j = start.j + (stop.j - start.j) * progress;
+				object.j = j0 + dj * progress;
 			}
 			if ('k' in stop) {
-				object.k = start.k + (stop.k - start.k) * progress;
+				object.k = k0 + dk * progress;
 			}
 			return timestamp < endTime;
 		};
