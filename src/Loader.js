@@ -276,6 +276,20 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * Asynchronously loads all the images associated with the given Canvace
 	 * stage and all the given sounds.
 	 *
+	 * @method loadAssets
+	 * @param [imagesData] {Object} The JSON data output by the Canvace
+	 * Development Environment.
+	 * @param [soundsData] {Object} A map where the keys indicate the name of
+	 * the sound to load, and the values are `Array`s of source descriptors,
+	 * which are either `Object`s (each containing the string properties
+	 * 'mimeType' and 'url') or `String`s (indicating the URL of the
+	 * resource to load, in which case the loader tries to infer the MIME type
+	 * from the file extension). Object and String source descriptors can be
+	 * mixed.
+	 *
+	 * These objects represent the audio file sources that will be tried in
+	 * order, falling back to the next one if the browser doesn't support
+	 * playing the specified MIME type.
 	 * @example
 	 *	var soundResources = null;
 	 *
@@ -307,20 +321,6 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 *		var loader = new Canvace.Loader('media');
 	 *		loader.loadAssets(stage, soundResources);
 	 *	});
-	 *
-	 * @method loadAssets
-	 * @param [imagesData] {Object} The JSON data output by the Canvace
-	 * Development Environment.
-	 * @param [soundsData] {Object} A map where the keys indicate the name of
-	 * the sound to load, and the values are `Array`s of source descriptors,
-	 * which are either `Object`s (each containing the string properties
-	 * 'mimeType' and 'url') or `String`s (indicating the URL of the
-	 * resource to load, in which case the loader tries to infer the MIME type
-	 * from the file extension). Object and String source descriptors can be
-	 * mixed.
-	 * These objects represent the audio file sources that will be tried in
-	 * order, falling back to the next one if the browser doesn't support
-	 * playing the specified MIME type.
 	 */
 	this.loadAssets = function (imagesData, soundsData) {
 		imagesLoaded = (typeof imagesData === 'undefined' || imagesData === null);
