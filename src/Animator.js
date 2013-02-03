@@ -83,7 +83,7 @@ Canvace.Animator = function (tick) {
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
 	 * @param duration {Number} TODO
-	 * @param [options={}] {Object} TODO
+	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
 	 * @param [options.callback] {Function} TODO
 	 */
@@ -96,7 +96,7 @@ Canvace.Animator = function (tick) {
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
 	 * @param duration {Number} TODO
-	 * @param [options={}] {Object} TODO
+	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
 	 * @param [options.callback] {Function} TODO
 	 */
@@ -109,7 +109,7 @@ Canvace.Animator = function (tick) {
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
 	 * @param duration {Number} TODO
-	 * @param [options={}] {Object} TODO
+	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
 	 * @param [options.callback] {Function} TODO
 	 */
@@ -122,7 +122,7 @@ Canvace.Animator = function (tick) {
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
 	 * @param duration {Number} TODO
-	 * @param [options={}] {Object} TODO
+	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
 	 * @param [options.callback] {Function} TODO
 	 */

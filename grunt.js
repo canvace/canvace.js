@@ -61,8 +61,8 @@ module.exports = function (grunt) {
 		},
 		lint: {
 				beforeconcat: [
-					'src/Animator.js',
 					'src/Ajax.js',
+					'src/Animator.js',
 					'src/Astar.js',
 					'src/Audio.js',
 					'src/Buckets.js',
