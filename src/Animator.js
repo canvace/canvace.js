@@ -117,11 +117,14 @@ Canvace.Animator = function (tick) {
 	 * @param stop {Object} An object containing target values for the `i`, `j`
 	 * and `k` fields of the instance's position. The target values are the
 	 * values that will result when the animation is over.
-	 * @param stop.i {Number} The target value for the `i` component of the
+	 *
+	 * The `i`, `j` and `k` fields of this object are optional: missing fields
+	 * will not be interpolated.
+	 * @param [stop.i] {Number} The target value for the `i` component of the
 	 * instance's position.
-	 * @param stop.j {Number} The target value for the `j` component of the
+	 * @param [stop.j] {Number} The target value for the `j` component of the
 	 * instance's position.
-	 * @param stop.k {Number} The target value for the `k` component of the
+	 * @param [stop.k] {Number} The target value for the `k` component of the
 	 * instance's position.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
@@ -164,50 +167,179 @@ Canvace.Animator = function (tick) {
 	thisObject.interpolatePosition = bindInterpolate('getPosition');
 
 	/**
-	 * TODO
+	 * Animates the specified entity instance by interpolating values for its
+	 * velocity.
 	 *
 	 * @method interpolateVelocity
-	 * @param instance {Canvace.Stage.Instance} TODO
-	 * @param stop {Object} TODO
-	 * @param stop.i {Number} TODO
-	 * @param stop.j {Number} TODO
-	 * @param stop.k {Number} TODO
-	 * @param duration {Number} TODO
-	 * @param [options] {Object} TODO
-	 * @param [options.transition] {Function} TODO
-	 * @param [options.callback] {Function} TODO
+	 * @param instance {Canvace.Stage.Instance} The entity instance whose
+	 * velocity must be interpolated.
+	 * @param stop {Object} An object containing target values for the `i`, `j`
+	 * and `k` fields of the instance's velocity. The target values are the
+	 * values that will result when the animation is over.
+	 *
+	 * The `i`, `j` and `k` fields of this object are optional: missing fields
+	 * will not be interpolated.
+	 * @param [stop.i] {Number} The target value for the `i` component of the
+	 * instance's velocity.
+	 * @param [stop.j] {Number} The target value for the `j` component of the
+	 * instance's velocity.
+	 * @param [stop.k] {Number} The target value for the `k` component of the
+	 * instance's velocity.
+	 * @param duration {Number} The duration of the animation, in milliseconds.
+	 * @param [options] {Object} An optional object specifying further options.
+	 * @param [options.transition] {Function} The transition function for the
+	 * animation.
+	 *
+	 * This is a user-defined one-argument function taking a floating point
+	 * number and returning another floating point number.
+	 *
+	 * If `f` is the specified function, `f` must have the following properties:
+	 * <ul>
+	 * <li>must be defined in the range `[0, 1]`</li>
+	 * <li>`f(0) = 0`</li>
+	 * <li>`f(1) = 1`</li>
+	 * </ul>
+	 *
+	 * This option defaults to the identity function when not specified, which
+	 * produces a linear transition. Using quadratic functions produces
+	 * accelerations or decelerations. Some examples follow:
+	 *
+	 *	function linearTransition(x) {
+	 *		return x;
+	 *	}
+	 *
+	 *	function accelerationTransition(x) {
+	 *		return x * x;
+	 *	}
+	 *
+	 *	function decelerationTransition(x) {
+	 *		return 1 - Math.pow(x - 1, 2);
+	 *	}
+	 *
+	 *	function backAndForthTransition(x) {
+	 *		return Math.pow(2 * x - 1, 3) - x + 1;
+	 *	}
+	 *
+	 * @param [options.callback] {Function} An optional user-defined callback
+	 * function called when the animation is over.
 	 */
 	thisObject.interpolateVelocity = bindInterpolate('getVelocity');
 
 	/**
-	 * TODO
+	 * Animates the specified entity instance by interpolating values for its
+	 * uniform velocity.
 	 *
 	 * @method interpolateUniformVelocity
-	 * @param instance {Canvace.Stage.Instance} TODO
-	 * @param stop {Object} TODO
-	 * @param stop.i {Number} TODO
-	 * @param stop.j {Number} TODO
-	 * @param stop.k {Number} TODO
-	 * @param duration {Number} TODO
-	 * @param [options] {Object} TODO
-	 * @param [options.transition] {Function} TODO
-	 * @param [options.callback] {Function} TODO
+	 * @param instance {Canvace.Stage.Instance} The entity instance whose
+	 * uniform velocity must be interpolated.
+	 * @param stop {Object} An object containing target values for the `i`, `j`
+	 * and `k` fields of the instance's uniform velocity. The target values are
+	 * the values that will result when the animation is over.
+	 *
+	 * The `i`, `j` and `k` fields of this object are optional: missing fields
+	 * will not be interpolated.
+	 * @param [stop.i] {Number} The target value for the `i` component of the
+	 * instance's uniform velocity.
+	 * @param [stop.j] {Number} The target value for the `j` component of the
+	 * instance's uniform velocity.
+	 * @param [stop.k] {Number} The target value for the `k` component of the
+	 * instance's uniform velocity.
+	 * @param duration {Number} The duration of the animation, in milliseconds.
+	 * @param [options] {Object} An optional object specifying further options.
+	 * @param [options.transition] {Function} The transition function for the
+	 * animation.
+	 *
+	 * This is a user-defined one-argument function taking a floating point
+	 * number and returning another floating point number.
+	 *
+	 * If `f` is the specified function, `f` must have the following properties:
+	 * <ul>
+	 * <li>must be defined in the range `[0, 1]`</li>
+	 * <li>`f(0) = 0`</li>
+	 * <li>`f(1) = 1`</li>
+	 * </ul>
+	 *
+	 * This option defaults to the identity function when not specified, which
+	 * produces a linear transition. Using quadratic functions produces
+	 * accelerations or decelerations. Some examples follow:
+	 *
+	 *	function linearTransition(x) {
+	 *		return x;
+	 *	}
+	 *
+	 *	function accelerationTransition(x) {
+	 *		return x * x;
+	 *	}
+	 *
+	 *	function decelerationTransition(x) {
+	 *		return 1 - Math.pow(x - 1, 2);
+	 *	}
+	 *
+	 *	function backAndForthTransition(x) {
+	 *		return Math.pow(2 * x - 1, 3) - x + 1;
+	 *	}
+	 *
+	 * @param [options.callback] {Function} An optional user-defined callback
+	 * function called when the animation is over.
 	 */
 	thisObject.interpolateUniformVelocity = bindInterpolate('getUniformVelocity');
 
 	/**
-	 * TODO
+	 * Animates the specified entity instance by interpolating values for its
+	 * acceleration.
 	 *
 	 * @method interpolateAcceleration
-	 * @param instance {Canvace.Stage.Instance} TODO
-	 * @param stop {Object} TODO
-	 * @param stop.i {Number} TODO
-	 * @param stop.j {Number} TODO
-	 * @param stop.k {Number} TODO
-	 * @param duration {Number} TODO
-	 * @param [options] {Object} TODO
-	 * @param [options.transition] {Function} TODO
-	 * @param [options.callback] {Function} TODO
+	 * @param instance {Canvace.Stage.Instance} The entity instance whose
+	 * acceleration must be interpolated.
+	 * @param stop {Object} An object containing target values for the `i`, `j`
+	 * and `k` fields of the instance's acceleration. The target values are the
+	 * values that will result when the animation is over.
+	 *
+	 * The `i`, `j` and `k` fields of this object are optional: missing fields
+	 * will not be interpolated.
+	 * @param [stop.i] {Number} The target value for the `i` component of the
+	 * instance's acceleration.
+	 * @param [stop.j] {Number} The target value for the `j` component of the
+	 * instance's acceleration.
+	 * @param [stop.k] {Number} The target value for the `k` component of the
+	 * instance's acceleration.
+	 * @param duration {Number} The duration of the animation, in milliseconds.
+	 * @param [options] {Object} An optional object specifying further options.
+	 * @param [options.transition] {Function} The transition function for the
+	 * animation.
+	 *
+	 * This is a user-defined one-argument function taking a floating point
+	 * number and returning another floating point number.
+	 *
+	 * If `f` is the specified function, `f` must have the following properties:
+	 * <ul>
+	 * <li>must be defined in the range `[0, 1]`</li>
+	 * <li>`f(0) = 0`</li>
+	 * <li>`f(1) = 1`</li>
+	 * </ul>
+	 *
+	 * This option defaults to the identity function when not specified, which
+	 * produces a linear transition. Using quadratic functions produces
+	 * accelerations or decelerations. Some examples follow:
+	 *
+	 *	function linearTransition(x) {
+	 *		return x;
+	 *	}
+	 *
+	 *	function accelerationTransition(x) {
+	 *		return x * x;
+	 *	}
+	 *
+	 *	function decelerationTransition(x) {
+	 *		return 1 - Math.pow(x - 1, 2);
+	 *	}
+	 *
+	 *	function backAndForthTransition(x) {
+	 *		return Math.pow(2 * x - 1, 3) - x + 1;
+	 *	}
+	 *
+	 * @param [options.callback] {Function} An optional user-defined callback
+	 * function called when the animation is over.
 	 */
 	thisObject.interpolateAcceleration = bindInterpolate('getAcceleration');
 
