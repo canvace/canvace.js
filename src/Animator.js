@@ -86,6 +86,18 @@ Canvace.Animator = function (tick) {
 	/**
 	 * TODO
 	 *
+	 * @method tick
+	 * @chainable
+	 * @param [callback] {Function} TODO
+	 */
+	thisObject.tick = function (callback) {
+		tick = callback;
+		return thisObject;
+	};
+
+	/**
+	 * TODO
+	 *
 	 * @method interpolatePosition
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
