@@ -34,7 +34,7 @@ Canvace.RenderLoop = (function () {
 	var loopType = 'auto';
 	var loopRate = 60;
 
-	var RenderLoop = function (stage, range, loader, userTick, synchronizeView) {
+	function RenderLoop(stage, range, loader, userTick, synchronizeView) {
 		var renderer = new Canvace.StageRenderer(stage, loader);
 
 		var rate = loopRate;
@@ -309,7 +309,7 @@ Canvace.RenderLoop = (function () {
 		this.isStopped = function () {
 			return !running && banned;
 		};
-	};
+	}
 
 	/**
 	 * Configures loop settings. The settings are changed globally and affect

@@ -42,6 +42,7 @@ module.exports = function (grunt) {
 					'<file_strip_banner:src/DebugEffect.js>',
 					'<file_strip_banner:src/RumbleEffect.js>',
 					'<file_strip_banner:src/RenderLoop.js>',
+					'<file_strip_banner:src/Animator.js>',
 					'<file_strip_banner:src/Audio.js>',
 					'<file_strip_banner:src/Visibility.js>',
 					'<banner:meta.footer>'
@@ -60,6 +61,7 @@ module.exports = function (grunt) {
 		},
 		lint: {
 				beforeconcat: [
+					'src/Animator.js',
 					'src/Ajax.js',
 					'src/Astar.js',
 					'src/Audio.js',
