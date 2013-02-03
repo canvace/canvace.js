@@ -84,11 +84,16 @@ Canvace.Animator = function (tick) {
 	}
 
 	/**
-	 * TODO
+	 * Sets the `tick` callback.
+	 *
+	 * This method allows to define a callback later than construction time.
+	 *
+	 * If you do not specify a callback function, the previously set callback
+	 * function is unset and the `Animator` will not invoke any.
 	 *
 	 * @method tick
 	 * @chainable
-	 * @param [callback] {Function} TODO
+	 * @param [callback] {Function} A user-defined `tick` callback function.
 	 */
 	thisObject.tick = function (callback) {
 		tick = callback;
@@ -99,12 +104,44 @@ Canvace.Animator = function (tick) {
 	 * TODO
 	 *
 	 * @method interpolatePosition
-	 * @param instance {Canvace.Stage.Instance} TODO
+	 * @param instance {Canvace.Stage.Instance} The entity instance whose
+	 * position must be interpolated.
 	 * @param stop {Object} TODO
-	 * @param duration {Number} TODO
-	 * @param [options] {Object} TODO
-	 * @param [options.transition] {Function} TODO
-	 * @param [options.callback] {Function} TODO
+	 * @param duration {Number} The duration of the animation, in milliseconds.
+	 * @param [options] {Object} An optional object specifying further options.
+	 * @param [options.transition] {Function} The transition function for the
+	 * animation.
+	 *
+	 * This is a user-defined one-argument function taking a floating point
+	 * number and returning another floating point number.
+	 *
+	 * If `f` is the specified function, `f` must have the following properties:
+	 * - must be defined in the range `[0, 1]`,
+	 * - `f(0) = 0`
+	 * - `f(1) = 1`
+	 *
+	 * This option defaults to the identity function when not specified, which
+	 * produces a linear transition. Using quadratic functions produces
+	 * accelerations or decelerations. Some examples follow:
+	 *
+	 *	function linearTransition(x) {
+	 *		return x;
+	 *	}
+	 *
+	 *	function accelerationTransition(x) {
+	 *		return x * x;
+	 *	}
+	 *
+	 *	function decelerationTransition(x) {
+	 *		return 1 - Math.pow(x - 1, 2);
+	 *	}
+	 *
+	 *	function backAndForthTransition(x) {
+	 *		return Math.pow(2 * x - 1, 3) - x + 1;
+	 *	}
+	 *
+	 * @param [options.callback] {Function} An optional user-defined callback
+	 * function called when the animation is over.
 	 */
 	thisObject.interpolatePosition = bindInterpolate('getPosition');
 
