@@ -17,10 +17,17 @@
  * function you would pass to the `RenderLoop` and is executed at each tick
  * _after_ the update procedures for the current animations.
  *
+ * Note that the `Animator` does not invoke the `update` method of the animated
+ * instances, so, for animations to have effect, either physics must be enabled
+ * for animated entities or you must invoke `update` manually (you can do that
+ * in your `tick` callback function).
+ *
  * @class Canvace.Animator
  * @extends Function
  * @constructor
  * @param [tick] {Function} TODO
+ * @example
+ *	TODO
  */
 Canvace.Animator = function (tick) {
 	var animations = new Canvace.MultiSet();
@@ -101,12 +108,21 @@ Canvace.Animator = function (tick) {
 	};
 
 	/**
-	 * TODO
+	 * Animates the specified entity instance by interpolating values for its
+	 * position.
 	 *
 	 * @method interpolatePosition
 	 * @param instance {Canvace.Stage.Instance} The entity instance whose
 	 * position must be interpolated.
-	 * @param stop {Object} TODO
+	 * @param stop {Object} An object containing target values for the `i`, `j`
+	 * and `k` fields of the instance's position. The target values are the
+	 * values that will result when the animation is over.
+	 * @param stop.i {Number} The target value for the `i` component of the
+	 * instance's position.
+	 * @param stop.j {Number} The target value for the `j` component of the
+	 * instance's position.
+	 * @param stop.k {Number} The target value for the `k` component of the
+	 * instance's position.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
 	 * @param [options.transition] {Function} The transition function for the
@@ -116,7 +132,7 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
-	 * - must be defined in the range `[0, 1]`,
+	 * - must be defined in the range `[0, 1]`
 	 * - `f(0) = 0`
 	 * - `f(1) = 1`
 	 *
@@ -151,6 +167,9 @@ Canvace.Animator = function (tick) {
 	 * @method interpolateVelocity
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
+	 * @param stop.i {Number} TODO
+	 * @param stop.j {Number} TODO
+	 * @param stop.k {Number} TODO
 	 * @param duration {Number} TODO
 	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
@@ -164,6 +183,9 @@ Canvace.Animator = function (tick) {
 	 * @method interpolateUniformVelocity
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
+	 * @param stop.i {Number} TODO
+	 * @param stop.j {Number} TODO
+	 * @param stop.k {Number} TODO
 	 * @param duration {Number} TODO
 	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
@@ -177,6 +199,9 @@ Canvace.Animator = function (tick) {
 	 * @method interpolateAcceleration
 	 * @param instance {Canvace.Stage.Instance} TODO
 	 * @param stop {Object} TODO
+	 * @param stop.i {Number} TODO
+	 * @param stop.j {Number} TODO
+	 * @param stop.k {Number} TODO
 	 * @param duration {Number} TODO
 	 * @param [options] {Object} TODO
 	 * @param [options.transition] {Function} TODO
