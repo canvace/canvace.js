@@ -145,15 +145,15 @@ Canvace.Animator = function (tick) {
 	 *	function linearTransition(x) {
 	 *		return x;
 	 *	}
-	 *	
+	 *
 	 *	function accelerationTransition(x) {
 	 *		return x * x;
 	 *	}
-	 *	
+	 *
 	 *	function decelerationTransition(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
-	 *	
+	 *
 	 *	function backAndForthTransition(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
