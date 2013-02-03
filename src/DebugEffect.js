@@ -32,6 +32,13 @@
  * use to draw acceleration vectors.
  * @param [options.drawSolidMap=false] {Boolean} TODO
  * @param [options.solidMapStyle='red'] {Mixed} TODO
+ * @example
+ *	var stage = new Canvace.Stage(data, canvas);
+ *	stage.getRenderer().addEffect(new Canvace.DebugEffect(stage, {
+ *		drawVelocity: true,
+ *		velocityStyle: '#00FF00',
+ *		drawSolidMap: true
+ *	}));
  */
 Canvace.DebugEffect = function (stage, options) {
 	var enabled = true;
