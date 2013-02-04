@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 		meta: {
-			version: '0.2.5',
+			version: '0.2.6',
 			banner: '/*! Canvace Client Library - v<%= meta.version %> - ' +
 					'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
 					'* http://www.canvace.com/\n' +
