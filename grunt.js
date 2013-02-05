@@ -118,7 +118,7 @@ module.exports = function (grunt) {
 				browser: true
 			},
 			globals: {
-				Canvace: true
+				Canvace: false
 			}
 		},
 	});
