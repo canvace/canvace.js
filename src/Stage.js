@@ -1255,7 +1255,7 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen entities are returned as an array of `Stage.Entity` objects.
 	 *
 	 * @method getEntities
-	 * @param [properties={}] {Object} The filtering properties.
+	 * @param [properties] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Entity[]} An array of `Canvace.Stage.Entity` objects
 	 * representing the returned entities.
 	 */
@@ -1290,7 +1290,7 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen entity is returned as a `Stage.Entity` object.
 	 *
 	 * @method getEntity
-	 * @param [properties={}] {Object} The filtering properties.
+	 * @param [properties] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Entity} A `Canvace.Stage.Entity` object
 	 * representing the returned entity.
 	 */
@@ -1318,7 +1318,7 @@ Canvace.Stage = function (data, canvas) {
 	 *
 	 * It receives one single argument of type `Canvace.Stage.Instance` and can
 	 * interrupt the enumeration by returning `false`.
-	 * @param [properties={}] {Object} The optional filtering properties.
+	 * @param [properties] {Object} The optional filtering properties.
 	 * @return {Boolean} `true` if the callback function returned `false` and
 	 * the enumeration was interrupted, `false` otherwise.
 	 */
@@ -1356,7 +1356,7 @@ Canvace.Stage = function (data, canvas) {
 	 * objects.
 	 *
 	 * @method getInstances
-	 * @param [properties={}] {Object} The filtering properties.
+	 * @param [properties] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Instance[]} An array of `Canvace.Stage.Instance`
 	 * objects representing the returned entity instances.
 	 */
@@ -1394,7 +1394,7 @@ Canvace.Stage = function (data, canvas) {
 	 * The chosen instance is returned as a `Canvace.Stage.Instance` object.
 	 *
 	 * @method getInstance
-	 * @param [properties={}] {Object} The filtering properties.
+	 * @param [properties] {Object} The filtering properties.
 	 * @return {Canvace.Stage.Instance} A `Canvace.Stage.Instance` object
 	 * representing the returned entity instance.
 	 */

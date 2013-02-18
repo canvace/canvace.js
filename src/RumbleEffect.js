@@ -7,7 +7,7 @@
  * @constructor
  * @param duration {Number} The duration of the effect expressed in number of
  * frames (thus depending on the framerate).
- * @param [settings={}] {Object} TODO
+ * @param [settings] {Object} TODO
  * @param [settings.period=Canvace.RumbleEffect.defaultPeriod] {Number} The
  * number of frames between each shake direction change. Defaults to
  * `Canvace.RumbleEffect.defaultPeriod`.
