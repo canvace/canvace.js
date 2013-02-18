@@ -11,8 +11,8 @@
  * @param options {Object} An options object specifying what overlays must be
  * drawn and their drawing style.
  * @param [options.drawBoundingBoxes=false] {Boolean} Indicates whether
- * entities' bounding boxes must be draw. Only entities with physics enabled are
- * taken into account.
+ * entities' bounding boxes must be drawn. Only entities with physics enabled
+ * are taken into account.
  * @param [options.boundingBoxStyle='red'] {Mixed} Indicates the CSS color to
  * use to draw the bounding boxes.
  * @param [options.drawVelocity=false] {Boolean} Indicates whether velocity
