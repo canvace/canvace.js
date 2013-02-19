@@ -88,8 +88,9 @@ Canvace.Stage = function (data, canvas) {
 		 *
 		 * Instances of entities that have physics enabled are automatically
 		 * "ticked" when the whole stage is ticked. "Ticking" an entity instance
-		 * means calling its `tick` method (see `Canvace.Stage.Instance.tick`), while
-		 * "ticking" the whole stage means calling the `Stage.tick` method.
+		 * means calling its `tick` method (see `Canvace.Stage.Instance.tick`),
+		 * while "ticking" the whole stage means calling the `Stage.tick`
+		 * method.
 		 *
 		 * Physics in entities can be enabled or disabled in the Canvace
 		 * Development Environment.
