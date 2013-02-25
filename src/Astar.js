@@ -123,16 +123,6 @@ Canvace.Astar = function (epsilon) {
 			return u.id === v.id;
 		});
 
-		var makeDecreaser = function (node) {
-			return function () {
-				openScore[node.id] = cost;
-				backLink[node.id] = {
-					parent: currentNode,
-					edge: edge
-				};
-			};
-		};
-
 		var node;
 		openScore[startNode.id] = 0;
 		heap.push(startNode);
@@ -149,7 +139,13 @@ Canvace.Astar = function (epsilon) {
 							var cost = score + currentNode.distance(edge);
 							if (openScore.hasOwnProperty(node.id)) {
 								if (cost < openScore[node.id]) {
-									heap.decreaseKey(node, makeDecreaser(node));
+									heap.decreaseKey(node, function (node) {
+										openScore[node.id] = cost;
+										backLink[node.id] = {
+											parent: currentNode,
+											edge: edge
+										};
+									});
 								}
 							} else {
 								openScore[node.id] = cost;
