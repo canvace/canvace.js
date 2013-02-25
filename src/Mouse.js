@@ -13,17 +13,19 @@ Canvace.Mouse = function (element) {
 	var dragHandlers = new Canvace.MultiSet();
 	var wheelHandlers = new Canvace.MultiSet();
 
-	var dragging = false;
+	var dragging = false, button = 0;
 	var x0, y0;
 
 	element.addEventListener('mousedown', function (event) {
 		var x = event.clientX - element.offsetLeft;
 		var y = event.clientY - element.offsetTop;
+		button = event.button;
 		dragging = true;
+
 		x0 = x;
 		y0 = y;
 		downHandlers.fastForEach(function (handler) {
-			handler(x, y);
+			handler(x, y, event.button);
 		});
 	}, false);
 	element.addEventListener('mousemove', function (event) {
@@ -34,7 +36,7 @@ Canvace.Mouse = function (element) {
 		});
 		if (dragging) {
 			dragHandlers.fastForEach(function (handler) {
-				handler(x0, y0, x, y);
+				handler(x0, y0, x, y, button);
 			});
 			x0 = x;
 			y0 = y;
@@ -45,7 +47,7 @@ Canvace.Mouse = function (element) {
 		var y = event.clientY - element.offsetTop;
 		dragging = false;
 		upHandlers.fastForEach(function (handler) {
-			handler(x, y);
+			handler(x, y, event.button);
 		});
 	}, false);
 
@@ -102,9 +104,11 @@ Canvace.Mouse = function (element) {
 	 * Registers the specified user-defined event handler that is invoked every
 	 * time a mouse button is pressed over the HTML element.
 	 *
-	 * The specified function receives two arguments, `x` and `y`, indicating
+	 * The specified function receives three arguments, `x` and `y`, indicating
 	 * the coordinates of the mouse pointer relative to the element's left top
-	 * corner. The return value is ignored.
+	 * corner, and `button`, indicating which mouse button has been pressed
+	 * (`0` for left button, `1` for middle button, `2` for right button).
+	 * The return value is ignored.
 	 *
 	 * This method returns a function that unregisters the registered handler.
 	 *
@@ -131,9 +135,11 @@ Canvace.Mouse = function (element) {
 	 * Registers the specified user-defined event handler that is invoked every
 	 * time a mouse button is depressed over the HTML element.
 	 *
-	 * The specified function receives two arguments, `x` and `y`, indicating
+	 * The specified function receives three arguments, `x` and `y`, indicating
 	 * the coordinates of the mouse pointer relative to the element's left top
-	 * corner. The return value is ignored.
+	 * corner, and `button`, indicating which mouse button has been pressed
+	 * (`0` for left button, `1` for middle button, `2` for right button).
+	 * The return value is ignored.
 	 *
 	 * This method returns a function that unregisters the registered handler.
 	 *
@@ -160,9 +166,13 @@ Canvace.Mouse = function (element) {
 	 * Registers the specified user-defined event handler that is invoked every
 	 * time the mouse is dragged over the HTML element.
 	 *
-	 * The specified function receives two arguments, `x` and `y`, indicating
-	 * the coordinates of the mouse pointer relative to the element's left top
-	 * corner. The return value is ignored.
+	 * The specified function receives five arguments, `x0` and `y0`, indicating
+	 * the last recorded coordinates of the mouse pointer before the drag event
+	 * relative to the element's left top corner, `x` and `y`, indicating the
+	 * current coordinates of the mouse pointer relative to the element's left
+	 * top corner, and `button`, indicating which mouse button has initiated the
+	 * drag event (`0` for left button, `1` for middle button, `2` for right
+	 * button). The return value is ignored.
 	 *
 	 * This method returns a function that unregisters the registered handler.
 	 * Multiple handlers may be registered.
