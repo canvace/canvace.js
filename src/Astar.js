@@ -124,10 +124,12 @@ Canvace.Astar = function (epsilon) {
 		});
 
 		var makeDecreaser = function (node) {
-			openScore[node.id] = cost;
-			backLink[node.id] = {
-				parent: currentNode,
-				edge: edge
+			return function () {
+				openScore[node.id] = cost;
+				backLink[node.id] = {
+					parent: currentNode,
+					edge: edge
+				};
 			};
 		};
 
