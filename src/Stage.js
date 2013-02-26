@@ -969,7 +969,7 @@ Canvace.Stage = function (data, canvas) {
 		/**
 		 * Removes the entity instance from the stage. The instance will not be
 		 * rendered any more by subsequent `Renderer.render` calls and will not
-		 * be enumerated any more by the `DefaultRenderer.forEachEntity` method.
+		 * be enumerated any more by the `Buckets.forEachElement` method.
 		 *
 		 * This method does not do anything if the instance has already been
 		 * removed or replaced with another entity using the `replaceWith`
