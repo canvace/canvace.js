@@ -274,16 +274,28 @@ Canvace.View = function (data, canvas) {
 	};
 
 	/**
-	 * Manages the synchronization of the view on some specified entity instance
-	 * of a stage, making the view always point at that entity.
+	 * A `Synchronizer` object is responsible for synchronizing the view so
+	 * that it is always pointed to a specified entity.
 	 *
-	 * This class can be instantiated for a `View` using its
-	 * `createSynchronizer` method. For more information on how it works, see
-	 * the `createSynchronizer` method's reference.
+	 * A synchronizer is defined by a "target area" and a delay parameter. The
+	 * target area is a rectangular area centered in the viewport where the
+	 * synchronizer constantly tries to fit the target entity by moving the
+	 * view.
+	 *
+	 * The target entity may sometimes reside out of the target area because of
+	 * the delay parameter, which indicates a delay in the movement of the view
+	 * toward a fitting position. The delay parameter is a floating point number
+	 * in the range `[0, 1)` where 0 indicates no delay (the target entity
+	 * always resides withint the target area) and 1 indicates maximum delay
+	 * (the view never moves and never reaches a fitting position).
 	 *
 	 * @class Canvace.View.Synchronizer
+	 * @constructor
+	 * @param targetAreaWidth {Number} The width of the target area.
+	 * @param targetAreaHeight {Number} The height of the target area.
+	 * @param delay {Number} The delay parameter.
 	 */
-	function Synchronizer(targetAreaWidth, targetAreaHeight, delay) {
+	this.Synchronizer = function (targetAreaWidth, targetAreaHeight, delay) {
 		/**
 		 * "Ticks" the synchronizer, which tries to move the view according to
 		 * the delay parameter so that the target entity fits into the target
@@ -319,33 +331,5 @@ Canvace.View = function (data, canvas) {
 				handler(x0, y0);
 			});
 		};
-	}
-
-	/**
-	 * Creates a `Synchronizer` object responsible for synchronizing the view so
-	 * that it is always pointed to a specified entity.
-	 *
-	 * A synchronizer is defined by a "target area" and a delay parameter. The
-	 * target area is a rectangular area centered in the viewport where the
-	 * synchronizer constantly tries to fit the target entity by moving the
-	 * view.
-	 *
-	 * The target entity may sometimes reside out of the target area because of
-	 * the delay parameter, which indicates a delay in the movement of the view
-	 * toward a fitting position. The delay parameter is a floating point number
-	 * in the range `[0, 1)` where 0 indicates no delay (the target entity
-	 * always resides withint the target area) and 1 indicates maximum delay
-	 * (the view never moves and never reaches a fitting position).
-	 *
-	 * @for Canvace.View
-	 * @method createSynchronizer
-	 * @param targetAreaWidth {Number} The width of the target area.
-	 * @param targetAreaHeight {Number} The height of the target area.
-	 * @param delay {Number} The delay parameter.
-	 * @return {Canvace.View.Synchronizer} A `Synchronizer` object responsible
-	 * for synchronizing this `View`.
-	 */
-	this.createSynchronizer = function (targetAreaWidth, targetAreaHeight, delay) {
-		return new Synchronizer(targetAreaWidth, targetAreaHeight, delay);
 	};
 };
