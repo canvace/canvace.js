@@ -4,62 +4,33 @@
  *
  * @class Canvace.Loader
  * @constructor
- * @param basePath {String} The relative or absolute path referring to the
- * directory where the images and sounds to be loaded are located. The specified
- * path must not include any trailing slash.
- * @param [onLoadProgress] {Function} An optional callback function to invoke
- * when the loading of the assets progresses. It receives the current percentage
- * expressed as a real number in a `[0, 100)` range.
- * @param [onLoadComplete] {Function} An optional callback function to invoke
+ * @param options {Object} A dictionary containing the options for the loader.
+ * @param options.basePath {String} The relative or absolute path referring to
+ * the directory where the images and sounds to be loaded are located.
+ * The specified path must not include any trailing slash.
+ * @param options.complete {Function} A mandatory callback function to invoke
  * when the loading of the assets completes. It receives a reference to this
  * loader.
- * @param [onLoadError] {Function} An optional callback function to invoke
+ * @param [options.progress] {Function} An optional callback function to invoke
+ * when the loading of the assets progresses. It receives the current percentage
+ * expressed as a real number in a `[0, 100)` range.
+ * @param [options.error] {Function} An optional callback function to invoke
  * whenever a loading error occurs.
  */
-Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError) {
+Canvace.Loader = function (options) {
+	if (typeof options.basePath !== 'string') {
+		throw 'Invalid value specified for "basePath"';
+	}
+
+	if (typeof options.complete !== 'function') {
+		throw 'Invalid callback specified for "complete"';
+	}
+
+	var loadComplete = options.complete;
+	var loadProgress = options.progress || function () {};
+	var loadError    = options.error    || function () {};
+
 	var thisObject = this;
-
-	var loadProgress = onLoadProgress || function () {};
-	var loadComplete = onLoadComplete || function () {};
-	var loadError    = onLoadError    || function () {};
-
-	/**
-	 * Sets the load progress callback function.
-	 *
-	 * @method onProgress
-	 * @chainable
-	 * @param callback {Function} The callback function.
-	 */
-	this.onProgress = function (callback) {
-		loadProgress = callback;
-		return thisObject;
-	};
-
-	/**
-	 * Sets the load complete callback function. It receives a reference to this
-	 * loader.
-	 *
-	 * @method onComplete
-	 * @chainable
-	 * @param callback {Function} The callback function.
-	 */
-	this.onComplete = function (callback) {
-		loadComplete = callback;
-		return thisObject;
-	};
-
-	/**
-	 * Sets the load error callback function.
-	 *
-	 * @method onError
-	 * @chainable
-	 * @param callback {Function} The callback function.
-	 */
-	this.onError = function (callback) {
-		loadError = callback;
-		return thisObject;
-	};
-
 	var audio = new Canvace.Audio();
 
 	var imageset = {};
@@ -159,7 +130,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 						var image = new Image();
 						imageset[id] = image;
 						image.addEventListener('load', bindProgress(id), false);
-						image.src = [basePath, id].join('/');
+						image.src = [options.basePath, id].join('/');
 					}
 				}(descriptor.frames[i].id));
 			}
@@ -194,7 +165,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 			if (typeof callback === 'function') {
 				image.addEventListener('load', callback, false);
 			}
-			image.src = [basePath, id].join('/');
+			image.src = [options.basePath, id].join('/');
 			return imageset[id] = image;
 		}
 	};
@@ -233,7 +204,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
 
 					if (audio.canPlayType(info.mimeType)) {
-						return [basePath, info.url].join('/');
+						return [options.basePath, info.url].join('/');
 					}
 				} catch (e) {
 					return false;
@@ -284,8 +255,10 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * stage and all the given sounds.
 	 *
 	 * @method loadAssets
-	 * @param [imagesData] {Object} The JSON data output by the Canvace
-	 * Development Environment.
+	 * @param [imagesData] {Mixed} The JSON data output by the Canvace
+	 * Development Environment, or a string representing the URL where the
+	 * JSON resource can be loaded from (if the latter case, the Loader will
+	 * automatically perform a new GET request to that URL).
 	 * @param [soundsData] {Object} A map where the keys indicate the name of
 	 * the sound to load, and the values are `Array`s of source descriptors,
 	 * which are either `Object`s (each containing the string properties
@@ -298,7 +271,7 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 * order, falling back to the next one if the browser doesn't support
 	 * playing the specified MIME type.
 	 * @example
-	 *	var soundResources = null;
+	 *	var soundResources;
 	 *
 	 *	// Explicit description of the sources, complete with MIME type and URL
 	 *	soundResources = {
@@ -324,8 +297,14 @@ Canvace.Loader = function (basePath, onLoadProgress, onLoadComplete, onLoadError
 	 *		'second-sound': ['second.mp3', 'second.ogg']
 	 *	};
 	 *
+	 *	// Explicit, manual loading of the JSON resource
 	 *	Canvace.Ajax.getJSON('stage.json', function (stage) {
-	 *		var loader = new Canvace.Loader('media');
+	 *		var loader = new Canvace.Loader({
+	 *			basePath: 'media',
+	 *			complete: function () {
+	 *				// ...
+	 *			}
+	 *		});
 	 *		loader.loadAssets(stage, soundResources);
 	 *	});
 	 */
