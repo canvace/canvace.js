@@ -299,43 +299,61 @@ Canvace.Animator = function (tick) {
 };
 
 /**
- * TODO
+ * Static object holding various predefined easing functions ready to use with
+ * the `interpolateXxx` methods of
+ * {{#crossLink "Canvace.Animator"}}{{/crossLink}}.
  *
  * @class Canvace.Animator.Easing
  * @static
  */
 Canvace.Animator.Easing = {
 	/**
-	 * TODO
+	 * Identity function.
+	 * See [here](http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ehqs1nv9907)
+	 * for a plot of the function graph.
 	 *
-	 * @method linear
+	 * @property linear
+	 * @type function
+	 * @static
 	 */
 	linear: function (x) {
 		return x;
 	},
 
 	/**
-	 * TODO
+	 * Acceleration function.
+	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427e7stk11iilk" target="_blank">here</a>
+	 * for a plot of the function graph.
 	 *
-	 * @method acceleration
+	 * @property acceleration
+	 * @type function
+	 * @static
 	 */
 	acceleration: function (x) {
 		return x * x;
 	},
 
 	/**
-	 * TODO
+	 * Deceleration function.
+	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427eb0umq33b2k" target="_blank">here</a>
+	 * for a plot of the function graph.
 	 *
-	 * @method deceleration
+	 * @property deceleration
+	 * @type function
+	 * @static
 	 */
 	deceleration: function (x) {
 		return 1 - Math.pow(x - 1, 2);
 	},
 
 	/**
-	 * TODO
+	 * Function that goes back and forth between bigger and smaller values.
+	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427esfu8sff4au" target="_blank">here</a>
+	 * for a plot of the function graph.
 	 *
-	 * @method backAndForth
+	 * @property backAndForth
+	 * @type function
+	 * @static
 	 */
 	backAndForth: function (x) {
 		return Math.pow(2 * x - 1, 3) - x + 1;
