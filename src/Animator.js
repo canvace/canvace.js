@@ -35,7 +35,7 @@
 Canvace.Animator = function (tick) {
 	var animations = new Canvace.MultiSet();
 
-	function Animation(object, stop, duration, transition, callback) {
+	function Animation(object, stop, duration, easing, callback) {
 		var i0 = object.i;
 		var j0 = object.j;
 		var k0 = object.k;
@@ -45,7 +45,7 @@ Canvace.Animator = function (tick) {
 		var startTime = Canvace.Timing.now();
 		var endTime = startTime + duration;
 		this.tick = function (timestamp) {
-			var progress = transition((timestamp - startTime) / duration);
+			var progress = easing((timestamp - startTime) / duration);
 			if ('i' in stop) {
 				object.i = i0 + di * progress;
 			}
@@ -71,7 +71,7 @@ Canvace.Animator = function (tick) {
 		tick && tick.call(thisObject);
 	};
 
-	function linearTransition(x) {
+	function linearEasing(x) {
 		return x;
 	}
 
@@ -80,8 +80,8 @@ Canvace.Animator = function (tick) {
 			if (arguments.length < 4) {
 				options = {};
 			}
-			if (typeof options.transition === 'undefined') {
-				options.transition = linearTransition;
+			if (typeof options.easing === 'undefined') {
+				options.easing = linearEasing;
 			}
 			if (typeof options.callback !== 'undefined') {
 				options.callback = (function (callback) {
@@ -90,7 +90,7 @@ Canvace.Animator = function (tick) {
 					};
 				}(options.callback));
 			}
-			animations.add(new Animation(instance[getter](), target, duration, options.transition, options.callback));
+			animations.add(new Animation(instance[getter](), target, duration, options.easing, options.callback));
 		};
 	}
 
@@ -132,7 +132,7 @@ Canvace.Animator = function (tick) {
 	 * instance's position.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
-	 * @param [options.transition] {Function} The transition function for the
+	 * @param [options.easing] {Function} The easing function for the
 	 * animation.
 	 *
 	 * This is a user-defined one-argument function taking a floating point
@@ -146,22 +146,22 @@ Canvace.Animator = function (tick) {
 	 * </ul>
 	 *
 	 * This option defaults to the identity function when not specified, which
-	 * produces a linear transition. Using quadratic functions produces
+	 * produces a linear easing. Using quadratic functions produces
 	 * accelerations or decelerations. Some examples follow:
 	 *
-	 *	function linearTransition(x) {
+	 *	function linearEasing(x) {
 	 *		return x;
 	 *	}
 	 *
-	 *	function accelerationTransition(x) {
+	 *	function accelerationEasing(x) {
 	 *		return x * x;
 	 *	}
 	 *
-	 *	function decelerationTransition(x) {
+	 *	function decelerationEasing(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
 	 *
-	 *	function backAndForthTransition(x) {
+	 *	function backAndForthEasing(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
 	 *
@@ -191,7 +191,7 @@ Canvace.Animator = function (tick) {
 	 * instance's velocity.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
-	 * @param [options.transition] {Function} The transition function for the
+	 * @param [options.easing] {Function} The easing function for the
 	 * animation.
 	 *
 	 * This is a user-defined one-argument function taking a floating point
@@ -205,22 +205,22 @@ Canvace.Animator = function (tick) {
 	 * </ul>
 	 *
 	 * This option defaults to the identity function when not specified, which
-	 * produces a linear transition. Using quadratic functions produces
+	 * produces a linear Easing. Using quadratic functions produces
 	 * accelerations or decelerations. Some examples follow:
 	 *
-	 *	function linearTransition(x) {
+	 *	function linearEasing(x) {
 	 *		return x;
 	 *	}
 	 *
-	 *	function accelerationTransition(x) {
+	 *	function accelerationEasing(x) {
 	 *		return x * x;
 	 *	}
 	 *
-	 *	function decelerationTransition(x) {
+	 *	function decelerationEasing(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
 	 *
-	 *	function backAndForthTransition(x) {
+	 *	function backAndForthEasing(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
 	 *
@@ -250,7 +250,7 @@ Canvace.Animator = function (tick) {
 	 * instance's uniform velocity.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
-	 * @param [options.transition] {Function} The transition function for the
+	 * @param [options.easing] {Function} The easing function for the
 	 * animation.
 	 *
 	 * This is a user-defined one-argument function taking a floating point
@@ -264,22 +264,22 @@ Canvace.Animator = function (tick) {
 	 * </ul>
 	 *
 	 * This option defaults to the identity function when not specified, which
-	 * produces a linear transition. Using quadratic functions produces
+	 * produces a linear easing. Using quadratic functions produces
 	 * accelerations or decelerations. Some examples follow:
 	 *
-	 *	function linearTransition(x) {
+	 *	function linearEasing(x) {
 	 *		return x;
 	 *	}
 	 *
-	 *	function accelerationTransition(x) {
+	 *	function accelerationEasing(x) {
 	 *		return x * x;
 	 *	}
 	 *
-	 *	function decelerationTransition(x) {
+	 *	function decelerationEasing(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
 	 *
-	 *	function backAndForthTransition(x) {
+	 *	function backAndForthEasing(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
 	 *
@@ -309,7 +309,7 @@ Canvace.Animator = function (tick) {
 	 * instance's acceleration.
 	 * @param duration {Number} The duration of the animation, in milliseconds.
 	 * @param [options] {Object} An optional object specifying further options.
-	 * @param [options.transition] {Function} The transition function for the
+	 * @param [options.easing] {Function} The easing function for the
 	 * animation.
 	 *
 	 * This is a user-defined one-argument function taking a floating point
@@ -323,22 +323,22 @@ Canvace.Animator = function (tick) {
 	 * </ul>
 	 *
 	 * This option defaults to the identity function when not specified, which
-	 * produces a linear transition. Using quadratic functions produces
+	 * produces a linear easing. Using quadratic functions produces
 	 * accelerations or decelerations. Some examples follow:
 	 *
-	 *	function linearTransition(x) {
+	 *	function linearEasing(x) {
 	 *		return x;
 	 *	}
 	 *
-	 *	function accelerationTransition(x) {
+	 *	function accelerationEasing(x) {
 	 *		return x * x;
 	 *	}
 	 *
-	 *	function decelerationTransition(x) {
+	 *	function decelerationEasing(x) {
 	 *		return 1 - Math.pow(x - 1, 2);
 	 *	}
 	 *
-	 *	function backAndForthTransition(x) {
+	 *	function backAndForthEasing(x) {
 	 *		return Math.pow(2 * x - 1, 3) - x + 1;
 	 *	}
 	 *
