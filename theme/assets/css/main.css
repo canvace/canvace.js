@@ -657,7 +657,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 /* -- File Source View ------------------------------------------------------ */
 .apidocs .file pre.code,
 #doc .apidocs .file pre.prettyprint {
-    background: inherit;
+    background: #dedede;
     border: none;
     overflow: visible;
     padding: 0;
@@ -674,6 +674,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .L8,
 .apidocs .L9 {
     background: inherit;
+    color: #333;
 }
 
 /* -- Submodule List -------------------------------------------------------- */
