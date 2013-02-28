@@ -363,6 +363,10 @@ Canvace.Animator.Easing = {
 	 * Function that oscillates harmonically.
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ef17c2o8td0" target="_blank">here</a>
 	 * for a plot of the function graph.
+	 *
+	 * @property harmonic
+	 * @type function
+	 * @static
 	 */
 	harmonic: function (x) {
 		return 1 - Math.sin(50 * x) / (50 * x);
