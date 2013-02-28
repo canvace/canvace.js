@@ -3,8 +3,10 @@
  *
  * @class Canvace.Renderer
  * @constructor
- * @param canvas {HTMLCanvasElement} An HTML5 canvas element used for the
- * rendering process.
+ * @param canvas {Mixed} An HTML5 canvas element used for the rendering
+ * process. This parameter can be either the actual `HTMLCanvasElement`, or
+ * a selector string. In the latter case, the first matching element is used,
+ * and an exception is thrown if no matching element is found.
  * @param loader {Canvace.Loader} a Loader object used to get the images to
  * render. The renderer assumes the `Loader.loadImages` method has already been
  * called and only uses the `Loader.getImage` method.
@@ -20,6 +22,14 @@
  * one argument, the "2d" context object of the specified HTML5 canvas.
  */
 Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProcess) {
+	if (typeof canvas === 'string') {
+		canvas = document.querySelector(canvas);
+
+		if (!canvas) {
+			throw 'No element found matching the specified selector';
+		}
+	}
+
 	var width = canvas.width;
 	var height = canvas.height;
 	var context = canvas.getContext('2d');

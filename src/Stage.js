@@ -5,10 +5,20 @@
  * @constructor
  * @param data {Object} The JSON data output by the Canvace Development
  * Environment.
- * @param canvas {HTMLCanvasElement} An HTML5 canvas element where the stage
- * will be rendered.
+ * @param canvas {Mixed} An HTML5 canvas element used where the stage will
+ * be rendered. This parameter can be either the actual `HTMLCanvasElement`, or
+ * a selector string. In the latter case, the first matching element is used,
+ * and an exception is thrown if no matching element is found.
  */
 Canvace.Stage = function (data, canvas) {
+	if (typeof canvas === 'string') {
+		canvas = document.querySelector(canvas);
+
+		if (!canvas) {
+			throw 'No element found matching the specified selector';
+		}
+	}
+
 	var view = new Canvace.View(data, canvas);
 	var buckets = new Canvace.Buckets(view, data);
 
