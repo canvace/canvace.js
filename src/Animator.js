@@ -29,6 +29,7 @@
  * It is invoked at each tick using this `Animator` object as `this`.
  *
  * You can also specify this later using the `tick` method.
+ *
  * @example
  *	TODO
  */
@@ -71,17 +72,16 @@ Canvace.Animator = function (tick) {
 		tick && tick.call(thisObject);
 	};
 
-	function linearEasing(x) {
-		return x;
-	}
-
 	function bindInterpolate(getter) {
 		return function (instance, target, duration, options) {
 			if (arguments.length < 4) {
 				options = {};
 			}
+			if (typeof options.easing === 'string') {
+				options.easing = Canvace.Animator.Easing[options.easing];
+			}
 			if (typeof options.easing === 'undefined') {
-				options.easing = linearEasing;
+				options.easing = Canvace.Animator.Easing.linear;
 			}
 			if (typeof options.callback !== 'undefined') {
 				options.callback = (function (callback) {
@@ -145,25 +145,12 @@ Canvace.Animator = function (tick) {
 	 * <li>`f(1) = 1`</li>
 	 * </ul>
 	 *
-	 * This option defaults to the identity function when not specified, which
-	 * produces a linear easing. Using quadratic functions produces
-	 * accelerations or decelerations. Some examples follow:
+	 * You can use one of the predefined easing functions provided by
+	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
+	 * specify a predefined easing function by passing its method name string.
 	 *
-	 *	function linearEasing(x) {
-	 *		return x;
-	 *	}
-	 *
-	 *	function accelerationEasing(x) {
-	 *		return x * x;
-	 *	}
-	 *
-	 *	function decelerationEasing(x) {
-	 *		return 1 - Math.pow(x - 1, 2);
-	 *	}
-	 *
-	 *	function backAndForthEasing(x) {
-	 *		return Math.pow(2 * x - 1, 3) - x + 1;
-	 *	}
+	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
+	 * identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -204,25 +191,12 @@ Canvace.Animator = function (tick) {
 	 * <li>`f(1) = 1`</li>
 	 * </ul>
 	 *
-	 * This option defaults to the identity function when not specified, which
-	 * produces a linear Easing. Using quadratic functions produces
-	 * accelerations or decelerations. Some examples follow:
+	 * You can use one of the predefined easing functions provided by
+	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
+	 * specify a predefined easing function by passing its method name string.
 	 *
-	 *	function linearEasing(x) {
-	 *		return x;
-	 *	}
-	 *
-	 *	function accelerationEasing(x) {
-	 *		return x * x;
-	 *	}
-	 *
-	 *	function decelerationEasing(x) {
-	 *		return 1 - Math.pow(x - 1, 2);
-	 *	}
-	 *
-	 *	function backAndForthEasing(x) {
-	 *		return Math.pow(2 * x - 1, 3) - x + 1;
-	 *	}
+	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
+	 * identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -263,25 +237,12 @@ Canvace.Animator = function (tick) {
 	 * <li>`f(1) = 1`</li>
 	 * </ul>
 	 *
-	 * This option defaults to the identity function when not specified, which
-	 * produces a linear easing. Using quadratic functions produces
-	 * accelerations or decelerations. Some examples follow:
+	 * You can use one of the predefined easing functions provided by
+	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
+	 * specify a predefined easing function by passing its method name string.
 	 *
-	 *	function linearEasing(x) {
-	 *		return x;
-	 *	}
-	 *
-	 *	function accelerationEasing(x) {
-	 *		return x * x;
-	 *	}
-	 *
-	 *	function decelerationEasing(x) {
-	 *		return 1 - Math.pow(x - 1, 2);
-	 *	}
-	 *
-	 *	function backAndForthEasing(x) {
-	 *		return Math.pow(2 * x - 1, 3) - x + 1;
-	 *	}
+	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
+	 * identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -322,25 +283,12 @@ Canvace.Animator = function (tick) {
 	 * <li>`f(1) = 1`</li>
 	 * </ul>
 	 *
-	 * This option defaults to the identity function when not specified, which
-	 * produces a linear easing. Using quadratic functions produces
-	 * accelerations or decelerations. Some examples follow:
+	 * You can use one of the predefined easing functions provided by
+	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
+	 * specify a predefined easing function by passing its method name string.
 	 *
-	 *	function linearEasing(x) {
-	 *		return x;
-	 *	}
-	 *
-	 *	function accelerationEasing(x) {
-	 *		return x * x;
-	 *	}
-	 *
-	 *	function decelerationEasing(x) {
-	 *		return 1 - Math.pow(x - 1, 2);
-	 *	}
-	 *
-	 *	function backAndForthEasing(x) {
-	 *		return Math.pow(2 * x - 1, 3) - x + 1;
-	 *	}
+	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
+	 * identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -348,4 +296,48 @@ Canvace.Animator = function (tick) {
 	thisObject.interpolateAcceleration = bindInterpolate('getAcceleration');
 
 	return thisObject;
+};
+
+/**
+ * TODO
+ *
+ * @class Canvace.Animator.Easing
+ * @static
+ */
+Canvace.Animator.Easing = {
+	/**
+	 * TODO
+	 *
+	 * @method linear
+	 */
+	linear: function (x) {
+		return x;
+	},
+
+	/**
+	 * TODO
+	 *
+	 * @method acceleration
+	 */
+	acceleration: function (x) {
+		return x * x;
+	},
+
+	/**
+	 * TODO
+	 *
+	 * @method deceleration
+	 */
+	deceleration: function (x) {
+		return 1 - Math.pow(x - 1, 2);
+	},
+
+	/**
+	 * TODO
+	 *
+	 * @method backAndForth
+	 */
+	backAndForth: function (x) {
+		return Math.pow(2 * x - 1, 3) - x + 1;
+	}
 };
