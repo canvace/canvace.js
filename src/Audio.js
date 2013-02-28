@@ -181,7 +181,7 @@ Canvace.Audio = function () {
 			Canvace.Ajax.get({
 				type: 'arraybuffer',
 				url: source,
-				onLoad: function (response) {
+				load: function (response) {
 					context.decodeAudioData(response, function (buffer) {
 						bufferData = buffer;
 						loaded = true;
@@ -197,7 +197,7 @@ Canvace.Audio = function () {
 						}
 					});
 				},
-				onError: function () {
+				error: function () {
 					if (typeof onerror === 'function') {
 						onerror();
 					}

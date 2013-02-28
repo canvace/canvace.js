@@ -28,9 +28,9 @@ Canvace.Ajax = new (function () {
 	 * authentication is required. Defaults to an empty string.
 	 * @param [options.password=''] {String} The user password to use when an
 	 * authentication is required. Defaults to an empty string.
-	 * @param [options.onLoad] {Function} The callback function to invoke when
+	 * @param [options.load] {Function} The callback function to invoke when
 	 * the loading is complete. See the `onLoad` method for details.
-	 * @param [options.onError] {Function} The callback function to invoke when
+	 * @param [options.error] {Function} The callback function to invoke when
 	 * the loading aborts with an error. See the `onError` method for details.
 	 */
 	function Request(options) {
@@ -51,8 +51,8 @@ Canvace.Ajax = new (function () {
 
 		var xhr = new XMLHttpRequest();
 		xhr.addEventListener('load', function () {
-			if (typeof options.onLoad === 'function') {
-				options.onLoad.call(thisObject, (function () {
+			if (typeof options.load === 'function') {
+				options.load.call(thisObject, (function () {
 					switch (options.type) {
 					case '':
 					case 'text':
@@ -68,8 +68,8 @@ Canvace.Ajax = new (function () {
 			}
 		}, false);
 		xhr.addEventListener('error', function () {
-			if (typeof options.onError === 'function') {
-				options.onError.call(thisObject, xhr.status, xhr.statusText);
+			if (typeof options.error === 'function') {
+				options.error.call(thisObject, xhr.status, xhr.statusText);
 			}
 		}, false);
 
@@ -98,7 +98,7 @@ Canvace.Ajax = new (function () {
 		 * @chainable
 		 */
 		this.onLoad = function (callback) {
-			options.onLoad = callback;
+			options.load = callback;
 			return thisObject;
 		};
 
@@ -113,7 +113,7 @@ Canvace.Ajax = new (function () {
 		 * @chainable
 		 */
 		this.onError = function (callback) {
-			options.onError = callback;
+			options.error = callback;
 			return thisObject;
 		};
 	}
@@ -200,8 +200,8 @@ Canvace.Ajax = new (function () {
 		return Canvace.Ajax.get({
 			url: url,
 			type: 'json',
-			onLoad: onLoad,
-			onError: onError
+			load: onLoad,
+			error: onError
 		});
 	};
 })();
