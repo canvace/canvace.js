@@ -309,7 +309,7 @@ Canvace.Animator = function (tick) {
 Canvace.Animator.Easing = {
 	/**
 	 * Identity function.
-	 * See [here](http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ehqs1nv9907)
+	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ehqs1nv9907" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property linear
