@@ -325,6 +325,45 @@ Canvace.TileMap = function (data, buckets) {
 	};
 
 	/**
+	 * This method uses the `findPath` method of the
+	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} class to compute a suitable
+	 * path from the starting node to the destination node.
+	 *
+	 * The only difference between this method and the `findPath` method of the
+	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} class is the way the
+	 * computed path is returned to the caller.
+	 *
+	 * @method findPath
+	 * @param startNode {Canvace.Astar.Node} The starting node.
+	 * @return {Object[]} An array of objects containing the `i` and `j`
+	 * coordinates of the nodes in the computed path, or `null` if no path can
+	 * be found.
+	 */
+	var astar;
+	this.findPath = function (startNode) {
+		if (!astar) {
+			astar = new Canvace.Astar();
+		}
+
+		function getCoordinates(node) {
+			var tokens = node.id.split(' ');
+			return {
+				i: tokens[0],
+				j: tokens[1]
+			};
+		}
+
+		var node = startNode;
+		var path = astar.findPath(node);
+		var result = [getCoordinates(node)];
+		for (var i in path) {
+			node = node.neighbors[path[i]]();
+			result.push(getCoordinates(node));
+		}
+		return result;
+	};
+
+	/**
 	 * Constructs an object that satisfies the `Astar.Node` requirements and
 	 * represents a tile of the map as a node of a graph. The returned object
 	 * allows to traverse a graph where each node represents a walkable tile and
