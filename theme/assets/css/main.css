@@ -61,6 +61,7 @@ dd p:first-child, td p:first-child { margin-top: 0; }
 /* -- Headings -------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
     color: #D98527;/*was #f80*/
+    text-shadow: 0 0 0.5em #1e1e1e;
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     line-height: 1.1;
@@ -658,9 +659,10 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .file pre.code,
 #doc .apidocs .file pre.prettyprint {
     background: #dedede;
-    border: none;
+    border: 1px solid #1e1e1e;
+    box-shadow: inset 0 0 5px #3e3e3e;
     overflow: visible;
-    padding: 0;
+    padding: 5px;
 }
 
 .apidocs .L0,
