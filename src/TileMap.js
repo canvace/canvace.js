@@ -337,7 +337,7 @@ Canvace.TileMap = function (data, buckets) {
 	 * @param startNode {Canvace.Astar.Node} The starting node.
 	 * @return {Object[]} An array of objects containing the `i` and `j`
 	 * coordinates of the nodes in the computed path, or `null` if no path can
-	 * be found.
+	 * be found. The starting node is **not** included.
 	 */
 	var astar;
 	this.findPath = function (startNode) {
@@ -355,7 +355,7 @@ Canvace.TileMap = function (data, buckets) {
 
 		var node = startNode;
 		var path = astar.findPath(node);
-		var result = [getCoordinates(node)];
+		var result = [];
 		for (var i in path) {
 			node = node.neighbors[path[i]]();
 			result.push(getCoordinates(node));
