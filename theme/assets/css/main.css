@@ -397,8 +397,6 @@ h2, h3, h4, h5, h6 {
 
 /* Class/module metadata such as "Uses", "Extends", "Defined in", etc. */
 .apidocs .meta {
-    background: #f9f9f9;
-    border-color: #efefef;
     font-size: 11px;
     padding: 3px 6px;
 }
@@ -431,6 +429,11 @@ h2, h3, h4, h5, h6 {
 #bd.loading .apidocs .content,
 #api-list.loading .yui3-tabview-panel .apis {
     display: none;
+}
+
+#api-tabview .yui3-tabview-list .yui3-tab {
+	border-bottom: none;
+	margin-bottom: -1px;
 }
 
 .apidocs .no-visible-items { color: #666; }
@@ -661,7 +664,8 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 #api-tabview-filter,
 #api-tabview-panel {
-    border: 1px solid black;
+    border: 1px solid #bfbfbf;
+    background-color: #ececec;
 }
 
 #api-tabview-filter {
@@ -748,6 +752,24 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 /* -- Custom overrides ----------------------------------------------------- */
+.yui3-tab {
+	border: 1px solid transparent;
+	vertical-align: middle;
+}
+
+.apidocs .meta,
+.yui3-tab-focused,
+.yui3-tab-selected {
+    background: #ececec;
+    border-color: #bfbfbf;
+}
+
+.apidocs .meta :focus,
+.yui3-tab-focused :focus,
+.yui3-tab-selected :focus {
+    outline: none;
+}
+
 .iubenda-ibadge {
 	vertical-align: middle;
 }
