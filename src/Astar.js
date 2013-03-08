@@ -82,21 +82,20 @@ Canvace.Astar = function (epsilon) {
 	 * constructor.
 	 *
 	 * `startNode` is an `Astar.Node`-like object representing the first node of
-	 * the path to find, respectively; `Astar.Node`-like means it has to provide
-	 * the same properties and methods described by the documentation of the
-	 * `Astar.Node` pseudo-class.
+	 * the path to find; `Astar.Node`-like means it has to provide the same
+	 * properties and methods described by the documentation of the `Astar.Node`
+	 * pseudo-class.
 	 *
 	 * The target node is identified when the estimated distance from it,
 	 * provided by each node, is zero; the algorithm stops when this happens.
 	 *
 	 * `Astar.Node` objects allow to specify a directed graph with weighted and
 	 * labeled edges. Edge weights are real numbers and are used to compute the
-	 * cost of a path. Edge labels are strings and are then used to describe the
-	 * path as an array of edges to walk.
+	 * cost of a path. Edge labels are strings and are used when describing the
+	 * computed path as an array of edges to walk.
 	 *
 	 * The computed path, if one exists, is returned as an array of strings.
-	 * `null` is returned if the target node is unreachable from the starting
-	 * node.
+	 * `null` is returned if the target node is unreachable from the start node.
 	 *
 	 * @method findPath
 	 * @for Canvace.Astar
