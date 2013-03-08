@@ -1,6 +1,6 @@
 {
-	"name": "Canvace Client Library",
-	"description": "The JavaScript library part of the Canvace Development Kit",
+	"name": "API reference",
+	"description": "Documentation for the Canvace Game Engine",
 	"version": "0.2.7",
 	"url": "http://www.canvace.com/",
 	"options": {
