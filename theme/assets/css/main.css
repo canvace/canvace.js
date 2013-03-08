@@ -410,6 +410,7 @@ h2, h3, h4, h5, h6 {
 .apidocs .intro {
     background: #f0f1f8;
     border-color: #d4d8eb;
+	box-shadow: 0 0 1em #e6e6e6;
 }
 
 /* Loading spinners. */
@@ -522,12 +523,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     padding: 0;
 }
 
-.method a {
-	text-shadow: 0 0 1px transparent;
-}
-
+.method a,
 .method a:hover {
-	text-shadow: 0 0 1px #a6a6a6;
+	text-shadow: none;
 }
 
 /* -- Generic API item styles ----------------------------------------------- */
