@@ -706,19 +706,9 @@ pre.code,
 
 .apis a:hover,
 .apis a:focus {
-    background: #E8EDFC;
-    background: -moz-linear-gradient(top, #e8edfc 0%, #becef7 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E8EDFC), color-stop(100%,#BECEF7));
-    border-color: #AAC0FA;
-    border-radius: 3px;
-    color: #333;
+    background: #bfbfbf;
+    border-color: transparent;
     outline: none;
-}
-
-.api-list-item a:hover,
-.api-list-item a:focus {
-    font-weight: bold;
-    text-shadow: 1px 1px 1px #fff;
 }
 
 .apis .message { color: #888; }
