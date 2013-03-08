@@ -20,7 +20,7 @@ a:visited {
 }
 
 a:hover {
-	text-shadow: 0 0 1px black;
+	text-shadow: 0 0 1px #a6a6a6;
 }
 
 .hidden {
@@ -68,13 +68,7 @@ table code, table kbd, table samp,
 pre.code, pre.terminal, pre.cmd {
     overflow-x: auto;
     *overflow-x: scroll;
-    padding: 0.3em 0.6em;
-}
-
-pre.code {
-    background: #FCFBFA;
-    border: 1px solid #EFEEED;
-    border-left-width: 5px;
+    padding: .3em .6em;
 }
 
 pre.terminal, pre.cmd {
@@ -98,7 +92,7 @@ pre code, pre kbd, pre samp { font-size: 100%; }
 }
 
 /* -- Lists ----------------------------------------------------------------- */
-dd { margin: 0.2em 0 0.7em 1em; }
+dd { margin: .2em 0 .7em 1em; }
 dl { margin: 1em 0; }
 dt { font-weight: bold; }
 
@@ -210,7 +204,7 @@ th {
 .newwindow { text-align: center; }
 
 #classdocs .item {
-    border-bottom: 1px solid #466899;
+    border-bottom: 1px solid #bfbfbf;
     margin: 1em 0;
     padding: 1.5em;
 }
@@ -389,15 +383,14 @@ h2, h3, h4, h5, h6 {
 .apidocs .flag {
     background: #bababa;
     border-radius: 3px;
-    color: #3977b5;
     font-size: 11px;
-    margin: 0 0.5em;
+    margin: 0 .5em;
     padding: 2px 4px 1px;
 }
 
 /* Class/module metadata such as "Uses", "Extends", "Defined in", etc. */
 .apidocs .meta {
-    font-size: 11px;
+    font-size: small;
     padding: 3px 6px;
 }
 
@@ -410,7 +403,7 @@ h2, h3, h4, h5, h6 {
     border: 1px solid #fd7775;
 }
 
-.apidocs .box.deprecated p { margin: 0.5em 0; }
+.apidocs .box.deprecated p { margin: .5em 0; }
 .apidocs .flag.deprecated { color: #333; }
 
 /* Module/Class intro description. */
@@ -482,7 +475,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .index h3 {
     border-bottom: 1px solid #efefef;
     font-size: 13px;
-    margin: 2em 0 0.6em;
+    margin: 2em 0 .6em;
     padding-bottom: 2px;
 }
 
@@ -526,14 +519,14 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     border: none;
     color: #afafaf;
     display: inline;
-    margin: 0 0 0 0.2em;
+    margin: 0 0 0 .2em;
     padding: 0;
 }
 
 /* -- Generic API item styles ----------------------------------------------- */
 .apidocs .args {
     display: inline;
-    margin: 0 0.5em;
+    margin: 0 .5em;
 }
 
 .apidocs .flag.chainable { background: #46ca3b; }
@@ -572,18 +565,12 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 .apidocs .item .type,
-.apidocs .item .type a,
-.apidocs .returns-inline {
-    color: #3977b5;
-}
-
-.apidocs .item .type,
 .apidocs .returns-inline {
     font-size: 11px;
     margin: 0 0 0 0;
 }
 
-.apidocs .item .type a { border-bottom: 1px dotted #afafaf; }
+.apidocs .item .type a { text-decoration: none; border-bottom: 1px dotted #afafaf; }
 .apidocs .item .type a:hover { border: none; }
 
 /* -- Item Parameter List --------------------------------------------------- */
@@ -595,14 +582,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 .apidocs .param { margin-bottom: 1em; }
 
-.apidocs .param .type,
-.apidocs .param .type a {
-    color: #3977b5;
-}
-
 .apidocs .param .type {
-    margin: 0 0 0 0.5em;
-    *margin-left: 0.5em;
+    margin: 0 0 0 .5em;
+    *margin-left: .5em;
 }
 
 .apidocs .param-name { font-weight: bold; }
@@ -627,14 +609,14 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 /* -- File Source View ------------------------------------------------------ */
-.apidocs .file pre.code,
+pre.code,
 #doc .apidocs .file pre.prettyprint {
     background: #ececec;
-    border: 1px solid #1e1e1e;
-    border-radius: .5em;
-    box-shadow: inset 0 0 3px #3e3e3e;
+    border: 1px solid #bfbfbf;
+    border-left-width: 5px;
+    border-top-right-radius: .75em;
+    box-shadow: 0 0 1em #ccc;
     overflow: auto;
-    padding: 5px;
 }
 
 .apidocs .L0,
@@ -654,13 +636,13 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 /* -- Submodule List -------------------------------------------------------- */
 .apidocs .module-submodule-description {
     font-size: 12px;
-    margin: 0.3em 0 1em;
+    margin: .3em 0 1em;
 }
 
 .apidocs .module-submodule-description p:first-child { margin-top: 0; }
 
 /* -- Sidebar TabView ------------------------------------------------------- */
-#api-tabview { margin-top: 0.6em; }
+#api-tabview { margin-top: .6em; }
 
 #api-tabview-filter,
 #api-tabview-panel {
@@ -669,7 +651,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 #api-tabview-filter {
-    padding: 0.6em 10px 0 10px;
+    padding: .6em 10px 0 10px;
     border-bottom: none;
 }
 
