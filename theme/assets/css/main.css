@@ -473,7 +473,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 /* -- Generic Item Index styles --------------------------------------------- */
 .apidocs .index h3 {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #b6b6b6;
     font-size: 13px;
     margin: 2em 0 .6em;
     padding-bottom: 2px;
@@ -483,7 +483,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 .apidocs .index-list {
     border-color: #efefef;
-    font-size: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -521,6 +520,14 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     display: inline;
     margin: 0 0 0 .2em;
     padding: 0;
+}
+
+.method a {
+	text-shadow: 0 0 1px transparent;
+}
+
+.method a:hover {
+	text-shadow: 0 0 1px #a6a6a6;
 }
 
 /* -- Generic API item styles ----------------------------------------------- */
@@ -687,7 +694,7 @@ pre.code,
 }
 
 .apis {
-    font-size: 12px;
+    font-size: small;
     line-height: 1.4;
     list-style: none;
     margin: 0;
