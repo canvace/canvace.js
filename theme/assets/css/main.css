@@ -524,7 +524,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 .method a,
-.method a:hover {
+.method a:hover,
+.property a,
+.property a:hover {
 	text-shadow: none;
 }
 
