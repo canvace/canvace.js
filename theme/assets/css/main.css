@@ -749,3 +749,7 @@ pre.code,
 .iubenda-ibadge {
 	vertical-align: middle;
 }
+
+#disqus_thread {
+	margin-top: 2em;
+}
