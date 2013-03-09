@@ -12,6 +12,7 @@
  * renderings.
  */
 Canvace.TileMap = function (data, buckets) {
+	var thisObject = this;
 	var map = data.map;
 
 	var tileCache = {};
@@ -334,31 +335,31 @@ Canvace.TileMap = function (data, buckets) {
 	 * computed path is returned to the caller.
 	 *
 	 * @method findPath
-	 * @param startNode {Canvace.Astar.Node} The starting node.
+	 * @param i {Number} The I coordinate of the requested node.
+	 * @param j {Number} The J coordinate of the requested node.
+	 * @param k {Number} The number of the layer containing both the requested
+	 * and the target node.
+	 * @param i1 {Number} The I coordinate of the target node.
+	 * @param j1 {Number} The J coordinate of the target node.
 	 * @return {Object[]} An array of objects containing the `i` and `j`
 	 * coordinates of the nodes in the computed path, or `null` if no path can
 	 * be found. The starting node is **not** included.
 	 */
 	var astar;
-	this.findPath = function (startNode) {
+	this.findPath = function (i, j, k, i1, j1) {
 		if (!astar) {
 			astar = new Canvace.Astar();
 		}
 
-		function getCoordinates(node) {
-			var tokens = node.id.split(' ');
-			return {
-				i: tokens[0],
-				j: tokens[1]
-			};
-		}
-
-		var node = startNode;
-		var path = astar.findPath(node);
+		var path = astar.findPath(thisObject.getGraphNode(i, j, k, i1, j1));
 		var result = [];
-		for (var i in path) {
-			node = node.neighbors[path[i]]();
-			result.push(getCoordinates(node));
+		for (var index in path) {
+			i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
+			j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
+			result.push({
+				i: i,
+				j: j
+			});
 		}
 		return result;
 	};
