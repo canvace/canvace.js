@@ -10,7 +10,8 @@
  * The specified path must not include any trailing slash.
  * @param options.complete {Function} A mandatory callback function to invoke
  * when the loading of the assets completes. It receives a reference to this
- * loader.
+ * loader (and, when invoked by the `loadStage` method, also a reference to a
+ * {{#crossLink "Canvace.Stage"}}{{/crossLink}} object).
  * @param [options.progress] {Function} An optional callback function to invoke
  * when the loading of the assets progresses. It receives the current percentage
  * expressed as a real number in a `[0, 100)` range.
@@ -255,10 +256,8 @@ Canvace.Loader = function (options) {
 	 * stage and all the given sounds.
 	 *
 	 * @method loadAssets
-	 * @param [imagesData] {Mixed} The JSON data output by the Canvace
-	 * Development Environment, or a string representing the URL where the
-	 * JSON resource can be loaded from (if the latter case, the Loader will
-	 * automatically perform a new GET request to that URL).
+	 * @param [imagesData] {Object} The JSON data output by the Canvace
+	 * Development Environment.
 	 * @param [soundsData] {Object} A map where the keys indicate the name of
 	 * the sound to load, and the values are `Array`s of source descriptors,
 	 * which are either `Object`s (each containing the string properties
@@ -326,6 +325,53 @@ Canvace.Loader = function (options) {
 		if (!soundsLoaded) {
 			loadSounds(soundsData);
 		}
+	};
+
+	/**
+	 * Asynchronously loads all the images associated with the given Canvace
+	 * stage and all the given sounds. This function takes care of loading the
+	 * JSON data from the server with an HTTP `GET` request and instantiating
+	 * a {{#crossLink "Canvace.Stage"}}{{/crossLink}} for the specified canvas.
+	 *
+	 * When using this method, the registered completion handler will receive
+	 * two parameters: this loader instance, and a
+	 * {{#crossLink "Canvace.Stage"}}{{/crossLink}} object.
+	 *
+	 * @method loadStage
+	 * @param canvas {Mixed} An HTML5 canvas element used where the stage
+	 * will be rendered. This parameter can be either the actual
+	 * `HTMLCanvasElement`, or a selector string. In the latter case, the
+	 * first matching element is used, and an exception is thrown if no
+	 * matching element is found.
+	 * @param stageUrl {String} The URL where the JSON resource can be
+	 * loaded from. The loader will automatically perform a new `GET`
+	 * request to that URL.
+	 * @param soundsData {Object} See the description of the omonymous
+	 * parameter of the `loadAssets` function.
+	 * @example
+	 *	var loader = new Canvace.Loader({
+	 *		basePath: 'media',
+	 *		complete: function (loader, stage) {
+	 *			// ...
+	 *		}
+	 *	});
+	 *
+	 *	loader.loadStage('#canvas', 'stage.json', {
+	 *		'first-sound': ['first.mp3', 'first.ogg'],
+	 *		'second-sound': ['second.mp3', 'second.ogg']
+	 *	});
+	 */
+	this.loadStage = function (canvas, stageUrl, soundsData) {
+		Canvace.Ajax.getJSON(stageUrl, function (imagesData) {
+			var originalCallback = loadComplete;
+			loadComplete = function () {
+				loadComplete = originalCallback;
+				originalCallback(thisObject, new Canvace.Stage(imagesData, canvas));
+			};
+			thisObject.loadAssets(imagesData, soundsData);
+		}, function () {
+			loadError.apply(thisObject, arguments);
+		});
 	};
 };
 
