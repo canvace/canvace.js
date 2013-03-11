@@ -255,10 +255,8 @@ Canvace.Loader = function (options) {
 	 * stage and all the given sounds.
 	 *
 	 * @method loadAssets
-	 * @param [imagesData] {Mixed} The JSON data output by the Canvace
-	 * Development Environment, or a string representing the URL where the
-	 * JSON resource can be loaded from (if the latter case, the Loader will
-	 * automatically perform a new GET request to that URL).
+	 * @param [imagesData] {Object} The JSON data output by the Canvace
+	 * Development Environment.
 	 * @param [soundsData] {Object} A map where the keys indicate the name of
 	 * the sound to load, and the values are `Array`s of source descriptors,
 	 * which are either `Object`s (each containing the string properties
@@ -326,6 +324,35 @@ Canvace.Loader = function (options) {
 		if (!soundsLoaded) {
 			loadSounds(soundsData);
 		}
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @method loadStage
+	 * @param canvas {Mixed} An HTML5 canvas element used where the stage
+	 * will be rendered. This parameter can be either the actual
+	 * `HTMLCanvasElement`, or a selector string. In the latter case, the
+	 * first matching element is used, and an exception is thrown if no
+	 * matching element is found.
+	 * @param stageUrl {String} The URL where the JSON resource can be
+	 * loaded from. The loader will automatically perform a new `GET`
+	 * request to that URL.
+	 * @param soundsData {Object} See the description of the omonymous
+	 * parameter of the `loadAssets` function.
+	 * @return TODO
+	 */
+	this.loadStage = function (canvas, stageUrl, soundsData) {
+		Canvace.Ajax.getJSON(stageUrl, function (imagesData) {
+			var originalCallback = loadComplete;
+			loadComplete = function () {
+				loadComplete = originalCallback;
+				originalCallback(thisObject, new Canvace.Stage(imagesData, canvas));
+			};
+			thisObject.loadAssets(imagesData, soundsData);
+		}, function () {
+			loadError.apply(arguments);
+		});
 	};
 };
 
