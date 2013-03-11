@@ -351,7 +351,7 @@ Canvace.Loader = function (options) {
 			};
 			thisObject.loadAssets(imagesData, soundsData);
 		}, function () {
-			loadError.apply(arguments);
+			loadError.apply(thisObject, arguments);
 		});
 	};
 };
