@@ -24,13 +24,23 @@ Canvace.Polyfill = (function () {
 
 	var getSinglePrefixedProperty = function (object, name) {
 		var capitalName = name.charAt(0).toUpperCase() + name.substr(1);
+
+		function bind(object, property) {
+			if (typeof property === 'function') {
+				return function () {
+					return property.apply(object, arguments);
+				};
+			}
+			return property;
+		}
+
 		for (var i in prefixes) {
 			var prefixedName = prefixes[i] + capitalName;
 			if (prefixedName in object) {
-				return object[prefixedName];
+				return bind(object, object[prefixedName]);
 			}
 		}
-		return object[name];
+		return bind(object, object[name]);
 	};
 
 	return {
