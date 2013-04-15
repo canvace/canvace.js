@@ -759,3 +759,11 @@ pre.code,
 #disqus_thread {
 	margin-top: 2em;
 }
+
+#powered-by {
+    margin-top: 1.5em;
+}
+
+#powered-by a {
+    margin-right: 1em;
+}
