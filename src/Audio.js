@@ -17,7 +17,7 @@ Canvace.Audio = function () {
 		}());
 	};
 
-	var AudioContext = Canvace.Polyfill.getPrefixedProperty('AudioContext');
+	var AudioContext = Canvace.Polyfill.getPrefixedConstructor('AudioContext');
 	var audioElement = createAudioElement();
 
 	/**
