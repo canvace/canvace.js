@@ -22,7 +22,7 @@ if (typeof Array.isArray !== 'function') {
 Canvace.Polyfill = (function () {
 	var prefixes = ['webkit', 'moz', 'ms', 'o'];
 
-	var getSinglePrefixedProperty = function (object, name) {
+	function getSinglePrefixedProperty(object, name) {
 		var capitalName = name.charAt(0).toUpperCase() + name.substr(1);
 
 		function bind(object, property) {
@@ -41,7 +41,7 @@ Canvace.Polyfill = (function () {
 			}
 		}
 		return bind(object, object[name]);
-	};
+	}
 
 	return {
 		vendorPrefixes: prefixes,
@@ -72,8 +72,14 @@ Canvace.Polyfill = (function () {
 				object = window;
 			}
 
-			if (Array.isArray(property) && (property.length > 1)) {
-				return getSinglePrefixedProperty(object, property.shift()) || Canvace.Polyfill.getPrefixedProperty(object, property);
+			if (Array.isArray(property)) {
+				while (property.length > 1) {
+					var reference = getSinglePrefixedProperty(object, property.shift());
+
+					if (typeof reference !== 'undefined') {
+						return reference;
+					}
+				}
 			}
 
 			return getSinglePrefixedProperty(object, property.toString());
