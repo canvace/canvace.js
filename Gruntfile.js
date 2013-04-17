@@ -86,6 +86,21 @@ module.exports = function (grunt) {
 					'bin/canvace.min.js': ['<%= concat.dist.dest %>']
 				}
 			}
+		},
+
+		yuidoc: {
+			compile: {
+				name: 'API reference',
+				description: 'Documentation for the Canvace Game Engine',
+				version: '<%= pkg.version %>',
+				url: '<%= pkg.homepage %>',
+				options: {
+					paths: 'src/',
+					outdir: 'doc/',
+					themedir: 'theme/',
+					linkNatives: 'true'
+				}
+			}
 		}
 	});
 
@@ -94,6 +109,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 
 	// Register tasks
 	grunt.registerTask('default', ['jshint:beforeconcat', 'concat', 'uglify']);
