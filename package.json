@@ -1,0 +1,32 @@
+{
+  "name": "canvace.js",
+  "version": "0.2.7",
+  "description": "canvace.js is the JavaScript game engine of the Canvace Platform.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/canvace/canvace.js.git"
+  },
+  "keywords": [
+    "canvace",
+    "html5",
+    "game",
+    "engine",
+    "library"
+  ],
+  "homepage": "http://www.canvace.com/",
+  "bugs": "https://github.com/canvace/canvace.js/issues",
+  "author": "Alberto La Rocca <alberto.larocca@canvace.com> (https://github.com/71104)",
+  "contributors": [
+    "Daniele Cocca <daniele.cocca@canvace.com> (https://github.com/jmc-88)"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-concat": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-jshint": "~0.4.3"
+  }
+}
