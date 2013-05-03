@@ -16,9 +16,18 @@ Canvace.Mouse = function (element) {
 	var dragging = false, button = 0;
 	var x0, y0;
 
-	element.addEventListener('mousedown', function (event) {
-		var x = event.clientX - element.offsetLeft;
-		var y = event.clientY - element.offsetTop;
+	function wrapEventHandler(handler) {
+		return function (event) {
+			var rect = element.getBoundingClientRect();
+			handler.call(
+				element,
+				event,
+				event.clientX - rect.left,
+				event.clientY - rect.top);
+		};
+	}
+
+	element.addEventListener('mousedown', wrapEventHandler(function (event, x, y) {
 		button = event.button;
 		dragging = true;
 
@@ -27,10 +36,8 @@ Canvace.Mouse = function (element) {
 		downHandlers.fastForEach(function (handler) {
 			handler(x, y, event.button);
 		});
-	}, false);
-	element.addEventListener('mousemove', function (event) {
-		var x = event.clientX - element.offsetLeft;
-		var y = event.clientY - element.offsetTop;
+	}), false);
+	element.addEventListener('mousemove', wrapEventHandler(function (event, x, y) {
 		moveHandlers.fastForEach(function (handler) {
 			handler(x, y);
 		});
@@ -41,32 +48,26 @@ Canvace.Mouse = function (element) {
 			x0 = x;
 			y0 = y;
 		}
-	}, false);
-	element.addEventListener('mouseup', function (event) {
-		var x = event.clientX - element.offsetLeft;
-		var y = event.clientY - element.offsetTop;
+	}), false);
+	element.addEventListener('mouseup', wrapEventHandler(function (event, x, y) {
 		dragging = false;
 		upHandlers.fastForEach(function (handler) {
 			handler(x, y, event.button);
 		});
-	}, false);
+	}), false);
 
 	if (typeof element.onwheel !== 'undefined') {
-		element.addEventListener('wheel', function (event) {
-			var x = event.clientX - element.offsetLeft;
-			var y = event.clientY - element.offsetTop;
+		element.addEventListener('wheel', wrapEventHandler(function (event, x, y) {
 			wheelHandlers.fastForEach(function (handler) {
 				handler(x, y, -event.deltaX, -event.deltaY);
 			});
-		}, false);
+		}), false);
 	} else if (typeof element.onmousewheel !== 'undefined') {
-		element.addEventListener('mousewheel', function (event) {
-			var x = event.clientX - element.offsetLeft;
-			var y = event.clientY - element.offsetTop;
+		element.addEventListener('mousewheel', wrapEventHandler(function (event, x, y) {
 			wheelHandlers.fastForEach(function (handler) {
 				handler(x, y, event.wheelDeltaX, event.wheelDeltaY);
 			});
-		}, false);
+		}), false);
 	}
 
 	// TODO capture touch events
