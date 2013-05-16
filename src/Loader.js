@@ -346,7 +346,7 @@ Canvace.Loader = function (options) {
 	 * @param stageUrl {String} The URL where the JSON resource can be
 	 * loaded from. The loader will automatically perform a new `GET`
 	 * request to that URL.
-	 * @param soundsData {Object} See the description of the omonymous
+	 * @param [soundsData] {Object} See the description of the omonymous
 	 * parameter of the `loadAssets` function.
 	 * @example
 	 *	var loader = new Canvace.Loader({
