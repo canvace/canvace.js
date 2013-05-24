@@ -505,8 +505,11 @@ Canvace.TileMap = function (data, buckets) {
 					};
 				} else {
 					return function (i, j) {
+						if (!(i in map[k]) || !(j in map[k][i])) {
+							return false;
+						}
 						var tile = tiles[map[k][i][j]];
-						return (i in map[k]) && (j in map[k][i]) && collides(tile.walkable, tile.properties);
+						return collides(tile.walkable, tile.properties);
 					};
 				}
 			}());
