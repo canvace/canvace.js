@@ -353,6 +353,10 @@ Canvace.TileMap = function (data, buckets) {
 			}
 
 			var path = astar.findPath(thisObject.getGraphNode(i, j, k, i1, j1));
+			if (null === path) {
+				return null;
+			}
+
 			var result = [];
 			for (var index = 0; index < path.length; ++index) {
 				i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
