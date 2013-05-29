@@ -35,6 +35,7 @@ Canvace.RenderLoop = (function () {
 	var loopRate = 60;
 
 	function RenderLoop(stage, range, loader, userTick, synchronizeView) {
+		var thisObject = this;
 		var renderer = new Canvace.StageRenderer(stage, loader);
 
 		var rate = loopRate;
@@ -203,6 +204,7 @@ Canvace.RenderLoop = (function () {
 					token = requestAnimationFrame(tick);
 				}, canvas);
 			}
+			return thisObject;
 		}
 
 		function intervalBasedLoop() {
@@ -221,6 +223,7 @@ Canvace.RenderLoop = (function () {
 					updateLoop(delta, elapsed);
 				}, period);
 			}
+			return thisObject;
 		}
 
 		var clearLoop;
@@ -246,6 +249,7 @@ Canvace.RenderLoop = (function () {
 		 * method does not have any effects.
 		 *
 		 * @method run
+		 * @chainable
 		 */
 		if (loopType === 'request') {
 			this.run = requestBasedLoop;
