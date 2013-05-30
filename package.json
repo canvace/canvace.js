@@ -1,6 +1,6 @@
 {
   "name": "canvace.js",
-  "version": "0.2.7",
+  "version": "1.0.0",
   "description": "canvace.js is the JavaScript game engine of the Canvace Platform.",
   "private": true,
   "repository": {
