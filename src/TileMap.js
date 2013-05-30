@@ -424,7 +424,7 @@ Canvace.TileMap = function (data, buckets) {
 				for (var index = 0; index < 9; index++) {
 					var i1 = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][index];
 					var j1 = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][index];
-					if (((i1 === i) || (j1 === j)) && walkable(i1, j1)) {
+					if (((i1 !== i) || (j1 !== j)) && walkable(i1, j1)) {
 						if ((index % 2) || walkable(i, j1) && walkable(i1, j)) {
 							node.neighbors[index] = bind(i1, j1);
 						}
