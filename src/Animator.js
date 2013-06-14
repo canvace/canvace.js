@@ -72,7 +72,7 @@ Canvace.Animator = function (tick) {
 		tick && tick.call(thisObject);
 	};
 
-	function bindInterpolate(getter) {
+	function bindAnimate(getter) {
 		return function (instance, target, duration, options) {
 			if (arguments.length < 4) {
 				options = {};
@@ -83,12 +83,8 @@ Canvace.Animator = function (tick) {
 			if (typeof options.easing === 'undefined') {
 				options.easing = Canvace.Animator.Easing.linear;
 			}
-			if (typeof options.callback !== 'undefined') {
-				options.callback = (function (callback) {
-					return function () {
-						callback.call(instance);
-					};
-				}(options.callback));
+			if (typeof options.callback === 'function') {
+				options.callback = options.callback.bind(instance);
 			}
 			animations.add(new Animation(instance[getter](), target, duration, options.easing, options.callback));
 		};
@@ -115,7 +111,7 @@ Canvace.Animator = function (tick) {
 	 * Animates the specified entity instance by interpolating values for its
 	 * position.
 	 *
-	 * @method interpolatePosition
+	 * @method animatePosition
 	 * @param instance {Canvace.Stage.Instance} The entity instance whose
 	 * position must be interpolated.
 	 * @param stop {Object} An object containing target values for the `i`, `j`
@@ -155,13 +151,13 @@ Canvace.Animator = function (tick) {
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
 	 */
-	thisObject.interpolatePosition = bindInterpolate('getPosition');
+	thisObject.animatePosition = bindAnimate('getPosition');
 
 	/**
 	 * Animates the specified entity instance by interpolating values for its
 	 * velocity.
 	 *
-	 * @method interpolateVelocity
+	 * @method animateVelocity
 	 * @param instance {Canvace.Stage.Instance} The entity instance whose
 	 * velocity must be interpolated.
 	 * @param stop {Object} An object containing target values for the `i`, `j`
@@ -201,13 +197,13 @@ Canvace.Animator = function (tick) {
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
 	 */
-	thisObject.interpolateVelocity = bindInterpolate('getVelocity');
+	thisObject.animateVelocity = bindAnimate('getVelocity');
 
 	/**
 	 * Animates the specified entity instance by interpolating values for its
 	 * uniform velocity.
 	 *
-	 * @method interpolateUniformVelocity
+	 * @method animateUniformVelocity
 	 * @param instance {Canvace.Stage.Instance} The entity instance whose
 	 * uniform velocity must be interpolated.
 	 * @param stop {Object} An object containing target values for the `i`, `j`
@@ -247,13 +243,13 @@ Canvace.Animator = function (tick) {
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
 	 */
-	thisObject.interpolateUniformVelocity = bindInterpolate('getUniformVelocity');
+	thisObject.animateUniformVelocity = bindAnimate('getUniformVelocity');
 
 	/**
 	 * Animates the specified entity instance by interpolating values for its
 	 * acceleration.
 	 *
-	 * @method interpolateAcceleration
+	 * @method animateAcceleration
 	 * @param instance {Canvace.Stage.Instance} The entity instance whose
 	 * acceleration must be interpolated.
 	 * @param stop {Object} An object containing target values for the `i`, `j`
@@ -293,14 +289,14 @@ Canvace.Animator = function (tick) {
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
 	 */
-	thisObject.interpolateAcceleration = bindInterpolate('getAcceleration');
+	thisObject.animateAcceleration = bindAnimate('getAcceleration');
 
 	return thisObject;
 };
 
 /**
  * Static object holding various predefined easing functions ready to use with
- * the `interpolateXxx` methods of
+ * the `animateXxx` methods of
  * {{#crossLink "Canvace.Animator"}}{{/crossLink}}.
  *
  * @class Canvace.Animator.Easing
