@@ -13,8 +13,11 @@ Canvace.Ajax = new (function () {
 	 * Represents an open AJAX request.
 	 *
 	 * You cannot instantiate this class directly: you can obtain a new instance
-	 * by using the `get`, `post` and `getJSON` methods of
-	 * {{#crossLink "Canvace.Ajax"}}{{/crossLink}}.
+	 * by using the {{#crossLink "Canvace.Ajax/get"}}{{/crossLink}},
+	 * {{#crossLink "Canvace.Ajax/post"}}{{/crossLink}},
+	 * {{#crossLink "Canvace.Ajax/put"}}{{/crossLink}},
+	 * {{#crossLink "Canvace.Ajax/_delete"}}{{/crossLink}} and
+	 * {{#crossLink "Canvace.Ajax/getJSON"}}{{/crossLink}} methods.
 	 *
 	 * @class Canvace.Ajax.Request
 	 * @constructor
@@ -22,9 +25,22 @@ Canvace.Ajax = new (function () {
 	 * the request.
 	 * @param options.method {String} Indicates the HTTP method to use.
 	 * @param options.url {String} Indicates the URL of the requested resource.
+	 * Do not include a hash part, as a `?` and URL-encoded data will be
+	 * directly appended in case of `GET` requests with data.
 	 * @param [options.data] {Object} Provides custom parameters to pass to the
 	 * server. They will be URL-encoded and appended to the URL in case of a GET
-	 * request and sent in the request body in all other cases.
+	 * request and sent in the request body in all other cases. The specified
+	 * object may contain nested objects or arrays at any depth.
+	 * @param [options.headers={}] {Object} Allows to specify HTTP request
+	 * headers to send. Each key of the specified dictionary is a header name,
+	 * while each value is the corresponding value. For example, to specify
+	 * `Content-Type` and `Accept` headers:
+	 *
+	 *	{
+	 *		'Content-Type': 'application/x-www-form-urlencoded'
+	 *		'Accept': 'application/json'
+	 *	}
+	 *
 	 * @param [options.type=''] {String} Indicates the way the browser should
 	 * interpret the resource contents. This can be an empty string, `'text'`,
 	 * `'json'`, `'document'`, `'blob'` or `'arraybuffer'`. Defaults to an empty
@@ -241,6 +257,7 @@ Canvace.Ajax = new (function () {
 	 *
 	 * @method get
 	 * @for Canvace.Ajax
+	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
@@ -257,6 +274,7 @@ Canvace.Ajax = new (function () {
 	 * Issues a `POST` HTTP request.
 	 *
 	 * @method post
+	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
@@ -273,6 +291,7 @@ Canvace.Ajax = new (function () {
 	 * Issues a `PUT` HTTP request.
 	 *
 	 * @method put
+	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
@@ -289,6 +308,7 @@ Canvace.Ajax = new (function () {
 	 * Issues a `DELETE` HTTP request.
 	 *
 	 * @method _delete
+	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
@@ -306,6 +326,7 @@ Canvace.Ajax = new (function () {
 	 * contents as JSON.
 	 *
 	 * @method getJSON
+	 * @static
 	 * @param url {String} The URL of the requested JSON resource.
 	 * @param [onLoad] {Function} The callback function to invoke when the
 	 * loading is complete. See the `onLoad` method of
