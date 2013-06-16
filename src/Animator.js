@@ -35,7 +35,21 @@
  * {{#crossLink "Canvace.Animator/tick"}}{{/crossLink}} method.
  *
  * @example
- *	TODO
+ *	var animator = new Canvace.Animator(function () {
+ *		// Custom tick function. Here we can update the gameplay. We do that
+ *		// here because we can't specify a tick function to the renderloop - we
+ *		// already specifying the animator.
+ *		// Sample gameplay code follows.
+ *		
+ *		enemies.forEach(function (enemy) {
+ *			if (enemy.isNearTo(character)) {
+ *				enemy.attack(character);
+ *			}
+ *		});
+ *	});
+ *	
+ *	var mainLoop = new Canvace.RenderLoop(stage, null, loader, animator);
+ *	mainLoop.run();
  */
 Canvace.Animator = function (tick) {
 	var animations = new Canvace.MultiSet();
@@ -109,6 +123,17 @@ Canvace.Animator = function (tick) {
 	 * @method tick
 	 * @chainable
 	 * @param [callback] {Function} A user-defined `tick` callback function.
+	 * @example
+	 *	var animator = new Canvace.Animator();
+	 *	var mainLoop = new Canvace.RenderLoop(stage, null, loader, animator);
+	 *	
+	 *	// ...
+	 *	
+	 *	animator.tick(function () {
+	 *		// custom tick code
+	 *	});
+	 *	
+	 *	mainLoop.run();
 	 */
 	thisObject.tick = function (callback) {
 		tick = callback;
@@ -160,6 +185,16 @@ Canvace.Animator = function (tick) {
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 500, {
+	 *		easing: Canvace.Animator.Easing.deceleration,
+	 *		callback: function () {
+	 *			// ...
+	 *		}
+	 *	});
 	 */
 	thisObject.interpolatePosition = bindInterpolate('getPosition');
 
@@ -208,6 +243,18 @@ Canvace.Animator = function (tick) {
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
+	 * @example
+	 *	animator.interpolateVelocity(character, {
+	 *		i: 0,
+	 *		j: 0
+	 *	}, 1500, {
+	 *		easing: function (x) {
+	 *			return 1 - x; // slow down (reduce velocity linearly)
+	 *		},
+	 *		callback: function () {
+	 *			// ...
+	 *		}
+	 *	});
 	 */
 	thisObject.interpolateVelocity = bindInterpolate('getVelocity');
 
@@ -256,6 +303,18 @@ Canvace.Animator = function (tick) {
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
+	 * @example
+	 *	animator.interpolateUniformVelocity(character, {
+	 *		i: 0,
+	 *		j: 0
+	 *	}, 1500, {
+	 *		easing: function (x) {
+	 *			return 1 - x; // slow down (reduce velocity linearly)
+	 *		},
+	 *		callback: function () {
+	 *			// ...
+	 *		}
+	 *	});
 	 */
 	thisObject.interpolateUniformVelocity = bindInterpolate('getUniformVelocity');
 
@@ -304,6 +363,16 @@ Canvace.Animator = function (tick) {
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
+	 * @example
+	 *	animator.interpolateAcceleration(character, {
+	 *		i: maxAcceleration.i,
+	 *		j: maxAcceleration.j
+	 *	}, 2000, {
+	 *		easing: Canvace.Animator.Easing.linear,
+	 *		callback: function () {
+	 *			// ...
+	 *		}
+	 *	});
 	 */
 	thisObject.interpolateAcceleration = bindInterpolate('getAcceleration');
 
@@ -328,6 +397,13 @@ Canvace.Animator.Easing = {
 	 * @property linear
 	 * @type Function
 	 * @static
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 1000, {
+	 *		easing: Canvace.Animator.Easing.linear
+	 *	});
 	 */
 	linear: function (x) {
 		return x;
@@ -342,6 +418,13 @@ Canvace.Animator.Easing = {
 	 * @property acceleration
 	 * @type Function
 	 * @static
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 1000, {
+	 *		easing: Canvace.Animator.Easing.acceleration
+	 *	});
 	 */
 	acceleration: function (x) {
 		return x * x;
@@ -356,6 +439,13 @@ Canvace.Animator.Easing = {
 	 * @property deceleration
 	 * @type Function
 	 * @static
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 1000, {
+	 *		easing: Canvace.Animator.Easing.deceleration
+	 *	});
 	 */
 	deceleration: function (x) {
 		return 1 - Math.pow(x - 1, 2);
@@ -370,6 +460,13 @@ Canvace.Animator.Easing = {
 	 * @property backAndForth
 	 * @type Function
 	 * @static
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 1000, {
+	 *		easing: Canvace.Animator.Easing.backAndForth
+	 *	});
 	 */
 	backAndForth: function (x) {
 		return Math.pow(2 * x - 1, 3) - x + 1;
@@ -384,6 +481,13 @@ Canvace.Animator.Easing = {
 	 * @property harmonic
 	 * @type Function
 	 * @static
+	 * @example
+	 *	animator.interpolatePosition(character, {
+	 *		i: target.i,
+	 *		j: target.j
+	 *	}, 1000, {
+	 *		easing: Canvace.Animator.Easing.harmonic
+	 *	});
 	 */
 	harmonic: function (x) {
 		return 1 - Math.sin(50 * x) / (50 * x);
