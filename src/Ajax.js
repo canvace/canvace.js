@@ -368,6 +368,7 @@ Canvace.Ajax = new (function () {
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 * @example
 	 *	Canvace.Ajax.post('/threads', {
 	 *		subject: 'Great news',
 	 *		message: 'Lorem ipsum dolor sit blah blah'
@@ -404,6 +405,7 @@ Canvace.Ajax = new (function () {
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 * @example
 	 *	Canvace.Ajax.put('/user', {
 	 *		profilePicture: 'http://www.gravatar.com/avatar/blahblah'
 	 *	}, function (response) {
@@ -441,6 +443,7 @@ Canvace.Ajax = new (function () {
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 * @example
 	 *	Canvace.Ajax._delete('/threads', {
 	 *		id: 1234
 	 *	}, function (response) {
