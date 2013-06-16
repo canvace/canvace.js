@@ -108,6 +108,8 @@ Canvace.Ajax = new (function () {
 		if (typeof options.data !== 'undefined') {
 			var encodedData = (function flatten(prefix, data) {
 				switch (typeof data) {
+				case 'undefined':
+					return [prefix + 'undefined'];
 				case 'boolean':
 				case 'number':
 				case 'string':
@@ -118,10 +120,12 @@ Canvace.Ajax = new (function () {
 						data.forEach(function (element, index) {
 							parameters.push.apply(parameters, flatten(encodeURIComponent(prefix + '[' + index + ']') + '=', element));
 						});
-					} else {
+					} else if (data) {
 						for (var key in data) {
 							parameters.push.apply(parameters, flatten(encodeURIComponent(prefix + '.' + key) + '=', data[key]));
 						}
+					} else {
+						return [prefix + 'null'];
 					}
 					return parameters;
 				default:
