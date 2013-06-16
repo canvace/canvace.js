@@ -31,9 +31,9 @@ Canvace.Ajax = new (function () {
 	 * server. They will be URL-encoded and appended to the URL in case of a GET
 	 * request and sent in the request body in all other cases. The specified
 	 * object may contain nested objects or arrays at any depth.
-	 * @param [options.headers={}] {Object} Allows to specify HTTP request
-	 * headers to send. Each key of the specified dictionary is a header name,
-	 * while each value is the corresponding value. For example, to specify
+	 * @param [options.headers] {Object} Allows to specify HTTP request headers
+	 * to send. Each key of the specified dictionary is a header name, while
+	 * each value is the corresponding value. For example, to specify
 	 * `Content-Type` and `Accept` headers:
 	 *
 	 *	{
@@ -204,8 +204,22 @@ Canvace.Ajax = new (function () {
 					url: parameters[0]
 				});
 			} else {
-				parameters[0].method = method;
-				return new Request(parameters[0]);
+				return (function () {
+					var options = {};
+					/*
+					 * XXX the object must be entirely copied because the one
+					 * specified to Request must not be a user-managed object as
+					 * Request will be needing it even after sending the
+					 * request.
+					 */
+					for (var key in parameters[0]) {
+						if (parameters[0].hasOwnProperty(key)) {
+							options[key] = parameters[0][key];
+						}
+					}
+					options.method = method;
+					return new Request(options);
+				}());
 			}
 		} else if (parameters.length < 3) {
 			if (typeof parameters[1] !== 'function') {
@@ -222,24 +236,26 @@ Canvace.Ajax = new (function () {
 				});
 			}
 		} else if (parameters.length < 4) {
-			var options = {
-				method: method,
-				url: parameters[0]
-			};
-			if ((typeof parameters[1] === 'object') &&
-				(typeof parameters[2] === 'function'))
-			{
-				options.data = parameters[1];
-				options.load = parameters[2];
-			} else if ((typeof parameters[1] === 'function') &&
-				(typeof parameters[2] === 'string'))
-			{
-				options.load = parameters[1];
-				options.type = parameters[2];
-			} else {
-				throw 'invalid arguments';
-			}
-			return new Request(options);
+			return (function () {
+				var options = {
+					method: method,
+					url: parameters[0]
+				};
+				if ((typeof parameters[1] === 'object') &&
+					(typeof parameters[2] === 'function'))
+				{
+					options.data = parameters[1];
+					options.load = parameters[2];
+				} else if ((typeof parameters[1] === 'function') &&
+					(typeof parameters[2] === 'string'))
+				{
+					options.load = parameters[1];
+					options.type = parameters[2];
+				} else {
+					throw 'invalid arguments';
+				}
+				return new Request(options);
+			}());
 		} else {
 			return new Request({
 				method: method,
