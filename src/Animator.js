@@ -2,8 +2,8 @@
  * Computes interpolated animations for entity instances.
  *
  * An `Animator` object is actually a `tick`-like function that may be used in a
- * `RenderLoop`; furthermore the `Animator` provides methods that can start
- * interpolated animations on specific entity instances.
+ * {{#crossLink "Canvace.RenderLoop"}}{{/crossLink}} and provides methods to
+ * animate entity instances.
  *
  * An interpolated animation is performed by updating an instance's position,
  * velocity, uniform velocity or acceleration at every tick; all of these
@@ -11,16 +11,19 @@
  * interpolated. You also have to define the target values for each and the
  * overall duration (in milliseconds) of the animation.
  *
- * When using an `Animator` as the `tick` callback of a `RenderLoop` you can
- * still specify your own additional `tick` callback by passing it to the
- * `Animator` constructor; such function has the same prototype as the `tick`
- * function you would pass to the `RenderLoop` and is executed at each tick
- * _after_ the update procedures for the current animations.
+ * When using an `Animator` as the `tick` callback of a
+ * {{#crossLink "Canvace.RenderLoop"}}{{/crossLink}} you can still specify your
+ * own additional `tick` callback by either passing it to the `Animator`
+ * constructor or {{#crossLink "Canvace.Animator/tick"}}{{/crossLink}} method.
+ * The specified `tick` callback is executed at each tick _after_ the update
+ * procedures for the current animations.
  *
- * Note that the `Animator` does not invoke the `update` method of the animated
- * instances, so, for animations to have effect, either physics must be enabled
- * for animated entities or you must invoke `update` manually (you can do that
- * in your `tick` callback function).
+ * Note that the `Animator` does not invoke the
+ * {{#crossLink "Canvace.Stage.Instance/update"}}{{/crossLink}} method of the
+ * animated instances, so, for animations to have effect, either physics must be
+ * enabled on the animated entities or you must invoke
+ * {{#crossLink "Canvace.Stage.Instance/update"}}{{/crossLink}} manually (you
+ * can do that in your `tick` callback function).
  *
  * @class Canvace.Animator
  * @extends Function
@@ -28,7 +31,8 @@
  * @param [tick] {Function} An optional user-defined `tick` callback function.
  * It is invoked at each tick using this `Animator` object as `this`.
  *
- * You can also specify this later using the `tick` method.
+ * You can also specify this later using the
+ * {{#crossLink "Canvace.Animator/tick"}}{{/crossLink}} method.
  *
  * @example
  *	TODO
@@ -139,6 +143,7 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
+	 *
 	 * <ul>
 	 * <li>must be defined in the range `[0, 1]`</li>
 	 * <li>`f(0) = 0`</li>
@@ -149,8 +154,9 @@ Canvace.Animator = function (tick) {
 	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
 	 * specify a predefined easing function by passing its method name string.
 	 *
-	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
-	 * identity function.
+	 * This option defaults to
+	 * {{#crossLink "Canvace.Animator.Easing/linear:property"}}{{/crossLink}},
+	 * that is the identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -185,6 +191,7 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
+	 *
 	 * <ul>
 	 * <li>must be defined in the range `[0, 1]`</li>
 	 * <li>`f(0) = 0`</li>
@@ -195,8 +202,9 @@ Canvace.Animator = function (tick) {
 	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
 	 * specify a predefined easing function by passing its method name string.
 	 *
-	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
-	 * identity function.
+	 * This option defaults to
+	 * {{#crossLink "Canvace.Animator.Easing/linear:property"}}{{/crossLink}},
+	 * that is the identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -231,6 +239,7 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
+	 *
 	 * <ul>
 	 * <li>must be defined in the range `[0, 1]`</li>
 	 * <li>`f(0) = 0`</li>
@@ -241,8 +250,9 @@ Canvace.Animator = function (tick) {
 	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
 	 * specify a predefined easing function by passing its method name string.
 	 *
-	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
-	 * identity function.
+	 * This option defaults to
+	 * {{#crossLink "Canvace.Animator.Easing/linear:property"}}{{/crossLink}},
+	 * that is the identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -277,6 +287,7 @@ Canvace.Animator = function (tick) {
 	 * number and returning another floating point number.
 	 *
 	 * If `f` is the specified function, `f` must have the following properties:
+	 *
 	 * <ul>
 	 * <li>must be defined in the range `[0, 1]`</li>
 	 * <li>`f(0) = 0`</li>
@@ -287,8 +298,9 @@ Canvace.Animator = function (tick) {
 	 * {{#crossLink "Canvace.Animator.Easing"}}{{/crossLink}}. You can also
 	 * specify a predefined easing function by passing its method name string.
 	 *
-	 * This option defaults to `Canvace.Animator.Easing.linear`, that is the
-	 * identity function.
+	 * This option defaults to
+	 * {{#crossLink "Canvace.Animator.Easing/linear:property"}}{{/crossLink}},
+	 * that is the identity function.
 	 *
 	 * @param [options.callback] {Function} An optional user-defined callback
 	 * function called when the animation is over.
@@ -309,11 +321,12 @@ Canvace.Animator = function (tick) {
 Canvace.Animator.Easing = {
 	/**
 	 * Identity function.
+	 *
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ehqs1nv9907" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property linear
-	 * @type function
+	 * @type Function
 	 * @static
 	 */
 	linear: function (x) {
@@ -322,11 +335,12 @@ Canvace.Animator.Easing = {
 
 	/**
 	 * Acceleration function.
+	 *
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427e7stk11iilk" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property acceleration
-	 * @type function
+	 * @type Function
 	 * @static
 	 */
 	acceleration: function (x) {
@@ -335,11 +349,12 @@ Canvace.Animator.Easing = {
 
 	/**
 	 * Deceleration function.
+	 *
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427eb0umq33b2k" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property deceleration
-	 * @type function
+	 * @type Function
 	 * @static
 	 */
 	deceleration: function (x) {
@@ -347,12 +362,13 @@ Canvace.Animator.Easing = {
 	},
 
 	/**
-	 * Function that goes back and forth between bigger and smaller values.
+	 * A function that goes back and forth between bigger and smaller values.
+	 *
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427esfu8sff4au" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property backAndForth
-	 * @type function
+	 * @type Function
 	 * @static
 	 */
 	backAndForth: function (x) {
@@ -360,12 +376,13 @@ Canvace.Animator.Easing = {
 	},
 
 	/**
-	 * Function that oscillates harmonically.
+	 * A function that oscillates harmonically.
+	 *
 	 * See <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427ef17c2o8td0" target="_blank">here</a>
 	 * for a plot of the function graph.
 	 *
 	 * @property harmonic
-	 * @type function
+	 * @type Function
 	 * @static
 	 */
 	harmonic: function (x) {
