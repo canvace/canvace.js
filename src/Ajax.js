@@ -25,16 +25,19 @@ Canvace.Ajax = new (function () {
 	 * the request.
 	 * @param options.method {String} Indicates the HTTP method to use.
 	 * @param options.url {String} Indicates the URL of the requested resource.
+	 *
 	 * Do not include a hash part, as a `?` and URL-encoded data will be
 	 * directly appended in case of `GET` requests with data.
 	 * @param [options.data] {Object} Provides custom parameters to pass to the
 	 * server. They will be URL-encoded and appended to the URL in case of a GET
-	 * request and sent in the request body in all other cases. The specified
-	 * object may contain nested objects or arrays at any depth.
+	 * request and sent in the request body in all other cases.
+	 *
+	 * The specified object may contain nested objects and arrays at any depth.
 	 * @param [options.headers] {Object} Allows to specify HTTP request headers
-	 * to send. Each key of the specified dictionary is a header name, while
-	 * each value is the corresponding value. For example, to specify
-	 * `Content-Type` and `Accept` headers:
+	 * to send.
+	 * Each key of the specified dictionary is a header name, while each value
+	 * is the corresponding value. For example, to specify `Content-Type` and
+	 * `Accept` headers:
 	 *
 	 *	{
 	 *		'Content-Type': 'application/x-www-form-urlencoded'
@@ -43,8 +46,9 @@ Canvace.Ajax = new (function () {
 	 *
 	 * @param [options.type=''] {String} Indicates the way the browser should
 	 * interpret the resource contents. This can be an empty string, `'text'`,
-	 * `'json'`, `'document'`, `'blob'` or `'arraybuffer'`. Defaults to an empty
-	 * string, which means the same as `'text'`.
+	 * `'json'`, `'document'`, `'blob'` or `'arraybuffer'`.
+	 *
+	 * Defaults to an empty string, which means the same as `'text'`.
 	 * @param [options.async=true] {Boolean} Indicates whether the request is
 	 * asynchronous (`true`) or blocking (`false`). Defaults to `true`.
 	 * @param [options.user=''] {String} The user name to use when
@@ -55,6 +59,25 @@ Canvace.Ajax = new (function () {
 	 * the loading is complete. See the `onLoad` method for details.
 	 * @param [options.error] {Function} The callback function to invoke when
 	 * the loading aborts with an error. See the `onError` method for details.
+	 * @example
+	 *	Canvace.Ajax.post({
+	 *		url: '/threads',
+	 *		data: {
+	 *			subject: 'Great news',
+	 *			message: 'Lorem ipsum dolor sit blah blah'
+	 *		},
+	 *		type: 'json',
+	 *		load: function (response) {
+	 *			if (response.success) {
+	 *				window.location = '/threads/' + response.id;
+	 *			} else {
+	 *				alert(response.message);
+	 *			}
+	 *		},
+	 *		error: function (statusCode, statusText) {
+	 *			alert(statusText);
+	 *		}
+	 *	});
 	 */
 	function Request(options) {
 		var thisObject = this;
@@ -167,13 +190,19 @@ Canvace.Ajax = new (function () {
 
 		/**
 		 * Registers a callback function to be invoked when the loading is
-		 * complete. This function is passed the response object, as interpreted
-		 * according to the response type specified in the constructor.
+		 * complete.
 		 *
 		 * @method onLoad
-		 * @param [callback] {Function} The callback function to invoke when
-		 * the loading is complete.
 		 * @chainable
+		 * @param [callback] {Function} The callback function to invoke when the
+		 * loading is complete.
+		 * @param callback.response {Mixed} the response object, as interpreted
+		 * according to the response type specified in the constructor.
+		 * @example
+		 *	var request = Canvace.Ajax.get('/data/stage1.json');
+		 *	request.onLoad = function (stageData) {
+		 *		// ...
+		 *	};
 		 */
 		this.onLoad = function (callback) {
 			options.load = callback;
@@ -182,13 +211,18 @@ Canvace.Ajax = new (function () {
 
 		/**
 		 * Registers a callback function to be invoked in case of load errors.
-		 * This function gets passed the HTTP status code and the HTTP status
-		 * text.
 		 *
 		 * @method onError
+		 * @chainable
 		 * @param [callback] {Function} The callback function to invoke when
 		 * the loading aborts with an error.
-		 * @chainable
+		 * @param callback.statusCode {Number} The HTTP status code.
+		 * @param callback.statusText {String} The HTTP status text.
+		 * @example
+		 *	var request = Canvace.Ajax.get('/data/stage1.json');
+		 *	request.onError = function (statusCode, statusText) {
+		 *		alert(statusText);
+		 *	};
 		 */
 		this.onError = function (callback) {
 			options.error = callback;
@@ -274,7 +308,8 @@ Canvace.Ajax = new (function () {
 	}
 
 	/**
-	 * Issues a `GET` HTTP request.
+	 * Issues a `GET` HTTP request and returns a corresponding new
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
 	 *
 	 * @method get
 	 * @for Canvace.Ajax
@@ -284,67 +319,145 @@ Canvace.Ajax = new (function () {
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
+	 * @param [data] {Object} Optional custom parameters to send to the server.
+	 * Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
+	 * @param [load] {Function} An optional callback function that gets called
+	 * as soon as the server response arrives and the request completes
+	 * successfully. Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
 	 * @param [type] {String} Indicates how the browser should interpret the
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 * @example
+	 *	Canvace.Ajax.get('/data/stage1.json', function (stageData) {
+	 *		// ...
+	 *	}, 'json');
 	 */
 	this.get = bindAjaxRequest('GET');
 
 	/**
-	 * Issues a `POST` HTTP request.
+	 * Issues a `POST` HTTP request and returns a corresponding new
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
 	 *
 	 * @method post
+	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
+	 * @param [data] {Object} Optional custom parameters to send to the server.
+	 * Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
+	 * @param [load] {Function} An optional callback function that gets called
+	 * as soon as the server response arrives and the request completes
+	 * successfully. Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
 	 * @param [type] {String} Indicates how the browser should interpret the
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 *	Canvace.Ajax.post('/threads', {
+	 *		subject: 'Great news',
+	 *		message: 'Lorem ipsum dolor sit blah blah'
+	 *	}, function (response) {
+	 *		window.location = '/threads/' + response.threadId;
+	 *	}, 'json');
 	 */
 	this.post = bindAjaxRequest('POST');
 
 	/**
-	 * Issues a `PUT` HTTP request.
+	 * Issues a `PUT` HTTP request and returns a corresponding new
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
 	 *
 	 * @method put
+	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
+	 * @param [data] {Object} Optional custom parameters to send to the server.
+	 * Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
+	 * @param [load] {Function} An optional callback function that gets called
+	 * as soon as the server response arrives and the request completes
+	 * successfully. Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
 	 * @param [type] {String} Indicates how the browser should interpret the
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 *	Canvace.Ajax.put('/user', {
+	 *		profilePicture: 'http://www.gravatar.com/avatar/blahblah'
+	 *	}, function (response) {
+	 *		if (!response.success) {
+	 *			alert(response.message);
+	 *		}
+	 *	}, 'json');
 	 */
 	this.put = bindAjaxRequest('PUT');
 
 	/**
-	 * Issues a `DELETE` HTTP request.
+	 * Issues a `DELETE` HTTP request and returns a corresponding new
+	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
 	 *
 	 * @method _delete
+	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
 	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
+	 * @param [data] {Object} Optional custom parameters to send to the server.
+	 * Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
+	 * @param [load] {Function} An optional callback function that gets called
+	 * as soon as the server response arrives and the request completes
+	 * successfully. Ignored if the first parameter is not a string.
+	 *
+	 * See the {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} constructor
+	 * for more information.
 	 * @param [type] {String} Indicates how the browser should interpret the
 	 * resource contents. Ignored if the first parameter is not a string.
 	 * Defaults to an empty string.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
+	 *	Canvace.Ajax._delete('/threads', {
+	 *		id: 1234
+	 *	}, function (response) {
+	 *		if (response.success) {
+	 *			alert('Thread deleted');
+	 *		} else {
+	 *			alert(response.message);
+	 *		}
+	 *	});
 	 */
 	this._delete = bindAjaxRequest('DELETE');
 
 	/**
 	 * Retrieves a resource by using a `GET` HTTP request and interprets its
 	 * contents as JSON.
+	 *
+	 * Returns a new {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
 	 *
 	 * @method getJSON
 	 * @static
@@ -357,11 +470,10 @@ Canvace.Ajax = new (function () {
 	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
 	 * @example
-	 *	var request = Canvace.Ajax.getJSON('data.json');
-	 *	request.onLoad(function (response) {
-	 *		console.dir(response);
-	 *	}).onError(function () {
-	 *		alert('Load error! :(');
+	 *	Canvace.Ajax.getJSON('/data/stage1.json', function (stageData) {
+	 *		// ...
+	 *	}, function (statusCode, statusText) {
+	 *		alert(statusText);
 	 *	});
 	 */
 	this.getJSON = function (url, onLoad, onError) {
