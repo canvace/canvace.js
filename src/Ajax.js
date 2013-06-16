@@ -108,11 +108,16 @@ Canvace.Ajax = new (function () {
 			// XXX Currently 'json' is not equally supported across browsers
 			xhr.responseType = (options.type === 'json') ? 'text' : options.type;
 
-			for (var key in headers || {}) {
-				if (headers.hasOwnProperty(key)) {
-					xhr.setRequestHeader(key, headers[key]);
+			function setHeaders(headers) {
+				for (var key in headers) {
+					if (headers.hasOwnProperty(key)) {
+						xhr.setRequestHeader(key, headers[key]);
+					}
 				}
 			}
+
+			setHeaders(headers);
+			setHeaders(options.headers);
 
 			if (arguments.length < 3) {
 				xhr.send();
