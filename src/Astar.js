@@ -2,8 +2,9 @@
  * Provides a generic epsilon-admissible implementation of the A* pathfinding
  * algorithm.
  *
- * `Astar` objects provide a `findPath` method that finds an admissible path
- * between two nodes of a graph.
+ * `Astar` objects provide a
+ * {{#crossLink "Canvace.Astar/findPath"}}{{/crossLink}} method that finds an
+ * admissible path between two nodes of a graph.
  *
  * Given that any path between two nodes has a cost greater than zero, the
  * algorithm tries to find either an optimal one (one of those with the least
@@ -15,12 +16,15 @@
  * will construct an object that can perform significantly faster and still
  * yield almost optimal paths.
  *
- * Refer to the documentation of the `findPath` method for more information
- * about specifying the graph.
+ * Refer to the documentation of the
+ * {{#crossLink "Canvace.Astar/findPath"}}{{/crossLink}} method for more
+ * information about specifying the graph.
  *
  * @class Canvace.Astar
  * @constructor
  * @param [epsilon] {Number} The optional epsilon parameter, defaults to zero.
+ * @example
+ *	TODO
  */
 Canvace.Astar = function (epsilon) {
 	if (typeof epsilon !== 'number') {
@@ -31,10 +35,12 @@ Canvace.Astar = function (epsilon) {
 
 	/**
 	 * This is not an actual inner class, it just documents what graph nodes
-	 * must implement in order to be suitable for the `Astar.findPath` method.
+	 * must implement in order to be suitable for the
+	 * {{#crossLink "Canvace.Astar/findPath"}}{{/crossLink}} method.
 	 *
 	 * Objects providing these properties and methods are usable as graph nodes
-	 * and may be passed as arguments to `Astar.findPath`.
+	 * and may be passed as arguments to
+	 * {{#crossLink "Canvace.Astar/findPath"}}{{/crossLink}}.
 	 *
 	 * @class Canvace.Astar.Node
 	 * @static
@@ -57,7 +63,8 @@ Canvace.Astar = function (epsilon) {
 
 	/**
 	 * A map object whose keys are edge labels and whose values are functions.
-	 * Each function returns the neighbor graph `Node` connected to this node
+	 * Each function returns the neighbor graph
+	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} connected to this node
 	 * through the edge.
 	 *
 	 * @property neighbors
@@ -65,8 +72,8 @@ Canvace.Astar = function (epsilon) {
 	 */
 
 	/**
-	 * A function that receives one `String` argument, an edge label, and
-	 * returns its cost.
+	 * A function that receives one {{#crossLink "String"}}{{/crossLink}}
+	 * argument, an edge label, and returns its cost.
 	 *
 	 * @property distance
 	 * @type Function
@@ -78,21 +85,23 @@ Canvace.Astar = function (epsilon) {
 	 *
 	 * The found path is always _admissible_, which means its cost is either
 	 * optimal (the least possible one) or is at most `1 + epsilon` times the
-	 * optimal one, where `epsilon` is the parameter specified to the `Astar`
-	 * constructor.
+	 * optimal one, where `epsilon` is the parameter specified to the
+	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} constructor.
 	 *
-	 * `startNode` is an `Astar.Node`-like object representing the first node of
-	 * the path to find; `Astar.Node`-like means it has to provide the same
-	 * properties and methods described by the documentation of the `Astar.Node`
-	 * pseudo-class.
+	 * `startNode` is an {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}}-like
+	 * object representing the first node of the path to find;
+	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}}-like means it has to
+	 * provide the same properties and methods described by the documentation of
+	 * the {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} pseudo-class.
 	 *
 	 * The target node is identified when the estimated distance from it,
 	 * provided by each node, is zero; the algorithm stops when this happens.
 	 *
-	 * `Astar.Node` objects allow to specify a directed graph with weighted and
-	 * labeled edges. Edge weights are real numbers and are used to compute the
-	 * cost of a path. Edge labels are strings and are used when describing the
-	 * computed path as an array of edges to walk.
+	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} objects allow to
+	 * specify a directed graph with weighted and labeled edges. Edge weights
+	 * are real numbers and are used to compute the cost of a path. Edge labels
+	 * are strings and are used when describing the computed path as an array of
+	 * edges to walk.
 	 *
 	 * The computed path, if one exists, is returned as an array of strings.
 	 * `null` is returned if the target node is unreachable from the start node.
