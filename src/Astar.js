@@ -53,7 +53,7 @@
  *				return new Node(i, j - 1);
  *			};
  *		}
- *		if (j < 100) {
+ *		if (j < 99) {
  *			this.neighbors.right = function () {
  *				return new Node(i, j + 1);
  *			};
@@ -63,7 +63,7 @@
  *				return new Node(i - 1, j);
  *			};
  *		}
- *		if (i < 100) {
+ *		if (i < 99) {
  *			this.neighbors.down = function () {
  *				return new Node(i + 1, j);
  *			};
