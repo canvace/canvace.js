@@ -50,7 +50,7 @@
  *	for (var i = 0; i < 100; i++) {
  *		var row = [];
  *		for (var j = 0; j < 100; j++) {
- *			row[j].push(Math.random() > 0.3);
+ *			row[j].push(Math.random() < 0.5);
  *		}
  *		matrix.push(row);
  *	}
@@ -68,22 +68,22 @@
  *			return 1;
  *		};
  *		this.neighbors = {};
- *		if (j > 0) {
+ *		if ((j > 0) && !matrix[i][j - 1]) {
  *			this.neighbors.left = function () {
  *				return new Node(i, j - 1);
  *			};
  *		}
- *		if (j < 99) {
+ *		if ((j < 99) && !matrix[i][j + 1]) {
  *			this.neighbors.right = function () {
  *				return new Node(i, j + 1);
  *			};
  *		}
- *		if (i > 0) {
+ *		if ((i > 0) && !matrix[i - 1][j]) {
  *			this.neighbors.up = function () {
  *				return new Node(i - 1, j);
  *			};
  *		}
- *		if (i < 99) {
+ *		if ((i < 99) && !matrix[i + 1][j]) {
  *			this.neighbors.down = function () {
  *				return new Node(i + 1, j);
  *			};
