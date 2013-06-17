@@ -24,7 +24,54 @@
  * @constructor
  * @param [epsilon] {Number} The optional epsilon parameter, defaults to zero.
  * @example
- *	TODO
+ *	// Elaborate a random labyrinth represented by a boolean matrix.
+ *	// True means there is a wall, false means the cell is walkable.
+ *	var matrix = [];
+ *	for (var i = 0; i < 100; i++) {
+ *		var row = [];
+ *		for (var j = 0; j < 100; j++) {
+ *			row[j].push(Math.random() > 0.3);
+ *		}
+ *		matrix.push(row);
+ *	}
+ *	console.dir(matrix);
+ *	
+ *	// Create a path finder
+ *	var pathFinder = new Canvace.Astar();
+ *	
+ *	// Implement a node of the graph.
+ *	// Heuristics are taxicab distances from cell (99, 99).
+ *	function Node(i, j) {
+ *		this.id = '(' + i + ', ' + j + ')';
+ *		this.heuristic = 198 - i - j;
+ *		this.distance = function () {
+ *			return 1;
+ *		};
+ *		this.neighbors = {};
+ *		if (j > 0) {
+ *			this.neighbors.left = function () {
+ *				return new Node(i, j - 1);
+ *			};
+ *		}
+ *		if (j < 100) {
+ *			this.neighbors.right = function () {
+ *				return new Node(i, j + 1);
+ *			};
+ *		}
+ *		if (i > 0) {
+ *			this.neighbors.up = function () {
+ *				return new Node(i - 1, j);
+ *			};
+ *		}
+ *		if (i < 100) {
+ *			this.neighbors.down = function () {
+ *				return new Node(i + 1, j);
+ *			};
+ *		}
+ *	}
+ *	
+ *	// find the path from (0, 0) to (99, 99)
+ *	console.dir(pathFinder.findPath(new Node(0, 0)));
  */
 Canvace.Astar = function (epsilon) {
 	if (typeof epsilon !== 'number') {
@@ -64,19 +111,29 @@ Canvace.Astar = function (epsilon) {
 	/**
 	 * A map object whose keys are edge labels and whose values are functions.
 	 * Each function returns the neighbor graph
-	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} connected to this node
-	 * through the edge.
+	 * {{#crossLink "Canvace.Astar.Node"}}node{{/crossLink}} connected to this
+	 * node through the edge.
 	 *
 	 * @property neighbors
 	 * @type Object
 	 */
 
 	/**
-	 * A function that receives one {{#crossLink "String"}}{{/crossLink}}
-	 * argument, an edge label, and returns its cost.
+	 * A function used by {{#crossLink "Canvace.Astar"}}{{/crossLink}} to
+	 * determine edge weights.
 	 *
-	 * @property distance
-	 * @type Function
+	 * You can always return `1` or another non-zero constant value if your
+	 * graph is not weighted.
+	 *
+	 * Edge labels are implementation-defined; they only need to be consistent
+	 * with the keys of the
+	 * {{#crossLink "Canvace.Astar.Node/neighbors:property"}}{{/crossLink}}
+	 * method map.
+	 *
+	 * @method distance
+	 * @param edgeLabel {String} A label identifying the incident edge whose
+	 * weight is to be retrieved.
+	 * @return {Number} The requested edge weight.
 	 */
 
 	/**
