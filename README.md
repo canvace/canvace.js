@@ -1,7 +1,10 @@
 canvace.js
 ==========
 
-This repository holds the JavaScript game engine of the Canvace Platform.
+This repository holds the JavaScript game engine of the Canvace Platform,
+canvace.js.
+
+canvace.js is dual licensed under the MIT and GPLv3 licenses.
 
 ## Prerequisites for the build
 
