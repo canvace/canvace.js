@@ -25,9 +25,18 @@
  * @class Canvace.Loader
  * @constructor
  * @param options {Object} A dictionary containing the options for the loader.
- * @param options.basePath {String} The relative or absolute path referring to
- * the directory where the images and sounds to be loaded are located.
- * The specified path must not include any trailing slash.
+ * @param [options.imagesPath] {String} The relative or absolute path referring
+ * to the directory where the images to be loaded are located.
+ * This option gets overridden by `basePath`. If `basePath` is missing, this
+ * option becomes mandatory.
+ * @param [options.soundsPath] {String} The relative or absolute path referring
+ * to the directory where the sounds to be loaded are located.
+ * This option gets overridden by `basePath`. If `basePath` is missing, this
+ * option becomes mandatory when sound asset descriptors are passed to either
+ * `loadAssets` or `loadStage`.
+ * @param [options.basePath] {String} The relative or absolute path referring
+ * to the directory where both the images and sounds to be loaded are located.
+ * This option overrides the values of `imagesPath` and `soundsPath`.
  * @param options.complete {Function} A mandatory callback function to invoke
  * when the loading of the assets completes. It receives a reference to this
  * loader (and, when invoked by the `loadStage` method, also a reference to a
@@ -39,12 +48,27 @@
  * whenever a loading error occurs.
  */
 Canvace.Loader = function (options) {
-	if (typeof options.basePath !== 'string') {
-		throw 'Invalid value specified for "basePath"';
+	function removeTrailingSlash(string) {
+		if (string.endsWith('/')) {
+			return string.substr(0, string.length - 1);
+		}
+		return string;
 	}
 
-	if (options.basePath.endsWith('/')) {
-		options.basePath = options.basePath.substr(0, options.basePath.length - 1);
+	if (typeof options.imagesPath !== 'string') {
+		throw 'Invalid value specified for "imagesPath"';
+	}
+
+	options.imagesPath = removeTrailingSlash(options.imagesPath);
+
+	if (typeof options.imagesPath !== 'string') {
+		throw 'Invalid value specified for "soundsPath"';
+	}
+
+	options.soundsPath = removeTrailingSlash(options.soundsPath);
+
+	if (typeof options.basePath === 'string') {
+		options.imagesPath = options.soundsPath = removeTrailingSlash(options.basePath);
 	}
 
 	if (typeof options.complete !== 'function') {
@@ -79,6 +103,10 @@ Canvace.Loader = function (options) {
 	}
 
 	function loadImages(data) {
+		if (typeof options.imagesPath !== 'string') {
+			throw 'Invalid value specified for "imagesPath"';
+		}
+
 		var totalCount = 0;
 		var id;
 		var frames;
@@ -155,7 +183,7 @@ Canvace.Loader = function (options) {
 						var image = new Image();
 						imageset[id] = image;
 						image.addEventListener('load', bindProgress(id), false);
-						image.src = [options.basePath, id].join('/');
+						image.src = [options.imagesPath, id].join('/');
 					}
 				}(descriptor.frames[i].id));
 			}
@@ -186,16 +214,24 @@ Canvace.Loader = function (options) {
 		if (imageset.hasOwnProperty(id)) {
 			return imageset[id];
 		} else {
+			if (typeof options.imagesPath !== 'string') {
+				throw 'Invalid value specified for "imagesPath"';
+			}
+
 			var image = new Image();
 			if (typeof callback === 'function') {
 				image.addEventListener('load', callback, false);
 			}
-			image.src = [options.basePath, id].join('/');
+			image.src = [options.imagesPath, id].join('/');
 			return imageset[id] = image;
 		}
 	};
 
 	function loadSounds(sources) {
+		if (typeof options.soundsPath !== 'string') {
+			throw 'Invalid value specified for "soundsPath"';
+		}
+
 		var totalCount = Object.keys(sources).length;
 
 		var progress = (function () {
@@ -229,7 +265,7 @@ Canvace.Loader = function (options) {
 					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
 
 					if (audio.canPlayType(info.mimeType)) {
-						return [options.basePath, info.url].join('/');
+						return [options.soundsPath, info.url].join('/');
 					}
 				} catch (e) {
 					return false;
