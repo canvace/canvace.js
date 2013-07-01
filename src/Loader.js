@@ -280,6 +280,7 @@ Canvace.Loader = function (options) {
 	 * stage and all the given sounds.
 	 *
 	 * @method loadAssets
+	 * @chainable
 	 * @param [imagesData] {Object} The JSON data output by the Canvace
 	 * Development Environment.
 	 * @param [soundsData] {Object} A map where the keys indicate the name of
@@ -337,7 +338,7 @@ Canvace.Loader = function (options) {
 
 		if (imagesLoaded && soundsLoaded) {
 			loadFinished();
-			return;
+			return thisObject;
 		} else if (imagesLoaded ^ soundsLoaded) {
 			jobCount = 1;
 		}
@@ -349,6 +350,8 @@ Canvace.Loader = function (options) {
 		if (!soundsLoaded) {
 			loadSounds(soundsData);
 		}
+
+		return thisObject;
 	};
 
 	/**
@@ -362,6 +365,7 @@ Canvace.Loader = function (options) {
 	 * {{#crossLink "Canvace.Stage"}}{{/crossLink}} object.
 	 *
 	 * @method loadStage
+	 * @chainable
 	 * @param canvas {Mixed} An HTML5 canvas element used where the stage
 	 * will be rendered. This parameter can be either the actual
 	 * `HTMLCanvasElement`, or a selector string. In the latter case, the
@@ -396,6 +400,7 @@ Canvace.Loader = function (options) {
 		}, function () {
 			loadError.apply(thisObject, arguments);
 		});
+		return thisObject;
 	};
 };
 
