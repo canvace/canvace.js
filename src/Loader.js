@@ -43,6 +43,10 @@ Canvace.Loader = function (options) {
 		throw 'Invalid value specified for "basePath"';
 	}
 
+	if (options.basePath.endsWith('/')) {
+		options.basePath = options.basePath.substr(0, options.basePath.length - 1);
+	}
+
 	if (typeof options.complete !== 'function') {
 		throw 'Invalid callback specified for "complete"';
 	}
