@@ -49,7 +49,7 @@
  */
 Canvace.Loader = function (options) {
 	function removeTrailingSlash(string) {
-		if (string.endsWith('/')) {
+		if (/[\\\/]$/.test(string)) {
 			return string.substr(0, string.length - 1);
 		}
 		return string;
