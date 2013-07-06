@@ -27,23 +27,33 @@
  * @param options {Object} A dictionary containing the options for the loader.
  * @param [options.imagesPath] {String} The relative or absolute path referring
  * to the directory where the images to be loaded are located.
+ *
  * This option gets overridden by `basePath`. If `basePath` is missing, this
  * option becomes mandatory.
  * @param [options.soundsPath] {String} The relative or absolute path referring
  * to the directory where the sounds to be loaded are located.
+ *
  * This option gets overridden by `basePath`. If `basePath` is missing, this
  * option becomes mandatory when sound asset descriptors are passed to either
- * `loadAssets` or `loadStage`.
+ * {{#crossLink "Canvace.Loader/loadAssets"}}{{/crossLink}} or
+ * {{#crossLink "Canvace.Loader/loadStage"}}{{/crossLink}}.
  * @param [options.basePath] {String} The relative or absolute path referring
  * to the directory where both the images and sounds to be loaded are located.
  * This option overrides the values of `imagesPath` and `soundsPath`.
  * @param options.complete {Function} A mandatory callback function to invoke
- * when the loading of the assets completes. It receives a reference to this
- * loader (and, when invoked by the `loadStage` method, also a reference to a
- * {{#crossLink "Canvace.Stage"}}{{/crossLink}} object).
- * @param [options.progress] {Function} An optional callback function to invoke
- * when the loading of the assets progresses. It receives the current percentage
- * expressed as a real number in a `[0, 100)` range.
+ * when the loading of the assets completes.
+ * @param options.complete.loader {Canvace.Loader} A reference to this
+ * {{#crossLink "Canvace.Loader"}}{{/crossLink}} passed to the `complete`
+ * callback.
+ * @param options.complete.stage {Canvace.Stage} A reference to an automatically
+ * created {{#crossLink "Canvace.Stage"}}{{/crossLink}}. This is only passed to
+ * the `complete` callback when the
+ * {{#crossLink "Canvace.Loader/loadStage"}}{{/crossLink}} is used to load data.
+ * @param [options.progress] {Function} An optional callback function invoked as
+ * the loading of the assets progresses.
+ * @param options.progress.progress {Number} The current progress percentage
+ * passed to the `progress` callback and expressed as a real number in a
+ * `[0, 100)` range.
  * @param [options.error] {Function} An optional callback function to invoke
  * whenever a loading error occurs.
  */
