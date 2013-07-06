@@ -49,10 +49,7 @@
  */
 Canvace.Loader = function (options) {
 	function removeTrailingSlash(string) {
-		if (/[\\\/]$/.test(string)) {
-			return string.substr(0, string.length - 1);
-		}
-		return string;
+		return string.replace(/[\\\/]$/, '');
 	}
 
 	if (typeof options.imagesPath !== 'string') {
