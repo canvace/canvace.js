@@ -22,8 +22,11 @@
  * This effect draws some overlays useful for diagnostic purposes during the
  * post-processing rendering stage.
  *
- * The effect may be disabled and reenabled using the provided `disable`,
- * `enable` or `toggle` methods, and is initially enabled.
+ * The effect may be disabled and reenabled using the provided
+ * {{#crossLink "Canvace.DebugEffect/disable"}}{{/crossLink}},
+ * {{#crossLink "Canvace.DebugEffect/enable"}}{{/crossLink}} or
+ * {{#crossLink "Canvace.DebugEffect/toggle"}}{{/crossLink}} methods, and is
+ * initially enabled.
  *
  * @class Canvace.DebugEffect
  * @constructor
@@ -34,24 +37,26 @@
  * entities' bounding boxes must be drawn. Only entities with physics enabled
  * are taken into account.
  * @param [options.boundingBoxStyle='red'] {Mixed} Indicates the CSS color to
- * use to draw the bounding boxes.
+ * draw the bounding boxes.
  * @param [options.drawVelocity=false] {Boolean} Indicates whether velocity
  * vectors must be drawn. Only entities with physics enabled are taken into
  * account.
- * @param [options.velocityStyle='red'] {Mixed} Indicates the CSS color to use
- * to draw velocity vectors.
+ * @param [options.velocityStyle='red'] {Mixed} Indicates the CSS color to draw
+ * velocity vectors.
  * @param [options.drawUniformVelocity=false] {Boolean} Indicates whether
  * uniform velocity vectors must be drawn. Only entities with physics enabled
  * are taken into account.
  * @param [options.uniformVelocityStyle='red'] {Mixed} Indicates the CSS color
- * to use to draw uniform velocity vectors.
+ * to draw uniform velocity vectors.
  * @param [options.drawAcceleration=false] {Boolean} Indicates whether
  * acceleration vectors must be drawn. Only entities with physics enabled are
  * taken into account.
  * @param [options.accelerationStyle='red'] {Mixed} Indicates the CSS color to
- * use to draw acceleration vectors.
- * @param [options.drawSolidMap=false] {Boolean} TODO
- * @param [options.solidMapStyle='red'] {Mixed} TODO
+ * draw acceleration vectors.
+ * @param [options.drawSolidMap=false] {Boolean} When set to `true` causes solid
+ * blocks to be drawn over solid tiles.
+ * @param [options.solidMapStyle='red'] {Mixed} Indicates the CSS color to draw
+ * the solid map.
  * @example
  *	var stage = new Canvace.Stage(data, canvas);
  *	stage.getRenderer().addEffect(new Canvace.DebugEffect(stage, {
@@ -76,7 +81,8 @@ Canvace.DebugEffect = function (stage, options) {
 	/**
 	 * Disables the effect.
 	 *
-	 * The effect can then be reenabled using the `enable` method.
+	 * The effect can then be reenabled using the
+	 * {{#crossLink "Canvace.DebugEffect/enable"}}{{/crossLink}} method.
 	 *
 	 * @method disable
 	 */

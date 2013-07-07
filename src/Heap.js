@@ -29,6 +29,8 @@
  * performance boost in several algorithms, particularly the A* pathfinding
  * algorithm.
  *
+ * This class is also used by {{#crossLink "Canvace.Astar"}}{{/crossLink}}.
+ *
  * @class Canvace.Heap
  * @constructor
  * @param compare {Function} A function used by a heap object to compare
@@ -45,13 +47,27 @@
  *
  * `compare` must return zero for two elements if `same` returns `true`, but the
  * opposite is not necessarily true: `same` can return `false` even for two
- * elements that are compared to be equal by `compare`.
+ * elements that are considered equal by `compare`.
  *
- * If the `same` argument is not specified, the === operator is used.
+ * If the `same` argument is not specified, the `===` operator is used.
  *
  * This function is useful in cases where the same element may be represented by
- * different physical objects, and it is used by the `contains`, `find` and
- * `decreaseKey` methods.
+ * different physical objects, and it is used by the
+ * {{#crossLink "Canvace.Heap/contains"}}{{/crossLink}},
+ * {{#crossLink "Canvace.Heap/find"}}{{/crossLink}} and
+ * {{#crossLink "Canvace.Heap/decreaseKey"}}{{/crossLink}} methods.
+ *
+ * @example
+ *	// create a min-heap
+ *	var heap = new Canvace.Heap(function (a, b) {
+ *		if (a < b) {
+ *			return -1; // a is more extreme
+ *		} else if (a > b) {
+ *			return 1;  // b is more extreme
+ *		} else {
+ *			return 0;  // same priority
+ *		}
+ *	});
  */
 Canvace.Heap = function (compare, same) {
 	if (!same) {
@@ -126,6 +142,27 @@ Canvace.Heap = function (compare, same) {
 	 *
 	 * @method push
 	 * @param element {Any} The element to be inserted.
+	 * @example
+	 *	// create a min-heap
+	 *	var heap = new Canvace.Heap(function (a, b) {
+	 *		if (a < b) {
+	 *			return -1;
+	 *		} else if (a > b) {
+	 *			return 1;
+	 *		} else {
+	 *			return 0;
+	 *		}
+	 *	});
+	 *	
+	 *	heap.push(4);
+	 *	heap.push(1);
+	 *	heap.push(3);
+	 *	heap.push(2);
+	 *	
+	 *	// output order will be 1, 2, 3, 4
+	 *	while (!heap.isEmpty()) {
+	 *		alert(heap.pop());
+	 *	}
 	 */
 	this.push = function (element) {
 		var index = heap.length;
@@ -147,6 +184,27 @@ Canvace.Heap = function (compare, same) {
 	 *
 	 * @method pop
 	 * @return {Any} The extracted element.
+	 * @example
+	 *	// create a min-heap
+	 *	var heap = new Canvace.Heap(function (a, b) {
+	 *		if (a < b) {
+	 *			return -1;
+	 *		} else if (a > b) {
+	 *			return 1;
+	 *		} else {
+	 *			return 0;
+	 *		}
+	 *	});
+	 *	
+	 *	heap.push(4);
+	 *	heap.push(1);
+	 *	heap.push(3);
+	 *	heap.push(2);
+	 *	
+	 *	// output order will be 1, 2, 3, 4
+	 *	while (!heap.isEmpty()) {
+	 *		alert(heap.pop());
+	 *	}
 	 */
 	this.pop = function () {
 		var result = heap[0];
@@ -171,6 +229,8 @@ Canvace.Heap = function (compare, same) {
 	 * @method peek
 	 * @return {Any} The lowest priority element, or `undefined` if the heap is
 	 * empty.
+	 * @example
+	 *	// TODO
 	 */
 	this.peek = function () {
 		if (heap.length > 0) {
@@ -194,6 +254,8 @@ Canvace.Heap = function (compare, same) {
 	 * @param element {Any} A `same`-equivalent element to look for.
 	 * @return {Boolean} `true` if the element was found in the heap, `false`
 	 * otherwise.
+	 * @example
+	 *	// TODO
 	 */
 	this.contains = function (element) {
 		return find(element, 0);
@@ -258,7 +320,8 @@ Canvace.Heap = function (compare, same) {
 	 * @param decrease {Function} A user-specified function that does the actual
 	 * decreasing.
 	 *
-	 * This is called during the execution of `decreaseKey` and receives one
+	 * This is called during the execution of
+	 * {{#crossLink "Canvace.Heap/decreaseKey"}}{{/crossLink}} and receives one
 	 * argument, the element whose key is being decreased; note that the
 	 * original element contained in the heap, not the possibly alternate
 	 * version specified to the `element` argument, is passed to the `decrease`

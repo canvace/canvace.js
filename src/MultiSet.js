@@ -72,9 +72,9 @@ Canvace.MultiSet = function () {
 	 * element can be of any type (numbers, strings, objects, etc.) and can be
 	 * inserted many times.
 	 *
-	 * The `add` function returns a function that removes the element. The
-	 * returned function is idempotent: it does not have any effect when called
-	 * again after the first time.
+	 * The {{#crossLink "Canvace.MultiSet/add}}{{/crossLink}} method returns a
+	 * function that removes the element. The returned function is idempotent:
+	 * it does not have any effect when called again after the first time.
 	 *
 	 * Example:
 	 *
@@ -100,7 +100,8 @@ Canvace.MultiSet = function () {
 	 *	}
 	 *
 	 * @method add
-	 * @param element {Any} The element to be inserted in the `MultiSet`.
+	 * @param element {Any} The element to be inserted in the
+	 * {{#crossLink "Canvace.MultiSet"}}MultiSet{{/crossLink}}.
 	 * @return {Function} A function that removes the inserted element.
 	 */
 	this.add = add;
@@ -132,8 +133,10 @@ Canvace.MultiSet = function () {
 	 * Note that the order of iteration is undefined as it depends on the order
 	 * of iteration over object properties implemented by the underlying
 	 * JavaScript engine. This is typically the insertion order, which means
-	 * `MultiSet.forEach` enumerates the elements in the same order they are
-	 * inserted by `MultiSet.add`, but you must not depend on that assumption.
+	 * {{#crossLink "Canvace.MultiSet/forEach"}}{{/crossLink}} enumerates the
+	 * elements in the same order they are inserted by
+	 * {{#crossLink "Canvace.MultiSet/add"}}{{/crossLink}}, but you must not
+	 * depend on that assumption.
 	 *
 	 * The iteration is interrupted if the `action` function returns `false`.
 	 * The following example adds some numbers to the container, then iterates
@@ -148,14 +151,15 @@ Canvace.MultiSet = function () {
 	 *
 	 * The number 4 is not enumerated.
 	 *
-	 * `MultiSet.forEach` returns `false` if the iteration completed and `true`
-	 * if it was interrupted, which is suitable for implementing finding
-	 * algorithms.
+	 * {{#crossLink "Canvace.MultiSet/forEach"}}{{/crossLink}} returns `false`
+	 * if the iteration completed and `true` if it was interrupted, which is
+	 * suitable for implementing finding algorithms.
 	 *
 	 * @method forEach
 	 * @param action {Function} The callback function that gets called for each
 	 * element of the multiset. It receives the current element and a callback
-	 * function suitable for deleting it from the `MultiSet`.
+	 * function suitable for deleting it from the
+	 * {{#crossLink "Canvace.MultiSet"}}MultiSet{{/crossLink}}.
 	 * @return {Boolean} `true` if `action` returned `false`, `false` if it did
 	 * not and all the elements were enumerated.
 	 */
@@ -189,21 +193,26 @@ Canvace.MultiSet = function () {
 	 * The `action` function receives one argument, the current element. Any
 	 * return value is ignored.
 	 *
-	 * This method is similar to the `forEach` method except it can be faster on
-	 * some browsers because it does not generate a closure (the element's
-	 * removal function) at each iterated element and does not analyze the
-	 * return value of the callback function. Infact, the iterated elements
-	 * cannot be removed and the iteration cannot be interrupted.
+	 * This method is similar to the
+	 * {{#crossLink "Canvace.MultiSet/forEach"}}{{/crossLink}} method except it
+	 * can be faster on some browsers because it does not generate a closure
+	 * (the element's removal function) at each iterated element and does not
+	 * analyze the return value of the callback function. Infact, the iterated
+	 * elements cannot be removed and the iteration cannot be interrupted.
 	 *
-	 * You usually use the `forEach` method, but you may also use `fastForEach`
+	 * You usually use the
+	 * {{#crossLink "Canvace.MultiSet/forEach"}}{{/crossLink}} method, but you
+	 * may also use {{#crossLink "Canvace.MultiSet/fastForEach"}}{{/crossLink}}
 	 * if your callback function does not use its second argument (the removal
 	 * function) and never returns `false`.
 	 *
 	 * Note that the order of iteration is undefined as it depends on the order
 	 * of iteration over object properties implemented by the underlying
 	 * JavaScript engine. This is typically the insertion order, which means
-	 * `MultiSet.fastForEach` enumerates the elements in the same order they are
-	 * inserted by `MultiSet.add`, but you must not depend on that assumption.
+	 * {{#crossLink "Canvace.MultiSet/fastForEach"}}{{/crossLink}} enumerates
+	 * the elements in the same order they are inserted by
+	 * {{#crossLink "Canvace.MultiSet/add"}}{{/crossLink}}, but you must not
+	 * rely on that assumption.
 	 *
 	 * @method fastForEach
 	 * @param action {Function} The callback function that gets called for each
