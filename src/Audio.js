@@ -42,16 +42,19 @@ Canvace.Audio = function () {
 
 	/**
 	 * Tries to load the requested audio resource.
+	 *
 	 * You are not required to use this method to manually load the audio
 	 * resources: you can rely on the functionalities exposed by
-	 * {{#crossLink "Canvace.Loader"}}{{/crossLink}} to load multiple resources
-	 * in one call and get notified of the loading progress.
+	 * {{#crossLink "Canvace.Loader"}}Loader{{/crossLink}} to load multiple
+	 * resources in one call and get notified of the loading progress.
 	 *
 	 * @method load
 	 * @param url {String} The URL where the audio resource resides.
 	 * @param [onload] {Function} An optional callback function to invoke when
-	 * the loading of the resource completes. This function gets passed the
-	 * `Canvace.Audio.SourceNode` that has just finished loading.
+	 * the loading of the resource completes.
+	 * @param onload.node {Canvace.Audio.SourceNode} The
+	 * {{#crossLink "Canvace.Audio.SourceNode"}}SourceNode{{/crossLink}} that
+	 * has just finished loading.
 	 * @param [onerror] {Function} An optional callback function to invoke if
 	 * the loading of the resource fails with an error.
 	 * @return {Canvace.Audio.SourceNode} An audio node instance.
@@ -63,11 +66,17 @@ Canvace.Audio = function () {
 	/**
 	 * Determines if the browser supports playing the requested MIME type.
 	 *
+	 * @method canPlayType
+	 * @param mimeType {String} The MIME type to check for.
+	 * @return {Boolean} `true` if the browser can play the specified MIME type,
+	 * `false` otherwise.
 	 * @example
 	 *	var audio = new Canvace.Audio();
-	 *	var playSound = function (node) {
+	 *	
+	 *	function playSound(node) {
 	 *		node.play();
-	 *	};
+	 *	}
+	 *	
 	 *	if (audio.canPlayType('audio/mp3')) {
 	 *		audio.load('audio/foo.mp3', playSound);
 	 *	} else if (audio.canPlayType('application/ogg')) {
@@ -75,10 +84,6 @@ Canvace.Audio = function () {
 	 *	} else {
 	 *		alert('No suitable audio resource available!');
 	 *	}
-	 *
-	 * @method canPlayType
-	 * @param mimeType {String} The MIME type to check for.
-	 * @return {Boolean} A boolean result.
 	 */
 	this.canPlayType = function (mimeType) {
 		return (audioElement.canPlayType(mimeType) !== '');
@@ -91,15 +96,19 @@ Canvace.Audio = function () {
 
 		/**
 		 * This class represents a sound resource that the browser is capable
-		 * of playing. If the browser supports WebAudio, this class wraps around
-		 * an `AudioSourceNode`; if it doesn't, this class wraps around an
+		 * of playing.
+		 *
+		 * If the browser supports WebAudio, this class wraps around an
+		 * `AudioSourceNode`; if it doesn't, this class wraps around an
 		 * `HTMLAudioElement`.
 		 *
 		 * You cannot instantiate this class directly: you can obtain a new
-		 * instance by using the `load` method of
-		 * {{#crossLink "Canvace.Audio"}}{{/crossLink}}, or with the methods
-		 * `getSound` and `playSound` made available by
-		 * {{#crossLink "Canvace.Loader"}}{{/crossLink}}.
+		 * instance by using the
+		 * {{#crossLink "Canvace.Audio/load"}}Audio.load{{/crossLink}},
+		 * {{#crossLink "Canvace.Loader/getSound"}}Loader.getSound{{/crossLink}}
+		 * or
+		 * {{#crossLink "Canvace.Loader/playSound"}}Loader.playSound{{/crossLink}}
+		 * method.
 		 *
 		 * @class Canvace.Audio.SourceNode
 		 */
@@ -151,7 +160,10 @@ Canvace.Audio = function () {
 			};
 
 			/**
-			 * Returns a clone of this `Canvace.Audio.SourceNode` instance.
+			 * Returns a clone of this
+			 * {{#crossLink "Canvace.Audio.SourceNode"}}SourceNode{{/crossLink}}
+			 * instance.
+			 *
 			 * The new instance will have the same sound resource associated
 			 * and the same flags applied (e.g., if this instance is set to be
 			 * looping, the cloned one will be as well).
@@ -166,11 +178,12 @@ Canvace.Audio = function () {
 			};
 
 			/**
-			 * Tells if the associated sound resource has completed loading.
+			 * Indicates whether the associated sound resource has completed
+			 * loading.
 			 *
 			 * @method isLoaded
-			 * @return {Boolean} Indicates whether it has completed loading or
-			 * not.
+			 * @return {Boolean} `true` if the associated sound resource has
+			 * completed loading, `false` otherwise.
 			 */
 			this.isLoaded = function () {
 				return loaded;
@@ -181,14 +194,14 @@ Canvace.Audio = function () {
 			 * again as soon as it ends its playback).
 			 *
 			 * @method setLooping
-			 * @param shouldLoop {Boolean} Indicates whether the playback should
-			 * loop or not.
+			 * @param loop {Boolean} Indicates whether the playback should loop
+			 * or not.
 			 * @chainable
 			 */
-			this.setLooping = function (shouldLoop) {
-				looping = shouldLoop;
+			this.setLooping = function (loop) {
+				looping = loop;
 				if (sourceNode) {
-					sourceNode.loop = shouldLoop;
+					sourceNode.loop = loop;
 				}
 				return thisObject;
 			};
