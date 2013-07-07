@@ -43,11 +43,11 @@
  * @param options.complete {Function} A mandatory callback function to invoke
  * when the loading of the assets completes.
  * @param options.complete.loader {Canvace.Loader} A reference to this
- * {{#crossLink "Canvace.Loader"}}{{/crossLink}} passed to the `complete`
+ * {{#crossLink "Canvace.Loader"}}Loader{{/crossLink}} passed to the `complete`
  * callback.
  * @param options.complete.stage {Canvace.Stage} A reference to an automatically
- * created {{#crossLink "Canvace.Stage"}}{{/crossLink}}. This is only passed to
- * the `complete` callback when the
+ * created {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}}. This is only
+ * passed to the `complete` callback when the
  * {{#crossLink "Canvace.Loader/loadStage"}}{{/crossLink}} is used to load data.
  * @param [options.progress] {Function} An optional callback function invoked as
  * the loading of the assets progresses.
@@ -401,11 +401,12 @@ Canvace.Loader = function (options) {
 	 * Asynchronously loads all the images associated with the given Canvace
 	 * stage and all the given sounds. This function takes care of loading the
 	 * JSON data from the server with an HTTP `GET` request and instantiating
-	 * a {{#crossLink "Canvace.Stage"}}{{/crossLink}} for the specified canvas.
+	 * a {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}} for the specified
+	 * canvas.
 	 *
 	 * When using this method, the registered completion handler will receive
 	 * two parameters: this loader instance, and a
-	 * {{#crossLink "Canvace.Stage"}}{{/crossLink}} object.
+	 * {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}} object.
 	 *
 	 * @method loadStage
 	 * @chainable
@@ -508,11 +509,13 @@ Canvace.Loader.getSourceInfo = function (source) {
 /**
  * Plays a sound represented by an audio asset previously loaded by the
  * loader. The audio asset is identified by the `name` argument, that must
- * correspond to a name passed to the `loadAssets` method.
+ * correspond to a name passed to the
+ * {{#crossLink "Canvace.Loader/loadAssets"}}{{/crossLink}} method.
  *
  * This method only _starts_ playing the sound, and immediately returns. It
- * works by simply calling the `play` method of the `Canvace.Audio.SourceNode`
- * interface.
+ * works by simply calling the
+ * {{#crossLink "Canvace.Audio.SourceNode/play"}}Audio.SourceNode.play{{/crossLink}}
+ * method.
  *
  * This method has no effect if the sound is already playing.
  *

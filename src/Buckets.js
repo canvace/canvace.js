@@ -19,24 +19,25 @@
  */
 
 /**
- * The `Buckets` class allows for efficient rendering of graphic elements by
- * implementing an algorithm that automatically discards the elements located
- * out of the viewport.
+ * This class allows for efficient rendering of graphic elements by implementing
+ * an algorithm that automatically discards the elements located out of the
+ * viewport.
  *
  * You can add any tiles or entities to the buckets using the provided `addXxx`
- * methods, the `forEachElement` method will then enumerate only the elements in
- * the current view.
+ * methods, the {{#crossLink "Canvace.Buckets/forEachElement"}}{{/crossLink}}
+ * method will then enumerate only the elements in the current view.
  *
  * The `Buckets` class also supports animated elements by enumerating the
  * correct frame for each element depending on the current timestamp as per
- * `Canvace.Timing.now`.
+ * {{#crossLink "Canvace.Timing/now"}}{{/crossLink}}.
  *
  * Before adding tiles and entities with the `addXxx` methods, tile and entity
  * descriptors must be registered using the provided `registerXxx` methods. This
  * is required in order to support animations.
  *
  * You do not usually need to use this class directly, as it is automatically
- * used by the `Stage` and `StageRenderer` classes.
+ * used by the {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}} and
+ * {{#crossLink "Canvace.StageRenderer"}}StageRenderer{{/crossLink}} classes.
  *
  * @class Canvace.Buckets
  * @constructor
@@ -104,7 +105,7 @@ Canvace.Buckets = (function () {
 		 * Represents an entity.
 		 *
 		 * This class cannot be instantiated directly, instances are returned by
-		 * the `Buckets.addEntity` method.
+		 * the {{#crossLink "Canvace.Buckets/addEntity"}}{{/crossLink}} method.
 		 *
 		 * @class Canvace.Buckets.Entity
 		 */
@@ -212,7 +213,8 @@ Canvace.Buckets = (function () {
 			/**
 			 * Updates the entity's position and possibly some internal data
 			 * structures so that the entity is enumerated correctly by the
-			 * `forEachElement` method after it is repositioned.
+			 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}}
+			 * method after it is repositioned.
 			 *
 			 * The specified `i`, `j` and `k` values may be real numbers.
 			 *
@@ -245,10 +247,11 @@ Canvace.Buckets = (function () {
 
 			/**
 			 * Removes the entity so that it is not enumerated by the
-			 * `Buckets.forEachElement` method any more.
+			 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}}
+			 * method any more.
 			 *
-			 * This method is idempotent: it does not have any effects when it is
-			 * called again after the first time.
+			 * This method is idempotent: it does not have any effects when it
+			 * is called again after the first time.
 			 *
 			 * @method remove
 			 * @return {Boolean} `true`.
@@ -268,8 +271,11 @@ Canvace.Buckets = (function () {
 
 			/**
 			 * Replaces the entity with another one identified by the specified
-			 * ID. This entity is removed as if the `remove` method was called,
-			 * and this `Entity` object becomes useless and should be discarded.
+			 * ID. This entity is removed as if the
+			 * {{#crossLink "Canvace.Buckets.Entity/remove"}}{{/crossLink}}
+			 * method was called, and this
+			 * {{#crossLink "Canvace.Buckets.Entity"}}Entity{{/crossLink}}
+			 * object becomes useless and should be discarded.
 			 *
 			 * @method replace
 			 * @param id {Number} The new entity's ID.
@@ -338,8 +344,10 @@ Canvace.Buckets = (function () {
 		 * Adds a tile to the buckets and returns a function that removes it.
 		 *
 		 * If the tile was configured as mutable in the Canvace Development
-		 * Environment it can also be removed using the `removeTile` method or
-		 * replaced using the `replaceTile` method.
+		 * Environment it can also be removed using the
+		 * {{#crossLink "Canvace.Buckets/removeTile"}}{{/crossLink}} method or
+		 * replaced using the
+		 * {{#crossLink "Canvace.Buckets/replaceTile"}}{{/crossLink}} method.
 		 *
 		 * The returned function does not receive any arguments and always
 		 * returns `true`, and can remove the tile even if it was not configured
@@ -412,7 +420,8 @@ Canvace.Buckets = (function () {
 		 *
 		 * When a mutable tile is found and successfully removed, the specified
 		 * tile is inserted at its location and a function to remove it is
-		 * returned (similarly to the `addTile` method).
+		 * returned (similarly to the
+		 * {{#crossLink "Canvace.Buckets/addTile"}}{{/crossLink}} method).
 		 *
 		 * @method replaceTile
 		 * @param i {Number} The I coordinate where the tile to replace is
@@ -445,15 +454,22 @@ Canvace.Buckets = (function () {
 		this.synchronize = frameTable.synchronize;
 
 		/**
-		 * Invokes the given callback function for each element within the viewport.
+		 * Invokes the given callback function for each element within the
+		 * viewport.
 		 *
-		 * The specified `action` callback function receives three arguments, `x`,
-		 * `y` and `id`, indicating the element's projected X coordinate, projected
-		 * Y coordinate and image ID, respectively.
+		 * For each enumerated element, the specified `action` callback function
+		 * receives the element's projected X coordinate, projected Y coordinate
+		 * and current frame image ID.
 		 *
 		 * @method forEachElement
 		 * @param action {Function} A callback function to invoke for each
 		 * enumerated element.
+		 * @param action.x {Number} The current element's projected X
+		 * coordinate.
+		 * @param action.y {Number} The current element's projected Y
+		 * coordinate.
+		 * @param action.id {String} An image ID that can be used to render the
+		 * current element (animations are taken into account).
 		 */
 		this.forEachElement = function (action) {
 			var origin = view.getOrigin();
@@ -477,18 +493,19 @@ Canvace.Buckets = (function () {
 
 	/**
 	 * Tweaking the size factor parameters allows to trade between speed and
-	 * memory occupation of the game.
+	 * memory footprint of the game.
 	 *
-	 * The default and minimum value for both parameters is 1. Specifying higher
-	 * values causes a lower memory fingerprint and higher execution times of
-	 * the `forEachElement` method.
+	 * The default and minimum value for both parameters is `1`. Specifying
+	 * higher values causes a lower memory fingerprint and higher execution
+	 * times of the
+	 * {{#crossLink "Canvace.Buckets/forEachElement"}}{{/crossLink}} method.
 	 *
 	 * @method setBucketSizeFactors
 	 * @static
 	 * @param widthFactorValue {Number} The bucket width factor parameter. The
-	 * default and minimum value is 1.
+	 * default and minimum value is `1`.
 	 * @param heightFactorValue {Number} The bucket height factor parameter. The
-	 * default and minimum value is 1.
+	 * default and minimum value is `1`.
 	 */
 	thisObject.setBucketSizeFactors = function (widthFactorValue, heightFactorValue) {
 		if (widthFactorValue < 1) {
