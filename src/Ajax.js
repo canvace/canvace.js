@@ -329,14 +329,14 @@ Canvace.Ajax = new (function () {
 
 	/**
 	 * Issues a `GET` HTTP request and returns a corresponding new
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
+	 * {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}} object.
 	 *
 	 * @method get
 	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
-	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
 	 * @param [data] {Object} Optional custom parameters to send to the server.
@@ -363,14 +363,14 @@ Canvace.Ajax = new (function () {
 
 	/**
 	 * Issues a `POST` HTTP request and returns a corresponding new
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
+	 * {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}} object.
 	 *
 	 * @method post
 	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
-	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
 	 * @param [data] {Object} Optional custom parameters to send to the server.
@@ -400,14 +400,14 @@ Canvace.Ajax = new (function () {
 
 	/**
 	 * Issues a `PUT` HTTP request and returns a corresponding new
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
+	 * {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}} object.
 	 *
 	 * @method put
 	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
-	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
 	 * @param [data] {Object} Optional custom parameters to send to the server.
@@ -438,14 +438,14 @@ Canvace.Ajax = new (function () {
 
 	/**
 	 * Issues a `DELETE` HTTP request and returns a corresponding new
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
+	 * {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}} object.
 	 *
 	 * @method _delete
 	 * @for Canvace.Ajax
 	 * @static
 	 * @param url {Mixed} This first parameter is either a string representing
 	 * the URL of the requested resource, or a dictionary of options to pass to
-	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}}.
+	 * the constructor of {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}}.
 	 *
 	 * See its documentation for more details about the allowed options.
 	 * @param [data] {Object} Optional custom parameters to send to the server.
@@ -480,17 +480,20 @@ Canvace.Ajax = new (function () {
 	 * Retrieves a resource by using a `GET` HTTP request and interprets its
 	 * contents as JSON.
 	 *
-	 * Returns a new {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} object.
+	 * Returns a new {{#crossLink "Canvace.Ajax.Request"}}Request{{/crossLink}}
+	 * object.
 	 *
 	 * @method getJSON
 	 * @static
 	 * @param url {String} The URL of the requested JSON resource.
 	 * @param [onLoad] {Function} The callback function to invoke when the
-	 * loading is complete. See the `onLoad` method of
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
+	 * loading is complete. See the
+	 * {{#crossLink "Canvace.Ajax.Request/onLoad"}}{{/crossLink}} method for
+	 * details.
 	 * @param [onError] {Function} The callback function to invoke when the
-	 * loading aborts with an error. See the `onError` method of
-	 * {{#crossLink "Canvace.Ajax.Request"}}{{/crossLink}} for details.
+	 * loading aborts with an error. See the
+	 * {{#crossLink "Canvace.Ajax.Request/onError"}}{{/crossLink}} method for
+	 * details.
 	 * @return {Canvace.Ajax.Request} The instantiated request object.
 	 * @example
 	 *	Canvace.Ajax.getJSON('/data/stage1.json', function (stageData) {

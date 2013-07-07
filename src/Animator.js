@@ -22,8 +22,8 @@
  * Computes interpolated animations for entity instances.
  *
  * An `Animator` object is actually a `tick`-like function that may be used in a
- * {{#crossLink "Canvace.RenderLoop"}}{{/crossLink}} and provides methods to
- * animate entity instances.
+ * {{#crossLink "Canvace.RenderLoop"}}RenderLoop{{/crossLink}} and provides
+ * methods to animate entity instances.
  *
  * An interpolated animation is performed by updating an instance's position,
  * velocity, uniform velocity or acceleration at every tick; all of these
@@ -32,24 +32,26 @@
  * overall duration (in milliseconds) of the animation.
  *
  * When using an `Animator` as the `tick` callback of a
- * {{#crossLink "Canvace.RenderLoop"}}{{/crossLink}} you can still specify your
- * own additional `tick` callback by either passing it to the `Animator`
- * constructor or {{#crossLink "Canvace.Animator/tick"}}{{/crossLink}} method.
+ * {{#crossLink "Canvace.RenderLoop"}}RenderLoop{{/crossLink}} you can still
+ * specify your own additional `tick` callback by either passing it to the
+ * `Animator` constructor or
+ * {{#crossLink "Canvace.Animator/tick"}}Animator.tick{{/crossLink}} method.
  * The specified `tick` callback is executed at each tick _after_ the update
  * procedures for the current animations.
  *
  * Note that the `Animator` does not invoke the
- * {{#crossLink "Canvace.Stage.Instance/update"}}{{/crossLink}} method of the
- * animated instances, so, for animations to have effect, either physics must be
- * enabled on the animated entities or you must invoke
- * {{#crossLink "Canvace.Stage.Instance/update"}}{{/crossLink}} manually (you
- * can do that in your `tick` callback function).
+ * {{#crossLink "Canvace.Stage.Instance/update"}}Instance.update{{/crossLink}}
+ * method of the animated instances, so, for animations to have effect, either
+ * physics must be enabled on the animated entities or you must invoke
+ * {{#crossLink "Canvace.Stage.Instance/update"}}Instance.update{{/crossLink}}
+ * manually (you can do that in your `tick` callback function).
  *
  * @class Canvace.Animator
  * @extends Function
  * @constructor
  * @param [tick] {Function} An optional user-defined `tick` callback function.
- * It is invoked at each tick using this `Animator` object as `this`.
+ * It is invoked at each tick using this
+ * {{#crossLink "Canvace.Animator"}}Animator{{/crossLink}} object as `this`.
  *
  * You can also specify this later using the
  * {{#crossLink "Canvace.Animator/tick"}}{{/crossLink}} method.
@@ -138,7 +140,9 @@ Canvace.Animator = function (tick) {
 	 * This method allows to define a callback later than construction time.
 	 *
 	 * If you do not specify a callback function, the previously set callback
-	 * function is unset and the `Animator` will not invoke any.
+	 * function is unset and the
+	 * {{#crossLink "Canvace.Animator"}}Animator{{/crossLink}} will not invoke
+	 * any.
 	 *
 	 * @method tick
 	 * @chainable

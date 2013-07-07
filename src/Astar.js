@@ -165,17 +165,19 @@ Canvace.Astar = function (epsilon) {
 	 * optimal one, where `epsilon` is the parameter specified to the
 	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} constructor.
 	 *
-	 * `startNode` is an {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}}-like
-	 * object representing the first node of the path to find;
-	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}}-like means it has to
-	 * provide the same properties and methods described by the documentation of
-	 * the {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} pseudo-class.
+	 * `startNode` is an
+	 * {{#crossLink "Canvace.Astar.Node"}}Astar.Node{{/crossLink}}-like object
+	 * representing the first node of the path to find;
+	 * _{{#crossLink "Canvace.Astar.Node"}}Astar.Node{{/crossLink}}-like_ means
+	 * it has to provide the same properties and methods described by the
+	 * documentation of the
+	 * {{#crossLink "Canvace.Astar.Node"}}Astar.Node{{/crossLink}} pseudo-class.
 	 *
 	 * The target node is identified when the estimated distance from it,
 	 * provided by each node, is zero; the algorithm stops when this happens.
 	 *
-	 * {{#crossLink "Canvace.Astar.Node"}}{{/crossLink}} objects allow to
-	 * specify a directed graph with weighted and labeled edges. Edge weights
+	 * {{#crossLink "Canvace.Astar.Node"}}Astar.Node{{/crossLink}} objects allow
+	 * to specify a directed graph with weighted and labeled edges. Edge weights
 	 * are real numbers and are used to compute the cost of a path. Edge labels
 	 * are strings and are used when describing the computed path as an array of
 	 * edges to walk.
