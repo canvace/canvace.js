@@ -107,7 +107,7 @@ Canvace.Visibility = new function () {
  * @param callback {Function} The callback function to invoke when a
  *   `visibilitychange` event is triggered.
  * @return {Mixed} A function which removes the event listener if the Page
- *   Visibility API is supported, or the boolean `false` otherwise
+ *   Visibility API is supported, or the boolean `false` otherwise.
  * @for Canvace
  */
 Canvace.onVisibilityChange = function (callback) {
