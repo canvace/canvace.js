@@ -89,7 +89,7 @@ Canvace.Audio = function () {
 		return (audioElement.canPlayType(mimeType) !== '');
 	};
 
-	var SourceNode = null;
+	var SourceNode;
 
 	if (typeof AudioContext !== 'undefined') {
 		var context = new AudioContext();
@@ -114,12 +114,12 @@ Canvace.Audio = function () {
 		 */
 		SourceNode = function (source, onload, onerror) {
 			var thisObject = this;
-			var sourceNode = null;
-			var bufferData = null;
 			var currentTime = 0;
 			var noteOnAt = 0;
 			var looping = false;
 			var loaded = false;
+			var sourceNode;
+			var bufferData;
 
 			/**
 			 * Plays the associated sound resource, resuming from the last
@@ -129,9 +129,10 @@ Canvace.Audio = function () {
 			 * @chainable
 			 */
 			this.play = function () {
-				var position = currentTime / 1000;
-				var remaining = bufferData.duration - position;
 				if (bufferData) {
+					var position = currentTime / 1000;
+					var remaining = bufferData.duration - position;
+
 					sourceNode = context.createBufferSource();
 					sourceNode.buffer = bufferData;
 					sourceNode.loop = looping;
@@ -244,7 +245,7 @@ Canvace.Audio = function () {
 			var thisObject = this;
 			var appended = false;
 			var loaded = false;
-			var context = null;
+			var context;
 
 			this.play = function () {
 				if (!appended) {
@@ -281,26 +282,20 @@ Canvace.Audio = function () {
 			} else {
 				context = createAudioElement();
 
-				(function () {
-					var setLoadCallback = function (eventName) {
-						var _onload = function () {
-							context.removeEventListener(eventName, _onload, false);
-
-							if (!loaded) {
-								loaded = true;
-
-								if (typeof onload === 'function') {
-									onload(thisObject);
-								}
-							}
-						};
-
-						context.addEventListener(eventName, _onload, false);
-					};
-
+				(function (setLoadCallback) {
 					setLoadCallback('canplay');
 					setLoadCallback('canplaythrough');
-				}());
+				}(function (eventName) {
+					context.addEventListener(eventName, function _onload() {
+						context.removeEventListener(eventName, _onload, false);
+						if (!loaded) {
+							loaded = true;
+							if (typeof onload === 'function') {
+								onload(thisObject);
+							}
+						}
+					}, false);
+				}));
 
 				context.addEventListener('error', function (e) {
 					if (typeof onerror === 'function') {
