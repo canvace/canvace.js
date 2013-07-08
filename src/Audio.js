@@ -130,16 +130,14 @@ Canvace.Audio = function () {
 			 */
 			this.play = function () {
 				if (bufferData) {
-					var position = currentTime / 1000;
-					var remaining = bufferData.duration - position;
-
 					sourceNode = context.createBufferSource();
 					sourceNode.buffer = bufferData;
 					sourceNode.loop = looping;
 					sourceNode.connect(context.destination);
 
-					noteOnAt = Canvace.Timing.now();
-					sourceNode.noteGrainOn(0, position, remaining);
+					var remaining = (bufferData.duration - currentTime);
+					noteOnAt = context.currentTime;
+					sourceNode.noteGrainOn(0, currentTime, remaining);
 				}
 				return thisObject;
 			};
@@ -155,7 +153,7 @@ Canvace.Audio = function () {
 					sourceNode.noteOff(0);
 					sourceNode.disconnect();
 
-					currentTime += Canvace.Timing.now() - noteOnAt;
+					currentTime += (context.currentTime - noteOnAt) % bufferData.duration;
 				}
 				return thisObject;
 			};
