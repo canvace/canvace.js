@@ -27,18 +27,21 @@
  * At each iteration, first all the entities that have physics enabled are
  * ticked and then a rendering is performed.
  *
- * The loop is not initially running: it starts when the `start` method is
- * called. It can be later suspended, resumed and eventually stopped.
+ * The loop is not initially running: it starts when the
+ * {{#crossLink "Canvace.RenderLoop/start"}}{{/crossLink}} method is called. It
+ * can be later suspended, resumed and eventually stopped.
  *
  * @class Canvace.RenderLoop
  * @constructor
  * @param stage {Canvace.Stage} The stage to render.
- * @param range {Canvace.Stage.Range} An optional `Canvace.Stage.Range` object
- * used to step only the currently visible part of a stage, potentially
- * resulting in better performances. If `null` is specified, the whole stage is
- * stepped at each iteration of the loop.
- * @param loader {Canvace.Loader} A `Loader` object used to get the necessary
- * images to render.
+ * @param range {Canvace.Stage.Range} An optional
+ * {{#crossLink "Canvace.Stage.Range"}}Stage.Range{{/crossLink}} object used to
+ * step only the currently visible part of a stage, potentially resulting in
+ * better performances. If `null` is specified, the whole stage is stepped at
+ * each iteration of the loop.
+ * @param loader {Canvace.Loader} A
+ * {{#crossLink "Canvace.Loader"}}Loader{{/crossLink}} object used to get the
+ * necessary images to render.
  * @param [userTick] {Function} An optional callback function that gets called
  * at each iteration of the render loop, _after_ the stage is ticked but
  * _before_ it is updated and rendered.
@@ -47,7 +50,9 @@
  * _before_ it is rendered.
  *
  * This second callback function is usually used to synchronize the view through
- * its synchronizer (see the `View.Synchronizer` class), hence its name.
+ * its synchronizer (see the
+ * {{#crossLink "Canvace.View.Synchronizer"}}View.Synchronizer{{/crossLink}}
+ * class), hence its name.
  *
  * The function does not receive any arguments and its return value is ignored.
  */
@@ -79,7 +84,8 @@ Canvace.RenderLoop = (function () {
 		 * Returns the desired frame rate, that corresponds to the `rate`
 		 * argument that was specified to the constructor.
 		 *
-		 * See also `getActualRate`.
+		 * See also
+		 * {{#crossLink "Canvace.RenderLoop/getActualRate"}}{{/crossLink}}.
 		 *
 		 * @method getRate
 		 * @return {Number} The desired frame rate.
@@ -134,7 +140,8 @@ Canvace.RenderLoop = (function () {
 		 *	Math.floor(1000 / rate)
 		 *
 		 * where "rate" is the _desired_ rate that was specified to the
-		 * constructor (the same value returned by `RenderLoop.getRate`).
+		 * constructor (the same value returned by
+		 * {{#crossLink "Canvace.RenderLoop/getRate"}}{{/crossLink}}).
 		 *
 		 * @method getPeriod
 		 * @return {Number} The period.
@@ -171,8 +178,9 @@ Canvace.RenderLoop = (function () {
 		};
 
 		/**
-		 * Returns the `Stage` rendererd by this render loop. This is the same
-		 * object specified to the constructor.
+		 * Returns the {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}}
+		 * rendererd by this render loop. This is the same object specified to
+		 * the constructor.
 		 *
 		 * @method getStage
 		 * @return {Canvace.Stage} The `Stage` rendered by this render loop.
@@ -187,8 +195,8 @@ Canvace.RenderLoop = (function () {
 		 * instance used to render the stage.
 		 *
 		 * @method getRenderer
-		 * @return {Canvace.StageRenderer} The StageRenderer used to render the
-		 * stage.
+		 * @return {Canvace.StageRenderer} The `StageRenderer` used to render
+		 * the stage.
 		 */
 		this.getRenderer = function () {
 			return renderer;
