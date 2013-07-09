@@ -158,6 +158,8 @@ Canvace.RenderLoop = (function () {
 		 * exceptionally low frame rate (which is typically due to temporary
 		 * conditions such as heavy system load).
 		 *
+		 * The default maximum period is `5000` milliseconds.
+		 *
 		 * @method getMaximumPeriod
 		 * @return {Number} The maximum period expressed in milliseconds.
 		 */
@@ -202,12 +204,18 @@ Canvace.RenderLoop = (function () {
 			return renderer;
 		};
 
-		function step(dt) {
-			stepInterface.tick(dt);
-			if (typeof userTick === 'function') {
-				userTick(dt);
+		var step = (function () {
+			if (typeof userTick !== 'function') {
+				return function (dt) {
+					stepInterface.tick(dt);
+				};
+			} else {
+				return function (dt) {
+					stepInterface.tick(dt);
+					userTick(dt);
+				};
 			}
-		}
+		}());
 
 		function updateLoop(delta, elapsed) {
 			delta = Math.min(delta, maxPeriod);
