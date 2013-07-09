@@ -231,7 +231,9 @@ Canvace.RenderLoop = (function () {
 					lastTimestamp = timestamp;
 
 					updateLoop(delta, elapsed);
-					token = requestAnimationFrame(tick, canvas);
+					if (running || !banned) {
+						token = requestAnimationFrame(tick, canvas);
+					}
 				}, canvas);
 			}
 			return thisObject;
