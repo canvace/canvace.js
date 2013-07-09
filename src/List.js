@@ -68,16 +68,18 @@ Canvace.List = function () {
 		};
 
 		/**
-		 * Returns an `Accessor` for accessing the previous element of the list,
-		 * or `null` if this `Accessor` represents the first element.
+		 * Returns an
+		 * {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLink}} for
+		 * accessing the previous element of the list, or `null` if this
+		 * Accessor represents the first element.
 		 *
 		 * An exception is thrown if the element represented by this accessor
 		 * has been removed by this or any other accessor.
 		 *
 		 * @method previous
-		 * @return {Canvace.List.Accessor} An `Accessor` for accessing the
-		 * previous element, or `null` if this `Accessor` represents the
-		 * first element.
+		 * @return {Canvace.List.Accessor} An Accessor for accessing the
+		 * previous element, or `null` if this Accessor represents the first
+		 * element.
 		 * @example
 		 *	var list = new Canvace.List();
 		 *	list.addTail(1);
@@ -100,16 +102,17 @@ Canvace.List = function () {
 		};
 
 		/**
-		 * Returns an `Accessor` for accessing the next element of the list, or
-		 * `null` if this `Accessor` represents the last element.
+		 * Returns an
+		 * {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLink}} for
+		 * accessing the next element of the list, or `null` if this Accessor
+		 * represents the last element.
 		 *
 		 * An exception is thrown if the element represented by this accessor
 		 * has been removed by this or any other accessor.
 		 *
 		 * @method next
-		 * @return {Canvace.List.Accessor} An `Accessor` for accessing the
-		 * next element, or `null` if this `Accessor` represents the last
-		 * element.
+		 * @return {Canvace.List.Accessor} An Accessor for accessing the next
+		 * element, or `null` if this Accessor represents the last element.
 		 * @example
 		 *	var list = new Canvace.List();
 		 *	list.addTail(1);
@@ -176,12 +179,13 @@ Canvace.List = function () {
 	/**
 	 * Adds the specified element to the list before the current head element.
 	 *
-	 * An `Accessor` to the new element is returned.
+	 * An {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLink}} to the
+	 * new element is returned.
 	 *
 	 * @method addHead
 	 * @for Canvace.List
 	 * @param element {Any} The element to add.
-	 * @return {Canvace.List.Accessor} An `Accessor` to the added element.
+	 * @return {Canvace.List.Accessor} An Accessor to the added element.
 	 */
 	this.addHead = function (element) {
 		head = {
@@ -197,12 +201,12 @@ Canvace.List = function () {
 	};
 
 	/**
-	 * Returns an `Accessor` to the head element, or `null` if the list does not
-	 * contain any elements.
+	 * Returns an {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLink}}
+	 * to the head element, or `null` if the list does not contain any elements.
 	 *
 	 * @method getHead
-	 * @return {Canvace.List.Accessor} An `Accessor` to the current head
-	 * element, or `null` if the list is empty.
+	 * @return {Canvace.List.Accessor} An Accessor to the current head element,
+	 * or `null` if the list is empty.
 	 */
 	this.getHead = function () {
 		return new Accessor(head);
@@ -211,11 +215,12 @@ Canvace.List = function () {
 	/**
 	 * Adds the specified element to the list after the current tail element.
 	 *
-	 * An `Accessor` to the new element is returned.
+	 * An {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLink}} to the
+	 * new element is returned.
 	 *
 	 * @method addTail
 	 * @param element {Any} The element to add.
-	 * @return {Canvace.List.Accessor} An `Accessor` to the added element.
+	 * @return {Canvace.List.Accessor} An Accessor to the added element.
 	 */
 	this.addTail = function (element) {
 		tail = {
@@ -231,12 +236,12 @@ Canvace.List = function () {
 	};
 
 	/**
-	 * Returns an `Accessor` to the tail element, or `null` if the list does not
-	 * contain any elements.
+	 * Returns an {{#crossLink "Canvace.List.Accessor"}}Accessor{{/crossLinK}}
+	 * to the tail element, or `null` if the list does not contain any elements.
 	 *
 	 * @method getTail
-	 * @return {Canvace.List.Accessor} An `Accessor` to the current tail
-	 * element, or `null` if the list is empty.
+	 * @return {Canvace.List.Accessor} An Accessor to the current tail element,
+	 * or `null` if the list is empty.
 	 */
 	this.getTail = function () {
 		return new Accessor(tail);
@@ -278,9 +283,11 @@ Canvace.List = function () {
 	/**
 	 * Iterates over the contained elements, from the first to the last.
 	 *
-	 * This method is faster than manually iterating using `List.getHead` and
-	 * subsequent `Accessor.next` calls because it does not instantiate
-	 * accessors: the elements are returned directly.
+	 * This method is faster than manually iterating using
+	 * {{#crossLink "Canvace.List/getHead"}}{{/crossLink}} and subsequent
+	 * {{#crossLink "Canvace.List.Accessor/next"}}Accessor.next{{/crossLink}}
+	 * calls because it does not instantiate accessors: the elements are
+	 * returned directly.
 	 *
 	 * For each enumerated element the specified `action` callback function is
 	 * called and is passed the element.
@@ -309,9 +316,11 @@ Canvace.List = function () {
 	 * Iterates over the contained elements in reverse order, from the last to
 	 * the first.
 	 *
-	 * This method is faster than manually iterating using `List.getTail` and
-	 * subsequent `Accessor.previous` calls because it does not instantiate
-	 * accessors: the elements are returned directly.
+	 * This method is faster than manually iterating using
+	 * {{#crossLink "Canvace.List/getTail"}}{{/crossLink}} and subsequent
+	 * {{#crossLink "Canvace.List.Accessor/previous"}}Accessor.previous{{/crossLink}}
+	 * calls because it does not instantiate accessors: the elements are
+	 * returned directly.
 	 *
 	 * For each enumerated element the specified `action` callback function is
 	 * called and is passed the element.
