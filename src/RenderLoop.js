@@ -19,7 +19,8 @@
  */
 
 /**
- * Provides a main loop implementation for the specified `Stage`.
+ * Provides a main loop implementation for the specified
+ * {{#crossLink "Canvace.Stage"}}Stage{{/crossLink}}.
  *
  * The loop runs at the specified rate (expressed in iterations per second).
  *
@@ -143,20 +144,27 @@ Canvace.RenderLoop = (function () {
 		};
 
 		/**
-		 * TODO
+		 * Returns the current _maximum period_, which is the maximum allowed
+		 * period of time between two frames. If more than the maximum period
+		 * occurs the time delta is reduced to the maximum period value so that
+		 * physics and animations are not stepped "too much" in case of
+		 * exceptionally low frame rate (which is typically due to temporary
+		 * conditions such as heavy system load).
 		 *
 		 * @method getMaximumPeriod
-		 * @return {Number} TODO
+		 * @return {Number} The maximum period expressed in milliseconds.
 		 */
 		this.getMaximumPeriod = function () {
 			return maxPeriod;
 		};
 
 		/**
-		 * TODO
+		 * Sets the maximum period. See
+		 * {{#crossLink "Canvace.RenderLoop/getMaximumPeriod"}}{{/crossLink}}
+		 * for more information.
 		 *
 		 * @method setMaximumPeriod
-		 * @param {Number} value TODO
+		 * @param {Number} value The new value expressed in milliseconds.
 		 */
 		this.setMaximumPeriod = function (value) {
 			maxPeriod = value;
@@ -174,11 +182,13 @@ Canvace.RenderLoop = (function () {
 		};
 
 		/**
-		 * Returns the `StageRenderer` instance used to render the stage.
+		 * Returns the
+		 * {{#crossLink "Canvace.StageRenderer"}}StageRenderer{{/crossLink}}
+		 * instance used to render the stage.
 		 *
 		 * @method getRenderer
-		 * @return {Canvace.StageRenderer} The `StageRenderer` used to render
-		 * the stage.
+		 * @return {Canvace.StageRenderer} The StageRenderer used to render the
+		 * stage.
 		 */
 		this.getRenderer = function () {
 			return renderer;
@@ -221,7 +231,7 @@ Canvace.RenderLoop = (function () {
 					lastTimestamp = timestamp;
 
 					updateLoop(delta, elapsed);
-					token = requestAnimationFrame(tick);
+					token = requestAnimationFrame(tick, canvas);
 				}, canvas);
 			}
 			return thisObject;
@@ -265,7 +275,8 @@ Canvace.RenderLoop = (function () {
 		 *
 		 * If the loop is suspended, it is resumed.
 		 *
-		 * If it is running or it has been stopped by the `stop` method, this
+		 * If it is running or it has been stopped by the
+		 + {{#crossLink "Canvace.RenderLoop/stop"}}{{/crossLink}} method, this
 		 * method does not have any effects.
 		 *
 		 * @method run
@@ -308,10 +319,12 @@ Canvace.RenderLoop = (function () {
 
 		/**
 		 * Definitely stops the loop. This means the loop will not be running
-		 * any more, not even if the `start` method is called again.
+		 * any more, not even if the
+		 * {{#crossLink "Canvace.RenderLoop/start"}}{{/crossLink}} method is
+		 * called again.
 		 *
 		 * If you just want to suspend the loop and resume it later, use the
-		 * `suspend` method.
+		 * {{#crossLink "Canvace.RenderLoop/suspend"}}{{/crossLink}} method.
 		 *
 		 * @method stop
 		 */
@@ -324,7 +337,8 @@ Canvace.RenderLoop = (function () {
 		};
 
 		/**
-		 * Indicates whether the loop has been stopped by the `stop` method.
+		 * Indicates whether the loop has been stopped by the
+		 * {{#crossLink "Canvace.RenderLoop/stop"}}{{/crossLink}} method.
 		 *
 		 * @method isStopped
 		 * @return {Boolean} `true` if the loop has been stopped, `false`
@@ -337,7 +351,9 @@ Canvace.RenderLoop = (function () {
 
 	/**
 	 * Configures loop settings. The settings are changed globally and affect
-	 * only `RenderLoop` objects created since the last `setLoop` call.
+	 * only {{#crossLink "Canvace.RenderLoop"}}RenderLoop{{/crossLink}} objects
+	 * created since the last
+	 * {{#crossLink "Canvace.RenderLoop/setLoop"}}{{/crossLink}} call.
 	 *
 	 * @method setLoop
 	 * @static
