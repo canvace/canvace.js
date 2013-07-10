@@ -84,9 +84,17 @@ Canvace.Buckets = function (view, data) {
 		this.getMaxS = function () {
 			return maxS;
 		};
-		this.forEach = function (s, action) {
+		this.enumerateSection = function (s, origin, timestamp, action) {
 			if (sections.hasOwnProperty(s)) {
-				sections[s].fastForEach(action);
+				sections[s].fastForEach(function (element) {
+					if ((element.p[0] < -origin.x + width) &&
+						(element.p[1] < -origin.y + height) &&
+						(element.p[0] + element.width >= -origin.x) &&
+						(element.p[1] + element.height >= -origin.y))
+					{
+						action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
+					}
+				});
 			}
 		};
 	}
@@ -472,43 +480,43 @@ Canvace.Buckets = function (view, data) {
 	 * current element (animations are taken into account).
 	 */
 	this.forEachElement = function (action) {
+		function getBucket(i, j) {
+			var key = i + ' ' + j;
+			if (buckets.hasOwnProperty(key)) {
+				return buckets[key];
+			} else {
+				return buckets[key] = new Bucket();
+			}
+		}
+
 		var origin = view.getOrigin();
 		var i = Math.floor(-origin.y / height);
 		var j = Math.floor(-origin.x / width);
-		(function (buckets) {
-			var minS = buckets.map(function (bucket) {
-				return bucket.getMinS();
-			}).reduce(function (previous, current) {
-				return Math.min(previous, current);
-			});
-			var maxS = buckets.map(function (bucket) {
-				return bucket.getMaxS();
-			}).reduce(function (previous, current) {
-				return Math.max(previous, current);
-			});
-			var timestamp = Canvace.Timing.now();
-			for (var s = minS; s <= maxS; s++) {
-				buckets.forEach(function (bucket) {
-					bucket.forEach(s, function (element) {
-						if ((element.p[0] < -origin.x + width) &&
-							(element.p[1] < -origin.y + height) &&
-							(element.p[0] + element.width >= -origin.x) &&
-							(element.p[1] + element.height >= -origin.y))
-						{
-							action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
-						}
-					});
-				});
-			}
-		}([
-			i + ' ' + j,
-			i + ' ' + (j + 1),
-			(i + 1) + ' ' + j,
-			(i + 1) + ' ' + (j + 1)
-		].filter(function (key) {
-			return key in buckets;
-		}).map(function (key) {
-			return buckets[key];
-		})));
+
+		var bucket1 = getBucket(i, j);
+		var bucket2 = getBucket(i, j + 1);
+		var bucket3 = getBucket(i + 1, j);
+		var bucket4 = getBucket(i + 1, j + 1);
+
+		var minS = Math.min(
+			bucket1.getMinS(),
+			bucket2.getMinS(),
+			bucket3.getMinS(),
+			bucket4.getMinS()
+			);
+		var maxS = Math.max(
+			bucket1.getMaxS(),
+			bucket2.getMaxS(),
+			bucket3.getMaxS(),
+			bucket4.getMaxS()
+			);
+
+		var timestamp = Canvace.Timing.now();
+		for (var s = minS; s <= maxS; s++) {
+			bucket1.enumerateSection(s, origin, timestamp, action);
+			bucket2.enumerateSection(s, origin, timestamp, action);
+			bucket3.enumerateSection(s, origin, timestamp, action);
+			bucket4.enumerateSection(s, origin, timestamp, action);
+		}
 	};
 };
