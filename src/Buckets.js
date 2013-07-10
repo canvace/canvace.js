@@ -78,11 +78,15 @@ Canvace.Buckets = function (view, data) {
 				timeOffset: timeOffset
 			});
 		};
-		this.forEach = function (action) {
-			for (var s = minS; s <= maxS; s++) {
-				if (sections.hasOwnProperty(s)) {
-					sections[s].fastForEach(action);
-				}
+		this.getMinS = function () {
+			return minS;
+		};
+		this.getMaxS = function () {
+			return maxS;
+		};
+		this.forEach = function (s, action) {
+			if (sections.hasOwnProperty(s)) {
+				sections[s].fastForEach(action);
 			}
 		};
 	}
@@ -471,25 +475,40 @@ Canvace.Buckets = function (view, data) {
 		var origin = view.getOrigin();
 		var i = Math.floor(-origin.y / height);
 		var j = Math.floor(-origin.x / width);
-		(function (processBucket) {
-			processBucket(i, j);
-			processBucket(i, j + 1);
-			processBucket(i + 1, j);
-			processBucket(i + 1, j + 1);
-		}(function (i, j) {
-			var key = i + ' ' + j;
-			if (buckets.hasOwnProperty(key)) {
-				var timestamp = Canvace.Timing.now();
-				buckets[key].forEach(function (element) {
-					if ((element.p[0] < -origin.x + width) &&
-						(element.p[1] < -origin.y + height) &&
-						(element.p[0] + element.width >= -origin.x) &&
-						(element.p[1] + element.height >= -origin.y))
-					{
-						action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
-					}
+		(function (buckets) {
+			var minS = buckets.map(function (bucket) {
+				return bucket.getMinS();
+			}).reduce(function (previous, current) {
+				return Math.min(previous, current);
+			});
+			var maxS = buckets.map(function (bucket) {
+				return bucket.getMaxS();
+			}).reduce(function (previous, current) {
+				return Math.max(previous, current);
+			});
+			var timestamp = Canvace.Timing.now();
+			for (var s = minS; s <= maxS; s++) {
+				buckets.forEach(function (bucket) {
+					bucket.forEach(s, function (element) {
+						if ((element.p[0] < -origin.x + width) &&
+							(element.p[1] < -origin.y + height) &&
+							(element.p[0] + element.width >= -origin.x) &&
+							(element.p[1] + element.height >= -origin.y))
+						{
+							action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
+						}
+					});
 				});
 			}
-		}));
+		}([
+			i + ' ' + j,
+			i + ' ' + (j + 1),
+			(i + 1) + ' ' + j,
+			(i + 1) + ' ' + (j + 1)
+		].filter(function (key) {
+			return key in buckets;
+		}).map(function (key) {
+			return buckets[key];
+		})));
 	};
 };
