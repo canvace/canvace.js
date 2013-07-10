@@ -62,6 +62,10 @@ Canvace.Loader = function (options) {
 		return string.replace(/[\\\/]$/, '');
 	}
 
+	if (typeof options.basePath === 'string') {
+		options.imagesPath = options.soundsPath = removeTrailingSlash(options.basePath);
+	}
+
 	if (typeof options.imagesPath !== 'string') {
 		throw 'Invalid value specified for "imagesPath"';
 	}
@@ -73,10 +77,6 @@ Canvace.Loader = function (options) {
 	}
 
 	options.soundsPath = removeTrailingSlash(options.soundsPath);
-
-	if (typeof options.basePath === 'string') {
-		options.imagesPath = options.soundsPath = removeTrailingSlash(options.basePath);
-	}
 
 	if (typeof options.complete !== 'function') {
 		throw 'Invalid callback specified for "complete"';
