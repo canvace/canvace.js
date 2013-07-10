@@ -84,6 +84,50 @@ Canvace.Buckets = function (view, data) {
 		this.getMaxS = function () {
 			return maxS;
 		};
+		this.prerender = function () {
+			for (var s in sections) {
+				var renderableElements = [];
+				sections[s].forEach(function (element, remove) {
+					if (element.static) {
+						element.remove = remove;
+						renderableElements.push(element);
+					}
+				});
+				if (renderableElements.length) {
+					var firstElement = renderableElements[0];
+					var left = renderableElements.reduce(function (left, element) {
+						return Math.min(left, element.p[0]);
+					}, firstElement.p[0]);
+					var top = renderableElements.reduce(function (top, element) {
+						return Math.min(top, element.p[1]);
+					}, firstElement.p[1]);
+					var right = renderableElements.reduce(function (right, element) {
+						return Math.max(right, element.p[0] + element.width);
+					}, firstElement.p[0] + firstElement.width);
+					var bottom = renderableElements.reduce(function (bottom, element) {
+						return Math.max(bottom, element.p[1] + element.height);
+					}, firstElement.p[0] + firstElement.height);
+					(function (canvas) {
+						canvas.width = right - left + 1;
+						canvas.height = bottom - top + 1;
+						var context = canvas.getContext('2d');
+						renderableElements.forEach(function (element) {
+							context.drawImage(element.getFrame(0), element.p[0] - left, element.p[1] - top);
+							element.remove();
+						});
+						sections[s].add({
+							p: [left, top, s],
+							width: right - left + 1,
+							height: bottom - top + 1,
+							getFrame: function () {
+								return canvas;
+							},
+							timeOffset: 0
+						});
+					}(document.createElement('canvas')));
+				}
+			}
+		};
 		this.enumerateSection = function (s, origin, timestamp, action) {
 			if (sections.hasOwnProperty(s)) {
 				sections[s].fastForEach(function (element) {
@@ -100,6 +144,15 @@ Canvace.Buckets = function (view, data) {
 	}
 
 	var buckets = {};
+
+	function getBucket(i, j) {
+		var key = i + ' ' + j;
+		if (buckets.hasOwnProperty(key)) {
+			return buckets[key];
+		} else {
+			return buckets[key] = new Bucket();
+		}
+	}
 
 	function MockElement() {
 		this.updatePosition = function () {};
@@ -138,11 +191,7 @@ Canvace.Buckets = function (view, data) {
 		var removed = false;
 
 		function addToBucket(i, j) {
-			var key = i + ' ' + j;
-			if (!buckets.hasOwnProperty(key)) {
-				buckets[key] = new Bucket();
-			}
-			removers.push(buckets[key].add(p, element.width, element.height, animation, timeOffset));
+			removers.push(getBucket(i, j).add(p, element.width, element.height, animation, timeOffset));
 		}
 
 		function addToBuckets() {
@@ -480,15 +529,6 @@ Canvace.Buckets = function (view, data) {
 	 * current element (animations are taken into account).
 	 */
 	this.forEachElement = function (action) {
-		function getBucket(i, j) {
-			var key = i + ' ' + j;
-			if (buckets.hasOwnProperty(key)) {
-				return buckets[key];
-			} else {
-				return buckets[key] = new Bucket();
-			}
-		}
-
 		var origin = view.getOrigin();
 		var i = Math.floor(-origin.y / height);
 		var j = Math.floor(-origin.x / width);
