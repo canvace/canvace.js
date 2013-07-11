@@ -47,9 +47,6 @@
  * Environment.
  */
 Canvace.Buckets = function (view, data) {
-	var lalal = 0;
-	var lolol = 0;
-
 	var width = view.getWidth();
 	var height = view.getHeight();
 	var frameTable = new Canvace.FrameTable(data);
@@ -65,84 +62,80 @@ Canvace.Buckets = function (view, data) {
 	}());
 
 	function Bucket() {
-		var sections = {};
-		var minS = 0, maxS = 0;
-		this.add = function (p, width, height, getFrame, timeOffset) {
-			minS = Math.min(minS, p[2]);
-			maxS = Math.max(maxS, p[2]);
-			if (!sections[p[2]]) {
-				sections[p[2]] = new Canvace.MultiSet();
-			}
-			return sections[p[2]].add({
-				p: p,
-				width: width,
-				height: height,
-				static: getFrame.static,
-				getFrame: getFrame,
-				timeOffset: timeOffset
-			});
-		};
-		this.getMinS = function () {
-			return minS;
-		};
-		this.getMaxS = function () {
-			return maxS;
-		};
-		this.prerender = function (loader) {
-			for (var s in sections) {
-				if (sections.hasOwnProperty(s)) {
-					var renderableElements = [];
-					sections[s].forEach(function (element, remove) {
-						if (element.static) {
-							element.remove = remove;
-							renderableElements.push(element);
-						}
-					});
-					if (renderableElements.length) {
-						var firstElement = renderableElements[0];
-						var left = renderableElements.reduce(function (left, element) {
-							return Math.min(left, element.p[0]);
-						}, firstElement.p[0]);
-						var top = renderableElements.reduce(function (top, element) {
-							return Math.min(top, element.p[1]);
-						}, firstElement.p[1]);
-						var right = renderableElements.reduce(function (right, element) {
-							return Math.max(right, element.p[0] + element.width);
-						}, firstElement.p[0] + firstElement.width);
-						var bottom = renderableElements.reduce(function (bottom, element) {
-							return Math.max(bottom, element.p[1] + element.height);
-						}, firstElement.p[0] + firstElement.height);
-						(function (canvas) {
-							canvas.width = right - left + 1;
-							canvas.height = bottom - top + 1;
-							var context = canvas.getContext('2d');
-							renderableElements.forEach(function (element) {
-								context.drawImage(loader.getImage(element.getFrame(0)), element.p[0] - left, element.p[1] - top);
-								element.remove();
-							});
-							sections[s].add({
-								p: [left, top, parseInt(s, 10)],
-								width: right - left + 1,
-								height: bottom - top + 1,
-								static: true,
-								getFrame: function () {
-									return canvas;
-								},
-								timeOffset: 0
-							});
-							lalal++;
-							lolol += canvas.width * canvas.height;
-						}(document.createElement('canvas')));
+		this.sections = {};
+		this.minS = 0;
+		this.maxS = 0;
+	}
+
+	Bucket.prototype.add = function (p, width, height, getFrame, timeOffset) {
+		this.minS = Math.min(this.minS, p[2]);
+		this.maxS = Math.max(this.maxS, p[2]);
+		if (!this.sections[p[2]]) {
+			this.sections[p[2]] = new Canvace.MultiSet();
+		}
+		return this.sections[p[2]].add({
+			p: p,
+			width: width,
+			height: height,
+			static: getFrame.static,
+			getFrame: getFrame,
+			timeOffset: timeOffset
+		});
+	};
+
+	Bucket.prototype.prerender = function (loader) {
+		for (var s in this.sections) {
+			if (this.sections.hasOwnProperty(s)) {
+				var renderableElements = [];
+				this.sections[s].forEach(function (element, remove) {
+					if (element.static) {
+						element.remove = remove;
+						renderableElements.push(element);
 					}
+				});
+				if (renderableElements.length) {
+					var firstElement = renderableElements[0];
+					var left = renderableElements.reduce(function (left, element) {
+						return Math.min(left, element.p[0]);
+					}, firstElement.p[0]);
+					var top = renderableElements.reduce(function (top, element) {
+						return Math.min(top, element.p[1]);
+					}, firstElement.p[1]);
+					var right = renderableElements.reduce(function (right, element) {
+						return Math.max(right, element.p[0] + element.width);
+					}, firstElement.p[0] + firstElement.width);
+					var bottom = renderableElements.reduce(function (bottom, element) {
+						return Math.max(bottom, element.p[1] + element.height);
+					}, firstElement.p[0] + firstElement.height);
+					(function (canvas) {
+						canvas.width = right - left + 1;
+						canvas.height = bottom - top + 1;
+						var context = canvas.getContext('2d');
+						renderableElements.forEach(function (element) {
+							context.drawImage(loader.getImage(element.getFrame(0)), element.p[0] - left, element.p[1] - top);
+							element.remove();
+						});
+						this.sections[s].add({
+							p: [left, top, parseInt(s, 10)],
+							width: right - left + 1,
+							height: bottom - top + 1,
+							static: true,
+							getFrame: function () {
+								return canvas;
+							},
+							timeOffset: 0
+						});
+					}(document.createElement('canvas')));
 				}
 			}
-		};
-		this.enumerateSection = function (s, action) {
-			if (sections.hasOwnProperty(s)) {
-				sections[s].fastForEach(action);
-			}
-		};
-	}
+		}
+	};
+
+	Bucket.prototype.enumerateSection = function (s, action) {
+		if (this.sections.hasOwnProperty(s)) {
+			this.sections[s].fastForEach(action);
+		}
+	};
 
 	var buckets = {};
 
@@ -444,10 +437,9 @@ Canvace.Buckets = function (view, data) {
 		}
 
 		var entity = data.entities[id];
-
-		return new Element(entity, function () {
-			return frameTable.getEntityAnimation(id);
-		}, i, j, k);
+		var animation = frameTable.getEntityAnimation(id);
+		animation.static = false;
+		return new Element(entity, animation, i, j, k);
 	};
 
 	/**
@@ -539,16 +531,16 @@ Canvace.Buckets = function (view, data) {
 		var bucket4 = getBucket(i + 1, j + 1);
 
 		var minS = Math.min(
-			bucket1.getMinS(),
-			bucket2.getMinS(),
-			bucket3.getMinS(),
-			bucket4.getMinS()
+			bucket1.minS,
+			bucket2.minS,
+			bucket3.minS,
+			bucket4.minS
 			);
 		var maxS = Math.max(
-			bucket1.getMaxS(),
-			bucket2.getMaxS(),
-			bucket3.getMaxS(),
-			bucket4.getMaxS()
+			bucket1.maxS,
+			bucket2.maxS,
+			bucket3.maxS,
+			bucket4.maxS
 			);
 
 		var timestamp = Canvace.Timing.now();
