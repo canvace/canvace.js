@@ -119,6 +119,7 @@ Canvace.Buckets = function (view, data) {
 							p: [left, top, s],
 							width: right - left + 1,
 							height: bottom - top + 1,
+							static: true,
 							getFrame: function () {
 								return canvas;
 							},
@@ -557,6 +558,30 @@ Canvace.Buckets = function (view, data) {
 			bucket2.enumerateSection(s, origin, timestamp, action);
 			bucket3.enumerateSection(s, origin, timestamp, action);
 			bucket4.enumerateSection(s, origin, timestamp, action);
+		}
+	};
+
+	/**
+	 * Prerenders the "static" parts of the stage to internal canvases so as to
+	 * speed up the final rendering: after calling this method, the
+	 * {{#crossLink "Canvace.Buckets/forEachElement"}}{{/crossLink}} method will
+	 * return less elements in that some of them will have been joined, and less
+	 * `drawImage` calls will be required by the
+	 * {{#crossLink "Canvace.Buckets/forEachElement"}}forEachElement{{/crossLink}}
+	 * caller.
+	 *
+	 * Only static tiles whose animations include only one frame are considered
+	 * "static" parts of the stage and taken into account for prerendering.
+	 *
+	 * Call this method _after_ adding _all_ the various elements with the
+	 * {{#crossLink "Canvace.Buckets/addEntity"}}{{/crossLink}} and
+	 * {{#crossLink "Canvace.Buckets/addTile"}}{{/crossLink}} methods.
+	 *
+	 * @method prerender
+	 */
+	this.prerender = function () {
+		for (var key in buckets) {
+			buckets[key].prerender();
 		}
 	};
 };

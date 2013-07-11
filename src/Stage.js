@@ -1141,6 +1141,7 @@ Canvace.Stage = function (data, canvas) {
 			};
 			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
 		}
+		buckets.prerender();
 		map = new Canvace.TileMap(data, buckets);
 	}());
 
