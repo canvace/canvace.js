@@ -38,10 +38,13 @@ Canvace.FrameTable = function (data) {
 	}
 
 	function Animation(frames) {
+		var animation;
 		if (frames.length < 2) {
-			return function () {
+			animation = function () {
 				return frames[0].id;
 			};
+			animation.static = true;
+			return animation;
 		} else {
 			var partialUnit = 0;
 			var fullDuration = 0;
@@ -77,19 +80,23 @@ Canvace.FrameTable = function (data) {
 			synchronize(partialUnit);
 			synchronizers.push(synchronize);
 
-			if (looping) {
-				return function (timestamp) {
-					return table[Math.floor((timestamp % fullDuration) / unit) * unit];
-				};
-			} else {
-				return function (timestamp) {
-					if (timestamp >= fullDuration) {
-						return lastFrameId;
-					} else {
-						return table[Math.floor(timestamp / unit) * unit];
-					}
-				};
-			}
+			animation = (function () {
+				if (looping) {
+					return function (timestamp) {
+						return table[Math.floor((timestamp % fullDuration) / unit) * unit];
+					};
+				} else {
+					return function (timestamp) {
+						if (timestamp >= fullDuration) {
+							return lastFrameId;
+						} else {
+							return table[Math.floor(timestamp / unit) * unit];
+						}
+					};
+				}
+			}());
+			animation.static = false;
+			return animation;
 		}
 	}
 
