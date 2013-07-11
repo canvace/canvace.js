@@ -74,6 +74,7 @@ Canvace.Buckets = function (view, data) {
 				p: p,
 				width: width,
 				height: height,
+				static: getFrame.static,
 				getFrame: getFrame,
 				timeOffset: timeOffset
 			});
@@ -84,7 +85,7 @@ Canvace.Buckets = function (view, data) {
 		this.getMaxS = function () {
 			return maxS;
 		};
-		this.prerender = function () {
+		this.prerender = function (loader) {
 			for (var s in sections) {
 				var renderableElements = [];
 				sections[s].forEach(function (element, remove) {
@@ -112,7 +113,7 @@ Canvace.Buckets = function (view, data) {
 						canvas.height = bottom - top + 1;
 						var context = canvas.getContext('2d');
 						renderableElements.forEach(function (element) {
-							context.drawImage(element.getFrame(0), element.p[0] - left, element.p[1] - top);
+							context.drawImage(loader.getImage(element.getFrame(0)), element.p[0] - left, element.p[1] - top);
 							element.remove();
 						});
 						sections[s].add({
@@ -176,7 +177,7 @@ Canvace.Buckets = function (view, data) {
 	 *
 	 * @class Canvace.Buckets.Entity
 	 */
-	function Element(element, getAnimation, i, j, k) {
+	function Element(element, animation, i, j, k) {
 		if (!element.frames.length) {
 			return new MockElement();
 		}
@@ -185,7 +186,6 @@ Canvace.Buckets = function (view, data) {
 		var bi = Math.floor(p[1] / height);
 		var bj = Math.floor(p[0] / width);
 
-		var animation = getAnimation();
 		var timeOffset = Canvace.Timing.now();
 
 		var removers = [];
@@ -352,9 +352,9 @@ Canvace.Buckets = function (view, data) {
 				remove();
 				var entity = data.entities[id];
 
-				return new Element(entity, function () {
-					return frameTable.getEntityAnimation(id);
-				}, i, j, k);
+				var animation = frameTable.getEntityAnimation(id);
+				animation.static = false;
+				return new Element(entity, animation, i, j, k);
 			}
 		};
 	}
@@ -371,9 +371,9 @@ Canvace.Buckets = function (view, data) {
 
 		var tile = data.tiles[id];
 
-		var remover = new Element(tile, function () {
-			return frameTable.getTileAnimation(id);
-		}, i, j, k).remove;
+		var animation = frameTable.getTileAnimation(id);
+		animation.static = animation.static && !tile.mutable;
+		var remover = new Element(tile, animation, i, j, k).remove;
 
 		if (tile.mutable) {
 			if (!eraser[k]) {
@@ -578,10 +578,12 @@ Canvace.Buckets = function (view, data) {
 	 * {{#crossLink "Canvace.Buckets/addTile"}}{{/crossLink}} methods.
 	 *
 	 * @method prerender
+	 * @param loader {Canvace.Loader} A Loader object used to obtain the actual
+	 * Image objects given the image IDs.
 	 */
-	this.prerender = function () {
+	this.prerender = function (loader) {
 		for (var key in buckets) {
-			buckets[key].prerender();
+			buckets[key].prerender(loader);
 		}
 	};
 };

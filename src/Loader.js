@@ -211,26 +211,30 @@ Canvace.Loader = function (options) {
 	 * Loads an image from the exported image set.
 	 *
 	 * @method getImage
-	 * @param id {Number} The ID of the image to load.
+	 * @param id {Mixed} The ID of the image to load.
 	 * @param [callback] {Function} An optional callback function to invoke when
 	 * the loading of the image is complete.
 	 * @return {HTMLImageElement} The HTML image element representing the loaded
 	 * image.
 	 */
 	this.getImage = function (id, callback) {
-		if (imageset.hasOwnProperty(id)) {
-			return imageset[id];
+		if (typeof ('' + id) !== 'string') {
+			return id; // XXX document
 		} else {
-			if (typeof options.imagesPath !== 'string') {
-				throw 'Invalid value specified for "imagesPath"';
-			}
+			if (imageset.hasOwnProperty(id)) {
+				return imageset[id];
+			} else {
+				if (typeof options.imagesPath !== 'string') {
+					throw 'Invalid value specified for "imagesPath"';
+				}
 
-			var image = new Image();
-			if (typeof callback === 'function') {
-				image.addEventListener('load', callback, false);
+				var image = new Image();
+				if (typeof callback === 'function') {
+					image.addEventListener('load', callback, false);
+				}
+				image.src = [options.imagesPath, id].join('/');
+				return imageset[id] = image;
 			}
-			image.src = [options.imagesPath, id].join('/');
-			return imageset[id] = image;
 		}
 	};
 

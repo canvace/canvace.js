@@ -1141,7 +1141,6 @@ Canvace.Stage = function (data, canvas) {
 			};
 			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
 		}
-		buckets.prerender();
 		map = new Canvace.TileMap(data, buckets);
 	}());
 
@@ -1205,6 +1204,14 @@ Canvace.Stage = function (data, canvas) {
 	this.getBuckets = function () {
 		return buckets;
 	};
+
+	/**
+	 * TODO
+	 *
+	 * @method prerender
+	 * @param loader {Canvace.Loader} TODO
+	 */
+	this.prerender = buckets.prerender;
 
 	/**
 	 * Provides a {{#crossLink "Canvace.TileMap"}}{{/crossLink}} object that
