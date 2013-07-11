@@ -47,6 +47,9 @@
  * Environment.
  */
 Canvace.Buckets = function (view, data) {
+	var lalal = 0;
+	var lolol = 0;
+
 	var width = view.getWidth();
 	var height = view.getHeight();
 	var frameTable = new Canvace.FrameTable(data);
@@ -87,60 +90,56 @@ Canvace.Buckets = function (view, data) {
 		};
 		this.prerender = function (loader) {
 			for (var s in sections) {
-				var renderableElements = [];
-				sections[s].forEach(function (element, remove) {
-					if (element.static) {
-						element.remove = remove;
-						renderableElements.push(element);
+				if (sections.hasOwnProperty(s)) {
+					var renderableElements = [];
+					sections[s].forEach(function (element, remove) {
+						if (element.static) {
+							element.remove = remove;
+							renderableElements.push(element);
+						}
+					});
+					if (renderableElements.length) {
+						var firstElement = renderableElements[0];
+						var left = renderableElements.reduce(function (left, element) {
+							return Math.min(left, element.p[0]);
+						}, firstElement.p[0]);
+						var top = renderableElements.reduce(function (top, element) {
+							return Math.min(top, element.p[1]);
+						}, firstElement.p[1]);
+						var right = renderableElements.reduce(function (right, element) {
+							return Math.max(right, element.p[0] + element.width);
+						}, firstElement.p[0] + firstElement.width);
+						var bottom = renderableElements.reduce(function (bottom, element) {
+							return Math.max(bottom, element.p[1] + element.height);
+						}, firstElement.p[0] + firstElement.height);
+						(function (canvas) {
+							canvas.width = right - left + 1;
+							canvas.height = bottom - top + 1;
+							var context = canvas.getContext('2d');
+							renderableElements.forEach(function (element) {
+								context.drawImage(loader.getImage(element.getFrame(0)), element.p[0] - left, element.p[1] - top);
+								element.remove();
+							});
+							sections[s].add({
+								p: [left, top, parseInt(s, 10)],
+								width: right - left + 1,
+								height: bottom - top + 1,
+								static: true,
+								getFrame: function () {
+									return canvas;
+								},
+								timeOffset: 0
+							});
+							lalal++;
+							lolol += canvas.width * canvas.height;
+						}(document.createElement('canvas')));
 					}
-				});
-				if (renderableElements.length) {
-					var firstElement = renderableElements[0];
-					var left = renderableElements.reduce(function (left, element) {
-						return Math.min(left, element.p[0]);
-					}, firstElement.p[0]);
-					var top = renderableElements.reduce(function (top, element) {
-						return Math.min(top, element.p[1]);
-					}, firstElement.p[1]);
-					var right = renderableElements.reduce(function (right, element) {
-						return Math.max(right, element.p[0] + element.width);
-					}, firstElement.p[0] + firstElement.width);
-					var bottom = renderableElements.reduce(function (bottom, element) {
-						return Math.max(bottom, element.p[1] + element.height);
-					}, firstElement.p[0] + firstElement.height);
-					(function (canvas) {
-						canvas.width = right - left + 1;
-						canvas.height = bottom - top + 1;
-						var context = canvas.getContext('2d');
-						renderableElements.forEach(function (element) {
-							context.drawImage(loader.getImage(element.getFrame(0)), element.p[0] - left, element.p[1] - top);
-							element.remove();
-						});
-						sections[s].add({
-							p: [left, top, s],
-							width: right - left + 1,
-							height: bottom - top + 1,
-							static: true,
-							getFrame: function () {
-								return canvas;
-							},
-							timeOffset: 0
-						});
-					}(document.createElement('canvas')));
 				}
 			}
 		};
-		this.enumerateSection = function (s, origin, timestamp, action) {
+		this.enumerateSection = function (s, action) {
 			if (sections.hasOwnProperty(s)) {
-				sections[s].fastForEach(function (element) {
-					if ((element.p[0] < -origin.x + width) &&
-						(element.p[1] < -origin.y + height) &&
-						(element.p[0] + element.width >= -origin.x) &&
-						(element.p[1] + element.height >= -origin.y))
-					{
-						action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
-					}
-				});
+				sections[s].fastForEach(action);
 			}
 		};
 	}
@@ -553,11 +552,22 @@ Canvace.Buckets = function (view, data) {
 			);
 
 		var timestamp = Canvace.Timing.now();
+
+		function yieldElement(element) {
+			if ((element.p[0] < -origin.x + width) &&
+				(element.p[1] < -origin.y + height) &&
+				(element.p[0] + element.width >= -origin.x) &&
+				(element.p[1] + element.height >= -origin.y))
+			{
+				action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
+			}
+		}
+
 		for (var s = minS; s <= maxS; s++) {
-			bucket1.enumerateSection(s, origin, timestamp, action);
-			bucket2.enumerateSection(s, origin, timestamp, action);
-			bucket3.enumerateSection(s, origin, timestamp, action);
-			bucket4.enumerateSection(s, origin, timestamp, action);
+			bucket1.enumerateSection(s, yieldElement);
+			bucket2.enumerateSection(s, yieldElement);
+			bucket3.enumerateSection(s, yieldElement);
+			bucket4.enumerateSection(s, yieldElement);
 		}
 	};
 
@@ -583,7 +593,9 @@ Canvace.Buckets = function (view, data) {
 	 */
 	this.prerender = function (loader) {
 		for (var key in buckets) {
-			buckets[key].prerender(loader);
+			if (buckets.hasOwnProperty(key)) {
+				buckets[key].prerender(loader);
+			}
 		}
 	};
 };

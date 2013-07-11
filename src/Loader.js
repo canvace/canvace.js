@@ -218,9 +218,7 @@ Canvace.Loader = function (options) {
 	 * image.
 	 */
 	this.getImage = function (id, callback) {
-		if (typeof ('' + id) !== 'string') {
-			return id; // XXX document
-		} else {
+		if (typeof id !== 'object') {
 			if (imageset.hasOwnProperty(id)) {
 				return imageset[id];
 			} else {
@@ -235,6 +233,8 @@ Canvace.Loader = function (options) {
 				image.src = [options.imagesPath, id].join('/');
 				return imageset[id] = image;
 			}
+		} else {
+			return id; // XXX document
 		}
 	};
 
