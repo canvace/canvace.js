@@ -148,11 +148,10 @@ Canvace.Buckets = function (view, data) {
 		}
 	}
 
-	function MockElement() {
-		this.updatePosition = function () {};
-		this.remove = function () {};
-		this.replace = function () {};
-	}
+	function MockElement() {}
+	MockElement.prototype.updatePosition = function () {};
+	MockElement.prototype.remove = function () {};
+	MockElement.prototype.replace = function () {};
 
 	/*
 	 * XXX the `Element` inner class is documented as it were named `Entity`
@@ -174,182 +173,185 @@ Canvace.Buckets = function (view, data) {
 			return new MockElement();
 		}
 
-		var p = view.projectElement(element, i, j, k);
-		var bi = Math.floor(p[1] / height);
-		var bj = Math.floor(p[0] / width);
+		this.element = element;
+		this.animaton = animation;
+		this.i = i;
+		this.j = j;
+		this.k = k;
 
-		var timeOffset = Canvace.Timing.now();
+		this.p = view.projectElement(this.element, this.i, this.j, this.k);
+		this.bi = Math.floor(this.p[1] / height);
+		this.bj = Math.floor(this.p[0] / width);
 
-		var removers = [];
-		var removed = false;
+		this.removers = [];
+		this.removed = false;
 
-		function addToBucket(i, j) {
-			removers.push(getBucket(i, j).add(p, element.width, element.height, animation, timeOffset));
-		}
+		this.timeOffset = Canvace.Timing.now();
 
-		function addToBuckets() {
-			addToBucket(bi, bj);
-			var bi1 = Math.floor((p[1] + element.height) / height);
-			var bj1 = Math.floor((p[0] + element.width) / width);
-			if (bi1 > bi) {
-				addToBucket(bi + 1, bj);
-			}
-			if (bj1 > bj) {
-				addToBucket(bi, bj + 1);
-			}
-			if ((bi1 > bi) && (bj1 > bj)) {
-				addToBucket(bi + 1, bj + 1);
-			}
-		}
-
-		addToBuckets();
-
-		function remove() {
-			for (var index in removers) {
-				removers[index]();
-			}
-			removers = [];
-			removed = true;
-			return true;
-		}
-
-		/**
-		 * Returns the entity's projected position, which is its `(i, j, k)`
-		 * position left-multiplied by the projection matrix.
-		 *
-		 * The position is returned as an object containing three fields,
-		 * `x`, `y` and `z`, containing the `i`, `j` and `k` projected
-		 * coordinates, respectively.
-		 *
-		 * @method getProjectedPosition
-		 * @return {Object} The projected position as an object containing
-		 * three `x`, `y` and `z` fields.
-		 */
-		this.getProjectedPosition = function () {
-			return {
-				x: p[0] - element.offset.x,
-				y: p[1] - element.offset.y,
-				z: p[2]
-			};
-		};
-
-		/**
-		 * Returns the 2D rectangular area corresponding to the entity's
-		 * bounds.
-		 *
-		 * The rectangle is returned as an object containing four fields:
-		 * the `x` and `y` coordinates of the origin and the `width` and
-		 * `height`.
-		 *
-		 * The coordinates of the origin are calculated by left-multiplying
-		 * the `(i, j, k)` position vector of the entity by the projection
-		 * matrix and adding the entity's offset. The width and height are
-		 * simply copied from the entity descriptor.
-		 *
-		 * @method getProjectedRectangle
-		 * @return {Object} An object that describes the projected rectangle
-		 * and contains four fields: `x`, `y`, `width` and `height`.
-		 */
-		this.getProjectedRectangle = function () {
-			return {
-				x: p[0],
-				y: p[1],
-				z: p[2],
-				width: element.width,
-				height: element.height
-			};
-		};
-
-		/**
-		 * Updates the entity's position and possibly some internal data
-		 * structures so that the entity is enumerated correctly by the
-		 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}}
-		 * method after it is repositioned.
-		 *
-		 * The specified `i`, `j` and `k` values may be real numbers.
-		 *
-		 * @method updatePosition
-		 * @param i {Number} The new I coordinate.
-		 * @param j {Number} The new J coordinate.
-		 * @param k {Number} The new K coordinate.
-		 */
-		this.updatePosition = function (i1, j1, k1) {
-			if (!removed) {
-				var p1 = view.projectElement(element, i = i1, j = j1, k = k1);
-				var bi1 = Math.floor(p[1] / height);
-				var bj1 = Math.floor(p[0] / width);
-				if ((p1[2] !== p[2]) || (bi1 !== bi) || (bj1 !== bj)) {
-					remove();
-					removed = false;
-					p[0] = p1[0];
-					p[1] = p1[1];
-					p[2] = p1[2];
-					bi = bi1;
-					bj = bj1;
-					addToBuckets();
-				} else {
-					p[0] = p1[0];
-					p[1] = p1[1];
-					p[2] = p1[2];
-				}
-			}
-		};
-
-		/**
-		 * Removes the entity so that it is not enumerated by the
-		 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}}
-		 * method any more.
-		 *
-		 * This method is idempotent: it does not have any effects when it
-		 * is called again after the first time.
-		 *
-		 * @method remove
-		 * @return {Boolean} `true`.
-		 */
-		this.remove = remove;
-
-		/**
-		 * Indicates whether this entity has been removed from the buckets.
-		 *
-		 * @method isRemoved
-		 * @return {Boolean} `true` if this element has been removed,
-		 * `false` otherwise.
-		 */
-		this.isRemoved = function () {
-			return removed;
-		};
-
-		/**
-		 * Replaces the entity with another one identified by the specified
-		 * ID. This entity is removed as if the
-		 * {{#crossLink "Canvace.Buckets.Entity/remove"}}{{/crossLink}}
-		 * method was called, and this
-		 * {{#crossLink "Canvace.Buckets.Entity"}}Entity{{/crossLink}}
-		 * object becomes useless and should be discarded.
-		 *
-		 * @method replace
-		 * @param id {Number} The new entity's ID.
-		 * @return {Canvace.Buckets.Entity} A new Entity object representing the
-		 * new entity.
-		 */
-		this.replace = function (id) {
-			if (!removed) {
-				if (!(id in data.entities)) {
-					throw {
-						message: 'invalid entity ID',
-						id: id
-					};
-				}
-
-				remove();
-				var entity = data.entities[id];
-
-				var animation = frameTable.getEntityAnimation(id);
-				animation.static = false;
-				return new Element(entity, animation, i, j, k);
-			}
-		};
+		this.addToBuckets();
 	}
+
+	Element.prototype.addToBucket = function (i, j) {
+		this.removers.push(getBucket(i, j).add(
+			this.p, this.element.width, this.element.height, this.animation, this.timeOffset
+			));
+	};
+
+	Element.prototype.addToBuckets = function () {
+		this.addToBucket(this.bi, this.bj);
+		var bi1 = Math.floor((this.p[1] + this.element.height) / height);
+		var bj1 = Math.floor((this.p[0] + this.element.width) / width);
+		if (bi1 > this.bi) {
+			this.addToBucket(this.bi + 1, this.bj);
+		}
+		if (bj1 > this.bj) {
+			this.addToBucket(this.bi, this.bj + 1);
+		}
+		if ((bi1 > this.bi) && (bj1 > this.bj)) {
+			this.addToBucket(this.bi + 1, this.bj + 1);
+		}
+	};
+
+	/**
+	 * Removes the entity so that it is not enumerated by the
+	 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}} method any
+	 * more.
+	 *
+	 * This method is idempotent: it does not have any effects when it is called
+	 * again after the first time.
+	 *
+	 * @method remove
+	 * @return {Boolean} `true`.
+	 */
+	this.remove = function remove() {
+		for (var index in this.removers) {
+			this.removers[index]();
+		}
+		this.removers = [];
+		return this.removed = true;
+	};
+
+	/**
+	 * Indicates whether this entity has been removed from the buckets.
+	 *
+	 * @method isRemoved
+	 * @return {Boolean} `true` if this element has been removed, `false`
+	 * otherwise.
+	 */
+	Element.prototype.isRemoved = function () {
+		return this.removed;
+	};
+
+	/**
+	 * Returns the entity's projected position, which is its `(i, j, k)`
+	 * position left-multiplied by the projection matrix.
+	 *
+	 * The position is returned as an object containing three fields, `x`, `y`
+	 * and `z`, containing the `i`, `j` and `k` projected coordinates,
+	 * respectively.
+	 *
+	 * @method getProjectedPosition
+	 * @return {Object} The projected position as an object containing three
+	 * `x`, `y` and `z` fields.
+	 */
+	this.getProjectedPosition = function () {
+		return {
+			x: this.p[0] - this.element.offset.x,
+			y: this.p[1] - this.element.offset.y,
+			z: this.p[2]
+		};
+	};
+
+	/**
+	 * Returns the 2D rectangular area corresponding to the entity's bounds.
+	 *
+	 * The rectangle is returned as an object containing four fields: the `x`
+	 * and `y` coordinates of the origin and the `width` and `height`.
+	 *
+	 * The coordinates of the origin are calculated by left-multiplying the
+	 * `(i, j, k)` position vector of the entity by the projection matrix and
+	 * adding the entity's offset. The width and height are simply copied from
+	 * the entity descriptor.
+	 *
+	 * @method getProjectedRectangle
+	 * @return {Object} An object that describes the projected rectangle and
+	 * contains four fields: `x`, `y`, `width` and `height`.
+	 */
+	this.getProjectedRectangle = function () {
+		return {
+			x: this.p[0],
+			y: this.p[1],
+			z: this.p[2],
+			width: this.element.width,
+			height: this.element.height
+		};
+	};
+
+	/**
+	 * Updates the entity's position and possibly some internal data structures
+	 * so that the entity is enumerated correctly by the
+	 * {{#crossLink "Canvace.Buckets/forEachElement}}{{/crossLink}} method after
+	 * it is repositioned.
+	 *
+	 * The specified `i`, `j` and `k` values may be real numbers.
+	 *
+	 * @method updatePosition
+	 * @param i {Number} The new I coordinate.
+	 * @param j {Number} The new J coordinate.
+	 * @param k {Number} The new K coordinate.
+	 */
+	this.updatePosition = function (i1, j1, k1) {
+		if (!this.removed) {
+			var p1 = view.projectElement(this.element, this.i = i1, this.j = j1, this.k = k1);
+			var bi1 = Math.floor(this.p[1] / height);
+			var bj1 = Math.floor(this.p[0] / width);
+			if ((p1[2] !== this.p[2]) || (bi1 !== this.bi) || (bj1 !== this.bj)) {
+				this.remove();
+				this.removed = false;
+				this.p[0] = p1[0];
+				this.p[1] = p1[1];
+				this.p[2] = p1[2];
+				this.bi = bi1;
+				this.bj = bj1;
+				this.addToBuckets();
+			} else {
+				this.p[0] = p1[0];
+				this.p[1] = p1[1];
+				this.p[2] = p1[2];
+			}
+		}
+	};
+
+	/**
+	 * Replaces the entity with another one identified by the specified ID. This
+	 * entity is removed as if the
+	 * {{#crossLink "Canvace.Buckets.Entity/remove"}}{{/crossLink}} method was
+	 * called, and this
+	 * {{#crossLink "Canvace.Buckets.Entity"}}Entity{{/crossLink}} object
+	 * becomes useless and should be discarded.
+	 *
+	 * @method replace
+	 * @param id {Number} The new entity's ID.
+	 * @return {Canvace.Buckets.Entity} A new Entity object representing the new
+	 * entity.
+	 */
+	Element.prototype.replace = function (id) {
+		if (!this.removed) {
+			if (!(id in data.entities)) {
+				throw {
+					message: 'invalid entity ID',
+					id: id
+				};
+			}
+
+			this.remove();
+			var entity = data.entities[id];
+
+			var animation = frameTable.getEntityAnimation(id);
+			animation.static = false;
+			return new Element(entity, animation, this.i, this.j, this.k);
+		}
+	};
 
 	var eraser = {};
 

@@ -116,4 +116,3 @@ Canvace.onVisibilityChange = function (callback) {
 	}
 	return false;
 };
-
