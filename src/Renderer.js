@@ -97,6 +97,10 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		return context;
 	};
 
+	function drawImage(x, y, id) {
+		context.drawImage(loader.getImage(id), x, y);
+	}
+
 	/**
 	 * Renders the stage to the canvas.
 	 *
@@ -107,9 +111,7 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		context.setTransform(1, 0, 0, 1, origin.x, origin.y);
 		context.clearRect(-origin.x, -origin.y, width, height);
 		preProcess && preProcess(context);
-		buckets.forEachElement(function (x, y, id) {
-			context.drawImage(loader.getImage(id), x, y);
-		});
+		buckets.forEachElement(drawImage);
 		postProcess && postProcess(context);
 	};
 };

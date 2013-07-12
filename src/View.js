@@ -188,12 +188,17 @@ Canvace.View = function (data, canvas) {
 	 * @return {Object} The viewport's origin as an object containing two
 	 * properties, `x` and `y`.
 	 */
-	this.getOrigin = function () {
-		return {
+	this.getOrigin = (function () {
+		var origin = {
 			x: x0,
 			y: y0
 		};
-	};
+		return function () {
+			origin.x = x0;
+			origin.y = y0;
+			return origin;
+		};
+	}());
 
 	/**
 	 * Returns the viewport width.
