@@ -174,7 +174,7 @@ Canvace.Buckets = function (view, data) {
 		}
 
 		this.element = element;
-		this.animaton = animation;
+		this.animation = animation;
 		this.i = i;
 		this.j = j;
 		this.k = k;
@@ -223,7 +223,7 @@ Canvace.Buckets = function (view, data) {
 	 * @method remove
 	 * @return {Boolean} `true`.
 	 */
-	this.remove = function remove() {
+	Element.prototype.remove = function remove() {
 		for (var index in this.removers) {
 			this.removers[index]();
 		}
@@ -254,7 +254,7 @@ Canvace.Buckets = function (view, data) {
 	 * @return {Object} The projected position as an object containing three
 	 * `x`, `y` and `z` fields.
 	 */
-	this.getProjectedPosition = function () {
+	Element.prototype.getProjectedPosition = function () {
 		return {
 			x: this.p[0] - this.element.offset.x,
 			y: this.p[1] - this.element.offset.y,
@@ -277,7 +277,7 @@ Canvace.Buckets = function (view, data) {
 	 * @return {Object} An object that describes the projected rectangle and
 	 * contains four fields: `x`, `y`, `width` and `height`.
 	 */
-	this.getProjectedRectangle = function () {
+	Element.prototype.getProjectedRectangle = function () {
 		return {
 			x: this.p[0],
 			y: this.p[1],
@@ -300,7 +300,7 @@ Canvace.Buckets = function (view, data) {
 	 * @param j {Number} The new J coordinate.
 	 * @param k {Number} The new K coordinate.
 	 */
-	this.updatePosition = function (i1, j1, k1) {
+	Element.prototype.updatePosition = function (i1, j1, k1) {
 		if (!this.removed) {
 			var p1 = view.projectElement(this.element, this.i = i1, this.j = j1, this.k = k1);
 			var bi1 = Math.floor(this.p[1] / height);
@@ -367,7 +367,8 @@ Canvace.Buckets = function (view, data) {
 
 		var animation = frameTable.getTileAnimation(id);
 		animation.static = animation.static && !tile.mutable;
-		var remover = new Element(tile, animation, i, j, k).remove;
+		var element = new Element(tile, animation, i, j, k);
+		var remover = element.remove.bind(element);
 
 		if (tile.mutable) {
 			if (!eraser[k]) {

@@ -433,7 +433,7 @@ Canvace.Stage = function (data, canvas) {
 		 * @return {Object} The projected position as an object containing three
 		 * `x`, `y` and `z` fields.
 		 */
-		this.getProjectedPosition = element.getProjectedPosition;
+		this.getProjectedPosition = element.getProjectedPosition.bind(element);
 
 		/**
 		 * Returns the 2D rectangular area corresponding to the instances's
@@ -457,7 +457,7 @@ Canvace.Stage = function (data, canvas) {
 		 * @return {Object} An object that describes the projected rectangle and
 		 * contains four fields: `x`, `y`, `width` and `height`.
 		 */
-		this.getProjectedRectangle = element.getProjectedRectangle;
+		this.getProjectedRectangle = element.getProjectedRectangle.bind(element);
 
 		/**
 		 * Indicates whether the instance is in or out of range.
@@ -1019,7 +1019,7 @@ Canvace.Stage = function (data, canvas) {
 		 * @return {Boolean} `true` if this instance has been removed, `false`
 		 * otherwise.
 		 */
-		this.isRemoved = element.isRemoved;
+		this.isRemoved = element.isRemoved.bind(element);
 
 		/**
 		 * Replaces this entity instance with a new instance of another entity.
