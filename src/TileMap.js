@@ -345,30 +345,6 @@ Canvace.TileMap = function (data, buckets) {
 		}
 	};
 
-	function translatePath(i, j, path) {
-		var result = [];
-		for (var index = 0; index < path.length; ++index) {
-			i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
-			j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
-			result.push({
-				i: i,
-				j: j
-			});
-		}
-		return result;
-	}
-
-	/**
-	 * TODO
-	 *
-	 * @method translatePath
-	 * @param i {Number} TODO
-	 * @param j {Number} TODO
-	 * @param path {Number[]} TODO
-	 * @return {Object[]} TODO
-	 */
-	this.translatePath = translatePath;
-
 	/**
 	 * This method uses the `findPath` method of the
 	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} class to compute a suitable
@@ -401,7 +377,7 @@ Canvace.TileMap = function (data, buckets) {
 				return null;
 			}
 
-			return translatePath(i, j, path);
+			return Canvace.TileMap.translatePath(i, j, path);
 		};
 	}());
 
@@ -612,4 +588,27 @@ Canvace.TileMap = function (data, buckets) {
 
 		return v;
 	};
+};
+
+/**
+ * TODO
+ *
+ * @method translatePath
+ * @static
+ * @param i {Number} TODO
+ * @param j {Number} TODO
+ * @param path {Number[]} TODO
+ * @return {Object[]} TODO
+ */
+Canvace.TileMap.translatePath = function (i, j, path) {
+	var result = [];
+	for (var index = 0; index < path.length; ++index) {
+		i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
+		j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
+		result.push({
+			i: i,
+			j: j
+		});
+	}
+	return result;
 };
