@@ -46,13 +46,13 @@ Canvace.TileMap = function (data, buckets) {
 		var tile = data.tiles[id];
 
 		/**
-		 * Indicates whether this descriptor describes a walkable tile or not.
+		 * Indicates whether this descriptor describes a solid tile or not.
 		 *
-		 * @method isWalkable
-		 * @return {Boolean} `true` if this tile is walkable, `false` otherwise.
+		 * @method isSolid
+		 * @return {Boolean} `true` if this tile is solid, `false` otherwise.
 		 */
-		this.isWalkable = function () {
-			return tile.walkable;
+		this.isSolid = function () {
+			return tile.solid;
 		};
 
 		/**
@@ -345,6 +345,30 @@ Canvace.TileMap = function (data, buckets) {
 		}
 	};
 
+	function translatePath(i, j, path) {
+		var result = [];
+		for (var index = 0; index < path.length; ++index) {
+			i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
+			j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
+			result.push({
+				i: i,
+				j: j
+			});
+		}
+		return result;
+	}
+
+	/**
+	 * TODO
+	 *
+	 * @method translatePath
+	 * @param i {Number} TODO
+	 * @param j {Number} TODO
+	 * @param path {Number[]} TODO
+	 * @return {Object[]} TODO
+	 */
+	this.translatePath = translatePath;
+
 	/**
 	 * This method uses the `findPath` method of the
 	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} class to compute a suitable
@@ -377,23 +401,14 @@ Canvace.TileMap = function (data, buckets) {
 				return null;
 			}
 
-			var result = [];
-			for (var index = 0; index < path.length; ++index) {
-				i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
-				j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
-				result.push({
-					i: i,
-					j: j
-				});
-			}
-			return result;
+			return translatePath(i, j, path);
 		};
 	}());
 
 	/**
 	 * Constructs an object that satisfies the `Astar.Node` requirements and
 	 * represents a tile of the map as a node of a graph. The returned object
-	 * allows to traverse a graph where each node represents a walkable tile and
+	 * allows to traverse a graph where each node represents a solid tile and
 	 * each edge allows to walk from a tile to another adjacent tile.
 	 *
 	 * The returned graph is characterized by a _target node_ and each node also
@@ -438,8 +453,7 @@ Canvace.TileMap = function (data, buckets) {
 			};
 			(function () {
 				function walkable(i, j) {
-					return (i in map[k]) && (j in map[k][i]) &&
-						data.tiles[map[k][i][j]].walkable;
+					return (i in map[k]) && (j in map[k][i]) && !data.tiles[map[k][i][j]].solid;
 				}
 				for (var index = 0; index < 9; index++) {
 					var i1 = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][index];
@@ -456,8 +470,8 @@ Canvace.TileMap = function (data, buckets) {
 	};
 
 	/**
-	 * Detects collisions between a rectangular area and non-walkable tiles of
-	 * a specified map layer.
+	 * Detects collisions between a rectangular area and solid tiles of a
+	 * specified map layer.
 	 *
 	 * A vector is returned indicating two I and J values that must be added to
 	 * the coordinates of the rectangular area in order to resume a regular
@@ -507,7 +521,7 @@ Canvace.TileMap = function (data, buckets) {
 	 * that is invoked by the `rectangleCollision` method for every tile that
 	 * collides with the specified rectangle.
 	 *
-	 * The function receives two arguments, the tile's walkable flag and its
+	 * The function receives two arguments, the tile's solid flag and its
 	 * properties, and must return a boolean value indicating whether the tile
 	 * must be taken into account as a colliding tile. If the function returns
 	 * `false` the tile is _not_ taken into account.
@@ -527,7 +541,7 @@ Canvace.TileMap = function (data, buckets) {
 			var solidTileAt = (function () {
 				if (typeof collides !== 'function') {
 					return function (i, j) {
-						return (i in map[k]) && (j in map[k][i]) && !tiles[map[k][i][j]].walkable;
+						return (i in map[k]) && (j in map[k][i]) && !tiles[map[k][i][j]].solid;
 					};
 				} else {
 					return function (i, j) {
@@ -535,7 +549,7 @@ Canvace.TileMap = function (data, buckets) {
 							return false;
 						}
 						var tile = tiles[map[k][i][j]];
-						return collides(tile.walkable, tile.properties);
+						return collides(tile.solid, tile.properties);
 					};
 				}
 			}());

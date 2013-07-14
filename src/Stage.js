@@ -609,7 +609,7 @@ Canvace.Stage = function (data, canvas) {
 		 * function that is invoked by the `testTileCollision` method for every
 		 * tile that collides with the instance.
 		 *
-		 * The function receives two arguments, the tile's walkable flag and its
+		 * The function receives two arguments, the tile's solid flag and its
 		 * properties, and must return a boolean value indicating whether the
 		 * tile is "solid" for this instance and must be taken into account as a
 		 * colliding tile. If the function returns `false` the tile is _not_
