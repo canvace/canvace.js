@@ -212,7 +212,7 @@ Canvace.TileMap = function (data, buckets) {
 		var ids = [];
 		for (var id in data.tiles) {
 			if (assertObject(data.tiles[id].properties, properties)) {
-				ids.push(id);
+				ids.push(parseInt(id, 10));
 			}
 		}
 		return ids;
@@ -230,7 +230,7 @@ Canvace.TileMap = function (data, buckets) {
 	function getTileId(properties) {
 		for (var id in data.tiles) {
 			if (assertObject(data.tiles[id].properties, properties)) {
-				return id;
+				return parseInt(id, 10);
 			}
 		}
 	}
