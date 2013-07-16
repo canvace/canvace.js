@@ -353,7 +353,7 @@ Canvace.Buckets = function (view, data) {
 		}
 	};
 
-	var eraser = {};
+	var eraser = new Canvace.Matrix();
 
 	function addTile(id, i, j, k) {
 		if (!(id in data.tiles)) {
@@ -371,23 +371,17 @@ Canvace.Buckets = function (view, data) {
 		var remover = element.remove.bind(element);
 
 		if (tile.mutable) {
-			if (!eraser[k]) {
-				eraser[k] = {};
-			}
-			if (!eraser[k][i]) {
-				eraser[k][i] = {};
-			}
 			var removed = false;
-			return eraser[k][i][j] = function () {
+			eraser.put(i, j, k, function () {
 				remover();
 				if (removed) {
 					return false;
 				} else {
-					delete eraser[k][i][j];
+					eraser.erase(i, j, k);
 					removed = true;
 					return true;
 				}
-			};
+			});
 		} else {
 			return remover;
 		}
@@ -459,7 +453,11 @@ Canvace.Buckets = function (view, data) {
 	 * @return {Boolean} `true` on success, `false` on failure.
 	 */
 	this.removeTile = function (i, j, k) {
-		return eraser[k] && eraser[k][i] && eraser[k][i][j] && eraser[k][i][j]() || false;
+		if (eraser.has(i, j, k)) {
+			return eraser.get(i, j, k)();
+		} else {
+			return false;
+		}
 	};
 
 	/**
@@ -492,7 +490,8 @@ Canvace.Buckets = function (view, data) {
 	 * again after the first time.
 	 */
 	this.replaceTile = function (i, j, k, newTileId) {
-		if (eraser[k] && eraser[k][i] && eraser[k][i][j] && eraser[k][i][j]()) {
+		if (eraser.has(i, j, k)) {
+			eraser.get(i, j, k)();
 			return addTile(newTileId, i, j, k);
 		}
 	};
