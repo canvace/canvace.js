@@ -171,8 +171,8 @@ Canvace.View = function (data, canvas) {
 	 */
 	this.getCell = function (x, y, k) {
 		var z = (k - inv[2][0] * (x - x0) - inv[2][1] * (y - y0)) / inv[2][2];
-		var i = Math.round(inv[0][0] * (x - x0) + inv[0][1] * (y - y0) + inv[0][2] * z);
-		var j = Math.round(inv[1][0] * (x - x0) + inv[1][1] * (y - y0) + inv[1][2] * z);
+		var i = Math.floor(inv[0][0] * (x - x0) + inv[0][1] * (y - y0) + inv[0][2] * z);
+		var j = Math.floor(inv[1][0] * (x - x0) + inv[1][1] * (y - y0) + inv[1][2] * z);
 		return {
 			i: i,
 			j: j,
