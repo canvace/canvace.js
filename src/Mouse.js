@@ -43,7 +43,8 @@ Canvace.Mouse = function (element) {
 				element,
 				event,
 				event.clientX - rect.left,
-				event.clientY - rect.top);
+				event.clientY - rect.top
+				);
 		};
 	}
 
