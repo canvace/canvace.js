@@ -1102,16 +1102,7 @@ Canvace.Stage = function (data, canvas) {
 	}
 
 	(function () {
-		for (var k in data.map) {
-			k = parseInt(k, 10);
-			for (var i in data.map[k]) {
-				i = parseInt(i, 10);
-				for (var j in data.map[k][i]) {
-					j = parseInt(j, 10);
-					buckets.addTile(data.map[k][i][j], i, j, k);
-				}
-			}
-		}
+		map = new Canvace.TileMap(data, buckets);
 		for (var id in data.instances) {
 			var instance = data.instances[id];
 			instance.position = {
@@ -1141,7 +1132,6 @@ Canvace.Stage = function (data, canvas) {
 			};
 			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
 		}
-		map = new Canvace.TileMap(data, buckets);
 	}());
 
 	/**

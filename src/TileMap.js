@@ -21,7 +21,12 @@
 /**
  * Provides functionalities to manage a stage's tile map. You do not usually
  * need to instantiate this object directly, you can get an instance using the
- * `Stage.getTileMap` method.
+ * {{#crossLink "Canvace.Stage.getTileMap"}}Stage.getTileMap{{/crossLink}}
+ * method.
+ *
+ * The `TileMap` constructor receives a
+ * {{#crossLink "Canvace.Buckets"}}{{/crossLink}} object and takes care of
+ * adding all the tiles in the map to the buckets so that they can be rendered.
  *
  * @class Canvace.TileMap
  * @constructor
@@ -33,7 +38,30 @@
  */
 Canvace.TileMap = function (data, buckets) {
 	var thisObject = this;
-	var map = data.map;
+
+	var matrix = new Canvace.Matrix();
+
+	(function () {
+		for (var k in data.map) {
+			k = parseInt(k, 10);
+			for (var i in data.map[k]) {
+				i = parseInt(i, 10);
+				for (var j in data.map[k][i]) {
+					j = parseInt(j, 10);
+					var id = parseInt(data.map[k][i][j], 10);
+					var layout = data.tiles[id].layout;
+					for (var i1 = i - layout.ref.i; i1 < i - layout.ref.i + layout.span.i; i1++) {
+						for (var j1 = j - layout.ref.j; j1 < j - layout.ref.j + layout.span.j; j1++) {
+							matrix.put(i1, j1, k, i + ' ' + j + ' ' + k);
+						}
+					}
+					matrix.put(i, j, k, id);
+					buckets.addTile(id, i, j, k);
+				}
+			}
+		}
+		delete data.map;
+	}());
 
 	var tileCache = {};
 
@@ -44,6 +72,38 @@ Canvace.TileMap = function (data, buckets) {
 	 */
 	function Tile(id) {
 		var tile = data.tiles[id];
+
+		/**
+		 * Returns an object describing the layout of the tile.
+		 *
+		 * The layout describes the tile span along the I and J axes and the I
+		 * and J coordinates of the reference cell relative to the tile box.
+		 *
+		 * Most tiles span over one single cell and thus their layouts specify
+		 * `1` for both the I and J span sizes and `0` for both the I and J
+		 * coordinates of the reference cell. But in case of multiple tiles the
+		 * I and/or J span sizes may be greater than `1` and the reference cell
+		 * may be located somewhere else withint the tile box.
+		 *
+		 * Note that the coordinates of the reference cell must be within the
+		 * `[0, s - 1]` range, where `s` indicates the span size over the axis.
+		 *
+		 * Also, both span sizes and reference cell coordinates are always
+		 * integer numbers.
+		 *
+		 * @method getLayout
+		 * @return {Object} An object containing four fields: `iSpan`, `jSpan`,
+		 * `i0` and `j0`. The first two are the span sizes, while the other two
+		 * are the coordinates of the reference cell.
+		 */
+		this.getLayout = function () {
+			return {
+				iSpan: tile.layout.span.i,
+				jSpan: tile.layout.span.j,
+				i0: tile.layout.ref.i,
+				j0: tile.layout.ref.j
+			};
+		};
 
 		/**
 		 * Indicates whether this descriptor describes a solid tile or not.
@@ -89,16 +149,12 @@ Canvace.TileMap = function (data, buckets) {
 	 * called for each enumerated layer.
 	 *
 	 * The function receives one argument, the layer number.
+	 * @param [scope] {Object} TODO
 	 * @return {Boolean} `true` if the `action` callback function returned
 	 * `false`, `false` otherwise.
 	 */
-	this.forEachLayer = function (action) {
-		for (var k in map) {
-			if (action(parseInt(k, 10)) === false) {
-				return true;
-			}
-		}
-		return false;
+	this.forEachLayer = function (action, scope) {
+		return matrix.forEachLayer(action, scope);
 	};
 
 	/**
@@ -121,23 +177,16 @@ Canvace.TileMap = function (data, buckets) {
 	 *
 	 * The function receives three integer arguments: the `i`, `j` and `k`
 	 * coordinates of the tile, respectively.
+	 * @param [scope] {Object} TODO
 	 * @return {Boolean} `true` if the `action` callback function returned
 	 * `false`, `false` otherwise.
 	 */
-	this.forEachTile = function (action) {
-		for (var k in map) {
-			k = parseInt(k, 10);
-			for (var i in map[k]) {
-				i = parseInt(i, 10);
-				for (var j in map[k][i]) {
-					j = parseInt(j, 10);
-					if (action(i, j, k) === false) {
-						return true;
-					}
-				}
+	this.forEachTile = function (action, scope) {
+		return matrix.forEach(function (i, j, k, value) {
+			if (typeof value === 'number') {
+				return action.call(scope, i, j, k, value);
 			}
-		}
-		return false;
+		});
 	};
 
 	/**
@@ -166,23 +215,16 @@ Canvace.TileMap = function (data, buckets) {
 	 *
 	 * The function receives two integer arguments: the `i` and `j` coordinates
 	 * of the tile, respectively.
+	 * @param [scope] {Object} TODO
 	 * @return {Boolean} `true` if the `action` callback function returned
 	 * `false`, `false` otherwise.
 	 */
-	this.forEachTileInLayer = function (k, action) {
-		if (!(k in map)) {
-			throw 'invalid layer number: ' + k;
-		}
-		for (var i in map[k]) {
-			i = parseInt(i, 10);
-			for (var j in map[k][i]) {
-				j = parseInt(j, 10);
-				if (action(i, j) === false) {
-					return true;
-				}
+	this.forEachTileInLayer = function (k, action, scope) {
+		return matrix.forEach(function (i, j, k1, value) {
+			if ((k1 == k) && (typeof value === 'number')) {
+				return action.call(scope, i, j, value);
 			}
-		}
-		return false;
+		});
 	};
 
 	function assertObject(object, properties) {
@@ -292,6 +334,13 @@ Canvace.TileMap = function (data, buckets) {
 	 * Returns the ID of the tile located at the specified `(i, j, k)` position
 	 * of the map, or `false` if no tile is located at that position.
 	 *
+	 * In case a multiple tile is located at the specified position, its ID is
+	 * returned only if the specified position identifies its reference cell;
+	 * otherwise `false` is returned.
+	 *
+	 * To be aware of the parts of possible multiple tiles use the
+	 * {{#crossLink "Canvace.TileMap.getAt2"}}{{/crossLink}} method.
+	 *
 	 * @method getAt
 	 * @param i {Number} An integer I coordinate.
 	 * @param j {Number} An integer J coordinate.
@@ -299,7 +348,49 @@ Canvace.TileMap = function (data, buckets) {
 	 * @return {Number} The requested tile ID, or `false` if no tile is found.
 	 */
 	this.getAt = function (i, j, k) {
-		return map[k] && map[k][i] && map[k][i][j] || false;
+		var value = matrix.get(i, j, k);
+		if (typeof value === 'number') {
+			return value;
+		} else {
+			return false;
+		}
+	};
+
+	/**
+	 * Returns the ID of the tile located at the specified `(i, j, k)` position
+	 * of the map, or `false` if no tile is located at that position.
+	 *
+	 * In case a multiple tile is located at the specified position, its ID is
+	 * returned only if the specified position identifies its reference cell;
+	 * otherwise this method returns an object describing the tile and
+	 * containing three fields: an `id` field specifying the tile ID and two `i`
+	 * and `j` fields representing the coordinates of its reference cell in the
+	 * same layer.
+	 *
+	 * To be aware of the parts of possible multiple tiles use the
+	 * {{#crossLink "Canvace.TileMap.getAt2"}}{{/crossLink}} method.
+	 *
+	 * @method getAt2
+	 * @param i {Number} An integer I coordinate.
+	 * @param j {Number} An integer J coordinate.
+	 * @param k {Number} An integer K coordinate.
+	 * @return {Mixed} The requested single tile ID, an object describing a
+	 * multiple tile or `false` if no tile is found. Use the `typeof` operator
+	 * to distinguish between the two cases: a tile ID is always a number.
+	 */
+	this.getAt2 = function (i, j, k) {
+		var value = matrix.get(i, j, k);
+		if (typeof value !== 'number') {
+			var referenceCoordinates = value.split(' ');
+			var id = matrix.get(referenceCoordinates[0], referenceCoordinates[1], k);
+			return {
+				id: id,
+				i: referenceCoordinates[0],
+				j: referenceCoordinates[1]
+			};
+		} else {
+			return value;
+		}
 	};
 
 	/**
@@ -326,24 +417,60 @@ Canvace.TileMap = function (data, buckets) {
 				id: id
 			};
 		}
-		if ((k in map) && (i in map[k]) && (j in map[k][i])) {
-			if (buckets.replaceTile(i, j, k, id)) {
-				map[k][i][j] = id;
+		id = parseInt(id, 10);
+
+		function canClear(i, j) {
+			var id = matrix.get(i, j, k);
+			if (typeof id !== 'number') {
+				var coordinates = id.split(' ');
+				id = matrix.get(coordinates[0], coordinates[1], k);
+			}
+			return data.tiles[id].mutable;
+		}
+
+		function clear(i, j) {
+			var value = matrix.get(i, j, k);
+			if (typeof value !== 'number') {
+				var coordinates = value.split(' ');
+				i = coordinates[0];
+				j = coordinates[1];
+			}
+			if (buckets.removeTile(i, j, k)) {
+				matrix.erase(i, j, k);
+				return true;
 			} else {
 				return false;
 			}
-		} else {
-			if (!(k in map)) {
-				map = {};
-			}
-			if (!(i in map[k])) {
-				map[k] = {};
-			}
-			map[k][i][j] = id;
-			buckets.addTile(id, i, j, k);
-			return true;
 		}
+
+		var i1, j1;
+
+		var layout = data.tiles[id].layout;
+		for (i1 = i - layout.ref.i; i1 < i - layout.ref.i + layout.span.i; i1++) {
+			for (j1 = j - layout.ref.j; j1 < j - layout.ref.j + layout.span.j; j1++) {
+				if (!canClear(i1, j1, k)) {
+					return false;
+				}
+			}
+		}
+
+		for (i1 = i - layout.ref.i; i1 < i - layout.ref.i + layout.span.i; i1++) {
+			for (j1 = j - layout.ref.j; j1 < j - layout.ref.j + layout.span.j; j1++) {
+				if (clear(i1, j1, k)) {
+					matrix.put(i1, j1, k, i + ' ' + j);
+				} else {
+					return false;
+				}
+			}
+		}
+		matrix.put(i, j, k, id);
+		buckets.addTile(id, i, j, k);
+		return true;
 	};
+
+
+// FIXME implementare tile multipli da qui
+
 
 	/**
 	 * This method uses the `findPath` method of the
@@ -429,7 +556,7 @@ Canvace.TileMap = function (data, buckets) {
 			};
 			(function () {
 				function walkable(i, j) {
-					return (i in map[k]) && (j in map[k][i]) && !data.tiles[map[k][i][j]].solid;
+					return matrix.has(i, j, k) && !data.tiles[matrix.get(i, j, k)].solid;
 				}
 				for (var index = 0; index < 9; index++) {
 					var i1 = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][index];
@@ -510,21 +637,20 @@ Canvace.TileMap = function (data, buckets) {
 		var vju = 0;
 		var vjo = 0;
 
-		var map = data.map;
-		if (k in data.map) {
+		if (matrix.hasLayer(k)) {
 			var tiles = data.tiles;
 
 			var solidTileAt = (function () {
 				if (typeof collides !== 'function') {
 					return function (i, j) {
-						return (i in map[k]) && (j in map[k][i]) && !tiles[map[k][i][j]].solid;
+						return matrix.has(i, j, k) && !tiles[matrix.get(i, j, k)].solid;
 					};
 				} else {
 					return function (i, j) {
-						if (!(i in map[k]) || !(j in map[k][i])) {
+						if (!matrix.has(i, j, k)) {
 							return false;
 						}
-						var tile = tiles[map[k][i][j]];
+						var tile = tiles[matrix.get(i, j, k)];
 						return collides(tile.solid, tile.properties);
 					};
 				}
