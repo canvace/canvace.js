@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\View.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\View.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * This class provides useful methods for managing the rendering viewport and
+ * the projection or picking of graphic elements in it.
+ *
+ * Note that the &#x60;width&#x60; and &#x60;height&#x60; attributes of the canvas may not change
+ * after the &#x60;View&#x60; object is constructed, or inconsistent rendering may result.
+ *
+ * You do not usually need to construct a &#x60;View&#x60; object manually, as one is
+ * automatically created by the &#x60;Stage&#x60; class.
+ *
+ * @class Canvace.View
+ * @constructor
+ * @param data {Object} The JSON data output by the Canvace Development
+ * Environment.
+ * @param canvas {HTMLCanvasElement} An HTML5 canvas element where rendering has
+ * to be done.
+ */
+Canvace.View = function (data, canvas) {
+	var mat = data.matrix;
+	var inv = (function () {
+		var det = mat[0][0] * mat[1][1] * mat[2][2] +
+			mat[0][1] * mat[1][2] * mat[2][0] +
+			mat[0][2] * mat[1][0] * mat[2][1] -
+			mat[0][2] * mat[1][1] * mat[2][0] -
+			mat[0][1] * mat[1][0] * mat[2][2] -
+			mat[0][0] * mat[1][2] * mat[2][1];
+		return [
+			[(mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2]) / det,
+				(mat[0][2] * mat[2][1] - mat[2][2] * mat[0][1]) / det,
+				(mat[0][1] * mat[1][2] - mat[1][1] * mat[0][2]) / det],
+			[(mat[1][2] * mat[2][0] - mat[2][2] * mat[1][0]) / det,
+				(mat[0][0] * mat[2][2] - mat[2][0] * mat[0][2]) / det,
+				(mat[0][2] * mat[1][0] - mat[1][2] * mat[0][0]) / det],
+			[(mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1]) / det,
+				(mat[0][1] * mat[2][0] - mat[2][1] * mat[0][0]) / det,
+				(mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]) / det]
+		];
+	}());
+
+	var x0 = data.x0;
+	var y0 = data.y0;
+	var width = canvas.width;
+	var height = canvas.height;
+
+	/**
+	 * Computes the projected &#x60;x&#x60;, &#x60;y&#x60; and &#x60;z&#x60; coordinates of an element by
+	 * right-multiplying an &#x60;(i, j, k)&#x60; vector by the projection matrix.
+	 *
+	 * Note that the computed &#x60;x&#x60; and &#x60;y&#x60; coordinates do not correspond to the
+	 * actual on-screen coordinates because they vary depending on the X and Y
+	 * offsets of the specific element.
+	 *
+	 * This method only calculates a &quot;generic&quot; projection, but the
+	 * &#x60;projectElement&#x60; is more useful in that it calculates the actual
+	 * coordinates.
+	 *
+	 * The computed coordinates are returned as an array containing three
+	 * elements, respectively X, Y and Z.
+	 *
+	 * @method project
+	 * @param i {Number} The I coordinate to project.
+	 * @param j {Number} The J coordinate to project.
+	 * @param k {Number} The K coordinate to project.
+	 * @return {Array} An array containing the calculated &#x60;x&#x60;, &#x60;y&#x60; and &#x60;z&#x60;,
+	 * respectively.
+	 */
+	this.project = function (i, j, k) {
+		return [
+			mat[0][0] * i + mat[0][1] * j + mat[0][2] * k,
+			mat[1][0] * i + mat[1][1] * j + mat[1][2] * k,
+			Math.round(mat[2][0] * i + mat[2][1] * j + mat[2][2] * k)
+		];
+	};
+
+	/**
+	 * Computes the projected &#x60;x&#x60;, &#x60;y&#x60; and &#x60;z&#x60; coordinates of the specified
+	 * element by right-multiplying an &#x60;(i, j, k)&#x60; vector by the projection
+	 * matrix and adding the X and Y offsets of the element.
+	 *
+	 * This method does not take into account the viewport offset (&#x60;drag&#x60; calls
+	 * will not affect the result of &#x60;projectElement&#x60;).
+	 *
+	 * The computed coordinates are returned as an array containing three
+	 * elements, respectively X, Y and Z.
+	 *
+	 * @method projectElement
+	 * @param element {Object} A tile or entity descriptor. This object must
+	 * have the same layout as tile and entity descriptors documented in
+	 * Canvace&#x27;s Output Format Guide. You can specify tiles and entities you
+	 * find in JSON data output by the Canvace Development Environment.
+	 * @param i {Number} The I coordinate to project.
+	 * @param j {Number} The J coordinate to project.
+	 * @param k {Number} The K coordinate to project.
+	 * @return {Array} An array containing the calculated &#x60;x&#x60;, &#x60;y&#x60; and &#x60;z&#x60;,
+	 * respectively.
+	 */
+	this.projectElement = function (element, i, j, k) {
+		return [
+			Math.round(mat[0][0] * i + mat[0][1] * j + mat[0][2] * k + element.offset.x),
+			Math.round(mat[1][0] * i + mat[1][1] * j + mat[1][2] * k + element.offset.y),
+			Math.round(mat[2][0] * i + mat[2][1] * j + mat[2][2] * k)
+		];
+	};
+
+	/**
+	 * Inverts the specified &#x60;x&#x60; and &#x60;y&#x60; projected coordinates returning the
+	 * corresponding original &#x60;(i, j, k)&#x60; coordinates assuming that the
+	 * projected point is located at the specified &#x60;k&#x60; coordinate in the
+	 * original 3D space. This means that the &#x60;k&#x60; value in the returned
+	 * &#x60;(i, j, k)&#x60; vector corresponds to the specified &#x60;k&#x60; value.
+	 *
+	 * This method is useful for implementing picking algorithms.
+	 *
+	 * The computed &#x60;(i, j, k)&#x60; vector is returned as an array of three
+	 * elements, the &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60; values respectively.
+	 *
+	 * @method unproject
+	 * @param x {Number} The projected X value.
+	 * @param y {Number} The projected Y value.
+	 * @param k {Number} The K coordinate where the projected point is assumed
+	 * to be.
+	 * @return {Array} An array containing three elements, the &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;
+	 * values, respectively.
+	 */
+	this.unproject = function (x, y, k) {
+		var z = (k + inv[2][0] * (x0 - x) + inv[2][1] * (y0 - y)) / inv[2][2];
+		var i = inv[0][0] * (x - x0) + inv[0][1] * (y - y0) + inv[0][2] * z;
+		var j = inv[1][0] * (x - x0) + inv[1][1] * (y - y0) + inv[1][2] * z;
+		return [i, j, k];
+	};
+
+	/**
+	 * Inverts the specified &#x60;x&#x60; and &#x60;y&#x60; projected coordinates returning the
+	 * integer &#x60;(i, j, k)&#x60; coordinates of the cell where the projected point is
+	 * located, assuming they are located at layer &#x60;k&#x60;. The specified &#x60;k&#x60; value
+	 * is simply returned as is in the resulting &#x60;(i, j, k)&#x60; vector.
+	 *
+	 * The resulting vector is returned as an object containing three integer
+	 * fields: &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;.
+	 *
+	 * The only difference between this method and &#x60;unproject&#x60; is that the
+	 * former always returns integer values (resulting from rounding) while the
+	 * latter may return real values.
+	 *
+	 * @method getCell
+	 * @param x {Number} The projected point&#x27;s X coordinate.
+	 * @param y {Number} The projected point&#x27;s Y coordinate.
+	 * @param k {Number} The K coordinate in the original 3D space where the
+	 * projected point is assumed to be located.
+	 * @return {Object} an object containing three properties, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;.
+	 */
+	this.getCell = function (x, y, k) {
+		var z = (k - inv[2][0] * (x - x0) - inv[2][1] * (y - y0)) / inv[2][2];
+		var i = Math.floor(inv[0][0] * (x - x0) + inv[0][1] * (y - y0) + inv[0][2] * z);
+		var j = Math.floor(inv[1][0] * (x - x0) + inv[1][1] * (y - y0) + inv[1][2] * z);
+		return {
+			i: i,
+			j: j,
+			k: k
+		};
+	};
+
+	/**
+	 * Returns the viewport&#x27;s origin as an object containing two properties, &#x60;x&#x60;
+	 * and &#x60;y&#x60;.
+	 *
+	 * @method getOrigin
+	 * @return {Object} The viewport&#x27;s origin as an object containing two
+	 * properties, &#x60;x&#x60; and &#x60;y&#x60;.
+	 */
+	this.getOrigin = (function () {
+		var origin = {
+			x: x0,
+			y: y0
+		};
+		return function () {
+			origin.x = x0;
+			origin.y = y0;
+			return origin;
+		};
+	}());
+
+	/**
+	 * Returns the viewport width.
+	 *
+	 * @method getWidth
+	 * @return {Number} The viewport width.
+	 */
+	this.getWidth = function () {
+		return width;
+	};
+
+	/**
+	 * Returns the viewport height.
+	 *
+	 * @method getHeight
+	 * @return {Number} The viewport height.
+	 */
+	this.getHeight = function () {
+		return height;
+	};
+
+	var dragHandlers = new Canvace.MultiSet();
+
+	/**
+	 * Drags the viewport by the specified &#x60;dx&#x60; and &#x60;dy&#x60; offsets.
+	 *
+	 * @method drag
+	 * @param dx {Number} The drag offset along the X axis.
+	 * @param dy {Number} The drag offset along the Y axis.
+	 */
+	this.drag = function (dx, dy) {
+		x0 += dx;
+		y0 += dy;
+		dragHandlers.fastForEach(function (handler) {
+			handler(x0, y0);
+		});
+	};
+
+	/**
+	 * Drags the viewport so that the origin be located at the specified &#x60;x&#x60; and
+	 * &#x60;y&#x60; coordinates.
+	 *
+	 * @method dragTo
+	 * @param x {Number} The new origin&#x27;s X coordinate.
+	 * @param y {Number} The new origin&#x27;s Y coordinate.
+	 */
+	this.dragTo = function (x, y) {
+		x0 = x;
+		y0 = y;
+		dragHandlers.fastForEach(function (handler) {
+			handler(x0, y0);
+		});
+	};
+
+	/**
+	 * Register an event handler invoked every time the viewport&#x27;s origin
+	 * changes. This happens because of &#x60;drag&#x60; and &#x60;dragTo&#x60; calls.
+	 *
+	 * Multiple handlers may be registered. A handler may be registered more
+	 * than once, in which case it gets called as many times as it was
+	 * registered.
+	 *
+	 * This method returns a function that unregisters the registered handler.
+	 * If a handler was registered more than once, the returned function only
+	 * removes its own registration, while other instances of the handler stay
+	 * registered.
+	 *
+	 * @method onDrag
+	 * @param handler {Function} A function that is invoked every time the
+	 * viewport is dragged. The function receives two arguments, &#x60;x0&#x60; and &#x60;y0&#x60;,
+	 * representing the new coordinates of the viewport&#x27;s origin.
+	 * @return {Function} A function that unregisters the handler. The returned
+	 * function does not receive any arguments.
+	 */
+	this.onDrag = function (handler) {
+		return dragHandlers.add(handler);
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @method intersects
+	 * @param i {Number} TODO
+	 * @param j {Number} TODO
+	 * @param di {Number} TODO
+	 * @param dj {Number} TODO
+	 * @return {Boolean} TODO
+	 */
+	this.intersects = function (i, j, k, di, dj, dk) {
+		var x1 = mat[0][0] * i + mat[0][1] * j + mat[0][2] * k;
+		var y1 = mat[1][0] * i + mat[1][1] * j + mat[1][2] * k;
+		var x2 = mat[0][0] * (i + di) + mat[0][1] * (j + dj) + mat[0][2] * (k + dk);
+		var y2 = mat[1][0] * (i + di) + mat[1][1] * (j + dj) + mat[1][2] * (k + dk);
+		return (Math.min(x1, x2) &lt; width - x0) &amp;&amp;
+			(Math.max(x1, x2) &gt; -x0) &amp;&amp;
+			(Math.min(y1, y2) &lt; height - y0) &amp;&amp;
+			(Math.max(y1, y2) &gt; -y0);
+	};
+
+	/**
+	 * A &#x60;Synchronizer&#x60; object is responsible for synchronizing the view so
+	 * that it is always pointed to a specified entity.
+	 *
+	 * A synchronizer is defined by a &quot;target area&quot; and a delay parameter. The
+	 * target area is a rectangular area centered in the viewport where the
+	 * synchronizer constantly tries to fit the target entity by moving the
+	 * view.
+	 *
+	 * The target entity may sometimes reside out of the target area because of
+	 * the delay parameter, which indicates a delay in the movement of the view
+	 * toward a fitting position. The delay parameter is a floating point number
+	 * in the range &#x60;[0, 1)&#x60; where 0 indicates no delay (the target entity
+	 * always resides withint the target area) and 1 indicates maximum delay
+	 * (the view never moves and never reaches a fitting position).
+	 *
+	 * @class Canvace.View.Synchronizer
+	 * @constructor
+	 * @param targetAreaWidth {Number} The width of the target area.
+	 * @param targetAreaHeight {Number} The height of the target area.
+	 * @param delay {Number} The delay parameter.
+	 */
+	this.Synchronizer = function (targetAreaWidth, targetAreaHeight, delay) {
+		/**
+		 * &quot;Ticks&quot; the synchronizer, which tries to move the view according to
+		 * the delay parameter so that the target entity fits into the target
+		 * area.
+		 *
+		 * This method is typically called from within the &#x60;tick&#x60; callback
+		 * function of a &#x60;RenderLoop&#x60;.
+		 *
+		 * @method tick
+		 * @param target {Canvace.Stage.Instance} The entity instance to target.
+		 */
+		this.tick = function (target) {
+			var x1 = x0;
+			var y1 = y0;
+			var frameWidth = (width - targetAreaWidth) / 2;
+			var frameHeight = (height - targetAreaHeight) / 2;
+			var targetRectangle = target.getProjectedRectangle();
+			if (x0 + targetRectangle.x + targetRectangle.width &gt; width - frameWidth) {
+				x1 = width - targetRectangle.x - targetRectangle.width - frameWidth;
+			}
+			if (x0 + targetRectangle.x &lt; frameWidth) {
+				x1 = frameWidth - targetRectangle.x;
+			}
+			if (y0 + targetRectangle.y + targetRectangle.height &gt; height - frameHeight) {
+				y1 = height - targetRectangle.y - targetRectangle.height - frameHeight;
+			}
+			if (y0 + targetRectangle.y &lt; frameHeight) {
+				y1 = frameHeight - targetRectangle.y;
+			}
+			x0 = x0 + (x1 - x0) * (1 - delay);
+			y0 = y0 + (y1 - y0) * (1 - delay);
+			dragHandlers.fastForEach(function (handler) {
+				handler(x0, y0);
+			});
+		};
+	};
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

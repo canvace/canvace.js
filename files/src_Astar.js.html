@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\Astar.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\Astar.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * Provides a generic epsilon-admissible implementation of the A* pathfinding
+ * algorithm.
+ *
+ * &#x60;Astar&#x60; objects provide a
+ * {{#crossLink &quot;Canvace.Astar/findPath&quot;}}{{/crossLink}} method that finds an
+ * admissible path between two nodes of a graph.
+ *
+ * Given that any path between two nodes has a cost greater than zero, the
+ * algorithm tries to find either an optimal one (one of those with the least
+ * cost) or an admissible one (one whose cost is at most &#x60;1 + epsilon&#x60; times the
+ * optimal cost).
+ *
+ * The &#x60;epsilon&#x60; parameter must be greater than zero and is optional: it is
+ * assumed to be zero when not specified. Specifying a non-zero epsilon value
+ * will construct an object that can perform significantly faster and still
+ * yield almost optimal paths.
+ *
+ * Refer to the documentation of the
+ * {{#crossLink &quot;Canvace.Astar/findPath&quot;}}{{/crossLink}} method for more
+ * information about specifying the graph.
+ *
+ * @class Canvace.Astar
+ * @constructor
+ * @param [epsilon] {Number} The optional epsilon parameter, defaults to zero.
+ * @example
+ *	// Elaborate a random labyrinth represented by a boolean matrix.
+ *	// True means there is a wall, false means the cell is walkable.
+ *	var matrix = [];
+ *	for (var i = 0; i &lt; 100; i++) {
+ *		var row = [];
+ *		for (var j = 0; j &lt; 100; j++) {
+ *			row[j].push(Math.random() &lt; 0.5);
+ *		}
+ *		matrix.push(row);
+ *	}
+ *	console.dir(matrix);
+ *	
+ *	// Create a path finder
+ *	var pathFinder = new Canvace.Astar();
+ *	
+ *	// Implement a node of the graph.
+ *	// Heuristics are taxicab distances from cell (99, 99).
+ *	function Node(i, j) {
+ *		this.id = &#x27;(&#x27; + i + &#x27;, &#x27; + j + &#x27;)&#x27;;
+ *		this.heuristic = 198 - i - j;
+ *		this.distance = function () {
+ *			return 1;
+ *		};
+ *		this.neighbors = {};
+ *		if ((j &gt; 0) &amp;&amp; !matrix[i][j - 1]) {
+ *			this.neighbors.left = function () {
+ *				return new Node(i, j - 1);
+ *			};
+ *		}
+ *		if ((j &lt; 99) &amp;&amp; !matrix[i][j + 1]) {
+ *			this.neighbors.right = function () {
+ *				return new Node(i, j + 1);
+ *			};
+ *		}
+ *		if ((i &gt; 0) &amp;&amp; !matrix[i - 1][j]) {
+ *			this.neighbors.up = function () {
+ *				return new Node(i - 1, j);
+ *			};
+ *		}
+ *		if ((i &lt; 99) &amp;&amp; !matrix[i + 1][j]) {
+ *			this.neighbors.down = function () {
+ *				return new Node(i + 1, j);
+ *			};
+ *		}
+ *	}
+ *	
+ *	// find the path from (0, 0) to (99, 99)
+ *	console.dir(pathFinder.findPath(new Node(0, 0)));
+ */
+Canvace.Astar = function (epsilon) {
+	if (typeof epsilon !== &#x27;number&#x27;) {
+		epsilon = 0;
+	} else if (epsilon &lt; 0) {
+		throw &#x27;the epsilon parameter must be positive&#x27;;
+	}
+
+	/**
+	 * This is not an actual inner class, it just documents what graph nodes
+	 * must implement in order to be suitable for the
+	 * {{#crossLink &quot;Canvace.Astar/findPath&quot;}}{{/crossLink}} method.
+	 *
+	 * Objects providing these properties and methods are usable as graph nodes
+	 * and may be passed as arguments to
+	 * {{#crossLink &quot;Canvace.Astar/findPath&quot;}}{{/crossLink}}.
+	 *
+	 * @class Canvace.Astar.Node
+	 * @static
+	 */
+
+	/**
+	 * A unique ID assigned to the node. Different nodes in the graph must have
+	 * different IDs.
+	 *
+	 * @property id
+	 * @type String
+	 */
+
+	/**
+	 * The heuristically estimated cost to walk up to the target node.
+	 *
+	 * @property heuristic
+	 * @type Number
+	 */
+
+	/**
+	 * A map object whose keys are edge labels and whose values are functions.
+	 * Each function returns the neighbor graph
+	 * {{#crossLink &quot;Canvace.Astar.Node&quot;}}node{{/crossLink}} connected to this
+	 * node through the edge.
+	 *
+	 * @property neighbors
+	 * @type Object
+	 */
+
+	/**
+	 * A function used by {{#crossLink &quot;Canvace.Astar&quot;}}{{/crossLink}} to
+	 * determine edge weights.
+	 *
+	 * You can always return &#x60;1&#x60; or another non-zero constant value if your
+	 * graph is not weighted.
+	 *
+	 * Edge labels are implementation-defined; they only need to be consistent
+	 * with the keys of the
+	 * {{#crossLink &quot;Canvace.Astar.Node/neighbors:property&quot;}}{{/crossLink}}
+	 * method map.
+	 *
+	 * @method distance
+	 * @param edgeLabel {String} A label identifying the incident edge whose
+	 * weight is to be retrieved.
+	 * @return {Number} The requested edge weight.
+	 */
+
+	/**
+	 * Finds a path between two nodes of a graph. A path is always found if one
+	 * exists, otherwise &#x60;null&#x60; is returned.
+	 *
+	 * The found path is always _admissible_, which means its cost is either
+	 * optimal (the least possible one) or is at most &#x60;1 + epsilon&#x60; times the
+	 * optimal one, where &#x60;epsilon&#x60; is the parameter specified to the
+	 * {{#crossLink &quot;Canvace.Astar&quot;}}{{/crossLink}} constructor.
+	 *
+	 * &#x60;startNode&#x60; is an
+	 * {{#crossLink &quot;Canvace.Astar.Node&quot;}}Astar.Node{{/crossLink}}-like object
+	 * representing the first node of the path to find;
+	 * _{{#crossLink &quot;Canvace.Astar.Node&quot;}}Astar.Node{{/crossLink}}-like_ means
+	 * it has to provide the same properties and methods described by the
+	 * documentation of the
+	 * {{#crossLink &quot;Canvace.Astar.Node&quot;}}Astar.Node{{/crossLink}} pseudo-class.
+	 *
+	 * The target node is identified when the estimated distance from it,
+	 * provided by each node, is zero; the algorithm stops when this happens.
+	 *
+	 * {{#crossLink &quot;Canvace.Astar.Node&quot;}}Astar.Node{{/crossLink}} objects allow
+	 * to specify a directed graph with weighted and labeled edges. Edge weights
+	 * are real numbers and are used to compute the cost of a path. Edge labels
+	 * are strings and are used when describing the computed path as an array of
+	 * edges to walk.
+	 *
+	 * The computed path, if one exists, is returned as an array of strings.
+	 * &#x60;null&#x60; is returned if the target node is unreachable from the start node.
+	 *
+	 * @method findPath
+	 * @for Canvace.Astar
+	 * @param startNode {Canvace.Astar.Node} The starting node.
+	 * @return {String[]} An array of edge labels that identify the edges that
+	 * form the computed path, or &#x60;null&#x60; if no path can be found.
+	 */
+	this.findPath = function (startNode) {
+		var closedSet = {};
+		var openScore = {};
+		var backLink = {};
+
+		var heap = new Canvace.Heap(function (u, v) {
+			var fu = openScore[u.id] + u.heuristic * (1 + epsilon);
+			var fv = openScore[v.id] + v.heuristic * (1 + epsilon);
+			if (fu &lt; fv) {
+				return -1;
+			} else if (fu &gt; fv) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}, function (u, v) {
+			return u.id === v.id;
+		});
+
+		var node;
+		openScore[startNode.id] = 0;
+		heap.push(startNode);
+		while (!heap.isEmpty()) {
+			var currentNode = heap.pop();
+			var score = openScore[currentNode.id];
+			delete openScore[currentNode.id];
+			if (currentNode.heuristic) {
+				closedSet[currentNode.id] = true;
+				for (var edge in currentNode.neighbors) {
+					if (currentNode.neighbors.hasOwnProperty(edge)) {
+						node = currentNode.neighbors[edge]();
+						if (!closedSet.hasOwnProperty(node.id)) {
+							var cost = score + currentNode.distance(edge);
+							if (openScore.hasOwnProperty(node.id)) {
+								if (cost &lt; openScore[node.id]) {
+									heap.decreaseKey(node, function (node) {
+										openScore[node.id] = cost;
+										backLink[node.id] = {
+											parent: currentNode,
+											edge: edge
+										};
+									});
+								}
+							} else {
+								openScore[node.id] = cost;
+								backLink[node.id] = {
+									parent: currentNode,
+									edge: edge
+								};
+								heap.push(node);
+							}
+						}
+					}
+				}
+			} else {
+				var path = [];
+				for (node = currentNode; backLink.hasOwnProperty(node.id); node = backLink[node.id].parent) {
+					path.push(backLink[node.id].edge);
+				}
+				return path.reverse();
+			}
+		}
+		return null;
+	};
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

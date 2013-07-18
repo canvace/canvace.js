@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\TileMap.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\TileMap.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * Provides functionalities to manage a stage&#x27;s tile map. You do not usually
+ * need to instantiate this object directly, you can get an instance using the
+ * {{#crossLink &quot;Canvace.Stage.getTileMap&quot;}}Stage.getTileMap{{/crossLink}}
+ * method.
+ *
+ * The &#x60;TileMap&#x60; constructor receives a
+ * {{#crossLink &quot;Canvace.Buckets&quot;}}{{/crossLink}} object and takes care of
+ * adding all the tiles in the map to the buckets so that they can be rendered.
+ *
+ * @class Canvace.TileMap
+ * @constructor
+ * @param data {Object} The JSON object produced by the Canvace Development
+ * Environment.
+ * @param buckets {Canvace.Buckets} A &#x60;Canvace.Buckets&#x60; object that is updated
+ * along with the map, so that changes in the map are reflected by subsequent
+ * renderings.
+ */
+Canvace.TileMap = function (data, buckets) {
+	var thisObject = this;
+
+	var matrix = new Canvace.Matrix();
+
+	(function () {
+		for (var k in data.map) {
+			k = parseInt(k, 10);
+			for (var i in data.map[k]) {
+				i = parseInt(i, 10);
+				for (var j in data.map[k][i]) {
+					j = parseInt(j, 10);
+					var id = parseInt(data.map[k][i][j], 10);
+					var layout = data.tiles[id].layout;
+					for (var i1 = i - layout.ref.i; i1 &lt; i - layout.ref.i + layout.span.i; i1++) {
+						for (var j1 = j - layout.ref.j; j1 &lt; j - layout.ref.j + layout.span.j; j1++) {
+							matrix.put(i1, j1, k, i + &#x27; &#x27; + j + &#x27; &#x27; + k);
+						}
+					}
+					matrix.put(i, j, k, id);
+					buckets.addTile(id, i, j, k);
+				}
+			}
+		}
+		delete data.map;
+	}());
+
+	var tileCache = {};
+
+	/**
+	 * This class wraps a tile descriptor.
+	 *
+	 * @class Canvace.TileMap.Tile
+	 */
+	function Tile(id) {
+		var tile = data.tiles[id];
+
+		/**
+		 * Returns an object describing the layout of the tile.
+		 *
+		 * The layout describes the tile span along the I and J axes and the I
+		 * and J coordinates of the reference cell relative to the tile box.
+		 *
+		 * Most tiles span over one single cell and thus their layouts specify
+		 * &#x60;1&#x60; for both the I and J span sizes and &#x60;0&#x60; for both the I and J
+		 * coordinates of the reference cell. But in case of multiple tiles the
+		 * I and/or J span sizes may be greater than &#x60;1&#x60; and the reference cell
+		 * may be located somewhere else withint the tile box.
+		 *
+		 * Note that the coordinates of the reference cell must be within the
+		 * &#x60;[0, s - 1]&#x60; range, where &#x60;s&#x60; indicates the span size over the axis.
+		 *
+		 * Also, both span sizes and reference cell coordinates are always
+		 * integer numbers.
+		 *
+		 * @method getLayout
+		 * @return {Object} An object containing four fields: &#x60;iSpan&#x60;, &#x60;jSpan&#x60;,
+		 * &#x60;i0&#x60; and &#x60;j0&#x60;. The first two are the span sizes, while the other two
+		 * are the coordinates of the reference cell.
+		 */
+		this.getLayout = function () {
+			return {
+				iSpan: tile.layout.span.i,
+				jSpan: tile.layout.span.j,
+				i0: tile.layout.ref.i,
+				j0: tile.layout.ref.j
+			};
+		};
+
+		/**
+		 * Indicates whether this descriptor describes a solid tile or not.
+		 *
+		 * @method isSolid
+		 * @return {Boolean} &#x60;true&#x60; if this tile is solid, &#x60;false&#x60; otherwise.
+		 */
+		this.isSolid = function () {
+			return tile.solid;
+		};
+
+		/**
+		 * Returns the tile&#x27;s custom properties as set in the Canvace
+		 * Development Environment.
+		 *
+		 * The original &#x60;properties&#x60; object is returned, so that modifications
+		 * actually affect the tile&#x27;s properties.
+		 *
+		 * @method getProperties
+		 * @return {Object} The tile&#x27;s &#x60;properties&#x60; field containing the custom
+		 * properties the user set in the Canvace Development Environment.
+		 */
+		this.getProperties = function () {
+			return tile.properties;
+		};
+	}
+
+	/**
+	 * Enumerates the numbers of the layers currently in the tile map.
+	 *
+	 * For each enumerated layer the &#x60;action&#x60; callback function is called and
+	 * receives a numeric argument, the layer number.
+	 *
+	 * The enumeration is interrupted if the callback function returns &#x60;false&#x60;;
+	 * any other return value is ignored.
+	 *
+	 * In case the enumeration is interrupted, &#x60;true&#x60; is returned by the
+	 * &#x60;forEachLayer&#x60; method, otherwise &#x60;false&#x60; is returned.
+	 *
+	 * @method forEachLayer
+	 * @for Canvace.TileMap
+	 * @param action {Function} A user-defined callback function that gets
+	 * called for each enumerated layer.
+	 *
+	 * The function receives one argument, the layer number.
+	 * @param [scope] {Object} TODO
+	 * @return {Boolean} &#x60;true&#x60; if the &#x60;action&#x60; callback function returned
+	 * &#x60;false&#x60;, &#x60;false&#x60; otherwise.
+	 */
+	this.forEachLayer = function (action, scope) {
+		return matrix.forEachLayer(action, scope);
+	};
+
+	/**
+	 * Enumerates the tiles currently in the map.
+	 *
+	 * For each enumerated tile the &#x60;action&#x60; callback function is called and
+	 * receives three integer arguments, the &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60; coordinates of the
+	 * tile. The tile itself can then be retrieved as a &#x60;TileMap.Tile&#x60; object by
+	 * calling the &#x60;TileMap.getAt&#x60; method.
+	 *
+	 * The enumeration is interrupted if the callback function returns &#x60;false&#x60;;
+	 * any other return value is ignored.
+	 *
+	 * In case the enumeration is interrupted, &#x60;true&#x60; is returned by the
+	 * &#x60;forEachTile&#x60; method, otherwise &#x60;false&#x60; is returned.
+	 *
+	 * @method forEachTile
+	 * @param action {Function} A user-defined callback function that gets
+	 * called for each enumerated tile.
+	 *
+	 * The function receives three integer arguments: the &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;
+	 * coordinates of the tile, respectively.
+	 * @param [scope] {Object} TODO
+	 * @return {Boolean} &#x60;true&#x60; if the &#x60;action&#x60; callback function returned
+	 * &#x60;false&#x60;, &#x60;false&#x60; otherwise.
+	 */
+	this.forEachTile = function (action, scope) {
+		return matrix.forEach(function (i, j, k, value) {
+			if (typeof value === &#x27;number&#x27;) {
+				return action.call(scope, i, j, k, value);
+			}
+		});
+	};
+
+	/**
+	 * Enumerates the tiles in the specified layer of the map.
+	 *
+	 * For each enumerated tile the &#x60;action&#x60; callback function is called and
+	 * receives two integer arguments, the &#x60;i&#x60; and &#x60;j&#x60; coordinates of the tile.
+	 * The tile itself can then be retrieved as a &#x60;TileMap.Tile&#x60; object by
+	 * calling the &#x60;TileMap.getAt&#x60; method.
+	 *
+	 * An exception is thrown if the &#x60;k&#x60; argument does not represent a valid
+	 * layer of the map. This includes empty layers: if a tile map contains
+	 * tiles at layers &#x60;0&#x60; and &#x60;2&#x60; but none at layer &#x60;1&#x60; you cannot specify &#x60;1&#x60;
+	 * for the &#x60;k&#x60; argument because the map does not contain the layer &#x60;1&#x60;.
+	 *
+	 * The enumeration is interrupted if the callback function returns &#x60;false&#x60;;
+	 * any other return value is ignored.
+	 *
+	 * In case the enumeration is interrupted, &#x60;true&#x60; is returned by the
+	 * &#x60;forEachTileInLayer&#x60; method, otherwise &#x60;false&#x60; is returned.
+	 *
+	 * @method forEachTileInLayer
+	 * @param k {Number} The layer number.
+	 * @param action {Function} A user-defined callback function that gets
+	 * called for each enumerated tile.
+	 *
+	 * The function receives two integer arguments: the &#x60;i&#x60; and &#x60;j&#x60; coordinates
+	 * of the tile, respectively.
+	 * @param [scope] {Object} TODO
+	 * @return {Boolean} &#x60;true&#x60; if the &#x60;action&#x60; callback function returned
+	 * &#x60;false&#x60;, &#x60;false&#x60; otherwise.
+	 */
+	this.forEachTileInLayer = function (k, action, scope) {
+		return matrix.forEach(function (i, j, k1, value) {
+			if ((k1 == k) &amp;&amp; (typeof value === &#x27;number&#x27;)) {
+				return action.call(scope, i, j, value);
+			}
+		});
+	};
+
+	function assertObject(object, properties) {
+		for (var key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				var value;
+				if (key in object) {
+					value = object[key];
+				} else {
+					return false;
+				}
+				if (typeof properties[key] !== &#x27;object&#x27;) {
+					if (value !== properties[key]) {
+						return false;
+					}
+				} else if ((typeof value !== &#x27;object&#x27;) ||
+					!assertObject(value, properties[key]))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	function getTileIds(properties) {
+		var ids = [];
+		for (var id in data.tiles) {
+			if (assertObject(data.tiles[id].properties, properties)) {
+				ids.push(parseInt(id, 10));
+			}
+		}
+		return ids;
+	}
+
+	/**
+	 * TODO
+	 *
+	 * @method getTileIds
+	 * @param [properties] {Object} TODO
+	 * @return {Number[]} TODO
+	 */
+	this.getTileIds = getTileIds;
+
+	function getTileId(properties) {
+		for (var id in data.tiles) {
+			if (assertObject(data.tiles[id].properties, properties)) {
+				return parseInt(id, 10);
+			}
+		}
+	}
+
+	/**
+	 * TODO
+	 *
+	 * @method getTileId
+	 * @param [properties] {Object} TODO
+	 * @return {Number} TODO
+	 */
+	this.getTileId = getTileId;
+
+	/**
+	 * Returns a &#x60;Tile&#x60; object that describes the requested tile.
+	 *
+	 * A tile can be identified either by ID or filtering properties; TODO
+	 *
+	 * This method throws an exception if the ID is not valid, i.e. it is not
+	 * present in the JSON data output by the Canvace Development Environment.
+	 *
+	 * @method getTile
+	 * @param idOrProperties {Mixed} A tile ID or filtering properties object.
+	 * @return {Canvace.TileMap.Tile} A &#x60;Tile&#x60; object describing the requested
+	 * tile.
+	 */
+	this.getTile = function (idOrProperties) {
+		var id;
+		if (typeof idOrProperties !== &#x27;object&#x27;) {
+			id = idOrProperties;
+			if (id in data.tiles) {
+				return tileCache[id] || (tileCache[id] = new Tile(id));
+			} else {
+				throw &#x27;invalid tile id: &#x27; + id;
+			}
+		} else {
+			id = getTileId(idOrProperties);
+			return tileCache[id] || (tileCache[id] = new Tile(id));
+		}
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @method getTiles
+	 * @param [properties] {Object} TODO
+	 * @return {Canvace.TileMap.Tile[]} TODO
+	 */
+	this.getTiles = function (properties) {
+		var ids = getTileIds(properties);
+		var tiles = [];
+		for (var i in ids) {
+			tiles.push(tileCache[ids[i]] || (tileCache[ids[i]] = new Tile(ids[i])));
+		}
+		return tiles;
+	};
+
+	/**
+	 * Returns the ID of the tile located at the specified &#x60;(i, j, k)&#x60; position
+	 * of the map, or &#x60;false&#x60; if no tile is located at that position.
+	 *
+	 * In case a multiple tile is located at the specified position, its ID is
+	 * returned only if the specified position identifies its reference cell;
+	 * otherwise &#x60;false&#x60; is returned.
+	 *
+	 * To be aware of the parts of possible multiple tiles use the
+	 * {{#crossLink &quot;Canvace.TileMap.getAt2&quot;}}{{/crossLink}} method.
+	 *
+	 * @method getAt
+	 * @param i {Number} An integer I coordinate.
+	 * @param j {Number} An integer J coordinate.
+	 * @param k {Number} An integer K coordinate.
+	 * @return {Number} The requested tile ID, or &#x60;false&#x60; if no tile is found.
+	 */
+	this.getAt = function (i, j, k) {
+		var value = matrix.get(i, j, k);
+		if (typeof value === &#x27;number&#x27;) {
+			return value;
+		} else {
+			return false;
+		}
+	};
+
+	/**
+	 * Returns the ID of the tile located at the specified &#x60;(i, j, k)&#x60; position
+	 * of the map, or &#x60;false&#x60; if no tile is located at that position.
+	 *
+	 * In case a multiple tile is located at the specified position, its ID is
+	 * returned only if the specified position identifies its reference cell;
+	 * otherwise this method returns an object describing the tile and
+	 * containing three fields: an &#x60;id&#x60; field specifying the tile ID and two &#x60;i&#x60;
+	 * and &#x60;j&#x60; fields representing the coordinates of its reference cell in the
+	 * same layer.
+	 *
+	 * To be aware of the parts of possible multiple tiles use the
+	 * {{#crossLink &quot;Canvace.TileMap.getAt2&quot;}}{{/crossLink}} method.
+	 *
+	 * @method getAt2
+	 * @param i {Number} An integer I coordinate.
+	 * @param j {Number} An integer J coordinate.
+	 * @param k {Number} An integer K coordinate.
+	 * @param [alwaysId=false] {Boolean} TODO
+	 * @return {Mixed} The requested single tile ID, an object describing a
+	 * multiple tile or &#x60;false&#x60; if no tile is found. Use the &#x60;typeof&#x60; operator
+	 * to distinguish between the two cases: a tile ID is always a number.
+	 */
+	this.getAt2 = function (i, j, k, alwaysId) {
+		var value = matrix.get(i, j, k);
+		if (typeof value !== &#x27;number&#x27;) {
+			var referenceCoordinates = value.split(&#x27; &#x27;);
+			var id = matrix.get(referenceCoordinates[0], referenceCoordinates[1], k);
+			if (alwaysId) {
+				return id;
+			} else {
+				return {
+					id: id,
+					i: referenceCoordinates[0],
+					j: referenceCoordinates[1]
+				};
+			}
+		} else {
+			return value;
+		}
+	};
+
+	/**
+	 * Puts the specified tile in the specified position of the map. If a
+	 * mutable tile is already present in that position, it is first removed. If
+	 * a non-mutable tile is present, the operation fails.
+	 *
+	 * A boolean value is returned indicating whether the operation succeeded or
+	 * not.
+	 *
+	 * @method putAt
+	 * @param i {Number} The I coordinate of the map cell.
+	 * @param j {Number} The J coordinate of the map cell.
+	 * @param k {Number} The K coordinate of the map cell.
+	 * @param id {Number} The new tile&#x27;s ID.
+	 * @return {Boolean} &#x60;true&#x60; if the specified tile was successfully placed at
+	 * the specified position, &#x60;false&#x60; if that position is already occupied by a
+	 * non-mutable tile.
+	 */
+	this.putAt = function (i, j, k, id) {
+		if (!(id in data.tiles)) {
+			throw {
+				message: &#x27;invalid tile ID&#x27;,
+				id: id
+			};
+		}
+		id = parseInt(id, 10);
+
+		function canClear(i, j) {
+			var id = matrix.get(i, j, k);
+			if (typeof id !== &#x27;number&#x27;) {
+				var coordinates = id.split(&#x27; &#x27;);
+				id = matrix.get(coordinates[0], coordinates[1], k);
+			}
+			return data.tiles[id].mutable;
+		}
+
+		function clear(i, j) {
+			var value = matrix.get(i, j, k);
+			if (typeof value !== &#x27;number&#x27;) {
+				var coordinates = value.split(&#x27; &#x27;);
+				i = coordinates[0];
+				j = coordinates[1];
+			}
+			if (buckets.removeTile(i, j, k)) {
+				matrix.erase(i, j, k);
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		var i1, j1;
+
+		var layout = data.tiles[id].layout;
+		for (i1 = i - layout.ref.i; i1 &lt; i - layout.ref.i + layout.span.i; i1++) {
+			for (j1 = j - layout.ref.j; j1 &lt; j - layout.ref.j + layout.span.j; j1++) {
+				if (!canClear(i1, j1, k)) {
+					return false;
+				}
+			}
+		}
+
+		for (i1 = i - layout.ref.i; i1 &lt; i - layout.ref.i + layout.span.i; i1++) {
+			for (j1 = j - layout.ref.j; j1 &lt; j - layout.ref.j + layout.span.j; j1++) {
+				if (clear(i1, j1, k)) {
+					matrix.put(i1, j1, k, i + &#x27; &#x27; + j);
+				} else {
+					return false;
+				}
+			}
+		}
+		matrix.put(i, j, k, id);
+		buckets.addTile(id, i, j, k);
+		return true;
+	};
+
+	/**
+	 * This method uses the &#x60;findPath&#x60; method of the
+	 * {{#crossLink &quot;Canvace.Astar&quot;}}{{/crossLink}} class to compute a suitable
+	 * path from the starting node to the destination node.
+	 *
+	 * The only difference between this method and the &#x60;findPath&#x60; method of the
+	 * {{#crossLink &quot;Canvace.Astar&quot;}}{{/crossLink}} class is the way the
+	 * computed path is returned to the caller.
+	 *
+	 * @method findPath
+	 * @param i {Number} The I coordinate of the requested node.
+	 * @param j {Number} The J coordinate of the requested node.
+	 * @param k {Number} The number of the layer containing both the requested
+	 * and the target node.
+	 * @param i1 {Number} The I coordinate of the target node.
+	 * @param j1 {Number} The J coordinate of the target node.
+	 * @return {Object[]} An array of objects containing the &#x60;i&#x60; and &#x60;j&#x60;
+	 * coordinates of the nodes in the computed path, or &#x60;null&#x60; if no path can
+	 * be found. The starting node is **not** included.
+	 */
+	this.findPath = (function () {
+		var astar;
+		return function (i, j, k, i1, j1) {
+			if (!astar) {
+				astar = new Canvace.Astar();
+			}
+
+			var path = astar.findPath(thisObject.getGraphNode(i, j, k, i1, j1));
+			if (null === path) {
+				return null;
+			}
+
+			return Canvace.TileMap.translatePath(i, j, path);
+		};
+	}());
+
+	/**
+	 * Constructs an object that satisfies the &#x60;Astar.Node&#x60; requirements and
+	 * represents a tile of the map as a node of a graph. The returned object
+	 * allows to traverse a graph where each node represents a solid tile and
+	 * each edge allows to walk from a tile to another adjacent tile.
+	 *
+	 * The returned graph is characterized by a _target node_ and each node also
+	 * provides a heuristic estimate of the distance between the target node and
+	 * itself. This makes the graph usable with the &#x60;Astar&#x60; class.
+	 *
+	 * The target node is the tile identified by the coordinates &#x60;i1&#x60;, &#x60;j1&#x60; and
+	 * &#x60;k&#x60;.
+	 *
+	 * @method getGraphNode
+	 * @param i {Number} The I coordinate of the requested node.
+	 * @param j {Number} The J coordinate of the requested node.
+	 * @param k {Number} The number of the layer containing both the requested
+	 * and the target node.
+	 * @param i1 {Number} The I coordinate of the target node.
+	 * @param j1 {Number} The J coordinate of the target node.
+	 * @return {Canvace.Astar.Node} A node object that satisfies the
+	 * &#x60;Astar.Node&#x60; requirements and can be passed to the &#x60;Astar.findPath&#x60;
+	 * method.
+	 */
+	this.getGraphNode = function (i, j, k, i1, j1) {
+		return (function makeNode(i, j) {
+			function bind(i, j) {
+				return function () {
+					return makeNode(i, j);
+				};
+			}
+			var di = Math.abs(i1 - i);
+			var dj = Math.abs(j1 - j);
+			var node = {
+				id: i + &#x27; &#x27; + j + &#x27; &#x27; + k,
+				heuristic: Math.sqrt(Math.pow(Math.min(di, dj), 2) * 2) +
+					Math.max(di, dj) - Math.min(di, dj),
+				neighbors: {},
+				distance: function (index) {
+					if (parseInt(index, 10) % 2) {
+						return 1;
+					} else {
+						return Math.sqrt(2);
+					}
+				}
+			};
+			(function () {
+				function walkable(i, j) {
+					if (matrix.has(i, j, k)) {
+						var id = matrix.get(i, j, k);
+						if (typeof id !== &#x27;number&#x27;) {
+							var coordinates = id.split(&#x27; &#x27;);
+							id = matrix.get(coordinates[0], coordinates[1], k);
+						}
+						return !data.tiles[id].solid;
+					} else {
+						return false;
+					}
+				}
+				for (var index = 0; index &lt; 9; index++) {
+					var i1 = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][index];
+					var j1 = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][index];
+					if (((i1 !== i) || (j1 !== j)) &amp;&amp; walkable(i1, j1)) {
+						if ((index % 2) || walkable(i, j1) &amp;&amp; walkable(i1, j)) {
+							node.neighbors[index] = bind(i1, j1);
+						}
+					}
+				}
+			}());
+			return node;
+		}(i, j));
+	};
+
+	/**
+	 * Detects collisions between a rectangular area and solid tiles of a
+	 * specified map layer.
+	 *
+	 * A vector is returned indicating two I and J values that must be added to
+	 * the coordinates of the rectangular area in order to resume a regular
+	 * configuration where the area does not collide with the tiles.
+	 *
+	 * In case there is not any collision, the returned vector is &#x60;(0, 0)&#x60;.
+	 *
+	 * The rectangular area is specified by the &#x60;i&#x60;, &#x60;j&#x60;, &#x60;di&#x60; and &#x60;dj&#x60;
+	 * arguments.
+	 *
+	 * The implementation of this method assumes the rectangular area represents
+	 * a moving entity (though not necessarily a Canvace entity). The collision
+	 * algorithm assumes the moving entity cannot have compenetrated a tile
+	 * along the I or J axis more than specified amounts &#x60;Di&#x60; and &#x60;Dj&#x60;,
+	 * respectively; this is necessary in order to obtain a functional physics
+	 * algorithm.
+	 *
+	 * This method can be used to implement in-layer, bounding box based, entity
+	 * vs. tiles collisions. If the rectangular area represents the bounding box
+	 * of an entity, its origin&#x27;s &#x60;i&#x60; and &#x60;j&#x60; coordinates can be obtained using
+	 * the &#x60;Stage.Instance.getPosition&#x60; method, while the &#x60;di&#x60; and &#x60;dj&#x60; span
+	 * values are usually per-entity constant and must be arbitrarily determined
+	 * by the developer.
+	 *
+	 * If the rectangular area actually is the bounding box of a Canvace entity,
+	 * you can specify the distance the entity has gone along the I and J axes
+	 * since the last step as values for the &#x60;Di&#x60; and &#x60;Dj&#x60; arguments; you can do
+	 * that by caching the values of the &#x60;i&#x60; and &#x60;j&#x60; components of the entity&#x27;s
+	 * position and subtracting them to their respective values of the current
+	 * position at each step. This is actually what the &#x60;testTileCollision&#x60;
+	 * method of the &#x60;Stage.Instance&#x60; class does.
+	 *
+	 * @method rectangleCollision
+	 * @param k {Number} The number of the layer containing the tiles against
+	 * which the collision must be tested.
+	 * @param i {Number} The I coordinate of the origin of the rectangular area.
+	 * This may be a real number.
+	 * @param j {Number} The J coordinate of the origin of the rectangular area.
+	 * This may be a real number.
+	 * @param di {Number} The span of the rectangular area along the I axis.
+	 * This may be a real number.
+	 * @param dj {Number} The span of the rectangular area along the J axis.
+	 * This may be a real number.
+	 * @param Di {Number} TODO
+	 * @param Dj {Number} TODO
+	 * @param [collides] {Function} An optional user-defined callback function
+	 * that is invoked by the &#x60;rectangleCollision&#x60; method for every tile that
+	 * collides with the specified rectangle.
+	 *
+	 * The function receives two arguments, the tile&#x27;s solid flag and its
+	 * properties, and must return a boolean value indicating whether the tile
+	 * must be taken into account as a colliding tile. If the function returns
+	 * &#x60;false&#x60; the tile is _not_ taken into account.
+	 * @return {Object} An object containing two number fields, &#x60;i&#x60; and &#x60;j&#x60;,
+	 * specifying the I and J components of the computed vector.
+	 */
+	this.rectangleCollision = function (k, i, j, di, dj, Di, Dj, collides) {
+		var viu = 0;
+		var vio = 0;
+		var vju = 0;
+		var vjo = 0;
+
+		if (matrix.hasLayer(k)) {
+			var tiles = data.tiles;
+
+			var solidTileAt = (function () {
+				if (typeof collides !== &#x27;function&#x27;) {
+					return function (i, j) {
+						if (matrix.has(i, j, k)) {
+							var id = matrix.get(i, j, k);
+							if (typeof id !== &#x27;number&#x27;) {
+								var coordinates = id.split(&#x27; &#x27;);
+								id = matrix.get(coordinates[0], coordinates[1], k);
+							}
+							return data.tiles[id].solid;
+						} else {
+							return false;
+						}
+					};
+				} else {
+					return function (i, j) {
+						if (!matrix.has(i, j, k)) {
+							return false;
+						}
+						var id = matrix.get(i, j, k);
+						if (typeof id !== &#x27;number&#x27;) {
+							var coordinates = id.split(&#x27; &#x27;);
+							id = matrix.get(coordinates[0], coordinates[1], k);
+						}
+						var tile = tiles[id];
+						return collides(tile.solid, tile.properties);
+					};
+				}
+			}());
+
+			var i0 = Math.floor(i);
+			var j0 = Math.floor(j);
+			var i1 = Math.ceil(i + di) - 1;
+			var j1 = Math.ceil(j + dj) - 1;
+
+			for (var j2 = j0; j2 &lt;= j1; j2++) {
+				if (solidTileAt(i0, j2)) {
+					if ((i0 === i1) || !solidTileAt(i0 + 1, j2)) {
+						viu = i0 + 1 - i;
+					}
+				}
+				if (solidTileAt(i1, j2)) {
+					if ((i0 === i1) || !solidTileAt(i1 - 1, j2)) {
+						vio = i1 - i - di;
+					}
+				}
+			}
+
+			for (var i2 = i0; i2 &lt;= i1; i2++) {
+				if (solidTileAt(i2, j0)) {
+					if ((j0 === j1) || !solidTileAt(i2, j0 + 1)) {
+						vju = j0 + 1 - j;
+					}
+				}
+				if (solidTileAt(i2, j1)) {
+					if ((j0 === j1) || !solidTileAt(i2, j1 - 1)) {
+						vjo = j1 - j - dj;
+					}
+				}
+			}
+		}
+
+		var v = {};
+
+		if (viu &amp;&amp; vio) {
+			v.i = 0;
+		} else if (viu) {
+			v.i = viu;
+		} else {
+			v.i = vio;
+		}
+		if (vju &amp;&amp; vjo) {
+			v.j = 0;
+		} else if (vju) {
+			v.j = vju;
+		} else {
+			v.j = vjo;
+		}
+
+		if (Math.abs(v.i) &gt; Math.abs(Di) + 0.001) {
+			v.i = 0;
+		}
+		if (Math.abs(v.j) &gt; Math.abs(Dj) + 0.001) {
+			v.j = 0;
+		}
+
+		return v;
+	};
+};
+
+/**
+ * TODO
+ *
+ * @method translatePath
+ * @static
+ * @param i {Number} TODO
+ * @param j {Number} TODO
+ * @param path {Number[]} TODO
+ * @return {Object[]} TODO
+ */
+Canvace.TileMap.translatePath = function (i, j, path) {
+	var result = [];
+	for (var index = 0; index &lt; path.length; ++index) {
+		i = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][path[index]];
+		j = j + [-1, 0, 1, -1, 0, 1, -1, 0, 1][path[index]];
+		result.push({
+			i: i,
+			j: j
+		});
+	}
+	return result;
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

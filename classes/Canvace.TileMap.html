@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; Canvace.TileMap - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1>Canvace.TileMap Class</h1>
+<div class="box meta">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_TileMap.js.html#l21"><code>src\TileMap.js:21</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Canvace.html">Canvace</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>Provides functionalities to manage a stage&#39;s tile map. You do not usually
+need to instantiate this object directly, you can get an instance using the
+Canvace.Stage.getTileMap
+method.</p>
+<p>The <code>TileMap</code> constructor receives a
+<a href="..\classes\Canvace.Buckets.html" class="crosslink">Canvace.Buckets</a> object and takes care of
+adding all the tiles in the map to the buckets so that they can be rendered.</p>
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_Canvace.TileMap" class="method item">
+    <h3 class="name"><code>Canvace.TileMap</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>data</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>buckets</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l21"><code>src\TileMap.js:21</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The JSON object produced by the Canvace Development
+Environment.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">buckets</code>
+                        <span class="type"><a href="..\classes\Canvace.Buckets.html" class="crosslink">Canvace.Buckets</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A <code>Canvace.Buckets</code> object that is updated
+along with the map, so that changes in the map are reflected by subsequent
+renderings.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_findPath">findPath</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_forEachLayer">forEachLayer</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_forEachTile">forEachTile</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_forEachTileInLayer">forEachTileInLayer</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAt">getAt</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAt2">getAt2</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getGraphNode">getGraphNode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTile">getTile</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTileId">getTileId</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTileIds">getTileIds</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTiles">getTiles</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_putAt">putAt</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_rectangleCollision">rectangleCollision</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_translatePath">translatePath</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_findPath" class="method item">
+    <h3 class="name"><code>findPath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>i1</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j1</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l476"><code>src\TileMap.js:476</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This method uses the <code>findPath</code> method of the
+<a href="..\classes\Canvace.Astar.html" class="crosslink">Canvace.Astar</a> class to compute a suitable
+path from the starting node to the destination node.</p>
+<p>The only difference between this method and the <code>findPath</code> method of the
+<a href="..\classes\Canvace.Astar.html" class="crosslink">Canvace.Astar</a> class is the way the
+computed path is returned to the caller.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the requested node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the requested node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The number of the layer containing both the requested
+and the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">i1</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j1</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>:
+                    
+                    <p>An array of objects containing the <code>i</code> and <code>j</code>
+coordinates of the nodes in the computed path, or <code>null</code> if no path can
+be found. The starting node is <strong>not</strong> included.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_forEachLayer" class="method item">
+    <h3 class="name"><code>forEachLayer</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>action</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[scope]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l134"><code>src\TileMap.js:134</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Enumerates the numbers of the layers currently in the tile map.</p>
+<p>For each enumerated layer the <code>action</code> callback function is called and
+receives a numeric argument, the layer number.</p>
+<p>The enumeration is interrupted if the callback function returns <code>false</code>;
+any other return value is ignored.</p>
+<p>In case the enumeration is interrupted, <code>true</code> is returned by the
+<code>forEachLayer</code> method, otherwise <code>false</code> is returned.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">action</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A user-defined callback function that gets
+called for each enumerated layer.</p>
+<p>The function receives one argument, the layer number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    <p><code>true</code> if the <code>action</code> callback function returned
+<code>false</code>, <code>false</code> otherwise.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_forEachTile" class="method item">
+    <h3 class="name"><code>forEachTile</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>action</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[scope]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l160"><code>src\TileMap.js:160</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Enumerates the tiles currently in the map.</p>
+<p>For each enumerated tile the <code>action</code> callback function is called and
+receives three integer arguments, the <code>i</code>, <code>j</code> and <code>k</code> coordinates of the
+tile. The tile itself can then be retrieved as a <code>TileMap.Tile</code> object by
+calling the <code>TileMap.getAt</code> method.</p>
+<p>The enumeration is interrupted if the callback function returns <code>false</code>;
+any other return value is ignored.</p>
+<p>In case the enumeration is interrupted, <code>true</code> is returned by the
+<code>forEachTile</code> method, otherwise <code>false</code> is returned.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">action</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A user-defined callback function that gets
+called for each enumerated tile.</p>
+<p>The function receives three integer arguments: the <code>i</code>, <code>j</code> and <code>k</code>
+coordinates of the tile, respectively.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    <p><code>true</code> if the <code>action</code> callback function returned
+<code>false</code>, <code>false</code> otherwise.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_forEachTileInLayer" class="method item">
+    <h3 class="name"><code>forEachTileInLayer</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>action</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[scope]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l192"><code>src\TileMap.js:192</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Enumerates the tiles in the specified layer of the map.</p>
+<p>For each enumerated tile the <code>action</code> callback function is called and
+receives two integer arguments, the <code>i</code> and <code>j</code> coordinates of the tile.
+The tile itself can then be retrieved as a <code>TileMap.Tile</code> object by
+calling the <code>TileMap.getAt</code> method.</p>
+<p>An exception is thrown if the <code>k</code> argument does not represent a valid
+layer of the map. This includes empty layers: if a tile map contains
+tiles at layers <code>0</code> and <code>2</code> but none at layer <code>1</code> you cannot specify <code>1</code>
+for the <code>k</code> argument because the map does not contain the layer <code>1</code>.</p>
+<p>The enumeration is interrupted if the callback function returns <code>false</code>;
+any other return value is ignored.</p>
+<p>In case the enumeration is interrupted, <code>true</code> is returned by the
+<code>forEachTileInLayer</code> method, otherwise <code>false</code> is returned.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The layer number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">action</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A user-defined callback function that gets
+called for each enumerated tile.</p>
+<p>The function receives two integer arguments: the <code>i</code> and <code>j</code> coordinates
+of the tile, respectively.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    <p><code>true</code> if the <code>action</code> callback function returned
+<code>false</code>, <code>false</code> otherwise.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getAt" class="method item">
+    <h3 class="name"><code>getAt</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l333"><code>src\TileMap.js:333</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the ID of the tile located at the specified <code>(i, j, k)</code> position
+of the map, or <code>false</code> if no tile is located at that position.</p>
+<p>In case a multiple tile is located at the specified position, its ID is
+returned only if the specified position identifies its reference cell;
+otherwise <code>false</code> is returned.</p>
+<p>To be aware of the parts of possible multiple tiles use the
+Canvace.TileMap.getAt2 method.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer I coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer J coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer K coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    <p>The requested tile ID, or <code>false</code> if no tile is found.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getAt2" class="method item">
+    <h3 class="name"><code>getAt2</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[alwaysId=false]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Mixed</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l359"><code>src\TileMap.js:359</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the ID of the tile located at the specified <code>(i, j, k)</code> position
+of the map, or <code>false</code> if no tile is located at that position.</p>
+<p>In case a multiple tile is located at the specified position, its ID is
+returned only if the specified position identifies its reference cell;
+otherwise this method returns an object describing the tile and
+containing three fields: an <code>id</code> field specifying the tile ID and two <code>i</code>
+and <code>j</code> fields representing the coordinates of its reference cell in the
+same layer.</p>
+<p>To be aware of the parts of possible multiple tiles use the
+Canvace.TileMap.getAt2 method.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer I coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer J coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An integer K coordinate.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[alwaysId=false]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Mixed</span>:
+                    
+                    <p>The requested single tile ID, an object describing a
+multiple tile or <code>false</code> if no tile is found. Use the <code>typeof</code> operator
+to distinguish between the two cases: a tile ID is always a number.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getGraphNode" class="method item">
+    <h3 class="name"><code>getGraphNode</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>i1</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j1</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\Canvace.Astar.Node.html" class="crosslink">Canvace.Astar.Node</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l512"><code>src\TileMap.js:512</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Constructs an object that satisfies the <code>Astar.Node</code> requirements and
+represents a tile of the map as a node of a graph. The returned object
+allows to traverse a graph where each node represents a solid tile and
+each edge allows to walk from a tile to another adjacent tile.</p>
+<p>The returned graph is characterized by a <em>target node</em> and each node also
+provides a heuristic estimate of the distance between the target node and
+itself. This makes the graph usable with the <code>Astar</code> class.</p>
+<p>The target node is the tile identified by the coordinates <code>i1</code>, <code>j1</code> and
+<code>k</code>.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the requested node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the requested node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The number of the layer containing both the requested
+and the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">i1</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j1</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the target node.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\Canvace.Astar.Node.html" class="crosslink">Canvace.Astar.Node</a></span>:
+                    
+                    <p>A node object that satisfies the
+<code>Astar.Node</code> requirements and can be passed to the <code>Astar.findPath</code>
+method.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTile" class="method item">
+    <h3 class="name"><code>getTile</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>idOrProperties</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\Canvace.TileMap.Tile.html" class="crosslink">Canvace.TileMap.Tile</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l289"><code>src\TileMap.js:289</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns a <code>Tile</code> object that describes the requested tile.</p>
+<p>A tile can be identified either by ID or filtering properties; TODO</p>
+<p>This method throws an exception if the ID is not valid, i.e. it is not
+present in the JSON data output by the Canvace Development Environment.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">idOrProperties</code>
+                        <span class="type">Mixed</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A tile ID or filtering properties object.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\Canvace.TileMap.Tile.html" class="crosslink">Canvace.TileMap.Tile</a></span>:
+                    
+                    <p>A <code>Tile</code> object describing the requested
+tile.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTileId" class="method item">
+    <h3 class="name"><code>getTileId</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[properties]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l280"><code>src\TileMap.js:280</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>TODO</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[properties]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                    <p>TODO</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTileIds" class="method item">
+    <h3 class="name"><code>getTileIds</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[properties]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l263"><code>src\TileMap.js:263</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>TODO</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[properties]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a></span>:
+                    
+                    <p>TODO</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTiles" class="method item">
+    <h3 class="name"><code>getTiles</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[properties]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\Canvace.TileMap.Tile.html" class="crosslink">Canvace.TileMap.Tile[]</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l317"><code>src\TileMap.js:317</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>TODO</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[properties]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\Canvace.TileMap.Tile.html" class="crosslink">Canvace.TileMap.Tile[]</a></span>:
+                    
+                    <p>TODO</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_putAt" class="method item">
+    <h3 class="name"><code>putAt</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l401"><code>src\TileMap.js:401</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Puts the specified tile in the specified position of the map. If a
+mutable tile is already present in that position, it is first removed. If
+a non-mutable tile is present, the operation fails.</p>
+<p>A boolean value is returned indicating whether the operation succeeded or
+not.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the map cell.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the map cell.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The K coordinate of the map cell.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The new tile&#39;s ID.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    <p><code>true</code> if the specified tile was successfully placed at
+the specified position, <code>false</code> if that position is already occupied by a
+non-mutable tile.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_rectangleCollision" class="method item">
+    <h3 class="name"><code>rectangleCollision</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>di</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>dj</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>Di</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>Dj</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[collides]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l585"><code>src\TileMap.js:585</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Detects collisions between a rectangular area and solid tiles of a
+specified map layer.</p>
+<p>A vector is returned indicating two I and J values that must be added to
+the coordinates of the rectangular area in order to resume a regular
+configuration where the area does not collide with the tiles.</p>
+<p>In case there is not any collision, the returned vector is <code>(0, 0)</code>.</p>
+<p>The rectangular area is specified by the <code>i</code>, <code>j</code>, <code>di</code> and <code>dj</code>
+arguments.</p>
+<p>The implementation of this method assumes the rectangular area represents
+a moving entity (though not necessarily a Canvace entity). The collision
+algorithm assumes the moving entity cannot have compenetrated a tile
+along the I or J axis more than specified amounts <code>Di</code> and <code>Dj</code>,
+respectively; this is necessary in order to obtain a functional physics
+algorithm.</p>
+<p>This method can be used to implement in-layer, bounding box based, entity
+vs. tiles collisions. If the rectangular area represents the bounding box
+of an entity, its origin&#39;s <code>i</code> and <code>j</code> coordinates can be obtained using
+the <code>Stage.Instance.getPosition</code> method, while the <code>di</code> and <code>dj</code> span
+values are usually per-entity constant and must be arbitrarily determined
+by the developer.</p>
+<p>If the rectangular area actually is the bounding box of a Canvace entity,
+you can specify the distance the entity has gone along the I and J axes
+since the last step as values for the <code>Di</code> and <code>Dj</code> arguments; you can do
+that by caching the values of the <code>i</code> and <code>j</code> components of the entity&#39;s
+position and subtracting them to their respective values of the current
+position at each step. This is actually what the <code>testTileCollision</code>
+method of the <code>Stage.Instance</code> class does.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The number of the layer containing the tiles against
+which the collision must be tested.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The I coordinate of the origin of the rectangular area.
+This may be a real number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The J coordinate of the origin of the rectangular area.
+This may be a real number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">di</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The span of the rectangular area along the I axis.
+This may be a real number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">dj</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The span of the rectangular area along the J axis.
+This may be a real number.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">Di</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">Dj</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[collides]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An optional user-defined callback function
+that is invoked by the <code>rectangleCollision</code> method for every tile that
+collides with the specified rectangle.</p>
+<p>The function receives two arguments, the tile&#39;s solid flag and its
+properties, and must return a boolean value indicating whether the tile
+must be taken into account as a colliding tile. If the function returns
+<code>false</code> the tile is <em>not</em> taken into account.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    <p>An object containing two number fields, <code>i</code> and <code>j</code>,
+specifying the I and J components of the computed vector.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_translatePath" class="method item">
+    <h3 class="name"><code>translatePath</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>i</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>j</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>path</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_TileMap.js.html#l743"><code>src\TileMap.js:743</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>TODO</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">i</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">j</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">path</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>TODO</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>:
+                    
+                    <p>TODO</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

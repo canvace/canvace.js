@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; Canvace.StateMachine - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1>Canvace.StateMachine Class</h1>
+<div class="box meta">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_StateMachine.js.html#l21"><code>src\StateMachine.js:21</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Canvace.html">Canvace</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>The <code>StateMachine</code> class allows to implement generic state machines with a
+finite set of states and transitions, also called Deterministic Finite
+Automata, or DFAs.</p>
+<p>Objects of this class have one method for each specified transition. A
+<code>StateMachine</code> object is initially in the specified initial state; calling
+one of its transition methods makes it change its state depending on how
+transitions and states are defined.</p>
+<p>The following example defines a state machine with three states and two
+possible transitions, and indicates the target state for each starting state
+and for each transition:</p>
+<pre class="code prettyprint"><code>var sm = new Canvace.StateMachine({
+    state0: {
+        transition1: &#39;state1&#39;,
+        transition2: &#39;state2&#39;
+    },
+    state1: {
+        transition1: &#39;state0&#39;,
+        transition2: &#39;state2&#39;
+    },
+    state2: {
+        transition1: &#39;state0&#39;,
+        transition2: &#39;state1&#39;
+    }
+}, &#39;state0&#39;);
+
+sm.transition1(); // goes into state1
+sm.transition2(); // goes into state2
+sm.transition2(); // goes into state1</code></pre>
+<p>Note that this class defines a <code>getCurrentState</code> method, thus the
+&quot;getCurrentState&quot; name is reserved and cannot be used as a transition name
+since it would override the method provided by the class.</p>
+<p>For more information about defining state machines, refer to the constructor
+documentation.</p>
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_Canvace.StateMachine" class="method item">
+    <h3 class="name"><code>Canvace.StateMachine</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>states</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>initialState</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_StateMachine.js.html#l21"><code>src\StateMachine.js:21</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">states</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A map of states. Each property of this object is a
+state name and its value is a state object.</p>
+<p>Each state object is a map of transitions: each property is a transition name
+and its value is a transition.</p>
+<p>A transition can be expressed in two possible forms: a string and a function.
+A string indicates the target state of that transition, while a function
+contains code that is executed every time the state machine does that
+transition. The function may or may not return a string as a return value;
+the optionally returned string indicates the target state. If the function
+returns anything other than a string its return value is ignored and the
+transition is assumed to have the current state as target state, so the
+machine&#39;s state is not changed.</p>
+<p>Transition functions may accept arguments, in which case the transition
+function exposed by the <code>StateMachine</code> object accepts the same number of
+arguments and forwards them in the same order. This means transitions can be
+parameterized.</p>
+<p>At the invocation of a transition function, <code>this</code> is set to the current
+state object (the same object that was passed to the constructor in the
+<code>states</code> argument).</p>
+<p>You do not need to specify all the possible transitions for each state when
+defining the <code>states</code> argument: missing transitions are assumed to be strings
+specifying the state&#39;s name, thus they do not change the machine&#39;s state.</p>
+<p>The set of all the possible transitions is automatically determined by the
+<code>StateMachine</code> constructor by calculating the union of the transitions of all
+the states.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">initialState</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The initial state.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>var character = new Canvace.StateMachine({
+    still: {
+        walkLeft: function () {
+            dx = -0.1; // decrease speed
+            waving = true;
+            return &#39;walkingLeft&#39;;
+        },
+        walkRight: function () {
+            dx = 0.1;
+            waving = true;
+            return &#39;walkingRight&#39;;
+        }
+    },
+    walkingLeft: {
+        walkRight: function () {
+            dx = 0;
+            return &#39;walkingBoth&#39;;
+        },
+        stopLeft: function () {
+            dx = 0;
+            waving = false;
+            return &#39;still&#39;;
+        }
+    },
+    walkingRight: {
+        walkLeft: function () {
+            dx = 0;
+            return &#39;walkingBoth&#39;;
+        },
+        stopRight: function () {
+            dx = 0;
+            waving = false;
+            return &#39;still&#39;;
+        }
+    },
+    walkingBoth: {
+        stopLeft: function () {
+            dx = 0.1;
+            return &#39;walkingRight&#39;;
+        },
+        stopRight: function () {
+            dx = -0.1;
+            return &#39;walkingLeft&#39;;
+        }
+    }
+}, &#39;still&#39;);
+
+var keyboard = new Canvace.Keyboard(window);
+keyboard.onKeyDown(KeyEvent.DOM_VK_LEFT, character.walkLeft);
+keyboard.onKeyUp(KeyEvent.DOM_VK_LEFT, character.stopLeft);
+keyboard.onKeyDown(KeyEvent.DOM_VK_RIGHT, character.walkRight);
+keyboard.onKeyUp(KeyEvent.DOM_VK_RIGHT, character.stopRight);</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_getCurrentState">getCurrentState</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_getCurrentState" class="method item">
+    <h3 class="name"><code>getCurrentState</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_StateMachine.js.html#l208"><code>src\StateMachine.js:208</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Indicates the current state.</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    <p>The name of the current state.</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

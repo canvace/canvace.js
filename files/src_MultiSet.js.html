@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\MultiSet.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\MultiSet.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * Implements a multi-set, a set with possibly repeated elements.
+ *
+ * This container allows insertion and removal of elements in constant time
+ * assuming the implementation of the underlying JavaScript engine manages in
+ * amortizing insertion and removal of properties in objects to constant time.
+ *
+ * The arguments you specify to the MultiSet constructor are immediately
+ * inserted into the container. For example:
+ *
+ *	var ms = new Canvace.MultiSet(1, 2, 3); // ms contains 1, 2 and 3
+ *
+ * The previous snippet is equivalent to:
+ *
+ *	var ms = new Canvace.MultiSet();
+ *	ms.add(1);
+ *	ms.add(2);
+ *	ms.add(3);
+ *
+ * @class Canvace.MultiSet
+ * @constructor
+ * @param [elements]* {Object} The elements to add initially to the &#x60;MultiSet&#x60;.
+ */
+Canvace.MultiSet = function () {
+	this.elements = {};
+	this.nextId = 0;
+	this.count = 0;
+	this.fastAdd.apply(this, arguments);
+};
+
+/**
+ * Inserts an element into the container in amortized constant time. The
+ * element can be of any type (numbers, strings, objects, etc.) and can be
+ * inserted many times.
+ *
+ * The {{#crossLink &quot;Canvace.MultiSet/add}}{{/crossLink}} method returns a
+ * function that removes the element. The returned function is idempotent:
+ * it does not have any effect when called again after the first time.
+ *
+ * Example:
+ *
+ *	var ms = new Canvace.MultiSet(1, 2);
+ *	var remove = ms.add(3); // ms now contains three elements: 1, 2 and 3
+ *	remove(); // ms now contains two elements: 1 and 2
+ *	remove(); // no effect, ms still contains 1 and 2
+ *
+ * The returned function returns a boolean value indicating whether the
+ * element was present and could be removed or not. &#x60;false&#x60; indicates the
+ * element was not present because it had already been removed by a previous
+ * call.
+ *
+ * Example:
+ *
+ *	var ms = new Canvace.MultiSet();
+ *	var remove = ms.add(3);
+ *	if (remove()) {
+ *		alert(&#x27;removed!&#x27;);
+ *	}
+ *	if (remove()) {
+ *		alert(&#x27;this is never alerted&#x27;);
+ *	}
+ *
+ * @method add
+ * @param element {Any} The element to be inserted in the
+ * {{#crossLink &quot;Canvace.MultiSet&quot;}}MultiSet{{/crossLink}}.
+ * @return {Function} A function that removes the inserted element.
+ */
+Canvace.MultiSet.prototype.add = function (element) {
+	var id = this.nextId++;
+	this.elements[id] = element;
+	this.count++;
+	return function () {
+		if (this.elements.hasOwnProperty(id)) {
+			delete this.elements[id];
+			this.count--;
+			return true;
+		} else {
+			return false;
+		}
+	}.bind(this);
+};
+
+/**
+ * Inserts zero or more elements into the container in amortized constant time.
+ * The elements can be of any type (numbers, strings, objects, etc.) and can be
+ * inserted many times.
+ *
+ * This method is faster than
+ * {{#crossLink &quot;Canvace.MultiSet/add&quot;}}{{/crossLink}} because it doesn&#x27;t
+ * generate any closures; infact it doesn&#x27;t return anything.
+ *
+ * @method fastAdd
+ * @param [elements...] {Any} Zero or more elements to insert in the
+ * {{#crossLink &quot;Canvace.MultiSet&quot;}}MultiSet{{/crossLink}}.
+ * @example
+ *	var ms = new Canvace.MultiSet(1, 2);
+ *	ms.fastAdd(3, 4); // ms now contains four elements: 1, 2, 3 and 4
+ */
+Canvace.MultiSet.prototype.fastAdd = function () {
+	for (var i in arguments) {
+		this.elements[this.nextId++] = arguments[i];
+	}
+	this.count += arguments.length;
+};
+
+/**
+ * Iterates over the container and calls the specified function &#x60;action&#x60; for
+ * each iterated element.
+ *
+ * The &#x60;action&#x60; function receives two arguments: the element and a function
+ * that removes it if called. The removing function stays valid forever,
+ * even after the whole &#x60;forEach&#x60; call is over, and is idempotent: it does
+ * not have any effects after it is called once.
+ *
+ * The following example inserts some numbers into the container and then
+ * removes only the numbers equal to 3:
+ *
+ *	var ms = new Canvace.MultiSet(1, 3, 7, 6, 3, 4, 3, 3, 5);
+ *	ms.forEach(function (element, remove) {
+ *		if (element === 3) {
+ *			remove();
+ *		}
+ *	});
+ *	// ms now contains 1, 7, 6, 4, 5
+ *
+ * Elements with repetitions are iterated as many times as they are
+ * repeated. For example, in the previous snippet the number 3 is iterated
+ * (and removed) four times.
+ *
+ * Note that the order of iteration is undefined as it depends on the order
+ * of iteration over object properties implemented by the underlying
+ * JavaScript engine. This is typically the insertion order, which means
+ * {{#crossLink &quot;Canvace.MultiSet/forEach&quot;}}{{/crossLink}} enumerates the
+ * elements in the same order they are inserted by
+ * {{#crossLink &quot;Canvace.MultiSet/add&quot;}}{{/crossLink}}, but you must not
+ * depend on that assumption.
+ *
+ * The iteration is interrupted if the &#x60;action&#x60; function returns &#x60;false&#x60;.
+ * The following example adds some numbers to the container, then iterates
+ * over it and interrupts when it encounters the number 3:
+ *
+ *	var ms = new Canvace.MultiSet(1, 2, 3, 4);
+ *	ms.forEach(function (element) {
+ *		if (element === 3) {
+ *			return false;
+ *		}
+ *	});
+ *
+ * The number 4 is not enumerated.
+ *
+ * {{#crossLink &quot;Canvace.MultiSet/forEach&quot;}}{{/crossLink}} returns &#x60;false&#x60;
+ * if the iteration completed and &#x60;true&#x60; if it was interrupted, which is
+ * suitable for implementing finding algorithms.
+ *
+ * @method forEach
+ * @param action {Function} The callback function that gets called for each
+ * element of the multiset. It receives the current element and a callback
+ * function suitable for deleting it from the
+ * {{#crossLink &quot;Canvace.MultiSet&quot;}}MultiSet{{/crossLink}}.
+ * @return {Boolean} &#x60;true&#x60; if &#x60;action&#x60; returned &#x60;false&#x60;, &#x60;false&#x60; if it did
+ * not and all the elements were enumerated.
+ */
+Canvace.MultiSet.prototype.forEach = function (action) {
+	for (var id in this.elements) {
+		if (this.elements.hasOwnProperty(id)) {
+			if (action(this.elements[id], function (id) {
+				return function () {
+					if (this.elements.hasOwnProperty(id)) {
+						delete this.elements[id];
+						this.count--;
+						return true;
+					} else {
+						return false;
+					}
+				}.bind(this);
+			}.call(this, id)) === false) {
+				return true;
+			}
+		}
+	}
+	return false;
+};
+
+/**
+ * Iterates over the container and calls the specified function &#x60;action&#x60; for
+ * each iterated element.
+ *
+ * The &#x60;action&#x60; function receives one argument, the current element. Any
+ * return value is ignored.
+ *
+ * This method is similar to the
+ * {{#crossLink &quot;Canvace.MultiSet/forEach&quot;}}{{/crossLink}} method except it
+ * can be faster on some browsers because it does not generate a closure
+ * (the element&#x27;s removal function) at each iterated element and does not
+ * analyze the return value of the callback function. Infact, the iterated
+ * elements cannot be removed and the iteration cannot be interrupted.
+ *
+ * You usually use the
+ * {{#crossLink &quot;Canvace.MultiSet/forEach&quot;}}{{/crossLink}} method, but you
+ * may also use {{#crossLink &quot;Canvace.MultiSet/fastForEach&quot;}}{{/crossLink}}
+ * if your callback function does not use its second argument (the removal
+ * function) and never returns &#x60;false&#x60;.
+ *
+ * Note that the order of iteration is undefined as it depends on the order
+ * of iteration over object properties implemented by the underlying
+ * JavaScript engine. This is typically the insertion order, which means
+ * {{#crossLink &quot;Canvace.MultiSet/fastForEach&quot;}}{{/crossLink}} enumerates
+ * the elements in the same order they are inserted by
+ * {{#crossLink &quot;Canvace.MultiSet/add&quot;}}{{/crossLink}}, but you must not
+ * rely on that assumption.
+ *
+ * @method fastForEach
+ * @param action {Function} The callback function that gets called for each
+ * element of the multiset. It receives the current element as an argument.
+ * The return value is ignored.
+ */
+Canvace.MultiSet.prototype.fastForEach = function (action) {
+	for (var id in this.elements) {
+		if (this.elements.hasOwnProperty(id)) {
+			action(this.elements[id]);
+		}
+	}
+};
+
+/**
+ * Returns the number of elements currently contained.
+ *
+ * If an element is inserted more than once, it counts as many times as it
+ * is inserted.
+ *
+ * This method operates in constant time.
+ *
+ * @method count
+ * @return {Number} The number of contained elements.
+ * @example
+ *	var ms = new Canvace.MultiSet(1, 2, 2, 3, 3);
+ *	alert(ms.count()); // alerts 5
+ */
+Canvace.MultiSet.prototype.count = function () {
+	return this.count;
+};
+
+/**
+ * Indicates whether the container is empty or not.
+ *
+ * @method isEmpty
+ * @return {Boolean} &#x60;true&#x60; if the container is empty, &#x60;false&#x60; otherwise.
+ */
+Canvace.MultiSet.prototype.isEmpty = function () {
+	return !this.count;
+};
+
+/**
+ * Empties the container: every element is removed and the count is reset to
+ * zero.
+ *
+ * This method operates in constant time.
+ *
+ * @method clear
+ * @example
+ *	var ms = new Canvace.MultiSet(1, 2, 3, 4, 5);
+ *	ms.clear();
+ *	alert(ms.count()); // alerts 0
+ */
+Canvace.MultiSet.prototype.clear = function () {
+	this.elements = {};
+	this.count = 0;
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

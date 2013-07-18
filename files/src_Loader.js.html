@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\Loader.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\Loader.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * Helper class that eases the asynchronous loading of the stage data exported
+ * by the Canvace Development Environment.
+ *
+ * @class Canvace.Loader
+ * @constructor
+ * @param options {Object} A dictionary containing the options for the loader.
+ * @param [options.imagesPath] {String} The relative or absolute path referring
+ * to the directory where the images to be loaded are located.
+ *
+ * This option gets overridden by &#x60;basePath&#x60;. If &#x60;basePath&#x60; is missing, this
+ * option becomes mandatory.
+ * @param [options.soundsPath] {String} The relative or absolute path referring
+ * to the directory where the sounds to be loaded are located.
+ *
+ * This option gets overridden by &#x60;basePath&#x60;. If &#x60;basePath&#x60; is missing, this
+ * option becomes mandatory when sound asset descriptors are passed to either
+ * {{#crossLink &quot;Canvace.Loader/loadAssets&quot;}}{{/crossLink}} or
+ * {{#crossLink &quot;Canvace.Loader/loadStage&quot;}}{{/crossLink}}.
+ * @param [options.basePath] {String} The relative or absolute path referring
+ * to the directory where both the images and sounds to be loaded are located.
+ * This option overrides the values of &#x60;imagesPath&#x60; and &#x60;soundsPath&#x60;.
+ * @param options.complete {Function} A mandatory callback function to invoke
+ * when the loading of the assets completes.
+ * @param options.complete.loader {Canvace.Loader} A reference to this
+ * {{#crossLink &quot;Canvace.Loader&quot;}}Loader{{/crossLink}} passed to the &#x60;complete&#x60;
+ * callback.
+ * @param options.complete.stage {Canvace.Stage} A reference to an automatically
+ * created {{#crossLink &quot;Canvace.Stage&quot;}}Stage{{/crossLink}}. This is only
+ * passed to the &#x60;complete&#x60; callback when the
+ * {{#crossLink &quot;Canvace.Loader/loadStage&quot;}}{{/crossLink}} is used to load data.
+ * @param [options.progress] {Function} An optional callback function invoked as
+ * the loading of the assets progresses.
+ * @param options.progress.progress {Number} The current progress percentage
+ * passed to the &#x60;progress&#x60; callback and expressed as a real number in a
+ * &#x60;[0, 100)&#x60; range.
+ * @param [options.error] {Function} An optional callback function to invoke
+ * whenever a loading error occurs.
+ */
+Canvace.Loader = function (options) {
+	function removeTrailingSlash(string) {
+		return string.replace(/[\\\/]$/, &#x27;&#x27;);
+	}
+
+	if (typeof options.basePath === &#x27;string&#x27;) {
+		options.imagesPath = options.soundsPath = removeTrailingSlash(options.basePath);
+	}
+
+	if (typeof options.imagesPath !== &#x27;string&#x27;) {
+		throw &#x27;Invalid value specified for &quot;imagesPath&quot;&#x27;;
+	}
+
+	options.imagesPath = removeTrailingSlash(options.imagesPath);
+
+	if (typeof options.imagesPath !== &#x27;string&#x27;) {
+		throw &#x27;Invalid value specified for &quot;soundsPath&quot;&#x27;;
+	}
+
+	options.soundsPath = removeTrailingSlash(options.soundsPath);
+
+	if (typeof options.complete !== &#x27;function&#x27;) {
+		throw &#x27;Invalid callback specified for &quot;complete&quot;&#x27;;
+	}
+
+	var loadComplete = options.complete;
+	var loadProgress = options.progress || function () {};
+	var loadError    = options.error    || function () {};
+
+	var thisObject = this;
+	var audio = new Canvace.Audio();
+
+	var imageset = {};
+	var imagesLoaded = false;
+	var imagesProgress = 0;
+
+	var soundset = {};
+	var soundsLoaded = false;
+	var soundsProgress = 0;
+
+	var jobCount = 2;
+
+	function updateProgress() {
+		loadProgress((imagesProgress + soundsProgress) / jobCount);
+	}
+
+	function loadFinished() {
+		if (imagesLoaded &amp;&amp; soundsLoaded) {
+			loadComplete(thisObject);
+		}
+	}
+
+	function loadImages(data) {
+		if (typeof options.imagesPath !== &#x27;string&#x27;) {
+			throw &#x27;Invalid value specified for &quot;imagesPath&quot;&#x27;;
+		}
+
+		var totalCount = 0;
+		var id;
+		var frames;
+
+		var reverseTileFrameTable = {};
+		for (id in data.tiles) {
+			if (data.tiles.hasOwnProperty(id)) {
+				frames = data.tiles[id].frames;
+				totalCount += frames.length;
+				if (frames.length) {
+					if (!reverseTileFrameTable.hasOwnProperty(frames[0].id)) {
+						reverseTileFrameTable[frames[0].id] = new Canvace.MultiSet();
+					}
+					reverseTileFrameTable[frames[0].id].add(data.tiles[id]);
+				}
+			}
+		}
+
+		var reverseEntityFrameTable = {};
+		for (id in data.entities) {
+			if (data.entities.hasOwnProperty(id)) {
+				frames = data.entities[id].frames;
+				totalCount += frames.length;
+				if (frames.length) {
+					if (!reverseEntityFrameTable.hasOwnProperty(frames[0].id)) {
+						reverseEntityFrameTable[frames[0].id] = new Canvace.MultiSet();
+					}
+					reverseEntityFrameTable[frames[0].id].add(data.entities[id]);
+				}
+			}
+		}
+
+		var doProgress = (function () {
+			var count = 0;
+			return function doProgress() {
+				imagesProgress = 100 * ++count / Math.max(1, totalCount);
+				updateProgress();
+				if (count &gt;= totalCount) {
+					imagesLoaded = true;
+					loadFinished();
+				}
+			};
+		}());
+
+		function bindProgress(id) {
+			return function () {
+				if (reverseTileFrameTable.hasOwnProperty(id)) {
+					reverseTileFrameTable[id].fastForEach(function (tile) {
+						tile.width = imageset[id].width;
+						tile.height = imageset[id].height;
+					});
+				}
+				if (reverseEntityFrameTable.hasOwnProperty(id)) {
+					reverseEntityFrameTable[id].fastForEach(function (entity) {
+						entity.width = imageset[id].width;
+						entity.height = imageset[id].height;
+					});
+				}
+				doProgress();
+			};
+		}
+
+		if (totalCount === 0) {
+			doProgress();
+			return thisObject;
+		}
+
+		function batchImages(descriptor) {
+			for (var i in descriptor.frames) {
+				(function (id) {
+					if (id in imageset) {
+						bindProgress(id)();
+					} else {
+						var image = new Image();
+						imageset[id] = image;
+						image.addEventListener(&#x27;load&#x27;, bindProgress(id), false);
+						image.src = [options.imagesPath, id].join(&#x27;/&#x27;);
+					}
+				}(descriptor.frames[i].id));
+			}
+		}
+
+		for (id in data.tiles) {
+			batchImages(data.tiles[id]);
+		}
+
+		for (id in data.entities) {
+			batchImages(data.entities[id]);
+		}
+
+		return thisObject;
+	}
+
+	/**
+	 * Loads an image from the exported image set.
+	 *
+	 * @method getImage
+	 * @param id {Mixed} The ID of the image to load.
+	 * @param [callback] {Function} An optional callback function to invoke when
+	 * the loading of the image is complete.
+	 * @return {HTMLImageElement} The HTML image element representing the loaded
+	 * image.
+	 */
+	this.getImage = function (id, callback) {
+		if (typeof id !== &#x27;object&#x27;) {
+			if (imageset.hasOwnProperty(id)) {
+				return imageset[id];
+			} else {
+				if (typeof options.imagesPath !== &#x27;string&#x27;) {
+					throw &#x27;Invalid value specified for &quot;imagesPath&quot;&#x27;;
+				}
+
+				var image = new Image();
+				if (typeof callback === &#x27;function&#x27;) {
+					image.addEventListener(&#x27;load&#x27;, callback, false);
+				}
+				image.src = [options.imagesPath, id].join(&#x27;/&#x27;);
+				return imageset[id] = image;
+			}
+		} else {
+			return id; // XXX document
+		}
+	};
+
+	function loadSounds(sources) {
+		if (typeof options.soundsPath !== &#x27;string&#x27;) {
+			throw &#x27;Invalid value specified for &quot;soundsPath&quot;&#x27;;
+		}
+
+		var totalCount = Object.keys(sources).length;
+
+		var progress = (function () {
+			var count = 0;
+
+			return function () {
+				soundsProgress = (100 * ++count / Math.max(1, totalCount));
+				updateProgress();
+
+				if (count &gt;= totalCount) {
+					soundsLoaded = true;
+					loadFinished();
+				}
+			};
+		}());
+
+		if (totalCount === 0) {
+			progress();
+			return thisObject;
+		}
+
+		function triggerError(i) {
+			return function () {
+				loadError(i);
+			};
+		}
+
+		function getSuitableSource(sourceList) {
+			for (var i in sourceList) {
+				try {
+					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
+
+					if (audio.canPlayType(info.mimeType)) {
+						return [options.soundsPath, info.url].join(&#x27;/&#x27;);
+					}
+				} catch (e) {
+					return false;
+				}
+			}
+
+			return false;
+		}
+
+		for (var i in sources) {
+			if (i in soundset) {
+				progress();
+			} else {
+				var source = getSuitableSource(sources[i]);
+
+				if (false === source) {
+					loadError(i);
+					progress();
+				} else {
+					soundset[i] = audio.load(source, progress, triggerError(i));
+				}
+			}
+		}
+
+		return thisObject;
+	}
+
+	/**
+	 * Returns a &#x60;Canvace.Audio.SourceNode&#x60; representing the audio asset
+	 * identified by the specified name. This name corresponds to one of the
+	 * names specified to the &#x60;loadAssets&#x60; method. This method must be called
+	 * after the sounds have been loaded by the &#x60;loadAssets&#x60; method.
+	 *
+	 * @method getSound
+	 * @param name {String} A name identifying an audio asset.
+	 * @return {Canvace.Audio.SourceNode} An object that can be used to play
+	 * the sound back if the specified name is known, &#x60;null&#x60; otherwise.
+	 */
+	this.getSound = function (name) {
+		if (soundset.hasOwnProperty(name)) {
+			return soundset[name];
+		}
+		return null;
+	};
+
+	/**
+	 * Asynchronously loads all the images associated with the given Canvace
+	 * stage and all the given sounds.
+	 *
+	 * @method loadAssets
+	 * @chainable
+	 * @param [imagesData] {Object} The JSON data output by the Canvace
+	 * Development Environment.
+	 * @param [soundsData] {Object} A map where the keys indicate the name of
+	 * the sound to load, and the values are &#x60;Array&#x60;s of source descriptors,
+	 * which are either &#x60;Object&#x60;s (each containing the string properties
+	 * &#x27;mimeType&#x27; and &#x27;url&#x27;) or &#x60;String&#x60;s (indicating the URL of the
+	 * resource to load, in which case the loader tries to infer the MIME type
+	 * from the file extension). Object and String source descriptors can be
+	 * mixed.
+	 *
+	 * These objects represent the audio file sources that will be tried in
+	 * order, falling back to the next one if the browser doesn&#x27;t support
+	 * playing the specified MIME type.
+	 * @example
+	 *	var soundResources;
+	 *
+	 *	// Explicit description of the sources, complete with MIME type and URL
+	 *	soundResources = {
+	 *		&#x27;first-sound&#x27;: [{
+	 *			mimeType: &#x27;audio/mp3&#x27;,
+	 *			url: &#x27;first.mp3&#x27;
+	 *		}, {
+	 *			mimeType: &#x27;application/ogg&#x27;,
+	 *			url: &#x27;first.ogg&#x27;
+	 *		}],
+	 *		&#x27;second-sound&#x27;: [{
+	 *			mimeType: &#x27;audio/mp3&#x27;,
+	 *			url: &#x27;second.mp3&#x27;
+	 *		}, {
+	 *			mimeType: &#x27;application/ogg&#x27;,
+	 *			url: &#x27;second.ogg&#x27;
+	 *		}]
+	 *	};
+	 *
+	 *	// Implicit description of the sources, with just the URL specified
+	 *	soundResources = {
+	 *		&#x27;first-sound&#x27;: [&#x27;first.mp3&#x27;, &#x27;first.ogg&#x27;],
+	 *		&#x27;second-sound&#x27;: [&#x27;second.mp3&#x27;, &#x27;second.ogg&#x27;]
+	 *	};
+	 *
+	 *	// Explicit, manual loading of the JSON resource
+	 *	Canvace.Ajax.getJSON(&#x27;stage.json&#x27;, function (stage) {
+	 *		var loader = new Canvace.Loader({
+	 *			basePath: &#x27;media&#x27;,
+	 *			complete: function () {
+	 *				// ...
+	 *			}
+	 *		});
+	 *		loader.loadAssets(stage, soundResources);
+	 *	});
+	 */
+	this.loadAssets = function (imagesData, soundsData) {
+		imagesLoaded = (typeof imagesData === &#x27;undefined&#x27; || imagesData === null);
+		soundsLoaded = (typeof soundsData === &#x27;undefined&#x27; || soundsData === null);
+
+		if (imagesLoaded &amp;&amp; soundsLoaded) {
+			loadFinished();
+			return thisObject;
+		} else if (imagesLoaded ^ soundsLoaded) {
+			jobCount = 1;
+		}
+
+		if (!imagesLoaded) {
+			loadImages(imagesData);
+		}
+
+		if (!soundsLoaded) {
+			loadSounds(soundsData);
+		}
+
+		return thisObject;
+	};
+
+	/**
+	 * Asynchronously loads all the images associated with the given Canvace
+	 * stage and all the given sounds. This function takes care of loading the
+	 * JSON data from the server with an HTTP &#x60;GET&#x60; request and instantiating
+	 * a {{#crossLink &quot;Canvace.Stage&quot;}}Stage{{/crossLink}} for the specified
+	 * canvas.
+	 *
+	 * When using this method, the registered completion handler will receive
+	 * two parameters: this loader instance, and a
+	 * {{#crossLink &quot;Canvace.Stage&quot;}}Stage{{/crossLink}} object.
+	 *
+	 * @method loadStage
+	 * @chainable
+	 * @param canvas {Mixed} An HTML5 canvas element used where the stage
+	 * will be rendered. This parameter can be either the actual
+	 * &#x60;HTMLCanvasElement&#x60;, or a selector string. In the latter case, the
+	 * first matching element is used, and an exception is thrown if no
+	 * matching element is found.
+	 * @param stageUrl {String} The URL where the JSON resource can be
+	 * loaded from. The loader will automatically perform a new &#x60;GET&#x60;
+	 * request to that URL.
+	 * @param [soundsData] {Object} See the description of the omonymous
+	 * parameter of the &#x60;loadAssets&#x60; function.
+	 * @example
+	 *	var loader = new Canvace.Loader({
+	 *		basePath: &#x27;media&#x27;,
+	 *		complete: function (loader, stage) {
+	 *			// ...
+	 *		}
+	 *	});
+	 *
+	 *	loader.loadStage(&#x27;#canvas&#x27;, &#x27;stage.json&#x27;, {
+	 *		&#x27;first-sound&#x27;: [&#x27;first.mp3&#x27;, &#x27;first.ogg&#x27;],
+	 *		&#x27;second-sound&#x27;: [&#x27;second.mp3&#x27;, &#x27;second.ogg&#x27;]
+	 *	});
+	 */
+	this.loadStage = function (canvas, stageUrl, soundsData) {
+		Canvace.Ajax.getJSON(stageUrl, function (imagesData) {
+			var originalCallback = loadComplete;
+			loadComplete = function () {
+				loadComplete = originalCallback;
+				originalCallback(thisObject, new Canvace.Stage(imagesData, canvas));
+			};
+			thisObject.loadAssets(imagesData, soundsData);
+		}, function () {
+			loadError.apply(thisObject, arguments);
+		});
+		return thisObject;
+	};
+};
+
+/**
+ * TODO
+ *
+ * @method guessMimeType
+ * @static
+ * @param source {String} TODO
+ * @return {String} TODO
+ * @example
+ *	TODO
+ */
+Canvace.Loader.guessMimeType = function (source) {
+	var mimeMap = [
+		{
+			pattern: /\.aac$/i,
+			mime: &#x27;audio/aac&#x27;
+		},
+		{
+			pattern: /\.mp3$/i,
+			mime: &#x27;audio/mp3&#x27;
+		},
+		{
+			pattern: /\.ogg$/i,
+			mime: &#x27;application/ogg&#x27;
+		}
+	];
+	for (var i in mimeMap) {
+		if (mimeMap[i].pattern.test(source)) {
+			return mimeMap[i].mime;
+		}
+	}
+	throw &#x27;Couldn\&#x27;t guess the MIME type from the resource URL&#x27;;
+};
+
+/**
+ * TODO
+ *
+ * @method getSourceInfo
+ * @static
+ * @param source {Mixed} TODO
+ * @return {Object} TODO
+ * @example
+ *	TODO
+ */
+Canvace.Loader.getSourceInfo = function (source) {
+	if (typeof source === &#x27;string&#x27;) {
+		return {
+			url: source,
+			mimeType: Canvace.Loader.guessMimeType(source)
+		};
+	} else if (typeof source === &#x27;object&#x27;) {
+		if (source.hasOwnProperty(&#x27;url&#x27;) &amp;&amp; source.hasOwnProperty(&#x27;mimeType&#x27;)) {
+			return source;
+		}
+	} else {
+		throw &#x27;Invalid source specified&#x27;;
+	}
+};
+
+/**
+ * Plays a sound represented by an audio asset previously loaded by the
+ * loader. The audio asset is identified by the &#x60;name&#x60; argument, that must
+ * correspond to a name passed to the
+ * {{#crossLink &quot;Canvace.Loader/loadAssets&quot;}}{{/crossLink}} method.
+ *
+ * This method only _starts_ playing the sound, and immediately returns. It
+ * works by simply calling the
+ * {{#crossLink &quot;Canvace.Audio.SourceNode/play&quot;}}Audio.SourceNode.play{{/crossLink}}
+ * method.
+ *
+ * This method has no effect if the sound is already playing.
+ *
+ * The sound can optionally be looped: when &#x60;true&#x60; is specified to the
+ * optional &#x60;loop&#x60; argument, the sound will play continuously.
+ *
+ * @method playSound
+ * @param name {String} A name identifying the audio asset.
+ * @param [loop=false] {Boolean} An optional boolean value that indicates
+ * whether the sound must be looped. It defaults to &#x60;false&#x60; when not specified.
+ * @return {Canvace.Audio.SourceNode} An object that can be used to play
+ * the sound back if the specified name is known, &#x60;null&#x60; otherwise.
+ */
+Canvace.Loader.prototype.playSound = function (name, loop) {
+	var sound = this.getSound(name);
+	if (null !== sound) {
+		sound.setLooping(!!loop);
+		sound.play();
+	}
+	return sound;
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

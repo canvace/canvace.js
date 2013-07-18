@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvace &bull; src\Stage.js - API reference</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29915000-1']);
+  _gaq.push(['_setDomainName', 'canvace.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+<div id="doc">
+    <div id="hd" class="header">
+        <div class="inner">
+			<a href="/" class="logo"><img src="../assets/media/logo.png" alt="API reference" /></a>
+			<div class="version">
+				API reference for v<b>1.0.0</b>
+				&bull;
+				For inquiries, contact <a href="mailto:support@canvace.com">support@canvace.com</a>.
+			</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="bd" class="yui3-g contents">
+            <div class="yui3-u-1-4">
+                <div id="docs-sidebar" class="sidebar apidocs">
+                    <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Canvace.html">Canvace</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.html">Canvace.Ajax</a></li>
+            
+                <li><a href="../classes/Canvace.Ajax.Request.html">Canvace.Ajax.Request</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.html">Canvace.Animator</a></li>
+            
+                <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
+            
+                <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.html">Canvace.Audio</a></li>
+            
+                <li><a href="../classes/Canvace.Audio.SourceNode.html">Canvace.Audio.SourceNode</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.html">Canvace.Buckets</a></li>
+            
+                <li><a href="../classes/Canvace.Buckets.Entity.html">Canvace.Buckets.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.DebugEffect.html">Canvace.DebugEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Heap.html">Canvace.Heap</a></li>
+            
+                <li><a href="../classes/Canvace.Keyboard.html">Canvace.Keyboard</a></li>
+            
+                <li><a href="../classes/Canvace.List.html">Canvace.List</a></li>
+            
+                <li><a href="../classes/Canvace.List.Accessor.html">Canvace.List.Accessor</a></li>
+            
+                <li><a href="../classes/Canvace.Loader.html">Canvace.Loader</a></li>
+            
+                <li><a href="../classes/Canvace.Matrix.html">Canvace.Matrix</a></li>
+            
+                <li><a href="../classes/Canvace.Mouse.html">Canvace.Mouse</a></li>
+            
+                <li><a href="../classes/Canvace.MultiSet.html">Canvace.MultiSet</a></li>
+            
+                <li><a href="../classes/Canvace.ParametricStateMachine.html">Canvace.ParametricStateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.Polyfill.html">Canvace.Polyfill</a></li>
+            
+                <li><a href="../classes/Canvace.Renderer.html">Canvace.Renderer</a></li>
+            
+                <li><a href="../classes/Canvace.RenderLoop.html">Canvace.RenderLoop</a></li>
+            
+                <li><a href="../classes/Canvace.RumbleEffect.html">Canvace.RumbleEffect</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.html">Canvace.Stage</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Entity.html">Canvace.Stage.Entity</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Instance.html">Canvace.Stage.Instance</a></li>
+            
+                <li><a href="../classes/Canvace.Stage.Range.html">Canvace.Stage.Range</a></li>
+            
+                <li><a href="../classes/Canvace.StageRenderer.html">Canvace.StageRenderer</a></li>
+            
+                <li><a href="../classes/Canvace.StateMachine.html">Canvace.StateMachine</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.html">Canvace.TileMap</a></li>
+            
+                <li><a href="../classes/Canvace.TileMap.Tile.html">Canvace.TileMap.Tile</a></li>
+            
+                <li><a href="../classes/Canvace.Timing.html">Canvace.Timing</a></li>
+            
+                <li><a href="../classes/Canvace.View.html">Canvace.View</a></li>
+            
+                <li><a href="../classes/Canvace.View.Synchronizer.html">Canvace.View.Synchronizer</a></li>
+            
+                <li><a href="../classes/Canvace.Visibility.html">Canvace.Visibility</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Canvace.html">Canvace</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+
+            <div class="yui3-u-3-4">
+                    <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+                            <h1 class="file-heading">File: src\Stage.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ *	Canvace&#x27;s JavaScript Game Engine, canvace.js
+ *	Copyright (C) 2013  Canvace Srl  &lt;http://www.canvace.com/&gt;
+ *
+ *	Dual licensed under the MIT and GPLv3 licenses.
+ *
+ *	This program is free software: you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation, either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/**
+ * Wraps a Canvace stage.
+ *
+ * While providing the &#x60;data&#x60; object output by the Canvace Development
+ * Environment to the &#x60;Stage&#x60; constructor be aware that its contents may be
+ * modified in order to implement some optimizations.
+ *
+ * @class Canvace.Stage
+ * @constructor
+ * @param data {Object} The JSON data output by the Canvace Development
+ * Environment.
+ * @param canvas {Mixed} An HTML5 canvas element used where the stage will
+ * be rendered. This parameter can be either the actual &#x60;HTMLCanvasElement&#x60;, or
+ * a selector string. In the latter case, the first matching element is used,
+ * and an exception is thrown if no matching element is found.
+ */
+Canvace.Stage = function (data, canvas) {
+	if (typeof canvas === &#x27;string&#x27;) {
+		canvas = document.querySelector(canvas);
+
+		if (!canvas) {
+			throw &#x27;No element found matching the specified selector&#x27;;
+		}
+	}
+
+	var view = new Canvace.View(data, canvas);
+	var buckets = new Canvace.Buckets(view, data);
+
+	var map = null;
+
+	var entities = {};
+	var instances = new Canvace.MultiSet();
+	var instancesWithPhysics = new Canvace.MultiSet();
+
+	function assertObject(object, properties, fallback) {
+		for (var key in properties) {
+			if (properties.hasOwnProperty(key)) {
+				var value;
+				if (key in object) {
+					value = object[key];
+				} else if (key in fallback) {
+					value = fallback[key];
+				} else {
+					return false;
+				}
+				if (typeof properties[key] !== &#x27;object&#x27;) {
+					if (value !== properties[key]) {
+						return false;
+					}
+				} else if ((typeof value !== &#x27;object&#x27;) ||
+					!assertObject(value, properties[key], {}))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Represents an entity (not an instance).
+	 *
+	 * This class cannot be instantiated directly, instances are returned by
+	 * various methods of the &#x60;Stage&#x60; class and subclasses.
+	 *
+	 * @class Canvace.Stage.Entity
+	 */
+	function Entity(id) {
+		var entity = data.entities[id = parseInt(id, 10)];
+		if (!(id in entities)) {
+			entities[id] = this;
+		}
+
+		/**
+		 * Returns the numeric ID of the entity.
+		 *
+		 * @method getId
+		 * @return {Number} The numeric ID of the entity.
+		 */
+		this.getId = function () {
+			return id;
+		};
+
+		/**
+		 * Returns the entity&#x27;s custom properties as set in the Canvace
+		 * Development Environment.
+		 *
+		 * The original &#x60;properties&#x60; object is returned, so that modifications
+		 * actually affect the entity&#x27;s properties.
+		 *
+		 * @method getProperties
+		 * @return {Object} The entity&#x27;s &#x60;properties&#x60; field containing the
+		 * custom properties the user set in the Canvace Development
+		 * Environment.
+		 */
+		this.getProperties = function () {
+			return entity.properties;
+		};
+
+		/**
+		 * Indicates whether physics is enabled for this entity.
+		 *
+		 * Instances of entities that have physics enabled are automatically
+		 * &quot;ticked&quot; when the whole stage is ticked. &quot;Ticking&quot; an entity instance
+		 * means calling its &#x60;tick&#x60; method (see &#x60;Canvace.Stage.Instance.tick&#x60;),
+		 * while &quot;ticking&quot; the whole stage means calling the &#x60;Stage.tick&#x60;
+		 * method.
+		 *
+		 * Physics in entities can be enabled or disabled in the Canvace
+		 * Development Environment.
+		 *
+		 * @method isPhysicsEnabled
+		 * @return {Boolean} &#x60;true&#x60; if physics is enabled for this entity,
+		 * &#x60;false&#x60; otherwise.
+		 */
+		this.isPhysicsEnabled = function () {
+			return entity.enablePhysics;
+		};
+
+		/**
+		 * Returns a reference to an object describing the bounding box of this
+		 * entity. Any modification made to the returned object will affect the
+		 * way instances of this entity interact with the surrounding
+		 * environment.
+		 *
+		 * The returned object contains four real number fields: &#x60;i0&#x60;, &#x60;j0&#x60;,
+		 * &#x60;iSpan&#x60; and &#x60;jSpan&#x60;. The &#x60;i0&#x60; and &#x60;j0&#x60; fields are the offsets of the
+		 * origin of the bounding box from the position of the entity along the
+		 * I and J axis, respectively. The &#x60;iSpan&#x60; and &#x60;jSpan&#x60; fields are the
+		 * span of the bounding box along the I and J axis, respectively.
+		 *
+		 * @method getBoundingBox
+		 * @return {Object} An object containing four fields, &#x60;i0&#x60;, &#x60;j0&#x60;,
+		 *	&#x60;iSpan&#x60; and &#x60;jSpan&#x60;, describing the bounding box.
+		 */
+		this.getBoundingBox = function () {
+			return entity.box;
+		};
+
+		/**
+		 * Enumerates all the instances of this entity currently present in the
+		 * stage, filtering them based on their custom properties.
+		 *
+		 * The &#x60;properties&#x60; argument contains the filtering properties: an
+		 * instance is enumerated only if all of its filtered properties&#x27; values
+		 * correspond to those declared in the &#x60;properties&#x60; argument. All other
+		 * properties in the instance are not taken into account. This means
+		 * that if you specify an empty &#x60;properties&#x60; object, all the instances
+		 * are enumerated.
+		 *
+		 * Some custom properties may actually be objects containing other
+		 * properties. This method performs a recursive deep comparison: the
+		 * &#x60;properties&#x60; object may have nested objects containing other
+		 * filtering properties.
+		 *
+		 * The entity instance is filtered based on its custom *instance*
+		 * properties, but its custom *entity* properties are used as a
+		 * fallback: if an instance does not contain a required property it is
+		 * still enumerated if its entity does.
+		 *
+		 * Each enumerated instance is passed to the callback function as a
+		 * &#x60;Canvace.Stage.Instance&#x60; object.
+		 *
+		 * The enumeration can be interrupted by returning &#x60;false&#x60; in the
+		 * &#x60;action&#x60; callback function.
+		 *
+		 * @method forEachInstance
+		 * @param action {Function} A callback function that gets called for
+		 * every instance.
+		 *
+		 * It receives one single argument of type &#x60;Canvace.Stage.Instance&#x60; and
+		 * can interrupt the enumeration by returning &#x60;false&#x60;.
+		 * @param [properties] {Object} The optional filtering properties.
+		 * @return {Boolean} &#x60;true&#x60; if the callback function returned &#x60;false&#x60;
+		 * and the enumeration was interrupted, &#x60;false&#x60; otherwise.
+		 */
+		this.forEachInstance = function (action, properties) {
+			if (!properties) {
+				properties = {};
+			}
+			return instances.forEach(function (instance) {
+				if (id === instance.getEntityId()) {
+					if (assertObject(instance.getProperties(), properties, entity.properties)) {
+						return action(instance);
+					}
+				}
+			});
+		};
+
+		/**
+		 * Creates a new instance of this entity and places it in the stage at
+		 * the specified &#x60;(i, j, k)&#x60; position.
+		 *
+		 * The new instance has the initial velocity, uniform velocity and
+		 * acceleration vectors all set to &#x60;(0, 0, 0)&#x60;.
+		 *
+		 * The new instance is returned as a &#x60;Canvace.Stage.Instance&#x60; object.
+		 *
+		 * @method createInstance
+		 * @param i {Number} The I coordinate where the new instance has to be
+		 * placed.
+		 * @param j {Number} The J coordinate where the new instance has to be
+		 * placed.
+		 * @param k {Number} The K coordinate where the new instance has to be
+		 * placed.
+		 * @return {Canvace.Stage.Instance} The newly created instance.
+		 */
+		this.createInstance = function (i, j, k) {
+			return new Instance({
+				id: id,
+				i: i,
+				j: j,
+				k: k,
+				position: {
+					i: i,
+					j: j,
+					k: k
+				},
+				previousPosition: {
+					i: i,
+					j: j,
+					k: k
+				},
+				velocity: {
+					i: 0,
+					j: 0,
+					k: 0
+				},
+				uniformVelocity: {
+					i: 0,
+					j: 0,
+					k: 0
+				},
+				acceleration: {
+					i: 0,
+					j: 0,
+					k: 0
+				},
+				properties: {}
+			}, buckets.addEntity(id, i, j, k));
+		};
+	}
+
+	/**
+	 * Represents an entity instance in the stage.
+	 *
+	 * This class cannot be instantiated directly, instances can be obtained
+	 * using other methods such as &#x60;Canvace.Stage.forEachInstance&#x60;,
+	 * &#x60;Canvace.Stage.getInstance&#x60; or their &#x60;Canvace.Stage.Entity&#x60; equivalents.
+	 *
+	 * In every moment, an entity instance is characterized by the following
+	 * state:
+	 *	&lt;ul&gt;
+	 *	&lt;li&gt;a position vector,&lt;/li&gt;
+	 *	&lt;li&gt;a velocity vector,&lt;/li&gt;
+	 *	&lt;li&gt;a uniform velocity vector,&lt;/li&gt;
+	 *	&lt;li&gt;an acceleration vector.&lt;/li&gt;
+	 *	&lt;/ul&gt;
+	 *
+	 * Each one of these vectors is a vector in a three-dimensional space and is
+	 * thus characterized by three real components &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;.
+	 *
+	 * An instance can be &quot;ticked&quot;. Ticking an instance means updating its state
+	 * based on the following physics rules:
+	 *	&lt;ul&gt;
+	 *	&lt;li&gt;the acceleration vector is not changed,&lt;/li&gt;
+	 *	&lt;li&gt;the uniform velocity vector is not changed,&lt;/li&gt;
+	 *	&lt;li&gt;the velocity vector is updated by adding the acceleration
+	 *		vector,&lt;/li&gt;
+	 *	&lt;li&gt;the position vector is updated by adding the velocity and uniform
+	 *		velocity vectors.&lt;/li&gt;
+	 *	&lt;/ul&gt;
+	 *
+	 * To tick an instance use the &#x60;Canvace.Stage.Instance.tick&#x60; method.
+	 *
+	 * Ticking an instance, and thus updating its physics state, is not enough
+	 * in order to update the actual position of its frames in the graphical
+	 * rendering. Another separate operation, called &quot;update&quot;, is necessary.
+	 *
+	 * An instance can be updated by invoking its &#x60;update&#x60; method.
+	 *
+	 * You do not usually need to invoke neither the &#x60;tick&#x60; nor the &#x60;update&#x60;
+	 * method directly, as they are automatically invoked by the global
+	 * &#x60;Canvace.Stage.tick&#x60; and &#x60;Canvace.Stage.update&#x60; methods which, in turn,
+	 * are automatically invoked by the &#x60;RenderLoop&#x60;.
+	 *
+	 * Both the &#x60;Canvace.Stage.Instance.tick&#x60; and the
+	 * &#x60;Canvace.Stage.Instance.update&#x60; methods are invoked _only_ for the
+	 * instances that have physics enabled (physics can be toggled per-entity in
+	 * the Canvace Development Environment).
+	 *
+	 * The point in having two separate operations, &quot;tick&quot; and &quot;update&quot;, to do
+	 * one thing, which is moving an entity instance in the game, is that other
+	 * operations can be accomplished between the two. These operations
+	 * typically consist in further physics processing, e.g. collision testing.
+	 *
+	 * @class Canvace.Stage.Instance
+	 */
+	function Instance(instanceOrId, element) {
+		var id, instance;
+		if (typeof instanceOrId !== &#x27;number&#x27;) {
+			id = null;
+			instance = instanceOrId;
+		} else {
+			id = instanceOrId;
+			instance = data.instances[id];
+		}
+		var entity = data.entities[instance.id];
+
+		var remove = instances.add(this);
+		if (entity.enablePhysics) {
+			remove = (function (remove1, remove2) {
+				return function () {
+					return remove1() &amp;&amp; remove2();
+				};
+			}(remove, instancesWithPhysics.add(this)));
+		}
+
+		/**
+		 * Returns the numeric ID of the instance, or &#x60;null&#x60; if this instance
+		 * was not initially present in the JSON data exported from the Canvace
+		 * Development Environment and was later added to the stage.
+		 *
+		 * @method getId
+		 * @return {Number} The numeric ID of the instance, or &#x60;null&#x60; if the
+		 * instance has no ID.
+		 */
+		this.getId = function () {
+			return id;
+		};
+
+		/**
+		 * Returns the entity instance&#x27;s custom properties as set in the Canvace
+		 * Development Environment.
+		 *
+		 * The original &#x60;properties&#x60; object is returned, so that modifications
+		 * actually affect the instance&#x27;s properties.
+		 *
+		 * @method getProperties
+		 * @return {Object} The entity instance&#x27;s &#x60;properties&#x60; field containing
+		 * the custom properties the user set in the Canvace Development
+		 * Environment.
+		 */
+		this.getProperties = function () {
+			return instance.properties;
+		};
+
+		/**
+		 * Returns the numeric ID of the entity of this instance.
+		 *
+		 * @method getEntityId
+		 * @return {Number} The numeric ID of the entity of this instance.
+		 */
+		this.getEntityId = function () {
+			return instance.id;
+		};
+
+		/**
+		 * Returns a &#x60;Canvace.Stage.Entity&#x60; object representing the entity whose
+		 * instance is represented by this object.
+		 *
+		 * @method getEntity
+		 * @return {Canvace.Stage.Entity} This instance&#x27;s entity as a
+		 * &#x60;Canvace.Stage.Entity&#x60; object.
+		 */
+		this.getEntity = function () {
+			return entities[instance.id] || new Entity(instance.id);
+		};
+
+		/**
+		 * Indicates whether physics is enabled for this instance&#x27;s entity.
+		 *
+		 * @method isPhysicsEnabled
+		 * @return {Boolean} &#x60;true&#x60; if physics is enabled, &#x60;false&#x60; otherwise.
+		 */
+		this.isPhysicsEnabled = function () {
+			return entity.enablePhysics;
+		};
+
+		/**
+		 * Returns the instance&#x27;s &#x60;(i, j, k)&#x60; position vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;.
+		 *
+		 * Note that the original position vector object associated to the
+		 * instance is returned: changes made to the returned object affect the
+		 * position of the instance. You may use the returned object to manually
+		 * control the position of the instance.
+		 *
+		 * Also note that changing the position of an instance by modifying the
+		 * returned object does not affect its _rendered_ position until the
+		 * &#x60;update&#x60; method is called.
+		 *
+		 * @method getPosition
+		 * @return {Object} An object containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;,
+		 * indicating the current position.
+		 */
+		this.getPosition = function () {
+			return instance.position;
+		};
+
+		/**
+		 * Returns the instance&#x27;s projected position, which is its &#x60;(i, j, k)&#x60;
+		 * position left-multiplied by the projection matrix.
+		 *
+		 * Note that this method returns the last calculated projected position,
+		 * which means it does not reflect changes made by the &#x60;tick&#x60; method or
+		 * by changing the position, velocity or uniform velocity objects
+		 * returned by the &#x60;getPosition&#x60;, &#x60;getVelocity&#x60;, and
+		 * &#x60;getUniformVelocity&#x60; methods. For changes to be reflected, the
+		 * instance must be first updated using the &#x60;update&#x60; method.
+		 *
+		 * The position is returned as an object containing three fields, &#x60;x&#x60;,
+		 * &#x60;y&#x60; and &#x60;z&#x60;, containing the &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60; projected coordinates,
+		 * respectively.
+		 *
+		 * @method getProjectedPosition
+		 * @return {Object} The projected position as an object containing three
+		 * &#x60;x&#x60;, &#x60;y&#x60; and &#x60;z&#x60; fields.
+		 */
+		this.getProjectedPosition = element.getProjectedPosition.bind(element);
+
+		/**
+		 * Returns the 2D rectangular area corresponding to the instances&#x27;s
+		 * bounds.
+		 *
+		 * Note that this method returns the last calculated projected
+		 * rectangle, which means it does not reflect changes made by such
+		 * methods as &#x60;tick&#x60;, &#x60;moveBy&#x60;, &#x60;setPosition&#x60; and so on. For changes to
+		 * be reflected, the instance must be first updated using the &#x60;update&#x60;
+		 * method.
+		 *
+		 * The rectangle is returned as an object containing four fields: the
+		 * &#x60;x&#x60; and &#x60;y&#x60; coordinates of the origin and the &#x60;width&#x60; and &#x60;height&#x60;.
+		 *
+		 * The coordinates of the origin are calculated by left-multiplying the
+		 * &#x60;(i, j, k)&#x60; position vector of the instance by the projection matrix
+		 * and adding the entity&#x27;s offset. The width and height are simply
+		 * copied from the entity descriptor.
+		 *
+		 * @method getProjectedRectangle
+		 * @return {Object} An object that describes the projected rectangle and
+		 * contains four fields: &#x60;x&#x60;, &#x60;y&#x60;, &#x60;width&#x60; and &#x60;height&#x60;.
+		 */
+		this.getProjectedRectangle = element.getProjectedRectangle.bind(element);
+
+		/**
+		 * Indicates whether the instance is in or out of range.
+		 *
+		 * An entity instance is in range when its projected position (as
+		 * returned by the &#x60;getProjectedPosition&#x60; method) falls within the
+		 * &quot;range&quot; area, which is a rectangular area centered in the center of
+		 * the viewport. The range area is usually much larger than the viewport
+		 * area.
+		 *
+		 * This method is useful, for example, for discarding too far entity
+		 * instances when stepping/ticking the physics of the game in order to
+		 * improve performance, and is used by the &#x60;Stage.Range&#x60; inner class.
+		 *
+		 * @method inRange
+		 * @param width {Number} The width of the range area.
+		 * @param height {Number} The height of the range area.
+		 * @return {Boolean} &#x60;true&#x60; if this instance falls within the specified
+		 * range area, &#x60;false&#x60; otherwise.
+		 */
+		this.inRange = (function () {
+			var viewportWidth = view.getWidth();
+			var viewportHeight = view.getHeight();
+			return function (width, height) {
+				var position = element.getProjectedPosition();
+				var origin = view.getOrigin();
+				var frameWidth = (width - viewportWidth) / 2;
+				var frameHeight = (height - viewportHeight) / 2;
+				return (position.x &gt;= -origin.x - frameWidth) &amp;&amp;
+					(position.x &lt;= -origin.x + viewportWidth + frameWidth) &amp;&amp;
+					(position.y &gt;= -origin.y - frameHeight) &amp;&amp;
+					(position.y &lt;= -origin.y + viewportHeight + frameHeight);
+			};
+		}());
+
+		/**
+		 * Returns the velocity vector of this instance as an object containing
+		 * three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective components
+		 * of the vector. The velocity vector is initially &#x60;(0, 0, 0)&#x60;.
+		 *
+		 * This velocity vector is influenced by the acceleration vector of the
+		 * instance: the components of the acceleration vector are added to the
+		 * respective components of the velocity vector each time the instance
+		 * is ticked using the &#x60;tick&#x60; method.
+		 *
+		 * Note that the original velocity vector object associated to the
+		 * instance is returned: changes made to the returned object affect the
+		 * velocity of the instance. You may use the returned object to manually
+		 * control the velocity of the instance.
+		 *
+		 * @method getVelocity
+		 * @return {Object} The instance&#x27;s velocity vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective
+		 * components of the vector.
+		 */
+		this.getVelocity = function () {
+			return instance.velocity;
+		};
+
+		/**
+		 * Returns the uniform velocity vector of this instance.
+		 *
+		 * The vector is returned as an object containing three fields, &#x60;i&#x60;, &#x60;j&#x60;
+		 * and &#x60;k&#x60;, indicating the respective components of the vector.
+		 *
+		 * Note that the original uniform velocity vector object associated to
+		 * the instance is returned: changes made to the returned object affect
+		 * the uniform velocity of the instance. You may use the returned object
+		 * to manually control the uniform velocity of the instance.
+		 *
+		 * @method getUniformVelocity
+		 * @return {Object} The instance&#x27;s uniform velocity vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective
+		 * components of the vector.
+		 */
+		this.getUniformVelocity = function () {
+			return instance.uniformVelocity;
+		};
+
+		/**
+		 * Returns the full velocity vector of the instance.
+		 *
+		 * The full velocity vector is the velocity vector plus the uniform
+		 * velocity vector.
+		 *
+		 * The vector is returned as an object containing three fields, &#x60;i&#x60;, &#x60;j&#x60;
+		 * and &#x60;k&#x60;, indicating the respective components of the vector.
+		 *
+		 * A new object is created, filled and returned every time this method
+		 * is called; modifying its content does not have any effects on the
+		 * state of the instance. The velocity and uniform velocity of the
+		 * instance must be controlled independently.
+		 *
+		 * @method getFullVelocity
+		 * @return {Object} The instance&#x27;s full velocity vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective
+		 * components of the vector.
+		 */
+		this.getFullVelocity = (function () {
+			var fullVelocity = {
+				i: instance.velocity.i + instance.uniformVelocity.i,
+				j: instance.velocity.j + instance.uniformVelocity.j,
+				k: instance.velocity.k + instance.uniformVelocity.k
+			};
+			return function () {
+				fullVelocity.i = instance.velocity.i + instance.uniformVelocity.i;
+				fullVelocity.j = instance.velocity.j + instance.uniformVelocity.j;
+				fullVelocity.k = instance.velocity.k + instance.uniformVelocity.k;
+				return fullVelocity;
+			};
+		}());
+
+		/**
+		 * Returns the instance&#x27;s own acceleration vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective
+		 * components of the vector.
+		 *
+		 * The acceleration vector is initially &#x60;(0, 0, 0)&#x60;.
+		 *
+		 * Note that the original acceleration vector object associated to the
+		 * instance is returned: changes made to the returned object affect the
+		 * acceleration of the instance. You may use the returned object to
+		 * manually control the acceleration of the instance.
+		 *
+		 * @method getAcceleration
+		 * @return {Object} The instance&#x27;s acceleration vector as an object
+		 * containing three fields, &#x60;i&#x60;, &#x60;j&#x60; and &#x60;k&#x60;, indicating the respective
+		 * components of the vector.
+		 */
+		this.getAcceleration = function () {
+			return instance.acceleration;
+		};
+
+		/**
+		 * Tests for collisions between this entity instance and the tiles of
+		 * the specified &#x60;Canvace.TileMap&#x60;.
+		 *
+		 * This method invokes the &#x60;Canvace.TileMap.rectangleCollision&#x60; using
+		 * the position of the instance, its current full velocity vector and
+		 * the bounding box of its entity, as set in the Canvace Development
+		 * Environment.
+		 *
+		 * This method does not change the state of the instance in any way; it
+		 * only forwards the return value of the
+		 * &#x60;Canvace.TileMap.rectangleCollision&#x60; method to the caller.
+		 *
+		 * @method testTileCollision
+		 * @param [collides] {Function} An optional user-defined callback
+		 * function that is invoked by the &#x60;testTileCollision&#x60; method for every
+		 * tile that collides with the instance.
+		 *
+		 * The function receives two arguments, the tile&#x27;s solid flag and its
+		 * properties, and must return a boolean value indicating whether the
+		 * tile is &quot;solid&quot; for this instance and must be taken into account as a
+		 * colliding tile. If the function returns &#x60;false&#x60; the tile is _not_
+		 * taken into account.
+		 * @param [tileMap] {Canvace.TileMap} An optional &#x60;Canvace.TileMap&#x60;
+		 * object whose tiles are tested for collisions with this entity
+		 * instance. When not specified, this stage&#x27;s tile map is used.
+		 * @return {Object} A vector that is computed by the method and can be
+		 * used to restore a &quot;regular&quot; configuration where the entity instance
+		 * does not collide with the tiles.
+		 *
+		 * See the &#x60;Canvace.TileMap.rectangleCollision&#x60; method for more
+		 * information, the return value is the same.
+		 */
+		this.testTileCollision = function (collides, tileMap) {
+			return (tileMap || map).rectangleCollision(
+				Math.floor(instance.k),
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
+				collides
+				);
+		};
+
+		/**
+		 * Reacts to possible collisions between this entity instance and the
+		 * tiles of the specified
+		 * {{#crossLink &quot;Canvace.TileMap&quot;}}{{/crossLink}}.
+		 *
+		 * This method invokes the &#x60;Canvace.TileMap.rectangleCollision&#x60; method
+		 * using the position of the instance, its current full velocity vector
+		 * and the bounding box of its entity, as set in the Canvace Development
+		 * Environment.
+		 *
+		 * It then reacts to the collision by updating the state of the instance
+		 * trying to resume a regular configuration where there is no collision.
+		 *
+		 * Specifically, the position of the instance is updated by adding the I
+		 * and J components of the vector returned by
+		 * &#x60;Canvace.TileMap.rectangleCollision&#x60; and each one of the I and J
+		 * components of the velocity vector is set to zero only if its sign is
+		 * the opposite of the corresponding component in the vector returned by
+		 * &#x60;Canvace.TileMap.rectangleCollision&#x60;.
+		 *
+		 * Note that only the velocity vector is changed, the uniform velocity
+		 * vector is not.
+		 *
+		 * The vector returned by &#x60;Canvace.TileMap.rectangleCollision&#x60; is also
+		 * forwarded to the caller.
+		 *
+		 * @method tileCollision
+		 * @param [collides] {Function} TODO
+		 * @param [tileMap] {Canvace.TileMap} A &#x60;Canvace.TileMap&#x60; object whose
+		 * tiles are tested for collisions with this entity instance.
+		 * @return {Object} The vector object returned by the
+		 * &#x60;rectangleCollision&#x60; method of
+		 * {{#crossLink &quot;Canvace.TileMap&quot;}}{{/crossLink}}.
+		 */
+		this.tileCollision = function (collides, tileMap) {
+			var v = (tileMap || map).rectangleCollision(
+				Math.floor(instance.k),
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
+				collides
+				);
+			instance.position.i += v.i;
+			instance.position.j += v.j;
+			if ((v.i &gt; 0) &amp;&amp; (instance.velocity.i &lt; 0)) {
+				instance.velocity.i = 0;
+			} else if ((v.i &lt; 0) &amp;&amp; (instance.velocity.i &gt; 0)) {
+				instance.velocity.i = 0;
+			}
+			if ((v.j &gt; 0) &amp;&amp; (instance.velocity.j &lt; 0)) {
+				instance.velocity.j = 0;
+			} else if ((v.j &lt; 0) &amp;&amp; (instance.velocity.j &gt; 0)) {
+				instance.velocity.j = 0;
+			}
+			return v;
+		};
+
+		/**
+		 * TODO
+		 *
+		 * @method collidesWithTiles
+		 * @param [collides] {Function} TODO
+		 * @param [tileMap] {Canvace.TileMap} TODO
+		 * @return {Boolean} TODO
+		 */
+		this.collidesWithTiles = function (collides, tileMap) {
+			var v = (tileMap || map).rectangleCollision(
+				Math.floor(instance.k),
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j,
+				collides
+				);
+			instance.position.i += v.i;
+			instance.position.j += v.j;
+			if ((v.i &gt; 0) &amp;&amp; (instance.velocity.i &lt; 0)) {
+				instance.velocity.i = 0;
+			} else if ((v.i &lt; 0) &amp;&amp; (instance.velocity.i &gt; 0)) {
+				instance.velocity.i = 0;
+			}
+			if ((v.j &gt; 0) &amp;&amp; (instance.velocity.j &lt; 0)) {
+				instance.velocity.j = 0;
+			} else if ((v.j &lt; 0) &amp;&amp; (instance.velocity.j &gt; 0)) {
+				instance.velocity.j = 0;
+			}
+			return v.i || v.j;
+		};
+
+		/**
+		 * Detects collisions between a rectangular area and the bounding box of
+		 * this entity instance.
+		 *
+		 * A vector is returned indicating two I and J values that must be added
+		 * to the coordinates of the rectangular area in order to resume a
+		 * regular configuration where the area does not collide with the
+		 * instance.
+		 *
+		 * In case there is not any collision, the returned vector is &#x60;(0, 0)&#x60;.
+		 *
+		 * The rectangular area is specified by the &#x60;i&#x60;, &#x60;j&#x60;, &#x60;di&#x60; and &#x60;dj&#x60;
+		 * arguments.
+		 *
+		 * The implementation of this method assumes the rectangular area
+		 * represents a moving entity (though not necessarily a Canvace entity)
+		 * which is characterized by its own velocity vector; this vector is
+		 * used in the collision algorithm in that it assumes the moving entity
+		 * cannot have compenetrated the bounding box of this instance along the
+		 * I or J axis more than the velocity vector component for that axis.
+		 * This is necessary in order to obtain a functional physics algorithm.
+		 *
+		 * If the rectangular area actually is the bounding box of a Canvace
+		 * entity, you can specify the I and J components of its actual velocity
+		 * vector for the &#x60;vi&#x60; and &#x60;vj&#x60; arguments; such vector can be retrieved
+		 * by adding the two vectors returned by the &#x60;getVelocity&#x60; and
+		 * &#x60;getUniformVelocity&#x60; methods.
+		 *
+		 * If specifying a velocity vector is not suitable, you can specify
+		 * arbitrary constant values; a good choice is usually 1 for both &#x60;vi&#x60;
+		 * and &#x60;vj&#x60;. However, do not specify 0, as this would _always_ result in
+		 * no collision.
+		 *
+		 * This method can be used to implement in-layer, bounding box based,
+		 * entity vs. entity collisions. If the rectangular area represents an
+		 * entity&#x27;s bounding box, the &#x60;i&#x60; and &#x60;j&#x60; coordinates of its origin can
+		 * be obtained using the &#x60;Canvace.Stage.Instance.getPosition&#x60; method,
+		 * while the &#x60;di&#x60; and &#x60;dj&#x60; span values are usually constant and must be
+		 * arbitrarily determined by the developer.
+		 *
+		 * @method rectangleCollision
+		 * @param i {Number} The I coordinate of the origin of the rectangular
+		 * area. This may be a real number.
+		 * @param j {Number} The J coordinate of the origin of the rectangular
+		 * area. This may be a real number.
+		 * @param di {Number} The span of the rectangular area along the I axis.
+		 * This may be a real number.
+		 * @param dj {Number} The span of the rectangular area along the J axis.
+		 * This may be a real number.
+		 * @param Di {Number} TODO
+		 * @param Dj {Number} TODO
+		 * @return {Object} An object containing two number fields, &#x60;i&#x60; and &#x60;j&#x60;,
+		 * specifying the I and J components of the computed vector.
+		 */
+		this.rectangleCollision = function (i, j, di, dj, Di, Dj) {
+			var v = {
+				i: 0,
+				j: 0
+			};
+			if (i &lt; instance.position.i + entity.box.i0) {
+				if (i + di &gt; instance.position.i + entity.box.i0) {
+					if (j &lt; instance.position.j + entity.box.j0) {
+						if (j + dj &gt; instance.position.j + entity.box.j0) {
+							if (i + di &lt; instance.position.i + entity.box.i0 + entity.box.iSpan) {
+								v.i = instance.position.i + entity.box.i0 - i - di;
+							}
+							if (j + dj &lt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+								v.j = instance.position.j + entity.box.j0 - j - dj;
+							}
+						}
+					} else if (j &lt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+						if (i + di &lt; instance.position.i + entity.box.i0 + entity.box.iSpan) {
+							v.i = instance.position.i + entity.box.i0 - i - di;
+						}
+						if (j + dj &gt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+							v.j = instance.position.j + entity.box.j0 - j - dj;
+						}
+					}
+				}
+			} else if (i &lt; instance.position.i + entity.box.i0 + entity.box.iSpan) {
+				if (j &lt; instance.position.j + entity.box.j0) {
+					if (j + dj &gt; instance.position.j + entity.box.j0) {
+						v.i = instance.position.i + entity.box.i0 + entity.box.iSpan - i;
+						if (j + dj &lt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+							v.j = instance.position.j + entity.box.j0 - j - dj;
+						}
+					}
+				} else if (j &lt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+					if (i + di &gt; instance.position.i + entity.box.i0 + entity.box.iSpan) {
+						v.i = instance.position.i + entity.box.i0 + entity.box.iSpan - i;
+					}
+					if (j + dj &gt; instance.position.j + entity.box.j0 + entity.box.jSpan) {
+						v.j = instance.position.j + entity.box.j0 + entity.box.jSpan - j;
+					}
+				}
+			}
+			if (Math.abs(v.i) &gt; Math.abs(instance.position.i - instance.previousPosition.i - Di) + 0.001) {
+				v.i = 0;
+			}
+			if (Math.abs(v.j) &gt; Math.abs(instance.position.j - instance.previousPosition.j - Dj) + 0.001) {
+				v.j = 0;
+			}
+			return v;
+		};
+
+		/**
+		 * Tests for collisions between this entity instance and the specified
+		 * one.
+		 *
+		 * This method invokes the &#x60;rectangleCollision&#x60; method of the specified
+		 * _other_ instance using the position of _this_ instance, its current
+		 * full velocity vector and the bounding box of its entity as set in the
+		 * Canvace Development Environment.
+		 *
+		 * This method does not change the state of the instances in any way; it
+		 * only forwards the return value of the &#x60;rectangleCollision&#x60; method to
+		 * the caller.
+		 *
+		 * @method testCollision
+		 * @param otherInstance {Canvace.Stage.Instance} Another &#x60;Instance&#x60;
+		 * object that is tested for collisions with this instance.
+		 * @return {Object} A vector that is computed by the method and can be
+		 * used to restore a &quot;regular&quot; configuration where the specified
+		 * instance does not collide with this instance.
+		 *
+		 * See the &#x60;Canvace.Stage.Instance.rectangleCollision&#x60; method for more
+		 * information, the return value is the same.
+		 */
+		this.testCollision = function (otherInstance) {
+			return otherInstance.rectangleCollision(
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
+				);
+		};
+
+		/**
+		 * Reacts to possible collisions between this entity instance and the
+		 * specified one.
+		 *
+		 * This method invokes the &#x60;Canvace.Stage.Instance.rectangleCollision&#x60;
+		 * method of the specified _other_ instance passing the position of
+		 * _this_ instance, its current full velocity vector and the bounding
+		 * box of its entity as set in the Canvace Development Environment.
+		 *
+		 * It then reacts to the collision by updating the state of _this_
+		 * instance trying to resume a regular configuration where there is no
+		 * collision.
+		 *
+		 * Specifically, the position of the instance is updated by adding the I
+		 * and J components of the vector returned by &#x60;rectangleCollision&#x60; and
+		 * each one of the I and J components of the velocity vector is set to
+		 * zero only if its sign is the opposite of the corresponding component
+		 * in the vector returned by &#x60;rectangleCollision&#x60;.
+		 *
+		 * Note that only the velocity vector is changed, the uniform velocity
+		 * vector is not.
+		 *
+		 * The vector returned by &#x60;Canvace.Stage.Instance.rectangleCollision&#x60;
+		 * is also forwarded to the caller.
+		 *
+		 * @method collision
+		 * @param otherInstance {Canvace.Stage.Instance} Another &#x60;Instance&#x60;
+		 * object that is tested for collisions with this instance.
+		 * @return {Object} The vector object returned by the
+		 * &#x60;Canvace.Stage.Instance.rectangleCollision&#x60; method.
+		 */
+		this.collision = function (otherInstance) {
+			var v = otherInstance.rectangleCollision(
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
+				);
+			instance.position.i += v.i;
+			instance.position.j += v.j;
+			if ((v.i &gt; 0) &amp;&amp; (instance.velocity.i &lt; 0)) {
+				instance.velocity.i = 0;
+			} else if ((v.i &lt; 0) &amp;&amp; (instance.velocity.i &gt; 0)) {
+				instance.velocity.i = 0;
+			}
+			if ((v.j &gt; 0) &amp;&amp; (instance.velocity.j &lt; 0)) {
+				instance.velocity.j = 0;
+			} else if ((v.j &lt; 0) &amp;&amp; (instance.velocity.j &gt; 0)) {
+				instance.velocity.j = 0;
+			}
+			return v;
+		};
+
+		/**
+		 * TODO
+		 *
+		 * @method collidesWithInstance
+		 * @param otherInstance {Canvace.Instance} TODO
+		 * @return {Boolean} TODO
+		 */
+		this.collidesWithInstance = function (otherInstance) {
+			var v = otherInstance.rectangleCollision(
+				instance.position.i + entity.box.i0,
+				instance.position.j + entity.box.j0,
+				entity.box.iSpan,
+				entity.box.jSpan,
+				instance.position.i - instance.previousPosition.i,
+				instance.position.j - instance.previousPosition.j
+				);
+			instance.position.i += v.i;
+			instance.position.j += v.j;
+			if ((v.i &gt; 0) &amp;&amp; (instance.velocity.i &lt; 0)) {
+				instance.velocity.i = 0;
+			} else if ((v.i &lt; 0) &amp;&amp; (instance.velocity.i &gt; 0)) {
+				instance.velocity.i = 0;
+			}
+			if ((v.j &gt; 0) &amp;&amp; (instance.velocity.j &lt; 0)) {
+				instance.velocity.j = 0;
+			} else if ((v.j &lt; 0) &amp;&amp; (instance.velocity.j &gt; 0)) {
+				instance.velocity.j = 0;
+			}
+			return v.i || v.j;
+		};
+
+		/**
+		 * &quot;Ticks&quot; the instance, updating its position based on its velocity and
+		 * its velocity based on its acceleration.
+		 *
+		 * This method is automatically called by the &#x60;Canvace.Stage.tick&#x60;
+		 * method if the entity has physics enabled.
+		 *
+		 * @method tick
+		 * @param dt {Number} TODO
+		 */
+		this.tick = function (dt) {
+			var dt2 = dt * dt * 0.5;
+			instance.previousPosition.i = instance.position.i;
+			instance.previousPosition.j = instance.position.j;
+			instance.previousPosition.k = instance.position.k;
+			instance.position.i += (instance.velocity.i + instance.uniformVelocity.i) * dt + instance.acceleration.i * dt2;
+			instance.position.j += (instance.velocity.j + instance.uniformVelocity.j) * dt + instance.acceleration.j * dt2;
+			instance.position.k += (instance.velocity.k + instance.uniformVelocity.k) * dt + instance.acceleration.k * dt2;
+			instance.velocity.i += instance.acceleration.i * dt;
+			instance.velocity.j += instance.acceleration.j * dt;
+			instance.velocity.k += instance.acceleration.k * dt;
+		};
+
+		/**
+		 * Updates the instance so that its graphical representation in
+		 * subsequent renderings reflect its actual position.
+		 *
+		 * Since this method is potentially costly, it should be called only
+		 * once per instance at each iteration of the render loop. This is what
+		 * the &#x60;RenderLoop&#x60; class does.
+		 *
+		 * This method is automatically called by the &#x60;Canvace.Stage.update&#x60;
+		 * method if the entity has physics enabled.
+		 *
+		 * @method update
+		 */
+		this.update = function () {
+			element.updatePosition(instance.position.i, instance.position.j, instance.position.k);
+		};
+
+		/**
+		 * Removes the entity instance from the stage. The instance will not be
+		 * rendered any more by subsequent &#x60;Renderer.render&#x60; calls and will not
+		 * be enumerated any more by the &#x60;Buckets.forEachElement&#x60; method.
+		 *
+		 * This method does not do anything if the instance has already been
+		 * removed or replaced with another entity using the &#x60;replaceWith&#x60;
+		 * method.
+		 *
+		 * @method remove
+		 */
+		this.remove = function () {
+			element.remove();
+			remove();
+		};
+
+		/**
+		 * Indicates whether this instance has been removed from the stage.
+		 *
+		 * @method isRemoved
+		 * @return {Boolean} &#x60;true&#x60; if this instance has been removed, &#x60;false&#x60;
+		 * otherwise.
+		 */
+		this.isRemoved = element.isRemoved.bind(element);
+
+		/**
+		 * Replaces this entity instance with a new instance of another entity.
+		 *
+		 * After being replaced, this instance becomes invalid and this object
+		 * should be discarded. The method returns a new &#x60;Stage.Instance&#x60; object
+		 * that can be used to control the new instance.
+		 *
+		 * The new instance inherits this instance&#x27;s position, velocity and
+		 * acceleration vectors.
+		 *
+		 * This method throws an exception if it is invoked after the instance
+		 * has been removed or already replaced by a previous call.
+		 *
+		 * @method replaceWith
+		 * @param entity {Canvace.Stage.Entity} An entity to be instantiated
+		 * and whose new instance must replace this one.
+		 * @return {Canvace.Stage.Instance} A new &#x60;Stage.Instance&#x60; object
+		 * representing the new instance.
+		 */
+		this.replaceWith = function (entity) {
+			if (remove()) {
+				return new Instance(instance, element.replace(instance.id = entity.getId()));
+			} else {
+				throw &#x27;the instance cannot be replaced because it has been removed&#x27;;
+			}
+		};
+
+		/**
+		 * Duplicates the instance, also replicating its velocity, uniform
+		 * velocity and acceleration vectors.
+		 *
+		 * An entity may be optionally specified as a &#x60;Canvace.Stage.Entity&#x60;
+		 * object to the &#x60;entity&#x60; argument so that the new instance refers to
+		 * another entity.
+		 *
+		 * The new instance is returned as a &#x60;Canvace.Stage.Instance&#x60; object.
+		 *
+		 * @method fork
+		 * @param [entity] {Canvace.Stage.Entity} An optional entity the new
+		 * instance refers to. The new instance refers to the same entity of
+		 * this instance if this argument is not specified.
+		 * @return {Canvace.Stage.Instance} The new instance.
+		 */
+		this.fork = function (entity) {
+			var id = entity ? entity.getId() : instance.id;
+			return new Instance({
+				id: id,
+				i: instance.i,
+				j: instance.j,
+				k: instance.k,
+				position: {
+					i: instance.position.i,
+					j: instance.position.j,
+					k: instance.position.k
+				},
+				previousPosition: {
+					i: instance.previousPosition.i,
+					j: instance.previousPosition.j,
+					k: instance.previousPosition.k
+				},
+				velocity: {
+					i: instance.velocity.i,
+					j: instance.velocity.j,
+					k: instance.velocity.k
+				},
+				uniformVelocity: {
+					i: instance.uniformVelocity.i,
+					j: instance.uniformVelocity.j,
+					k: instance.uniformVelocity.k
+				},
+				acceleration: {
+					i: instance.acceleration.i,
+					j: instance.acceleration.j,
+					k: instance.acceleration.k
+				},
+				properties: {}
+			}, buckets.addEntity(id, instance.position.i, instance.position.j, instance.position.k));
+		};
+	}
+
+	(function () {
+		map = new Canvace.TileMap(data, buckets);
+		for (var id in data.instances) {
+			var instance = data.instances[id];
+			instance.position = {
+				i: instance.i,
+				j: instance.j,
+				k: instance.k
+			};
+			instance.previousPosition = {
+				i: instance.i,
+				j: instance.j,
+				k: instance.k
+			};
+			instance.velocity = {
+				i: 0,
+				j: 0,
+				k: 0
+			};
+			instance.uniformVelocity = {
+				i: 0,
+				j: 0,
+				k: 0
+			};
+			instance.acceleration = {
+				i: 0,
+				j: 0,
+				k: 0
+			};
+			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
+		}
+	}());
+
+	/**
+	 * Returns the stage&#x27;s name.
+	 *
+	 * @method getName
+	 * @for Canvace.Stage
+	 * @return {String} The stage&#x27;s name.
+	 */
+	this.getName = function () {
+		return data.name;
+	};
+
+	/**
+	 * Returns the stage&#x27;s custom properties as set in the Canvace Development
+	 * Environment.
+	 *
+	 * The original &#x60;properties&#x60; object is returned, so that modifications
+	 * actually affect the stage&#x27;s properties.
+	 *
+	 * @method getProperties
+	 * @return {Object} The stage&#x27;s &#x60;properties&#x60; field containing the custom
+	 * properties the user set in the Canvace Development Environment.
+	 */
+	this.getProperties = function () {
+		return data.properties;
+	};
+
+	/**
+	 * Returns the HTML5 canvas where the stage is rendered. This is the same
+	 * canvas object specified to the constructor.
+	 *
+	 * @method getCanvas
+	 * @return {HTMLCanvasElement} The HTML5 canvas where the stage is rendered.
+	 */
+	this.getCanvas = function () {
+		return canvas;
+	};
+
+	/**
+	 * Returns a &#x60;View&#x60; object that can be used by a &#x60;Renderer&#x60; to render the
+	 * stage. It is internally built and initialized by &#x60;Stage&#x60;&#x27;s constructor.
+	 *
+	 * @method getView
+	 * @return {Canvace.View} A &#x60;View&#x60; object.
+	 */
+	this.getView = function () {
+		return view;
+	};
+
+	/**
+	 * Returns a {{#crossLink &quot;Canvace.Buckets&quot;}}{{/crossLink}} object that can
+	 * be used by a {{#crossLink &quot;Renderer&quot;}}{{/crossLink}} to render the
+	 * stage. It is internally built and initialized by &#x60;Canvace.Stage&#x60;&#x27;s
+	 * constructor.
+	 *
+	 * @method getBuckets
+	 * @return {Canvace.Buckets} A &#x60;Buckets&#x60; object.
+	 */
+	this.getBuckets = function () {
+		return buckets;
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @method prerender
+	 * @param loader {Canvace.Loader} TODO
+	 */
+	this.prerender = buckets.prerender;
+
+	/**
+	 * Provides a {{#crossLink &quot;Canvace.TileMap&quot;}}{{/crossLink}} object that
+	 * allows to manage this stage&#x27;s tile map.
+	 *
+	 * The &#x60;Canvace.TileMap&#x60; object is created lazily only once, the first time
+	 * this method is called; subsequent calls return the same object.
+	 *
+	 * @method getTileMap
+	 * @return {Canvace.TileMap} A &#x60;TileMap&#x60; object associated to this stage&#x27;s
+	 * tile map.
+	 */
+	this.getTileMap = function () {
+		return map;
+	};
+
+	/**
+	 * Enumerates all the entities of this stage, filtering them based on their
+	 * custom properties.
+	 *
+	 * The &#x60;properties&#x60; argument contains the filtering properties: an entity is
+	 * enumerated only if all of its filtered properties&#x27; values correspond to
+	 * those declared in the &#x60;properties&#x60; argument. All other properties in the
+	 * entity are not taken into account. This means that if you specify an
+	 * empty &#x60;properties&#x60; object, all the entities are enumerated.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * &#x60;properties&#x60; object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * Each enumerated entity is passed to the callback function as a
+	 * &#x60;Canvace.Stage.Entity&#x60; object.
+	 *
+	 * The enumeration can be interrupted by returning &#x60;false&#x60; in the
+	 * &#x60;action&#x60; callback function.
+	 *
+	 * @method forEachEntity
+	 * @param action {Function} A callback function that gets called for every
+	 * entity.
+	 *
+	 * It receives one single argument of type &#x60;Canvace.Stage.Entity&#x60; and can
+	 * interrupt the enumeration by returning &#x60;false&#x60;.
+	 * @param [properties] {Object} The optional filtering properties.
+	 * @return {Boolean} &#x60;true&#x60; if the callback function returned &#x60;false&#x60; and
+	 * the enumeration was interrupted, &#x60;false&#x60; otherwise.
+	 */
+	this.forEachEntity = function (action, properties) {
+		if (!properties) {
+			properties = {};
+		}
+		for (var id in data.entities) {
+			if (data.entities.hasOwnProperty(id)) {
+				if (assertObject(data.entities[id].properties, properties, {})) {
+					if (action(entities[id] || new Entity(id)) === false) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	};
+
+	/**
+	 * Returns an array of entities not filtered by the specified filtering
+	 * properties.
+	 *
+	 * Entities are filtered based on their custom properties. The &#x60;properties&#x60;
+	 * argument contains the filtering properties: an entity is returned only if
+	 * all of its filtered properties&#x27; values correspond to those declared in
+	 * the &#x60;properties&#x60; argument. All other properties in the entity are not
+	 * taken into account. This means that if you specify an empty &#x60;properties&#x60;
+	 * object, all the entities are returned.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * &#x60;properties&#x60; object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The chosen entities are returned as an array of &#x60;Stage.Entity&#x60; objects.
+	 *
+	 * @method getEntities
+	 * @param [properties] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Entity[]} An array of &#x60;Canvace.Stage.Entity&#x60; objects
+	 * representing the returned entities.
+	 */
+	this.getEntities = function (properties) {
+		var array = [];
+		for (var id in data.entities) {
+			if (data.entities.hasOwnProperty(id)) {
+				if (assertObject(data.entities[id].properties, properties || {}, {})) {
+					array.push(entities[id] || new Entity(id));
+				}
+			}
+		}
+		return array;
+	};
+
+	/**
+	 * Returns an arbitrarily chosen entity among the ones not filtered by the
+	 * specified filtering properties.
+	 *
+	 * Entities are filtered based on their custom properties. The &#x60;properties&#x60;
+	 * argument contains the filtering properties: an entity is eligible only if
+	 * all of its filtered properties&#x27; values correspond to those declared in
+	 * the &#x60;properties&#x60; argument. All other properties in the entity are not
+	 * taken into account. This means that if you specify an empty &#x60;properties&#x60;
+	 * object, all the entities are eligible.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * &#x60;properties&#x60; object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The chosen entity is returned as a &#x60;Stage.Entity&#x60; object.
+	 *
+	 * @method getEntity
+	 * @param [properties] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Entity} A &#x60;Canvace.Stage.Entity&#x60; object
+	 * representing the returned entity.
+	 */
+	this.getEntity = function (properties) {
+		for (var id in data.entities) {
+			if (data.entities.hasOwnProperty(id)) {
+				if (assertObject(data.entities[id].properties, properties || {}, {})) {
+					return entities[id] || new Entity(id);
+				}
+			}
+		}
+		return null;
+	};
+
+	/**
+	 * Enumerates the entity instances currently present in the stage. Each
+	 * instance is returned as a &#x60;Canvace.Stage.Instance&#x60; object.
+	 *
+	 * The enumeration can be interrupted by returning &#x60;false&#x60; in the &#x60;action&#x60;
+	 * callback function.
+	 *
+	 * @method forEachInstance
+	 * @param action {Function} A callback function that gets called for every
+	 * instance.
+	 *
+	 * It receives one single argument of type &#x60;Canvace.Stage.Instance&#x60; and can
+	 * interrupt the enumeration by returning &#x60;false&#x60;.
+	 * @param [properties] {Object} The optional filtering properties.
+	 * @return {Boolean} &#x60;true&#x60; if the callback function returned &#x60;false&#x60; and
+	 * the enumeration was interrupted, &#x60;false&#x60; otherwise.
+	 */
+	this.forEachInstance = function (action, properties) {
+		return instances.forEach(function (instance) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
+				return action(instance);
+			}
+		});
+	};
+
+	/**
+	 * Returns an array of entity instances among the ones currently in the
+	 * stage and not filtered by the specified filtering properties.
+	 *
+	 * Entity instances are filtered based on their custom properties. The
+	 * &#x60;properties&#x60; argument contains the filtering properties: an instance is
+	 * returned only if all of its filtered properties&#x27; values correspond to
+	 * those declared in the &#x60;properties&#x60; argument. All other properties in the
+	 * instance are not taken into account. This means that if you specify an
+	 * empty &#x60;properties&#x60; object, an array containing all the instances is
+	 * returned.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * &#x60;properties&#x60; object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The entity instances are filtered based on its custom *instance*
+	 * properties, but its custom *entity* properties are used as a fallback: if
+	 * an instance does not contain a required property it is still returned if
+	 * its entity does.
+	 *
+	 * The chosen instances are returned as an array of &#x60;Canvace.Stage.Instance&#x60;
+	 * objects.
+	 *
+	 * @method getInstances
+	 * @param [properties] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Instance[]} An array of &#x60;Canvace.Stage.Instance&#x60;
+	 * objects representing the returned entity instances.
+	 */
+	this.getInstances = function (properties) {
+		var array = [];
+		instances.forEach(function (instance) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
+				array.push(instance);
+			}
+		});
+		return array;
+	};
+
+	/**
+	 * Returns an arbitrarily chosen entity instance among the ones currently in
+	 * the stage and not filtered by the specified filtering properties.
+	 *
+	 * Entity instances are filtered based on their custom properties. The
+	 * &#x60;properties&#x60; argument contains the filtering properties: an instance is
+	 * eligible only if all of its filtered properties&#x27; values correspond to
+	 * those declared in the &#x60;properties&#x60; argument. All other properties in the
+	 * instance are not taken into account. This means that if you specify an
+	 * empty &#x60;properties&#x60; object, all the instances are eligible.
+	 *
+	 * Some custom properties may actually be objects containing other
+	 * properties. This method performs a recursive deep comparison: the
+	 * &#x60;properties&#x60; object may have nested objects containing other filtering
+	 * properties.
+	 *
+	 * The entity instance is filtered based on its custom *instance*
+	 * properties, but its custom *entity* properties are used as a fallback: if
+	 * an instance does not contain a required property it is still eligible if
+	 * its entity does.
+	 *
+	 * The chosen instance is returned as a &#x60;Canvace.Stage.Instance&#x60; object.
+	 *
+	 * @method getInstance
+	 * @param [properties] {Object} The filtering properties.
+	 * @return {Canvace.Stage.Instance} A &#x60;Canvace.Stage.Instance&#x60; object
+	 * representing the returned entity instance.
+	 */
+	this.getInstance = function (properties) {
+		var result = null;
+		instances.forEach(function (instance) {
+			if (assertObject(instance.getProperties(), properties || {}, instance.getEntity().getProperties())) {
+				result = instance;
+				return false;
+			}
+		});
+		return result;
+	};
+
+	/**
+	 * TODO
+	 *
+	 * @class Canvace.Stage.Range
+	 * @constructor
+	 * @param width {Number} TODO
+	 * @param height {Number} TODO
+	 */
+	this.Range = function (width, height) {
+		/**
+		 * TODO
+		 *
+		 * @method forEachInstance
+		 * @param action {Function} TODO
+		 * @param [properties] {Object} TODO
+		 * @return {Boolean} TODO
+		 */
+		this.forEachInstance = function (action, properties) {
+			if (!properties) {
+				properties = {};
+			}
+			return instances.forEach(function (instance) {
+				if (instance.inRange(width, height)) {
+					if (assertObject(instance.getProperties(), properties, instance.getEntity().getProperties())) {
+						return action(instance);
+					}
+				}
+			});
+		};
+
+		/**
+		 * TODO
+		 *
+		 * @method tick
+		 * @param dt {Number} TODO
+		 */
+		this.tick = function (dt) {
+			instancesWithPhysics.fastForEach(function (instance) {
+				if (instance.inRange(width, height)) {
+					instance.tick(dt);
+				}
+			});
+		};
+
+		/**
+		 * TODO
+		 *
+		 * @method update
+		 */
+		this.update = function () {
+			instancesWithPhysics.fastForEach(function (instance) {
+				if (instance.inRange(width, height)) {
+					instance.update();
+				}
+			});
+		};
+	};
+
+	/**
+	 * &quot;Ticks&quot; all the entities of the stage that have physics enabled. This
+	 * method simply iterates over such entities and invokes their &#x60;tick&#x60;
+	 * method.
+	 *
+	 * You do not usually need to call this method as it is automatically called
+	 * by Canvace&#x27;s render loop implementation in the
+	 * {{#crossLink &quot;Canvace.RenderLoop&quot;}}{{/crossLink}} class.
+	 *
+	 * @method tick
+	 * @for Canvace.Stage
+	 * @param dt {Number} TODO
+	 */
+	this.tick = function (dt) {
+		instancesWithPhysics.fastForEach(function (instance) {
+			instance.tick(dt);
+		});
+	};
+
+	/**
+	 * Updates all the entities of the stage that have physics enabled. This
+	 * method simply iterates over such entities and invokes their &#x60;update&#x60;
+	 * method.
+	 *
+	 * You do not usually need to call this method as it is automatically called
+	 * by Canvace&#x27;s render loop implementation in the
+	 * {{#crossLink &quot;Canvace.RenderLoop&quot;}}{{/crossLink}} class.
+	 *
+	 * @method update
+	 */
+	this.update = function () {
+		instancesWithPhysics.fastForEach(function (instance) {
+			instance.update();
+		});
+	};
+};
+
+    </pre>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    		<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+    			var disqus_shortname = 'canvace';
+
+    			(function() {
+    				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    			})();
+    		</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+	<div class="footer">
+		<div class="inner">
+			<div>
+				Canvace Srl - Via Luigi Casale, 7 - 05100 Terni (Italia) - VAT/P. IVA 01485160558
+				&nbsp;
+				<a href="https://www.iubenda.com/privacy-policy/282298" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</div>
+
+            <div id="powered-by">
+                Proudly powered by:<br>
+                <a href="http://www.luissenlabs.com/" target="_blank"><img src="../assets/media/enlabs.png" alt="Powered by EnLabs" /></a>
+                <a href="http://www.nodejs.org/" target="_blank"><img src="../assets/media/nodejs.png" alt="Powered by Node.js" /></a>
+                <a href="http://www.microsoft.com/bizspark/" target="_blank"><img src="../assets/media/bizspark.png" alt="Powered by Microsoft Bizspark" /></a>
+            </div>
+		</div>
+	</div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
