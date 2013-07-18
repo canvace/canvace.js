@@ -56,6 +56,15 @@ Canvace.Matrix.prototype.has = function (i, j, k) {
 	return this.data.hasOwnProperty(i + ' ' + j + ' ' + k);
 };
 
+/**
+ * Indicates whether the matrix contains any values at the specified layer K.
+ *
+ * A _layer_ is a set of elements in the matrix that have the same K coordinate.
+ *
+ * @method hasLayer
+ * @param k {Number} The layer number.
+ * @return {Boolean} `true` if the matrix has the layer K, `false` otherwise.
+ */
 Canvace.Matrix.prototype.hasLayer = function (k) {
 	return this.layers.hasOwnProperty(k);
 };
