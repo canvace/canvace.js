@@ -21,6 +21,10 @@
 /**
  * Wraps a Canvace stage.
  *
+ * While providing the `data` object output by the Canvace Development
+ * Environment to the `Stage` constructor be aware that its contents may be
+ * modified in order to implement some optimizations.
+ *
  * @class Canvace.Stage
  * @constructor
  * @param data {Object} The JSON data output by the Canvace Development

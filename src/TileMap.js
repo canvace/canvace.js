@@ -468,10 +468,6 @@ Canvace.TileMap = function (data, buckets) {
 		return true;
 	};
 
-
-// FIXME implementare tile multipli da qui
-
-
 	/**
 	 * This method uses the `findPath` method of the
 	 * {{#crossLink "Canvace.Astar"}}{{/crossLink}} class to compute a suitable
@@ -556,7 +552,16 @@ Canvace.TileMap = function (data, buckets) {
 			};
 			(function () {
 				function walkable(i, j) {
-					return matrix.has(i, j, k) && !data.tiles[matrix.get(i, j, k)].solid;
+					if (matrix.has(i, j, k)) {
+						var id = matrix.get(i, j, k);
+						if (typeof id !== 'number') {
+							var coordinates = id.split(' ');
+							id = matrix.get(coordinates[0], coordinates[1], k);
+						}
+						return !data.tiles[id].solid;
+					} else {
+						return false;
+					}
 				}
 				for (var index = 0; index < 9; index++) {
 					var i1 = i + [-1, -1, -1, 0, 0, 0, 1, 1, 1][index];
@@ -643,14 +648,28 @@ Canvace.TileMap = function (data, buckets) {
 			var solidTileAt = (function () {
 				if (typeof collides !== 'function') {
 					return function (i, j) {
-						return matrix.has(i, j, k) && !tiles[matrix.get(i, j, k)].solid;
+						if (matrix.has(i, j, k)) {
+							var id = matrix.get(i, j, k);
+							if (typeof id !== 'number') {
+								var coordinates = id.split(' ');
+								id = matrix.get(coordinates[0], coordinates[1], k);
+							}
+							return data.tiles[id].solid;
+						} else {
+							return false;
+						}
 					};
 				} else {
 					return function (i, j) {
 						if (!matrix.has(i, j, k)) {
 							return false;
 						}
-						var tile = tiles[matrix.get(i, j, k)];
+						var id = matrix.get(i, j, k);
+						if (typeof id !== 'number') {
+							var coordinates = id.split(' ');
+							id = matrix.get(coordinates[0], coordinates[1], k);
+						}
+						var tile = tiles[id];
 						return collides(tile.solid, tile.properties);
 					};
 				}
