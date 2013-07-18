@@ -374,20 +374,25 @@ Canvace.TileMap = function (data, buckets) {
 	 * @param i {Number} An integer I coordinate.
 	 * @param j {Number} An integer J coordinate.
 	 * @param k {Number} An integer K coordinate.
+	 * @param [alwaysId=false] {Boolean} TODO
 	 * @return {Mixed} The requested single tile ID, an object describing a
 	 * multiple tile or `false` if no tile is found. Use the `typeof` operator
 	 * to distinguish between the two cases: a tile ID is always a number.
 	 */
-	this.getAt2 = function (i, j, k) {
+	this.getAt2 = function (i, j, k, alwaysId) {
 		var value = matrix.get(i, j, k);
 		if (typeof value !== 'number') {
 			var referenceCoordinates = value.split(' ');
 			var id = matrix.get(referenceCoordinates[0], referenceCoordinates[1], k);
-			return {
-				id: id,
-				i: referenceCoordinates[0],
-				j: referenceCoordinates[1]
-			};
+			if (alwaysId) {
+				return id;
+			} else {
+				return {
+					id: id,
+					i: referenceCoordinates[0],
+					j: referenceCoordinates[1]
+				};
+			}
 		} else {
 			return value;
 		}
