@@ -553,7 +553,8 @@ Canvace.Buckets = function (view, data) {
 				(element.p[0] + element.width >= -origin.x) &&
 				(element.p[1] + element.height >= -origin.y))
 			{
-				action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
+				var frame = element.getFrame(timestamp - element.timeOffset);
+				action(element.p[0], element.p[1], frame.id, frame.x, frame.y, frame.width, frame.height);
 			}
 		}
 

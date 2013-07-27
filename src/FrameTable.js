@@ -41,7 +41,7 @@ Canvace.FrameTable = function (data) {
 		var animation;
 		if (frames.length < 2) {
 			animation = function () {
-				return frames[0].id;
+				return frames[0];
 			};
 			animation.static = true;
 			return animation;
@@ -49,14 +49,14 @@ Canvace.FrameTable = function (data) {
 			var partialUnit = 0;
 			var fullDuration = 0;
 			var looping = true;
-			var lastFrameId;
+			var lastFrame;
 			for (var i in frames) {
 				if (frames[i].hasOwnProperty('duration')) {
 					partialUnit = gcd(partialUnit, frames[i].duration);
 					fullDuration += frames[i].duration;
 				} else {
 					looping = false;
-					lastFrameId = frames[i].id;
+					lastFrame = frames[i];
 				}
 			}
 
@@ -73,7 +73,7 @@ Canvace.FrameTable = function (data) {
 						frameIndex++;
 						frameTime = 0;
 					}
-					table[time] = frames[frameIndex].id;
+					table[time] = frames[frameIndex];
 				}
 			};
 
@@ -88,7 +88,7 @@ Canvace.FrameTable = function (data) {
 				} else {
 					return function (timestamp) {
 						if (timestamp >= fullDuration) {
-							return lastFrameId;
+							return lastFrame;
 						} else {
 							return table[Math.floor(timestamp / unit) * unit];
 						}

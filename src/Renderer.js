@@ -97,8 +97,8 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		return context;
 	};
 
-	function drawImage(x, y, id) {
-		context.drawImage(loader.getImage(id), x, y);
+	function drawImage(x, y, id, sx, sy, sw, sh) {
+		context.drawImage(loader.getImage(id), sx, sy, sw, sh, x, y, sw, sh);
 	}
 
 	/**

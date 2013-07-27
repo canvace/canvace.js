@@ -18,6 +18,11 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * TODO document that the asset loading process modifies the content of the data
+ * object output by Darblast
+ */
+
 /**
  * Helper class that eases the asynchronous loading of the stage data exported
  * by the Canvace Development Environment.
@@ -152,6 +157,22 @@ Canvace.Loader = function (options) {
 				imagesProgress = 100 * ++count / Math.max(1, totalCount);
 				updateProgress();
 				if (count >= totalCount) {
+					(function (updateFrames) {
+						updateFrames(data.tiles);
+						updateFrames(data.entities);
+					}(function (descriptors) {
+						for (var i in descriptors) {
+							for (var j in descriptors[i].frames) {
+								var frame = descriptors[i].frames[j];
+								if (!frame.hasOwnProperty('x')) {
+									frame.x = 0;
+									frame.y = 0;
+									frame.width = imageset[frame.id].width;
+									frame.height = imageset[frame.id].height;
+								}
+							}
+						}
+					}));
 					imagesLoaded = true;
 					loadFinished();
 				}
@@ -183,16 +204,16 @@ Canvace.Loader = function (options) {
 
 		function batchImages(descriptor) {
 			for (var i in descriptor.frames) {
-				(function (id) {
+				(function (id, progress) {
 					if (id in imageset) {
-						bindProgress(id)();
+						progress();
 					} else {
 						var image = new Image();
 						imageset[id] = image;
-						image.addEventListener('load', bindProgress(id), false);
+						image.addEventListener('load', progress, false);
 						image.src = [options.imagesPath, id].join('/');
 					}
-				}(descriptor.frames[i].id));
+				}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
 			}
 		}
 
