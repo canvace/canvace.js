@@ -45,6 +45,7 @@ Canvace.MultiSet = function () {
 	this.elements = {};
 	this.nextId = 0;
 	this.count = 0;
+	this.resetCount = 0;
 	this.fastAdd.apply(this, arguments);
 };
 
@@ -89,13 +90,18 @@ Canvace.MultiSet.prototype.add = function (element) {
 	var id = this.nextId++;
 	this.elements[id] = element;
 	this.count++;
+	var resetCount = this.resetCount;
 	return function () {
-		if (this.elements.hasOwnProperty(id)) {
-			delete this.elements[id];
-			this.count--;
-			return true;
-		} else {
+		if (resetCount < this.resetCount) {
 			return false;
+		} else {
+			if (this.elements.hasOwnProperty(id)) {
+				delete this.elements[id];
+				this.count--;
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}.bind(this);
 };
@@ -184,13 +190,18 @@ Canvace.MultiSet.prototype.forEach = function (action) {
 	for (var id in this.elements) {
 		if (this.elements.hasOwnProperty(id)) {
 			if (action(this.elements[id], function (id) {
+				var resetCount = this.resetCount;
 				return function () {
-					if (this.elements.hasOwnProperty(id)) {
-						delete this.elements[id];
-						this.count--;
-						return true;
-					} else {
+					if (resetCount < this.resetCount) {
 						return false;
+					} else {
+						if (this.elements.hasOwnProperty(id)) {
+							delete this.elements[id];
+							this.count--;
+							return true;
+						} else {
+							return false;
+						}
 					}
 				}.bind(this);
 			}.call(this, id)) === false) {
@@ -285,4 +296,5 @@ Canvace.MultiSet.prototype.isEmpty = function () {
 Canvace.MultiSet.prototype.clear = function () {
 	this.elements = {};
 	this.count = 0;
+	this.resetCount++;
 };

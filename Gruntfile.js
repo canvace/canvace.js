@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 		},
 
 		clean: {
-			all: ['bin']
+			all: ['bin', 'doc']
 		},
 
 		concat: {
