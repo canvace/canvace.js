@@ -381,8 +381,10 @@ Canvace.TileMap = function (data, buckets) {
 	 */
 	this.getAt2 = function (i, j, k, alwaysId) {
 		var value = matrix.get(i, j, k);
-		if (typeof value !== 'number') {
-			var referenceCoordinates = value.split(' ');
+		if (typeof value === 'undefined') {
+			return false;
+		} else if (typeof value !== 'number') {
+			var referenceCoordinates = ('' + value).split(' ');
 			var id = matrix.get(referenceCoordinates[0], referenceCoordinates[1], k);
 			if (alwaysId) {
 				return id;
