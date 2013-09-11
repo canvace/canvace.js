@@ -29,7 +29,37 @@ module.exports = function (grunt) {
 			},
 
 			dist: {
-				src: ['src/*.js',],
+				src: [
+					'src/Module.js',
+					'src/MultiSet.js',
+					'src/Polyfill.js',
+					'src/Ajax.js',
+					'src/Animator.js',
+					'src/AppCache.js',
+					'src/Astar.js',
+					'src/Audio.js',
+					'src/Buckets.js',
+					'src/DebugEffect.js',
+					'src/FrameTable.js',
+					'src/Heap.js',
+					'src/Keyboard.js',
+					'src/List.js',
+					'src/Loader.js',
+					'src/Matrix.js',
+					'src/Mobile.js',
+					'src/Mouse.js',
+					'src/ParametricStateMachine.js',
+					'src/Renderer.js',
+					'src/RenderLoop.js',
+					'src/RumbleEffect.js',
+					'src/Stage.js',
+					'src/StageRenderer.js',
+					'src/StateMachine.js',
+					'src/TileMap.js',
+					'src/Timing.js',
+					'src/View.js',
+					'src/Visibility.js'
+				],
 				dest: 'bin/canvace.js'
 			}
 		},
