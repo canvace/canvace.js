@@ -1108,33 +1108,35 @@ Canvace.Stage = function (data, canvas) {
 	(function () {
 		map = new Canvace.TileMap(data, buckets);
 		for (var id in data.instances) {
-			var instance = data.instances[id];
-			instance.position = {
-				i: instance.i,
-				j: instance.j,
-				k: instance.k
-			};
-			instance.previousPosition = {
-				i: instance.i,
-				j: instance.j,
-				k: instance.k
-			};
-			instance.velocity = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			instance.uniformVelocity = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			instance.acceleration = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
+			if (data.instances.hasOwnProperty(id)) {
+				var instance = data.instances[id];
+				instance.position = {
+					i: instance.i,
+					j: instance.j,
+					k: instance.k
+				};
+				instance.previousPosition = {
+					i: instance.i,
+					j: instance.j,
+					k: instance.k
+				};
+				instance.velocity = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				instance.uniformVelocity = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				instance.acceleration = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
+			}
 		}
 	}());
 

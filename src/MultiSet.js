@@ -124,7 +124,9 @@ Canvace.MultiSet.prototype.add = function (element) {
  */
 Canvace.MultiSet.prototype.fastAdd = function () {
 	for (var i in arguments) {
-		this.elements[this.nextId++] = arguments[i];
+		if (arguments.hasOwnProperty(i)) {
+			this.elements[this.nextId++] = arguments[i];
+		}
 	}
 	this.count += arguments.length;
 };

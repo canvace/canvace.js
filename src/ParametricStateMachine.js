@@ -97,7 +97,9 @@ Canvace.ParametricStateMachine = function (transitions, states, initialState) {
 		};
 
 		for (var i in transitions) {
-			makeState(transitions[i]);
+			if (transitions.hasOwnProperty(i)) {
+				makeState(transitions[i]);
+			}
 		}
 	}(this));
 

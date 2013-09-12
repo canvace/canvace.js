@@ -162,13 +162,17 @@ Canvace.Loader = function (options) {
 						updateFrames(data.entities);
 					}(function (descriptors) {
 						for (var i in descriptors) {
-							for (var j in descriptors[i].frames) {
-								var frame = descriptors[i].frames[j];
-								if (!frame.hasOwnProperty('x')) {
-									frame.x = 0;
-									frame.y = 0;
-									frame.width = imageset[frame.id].width;
-									frame.height = imageset[frame.id].height;
+							if (descriptors.hasOwnProperty(i)) {
+								for (var j in descriptors[i].frames) {
+									if (descriptors[i].frames.hasOwnProperty(j)) {
+										var frame = descriptors[i].frames[j];
+										if (!frame.hasOwnProperty('x')) {
+											frame.x = 0;
+											frame.y = 0;
+											frame.width = imageset[frame.id].width;
+											frame.height = imageset[frame.id].height;
+										}
+									}
 								}
 							}
 						}
@@ -204,25 +208,31 @@ Canvace.Loader = function (options) {
 
 		function batchImages(descriptor) {
 			for (var i in descriptor.frames) {
-				(function (id, progress) {
-					if (id in imageset) {
-						progress();
-					} else {
-						var image = new Image();
-						imageset[id] = image;
-						image.addEventListener('load', progress, false);
-						image.src = [options.imagesPath, id].join('/');
-					}
-				}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
+				if (descriptor.frames.hasOwnProperty(i)) {
+					(function (id, progress) {
+						if (id in imageset) {
+							progress();
+						} else {
+							var image = new Image();
+							imageset[id] = image;
+							image.addEventListener('load', progress, false);
+							image.src = [options.imagesPath, id].join('/');
+						}
+					}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
+				}
 			}
 		}
 
 		for (id in data.tiles) {
-			batchImages(data.tiles[id]);
+			if (data.tiles.hasOwnProperty(id)) {
+				batchImages(data.tiles[id]);
+			}
 		}
 
 		for (id in data.entities) {
-			batchImages(data.entities[id]);
+			if (data.entities.hasOwnProperty(id)) {
+				batchImages(data.entities[id]);
+			}
 		}
 
 		return thisObject;
@@ -293,14 +303,16 @@ Canvace.Loader = function (options) {
 
 		function getSuitableSource(sourceList) {
 			for (var i in sourceList) {
-				try {
-					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
+				if (sourceList.hasOwnProperty(i)) {
+					try {
+						var info = Canvace.Loader.getSourceInfo(sourceList[i]);
 
-					if (audio.canPlayType(info.mimeType)) {
-						return [options.soundsPath, info.url].join('/');
+						if (audio.canPlayType(info.mimeType)) {
+							return [options.soundsPath, info.url].join('/');
+						}
+					} catch (e) {
+						return false;
 					}
-				} catch (e) {
-					return false;
 				}
 			}
 
@@ -308,16 +320,18 @@ Canvace.Loader = function (options) {
 		}
 
 		for (var i in sources) {
-			if (i in soundset) {
-				progress();
-			} else {
-				var source = getSuitableSource(sources[i]);
-
-				if (false === source) {
-					loadError(i);
+			if (sources.hasOwnProperty(i)) {
+				if (i in soundset) {
 					progress();
 				} else {
-					soundset[i] = audio.load(source, progress, triggerError(i));
+					var source = getSuitableSource(sources[i]);
+
+					if (false === source) {
+						loadError(i);
+						progress();
+					} else {
+						soundset[i] = audio.load(source, progress, triggerError(i));
+					}
 				}
 			}
 		}
@@ -499,8 +513,10 @@ Canvace.Loader.guessMimeType = function (source) {
 		}
 	];
 	for (var i in mimeMap) {
-		if (mimeMap[i].pattern.test(source)) {
-			return mimeMap[i].mime;
+		if (mimeMap.hasOwnProperty(i)) {
+			if (mimeMap[i].pattern.test(source)) {
+				return mimeMap[i].mime;
+			}
 		}
 	}
 	throw 'Couldn\'t guess the MIME type from the resource URL';

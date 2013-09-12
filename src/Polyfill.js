@@ -46,9 +46,11 @@ Canvace.Polyfill = (function () {
 		var capitalName = name.charAt(0).toUpperCase() + name.substr(1);
 
 		for (var i in prefixes) {
-			var prefixedName = prefixes[i] + capitalName;
-			if (prefixedName in object) {
-				return object[prefixedName];
+			if (prefixes.hasOwnProperty(i)) {
+				var prefixedName = prefixes[i] + capitalName;
+				if (prefixedName in object) {
+					return object[prefixedName];
+				}
 			}
 		}
 

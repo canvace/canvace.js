@@ -186,7 +186,9 @@ Canvace.Ajax = new (function () {
 						});
 					} else if (data) {
 						for (var key in data) {
-							parameters.push.apply(parameters, flatten(encodeURIComponent(prefix + '.' + key) + '=', data[key]));
+							if (data.hasOwnProperty(key)) {
+								parameters.push.apply(parameters, flatten(encodeURIComponent(prefix + '.' + key) + '=', data[key]));
+							}
 						}
 					} else {
 						return [prefix + 'null'];

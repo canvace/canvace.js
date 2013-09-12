@@ -54,10 +54,14 @@ Canvace.Buckets = function (view, data) {
 	(function () {
 		var id;
 		for (id in data.tiles) {
-			frameTable.registerTile(id);
+			if (data.tiles.hasOwnProperty(id)) {
+				frameTable.registerTile(id);
+			}
 		}
 		for (id in data.entities) {
-			frameTable.registerEntity(id);
+			if (data.entities.hasOwnProperty(id)) {
+				frameTable.registerEntity(id);
+			}
 		}
 	}());
 
@@ -225,7 +229,9 @@ Canvace.Buckets = function (view, data) {
 	 */
 	Element.prototype.remove = function remove() {
 		for (var index in this.removers) {
-			this.removers[index]();
+			if (this.removers.hasOwnProperty(index)) {
+				this.removers[index]();
+			}
 		}
 		this.removers = [];
 		return this.removed = true;

@@ -38,13 +38,15 @@ Canvace.AppCache = new function () {
 
 	if (window.applicationCache) {
 		for (var eventName in handlers) {
-			applicationCache.addEventListener(eventName, (function (handlers) {
-				return function (e) {
-					handlers.fastForEach(function (handler) {
-						handler(e);
-					});
-				};
-			})(handlers[eventName]), false);
+			if (handlers.hasOwnProperty(eventName)) {
+				applicationCache.addEventListener(eventName, (function (handlers) {
+					return function (e) {
+						handlers.fastForEach(function (handler) {
+							handler(e);
+						});
+					};
+				})(handlers[eventName]), false);
+			}
 		}
 	}
 
@@ -80,7 +82,7 @@ Canvace.AppCache = new function () {
 	 *	});
 	 */
 	this.on = function (eventName, handler) {
-		if (eventName in handlers) {
+		if (handlers.hasOwnProperty(eventName)) {
 			return handlers[eventName].add(handler);
 		}
 
@@ -229,4 +231,3 @@ Canvace.AppCache.UPDATEREADY = 4;
  * @final
  */
 Canvace.AppCache.OBSOLETE = 5;
-

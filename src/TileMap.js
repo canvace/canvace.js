@@ -43,20 +43,26 @@ Canvace.TileMap = function (data, buckets) {
 
 	(function () {
 		for (var k in data.map) {
-			k = parseInt(k, 10);
-			for (var i in data.map[k]) {
-				i = parseInt(i, 10);
-				for (var j in data.map[k][i]) {
-					j = parseInt(j, 10);
-					var id = parseInt(data.map[k][i][j], 10);
-					var layout = data.tiles[id].layout;
-					for (var i1 = i - layout.ref.i; i1 < i - layout.ref.i + layout.span.i; i1++) {
-						for (var j1 = j - layout.ref.j; j1 < j - layout.ref.j + layout.span.j; j1++) {
-							matrix.put(i1, j1, k, i + ' ' + j + ' ' + k);
+			if (data.map.hasOwnProperty(k)) {
+				k = parseInt(k, 10);
+				for (var i in data.map[k]) {
+					if (data.map[k].hasOwnProperty(i)) {
+						i = parseInt(i, 10);
+						for (var j in data.map[k][i]) {
+							if (data.map[k][i].hasOwnProperty(j)) {
+								j = parseInt(j, 10);
+								var id = parseInt(data.map[k][i][j], 10);
+								var layout = data.tiles[id].layout;
+								for (var i1 = i - layout.ref.i; i1 < i - layout.ref.i + layout.span.i; i1++) {
+									for (var j1 = j - layout.ref.j; j1 < j - layout.ref.j + layout.span.j; j1++) {
+										matrix.put(i1, j1, k, i + ' ' + j + ' ' + k);
+									}
+								}
+								matrix.put(i, j, k, id);
+								buckets.addTile(id, i, j, k);
+							}
 						}
 					}
-					matrix.put(i, j, k, id);
-					buckets.addTile(id, i, j, k);
 				}
 			}
 		}
@@ -253,8 +259,10 @@ Canvace.TileMap = function (data, buckets) {
 	function getTileIds(properties) {
 		var ids = [];
 		for (var id in data.tiles) {
-			if (assertObject(data.tiles[id].properties, properties)) {
-				ids.push(parseInt(id, 10));
+			if (data.tiles.hasOwnProperty(id)) {
+				if (assertObject(data.tiles[id].properties, properties)) {
+					ids.push(parseInt(id, 10));
+				}
 			}
 		}
 		return ids;
@@ -271,8 +279,10 @@ Canvace.TileMap = function (data, buckets) {
 
 	function getTileId(properties) {
 		for (var id in data.tiles) {
-			if (assertObject(data.tiles[id].properties, properties)) {
-				return parseInt(id, 10);
+			if (data.tiles.hasOwnProperty(id)) {
+				if (assertObject(data.tiles[id].properties, properties)) {
+					return parseInt(id, 10);
+				}
 			}
 		}
 	}
@@ -325,7 +335,9 @@ Canvace.TileMap = function (data, buckets) {
 		var ids = getTileIds(properties);
 		var tiles = [];
 		for (var i in ids) {
-			tiles.push(tileCache[ids[i]] || (tileCache[ids[i]] = new Tile(ids[i])));
+			if (ids.hasOwnProperty(i)) {
+				tiles.push(tileCache[ids[i]] || (tileCache[ids[i]] = new Tile(ids[i])));
+			}
 		}
 		return tiles;
 	};

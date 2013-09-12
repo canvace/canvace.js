@@ -210,11 +210,15 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 			} else {
 				var removers = [];
 				for (var i in keyCode) {
-					removers.push(register(keyCode[i], handler));
+					if (keyCode.hasOwnProperty(i)) {
+						removers.push(register(keyCode[i], handler));
+					}
 				}
 				return function () {
 					for (var i in removers) {
-						removers[i]();
+						if (removers.hasOwnProperty(i)) {
+							removers[i]();
+						}
 					}
 				};
 			}
@@ -390,8 +394,10 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 		if (typeof keyCode !== 'number') {
 			return keyUpHandlers.register(keyCode, function () {
 				for (var i in keyCode) {
-					if (keys[keyCode[i]]) {
-						return;
+					if (keyCode.hasOwnProperty(i)) {
+						if (keys[keyCode[i]]) {
+							return;
+						}
 					}
 				}
 				return handler.apply(this, arguments);
