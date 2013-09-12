@@ -68,6 +68,8 @@
             
                 <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
             
+                <li><a href="../classes/Canvace.AppCache.html">Canvace.AppCache</a></li>
+            
                 <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
             
                 <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
@@ -277,8 +279,8 @@ Canvace.Renderer = function (canvas, loader, view, buckets, preProcess, postProc
 		return context;
 	};
 
-	function drawImage(x, y, id) {
-		context.drawImage(loader.getImage(id), x, y);
+	function drawImage(x, y, id, sx, sy, sw, sh) {
+		context.drawImage(loader.getImage(id), sx, sy, sw, sh, x, y, sw, sh);
 	}
 
 	/**

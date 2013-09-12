@@ -68,6 +68,8 @@
             
                 <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
             
+                <li><a href="../classes/Canvace.AppCache.html">Canvace.AppCache</a></li>
+            
                 <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
             
                 <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
@@ -196,6 +198,11 @@
  *
  *	You should have received a copy of the GNU General Public License
  *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */
+
+/*
+ * TODO document that the asset loading process modifies the content of the data
+ * object output by Darblast
  */
 
 /**
@@ -332,6 +339,22 @@ Canvace.Loader = function (options) {
 				imagesProgress = 100 * ++count / Math.max(1, totalCount);
 				updateProgress();
 				if (count &gt;= totalCount) {
+					(function (updateFrames) {
+						updateFrames(data.tiles);
+						updateFrames(data.entities);
+					}(function (descriptors) {
+						for (var i in descriptors) {
+							for (var j in descriptors[i].frames) {
+								var frame = descriptors[i].frames[j];
+								if (!frame.hasOwnProperty(&#x27;x&#x27;)) {
+									frame.x = 0;
+									frame.y = 0;
+									frame.width = imageset[frame.id].width;
+									frame.height = imageset[frame.id].height;
+								}
+							}
+						}
+					}));
 					imagesLoaded = true;
 					loadFinished();
 				}
@@ -363,16 +386,16 @@ Canvace.Loader = function (options) {
 
 		function batchImages(descriptor) {
 			for (var i in descriptor.frames) {
-				(function (id) {
+				(function (id, progress) {
 					if (id in imageset) {
-						bindProgress(id)();
+						progress();
 					} else {
 						var image = new Image();
 						imageset[id] = image;
-						image.addEventListener(&#x27;load&#x27;, bindProgress(id), false);
+						image.addEventListener(&#x27;load&#x27;, progress, false);
 						image.src = [options.imagesPath, id].join(&#x27;/&#x27;);
 					}
-				}(descriptor.frames[i].id));
+				}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
 			}
 		}
 

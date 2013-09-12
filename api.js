@@ -6,6 +6,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Canvace.Ajax.Request",
         "Canvace.Animator",
         "Canvace.Animator.Easing",
+        "Canvace.AppCache",
         "Canvace.Astar",
         "Canvace.Astar.Node",
         "Canvace.Audio",

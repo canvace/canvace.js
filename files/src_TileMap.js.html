@@ -68,6 +68,8 @@
             
                 <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
             
+                <li><a href="../classes/Canvace.AppCache.html">Canvace.AppCache</a></li>
+            
                 <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
             
                 <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
@@ -561,8 +563,10 @@ Canvace.TileMap = function (data, buckets) {
 	 */
 	this.getAt2 = function (i, j, k, alwaysId) {
 		var value = matrix.get(i, j, k);
-		if (typeof value !== &#x27;number&#x27;) {
-			var referenceCoordinates = value.split(&#x27; &#x27;);
+		if (typeof value === &#x27;undefined&#x27;) {
+			return false;
+		} else if (typeof value !== &#x27;number&#x27;) {
+			var referenceCoordinates = (&#x27;&#x27; + value).split(&#x27; &#x27;);
 			var id = matrix.get(referenceCoordinates[0], referenceCoordinates[1], k);
 			if (alwaysId) {
 				return id;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; Canvace.Stage.Entity - API reference</title>
+    <title>Canvace &bull; Canvace.AppCache - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1>Canvace.Stage.Entity Class</h1>
+                            <h1>Canvace.AppCache Class</h1>
 <div class="box meta">
     
 
@@ -184,7 +184,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_Stage.js.html#l80"><code>src\Stage.js:80</code></a>
+            Defined in: <a href="../files/src_AppCache.js.html#l21"><code>src\AppCache.js:21</code></a>
         </div>
     
 
@@ -200,9 +200,7 @@
 
 
 <div class="box intro">
-    <p>Represents an entity (not an instance).</p>
-<p>This class cannot be instantiated directly, instances are returned by
-various methods of the <code>Stage</code> class and subclasses.</p>
+    <p>Gives access to the <code>window.applicationCache</code> object, if supported.</p>
 
 </div>
 
@@ -215,6 +213,8 @@ various methods of the <code>Stage</code> class and subclasses.</p>
         
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         
         
         
@@ -231,43 +231,46 @@ various methods of the <code>Stage</code> class and subclasses.</p>
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_createInstance">createInstance</a>
+                                <a href="#method_abort">abort</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_forEachInstance">forEachInstance</a>
+                                <a href="#method_getStatus">getStatus</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_getBoundingBox">getBoundingBox</a>
+                                <a href="#method_on">on</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_getId">getId</a>
+                                <a href="#method_swapCache">swapCache</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_getProperties">getProperties</a>
+                                <a href="#method_update">update</a>
 
                                 
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_isPhysicsEnabled">isPhysicsEnabled</a>
-
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -276,6 +279,68 @@ various methods of the <code>Stage</code> class and subclasses.</p>
                 </div>
             
 
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#property_CHECKING">CHECKING</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_DOWNLOADING">DOWNLOADING</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_IDLE">IDLE</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_OBSOLETE">OBSOLETE</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_UNCACHED">UNCACHED</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_UPDATEREADY">UPDATEREADY</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
 
             
@@ -288,39 +353,11 @@ various methods of the <code>Stage</code> class and subclasses.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_createInstance" class="method item">
-    <h3 class="name"><code>createInstance</code></h3>
+                    <div id="method_abort" class="method item">
+    <h3 class="name"><code>abort</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>i</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>j</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>k</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="..\classes\Canvace.Stage.Instance.html" class="crosslink">Canvace.Stage.Instance</a></span>
-        </span>
+        <span class="paren">()</span>
     
 
     
@@ -329,6 +366,10 @@ various methods of the <code>Stage</code> class and subclasses.</p>
 
     
 
+    
+
+    
+        <span class="flag static">static</span>
     
 
     
@@ -346,7 +387,7 @@ various methods of the <code>Stage</code> class and subclasses.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l210"><code>src\Stage.js:210</code></a>
+        <a href="../files/src_AppCache.js.html#l128"><code>src\AppCache.js:128</code></a>
         
         </p>
 
@@ -357,73 +398,83 @@ various methods of the <code>Stage</code> class and subclasses.</p>
     </div>
 
     <div class="description">
-        <p>Creates a new instance of this entity and places it in the stage at
-the specified <code>(i, j, k)</code> position.</p>
-<p>The new instance has the initial velocity, uniform velocity and
-acceleration vectors all set to <code>(0, 0, 0)</code>.</p>
-<p>The new instance is returned as a <code>Canvace.Stage.Instance</code> object.</p>
+        <p>Cancels the application cache download process.
+This method is a no-operation if the application cache is not supported.</p>
 
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
+    
+
+    
+</div>
+
+                
+                    <div id="method_getStatus" class="method item">
+    <h3 class="name"><code>getStatus</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Mixed</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             
-                <li class="param">
-                    
-                        <code class="param-name">i</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The I coordinate where the new instance has to be
-placed.</p>
-
-                    </div>
-
-                    
-                </li>
+                
+                <p>
+                
+                Defined in
+                
             
-                <li class="param">
-                    
-                        <code class="param-name">j</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
+        
+        
+        <a href="../files/src_AppCache.js.html#l91"><code>src\AppCache.js:91</code></a>
+        
+        </p>
 
-                    
 
-                    <div class="param-description">
-                        <p>The J coordinate where the new instance has to be
-placed.</p>
+        
 
-                    </div>
+        
+    </div>
 
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">k</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
+    <div class="description">
+        <p>Returns the current cache status. This is <code>undefined</code>, if the browser has
+no support for the application cache, or it can be one of the following
+values:</p>
+<ul>
+<li><code>Canvace.AppCache.UNCACHED</code></li>
+<li><code>Canvace.AppCache.IDLE</code></li>
+<li><code>Canvace.AppCache.CHECKING</code></li>
+<li><code>Canvace.AppCache.DOWNLOADING</code></li>
+<li><code>Canvace.AppCache.UPDATEREADY</code></li>
+<li><code>Canvace.AppCache.OBSOLETE</code></li>
+</ul>
+<p>See this class&#39;s properties for a deeper explanation of these values.</p>
 
-                    
+    </div>
 
-                    <div class="param-description">
-                        <p>The K coordinate where the new instance has to be
-placed.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
@@ -433,9 +484,9 @@ placed.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="..\classes\Canvace.Stage.Instance.html" class="crosslink">Canvace.Stage.Instance</a></span>:
+                        <span class="type">Mixed</span>:
                     
-                    <p>The newly created instance.</p>
+                    <p>The current cache status value, or <code>undefined</code>.</p>
 
                 
             </div>
@@ -446,8 +497,8 @@ placed.</p>
 </div>
 
                 
-                    <div id="method_forEachInstance" class="method item">
-    <h3 class="name"><code>forEachInstance</code></h3>
+                    <div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
 
     
         <div class="args">
@@ -455,13 +506,13 @@ placed.</p>
             
                 <li class="arg">
                     
-                        <code>action</code>
+                        <code>eventName</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code class="optional">[properties]</code>
+                        <code>handler</code>
                     
                 </li>
             
@@ -471,7 +522,7 @@ placed.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
         </span>
     
 
@@ -481,6 +532,8 @@ placed.</p>
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     
@@ -498,7 +551,7 @@ placed.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l160"><code>src\Stage.js:160</code></a>
+        <a href="../files/src_AppCache.js.html#l51"><code>src\AppCache.js:51</code></a>
         
         </p>
 
@@ -509,26 +562,9 @@ placed.</p>
     </div>
 
     <div class="description">
-        <p>Enumerates all the instances of this entity currently present in the
-stage, filtering them based on their custom properties.</p>
-<p>The <code>properties</code> argument contains the filtering properties: an
-instance is enumerated only if all of its filtered properties&#39; values
-correspond to those declared in the <code>properties</code> argument. All other
-properties in the instance are not taken into account. This means
-that if you specify an empty <code>properties</code> object, all the instances
-are enumerated.</p>
-<p>Some custom properties may actually be objects containing other
-properties. This method performs a recursive deep comparison: the
-<code>properties</code> object may have nested objects containing other
-filtering properties.</p>
-<p>The entity instance is filtered based on its custom <em>instance</em>
-properties, but its custom <em>entity</em> properties are used as a
-fallback: if an instance does not contain a required property it is
-still enumerated if its entity does.</p>
-<p>Each enumerated instance is passed to the callback function as a
-<code>Canvace.Stage.Instance</code> object.</p>
-<p>The enumeration can be interrupted by returning <code>false</code> in the
-<code>action</code> callback function.</p>
+        <p>Registers an handler for the specified event. If the event name is
+not known, this method throws an exception (see the supported event
+names in the description of the <code>eventName</code> parameter).</p>
 
     </div>
 
@@ -540,34 +576,41 @@ still enumerated if its entity does.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">action</code>
+                        <code class="param-name">eventName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the event for which to listen.
+Can be one of:</p>
+<ul>
+<li>cached</li>
+<li>checking</li>
+<li>downloading</li>
+<li>progress</li>
+<li>error</li>
+<li>updateready</li>
+<li>noupdate</li>
+<li>obsolete</li>
+</ul>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">handler</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>A callback function that gets called for
-every instance.</p>
-<p>It receives one single argument of type <code>Canvace.Stage.Instance</code> and
-can interrupt the enumeration by returning <code>false</code>.</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[properties]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The optional filtering properties.</p>
+                        <p>The handler function.</p>
 
                     </div>
 
@@ -585,10 +628,10 @@ can interrupt the enumeration by returning <code>false</code>.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>:
                     
-                    <p><code>true</code> if the callback function returned <code>false</code>
-and the enumeration was interrupted, <code>false</code> otherwise.</p>
+                    <p>A function which can be used to unregister the
+ event handler.</p>
 
                 
             </div>
@@ -596,21 +639,32 @@ and the enumeration was interrupted, <code>false</code> otherwise.</p>
     
 
     
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>Canvace.AppCache.on(&#39;updateready&#39;, function () {
+    var prompt = &#39;An update is available. &#39; +
+        &#39;Do you want to reload the page now?&#39;;
+    if (window.confirm(prompt)) {
+        window.location.reload();
+    }
+});</code></pre>
+
+            </div>
+        </div>
+    
 </div>
 
                 
-                    <div id="method_getBoundingBox" class="method item">
-    <h3 class="name"><code>getBoundingBox</code></h3>
+                    <div id="method_swapCache" class="method item">
+    <h3 class="name"><code>swapCache</code></h3>
 
     
         <span class="paren">()</span>
     
 
     
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
 
     
 
@@ -618,6 +672,8 @@ and the enumeration was interrupted, <code>false</code> otherwise.</p>
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     
@@ -635,7 +691,7 @@ and the enumeration was interrupted, <code>false</code> otherwise.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l140"><code>src\Stage.js:140</code></a>
+        <a href="../files/src_AppCache.js.html#l141"><code>src\AppCache.js:141</code></a>
         
         </p>
 
@@ -646,53 +702,45 @@ and the enumeration was interrupted, <code>false</code> otherwise.</p>
     </div>
 
     <div class="description">
-        <p>Returns a reference to an object describing the bounding box of this
-entity. Any modification made to the returned object will affect the
-way instances of this entity interact with the surrounding
-environment.</p>
-<p>The returned object contains four real number fields: <code>i0</code>, <code>j0</code>,
-<code>iSpan</code> and <code>jSpan</code>. The <code>i0</code> and <code>j0</code> fields are the offsets of the
-origin of the bounding box from the position of the entity along the
-I and J axis, respectively. The <code>iSpan</code> and <code>jSpan</code> fields are the
-span of the bounding box along the I and J axis, respectively.</p>
+        <p>Switches to the most recent application cache, if there is a newer one.
+If there isn&#39;t, throws an <code>InvalidStateError</code> exception.
+This method is a no-operation if the application cache is not supported.</p>
+<p>You can use this method only when the cache status is
+<code>Canvace.AppCache.UPDATEREADY</code>: the adviced way of using this method is
+thus by using it inside an <code>updateready</code> event handler.</p>
+<p>Since all the resources that have been fetched <em>before</em> the invocation of
+this method will not be refreshed, it&#39;s sometimes simpler to just reload
+the entire page.</p>
 
     </div>
 
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>An object containing four fields, <code>i0</code>, <code>j0</code>,
-    <code>iSpan</code> and <code>jSpan</code>, describing the bounding box.</p>
+    
+        <div class="example">
+            <h4>Example:</h4>
 
-                
+            <div class="example-content">
+                <pre class="code prettyprint"><code>Canvace.AppCache.on(&#39;updateready&#39;, function () {
+    Canvace.AppCache.swapCache();
+});</code></pre>
+
             </div>
         </div>
-    
-
     
 </div>
 
                 
-                    <div id="method_getId" class="method item">
-    <h3 class="name"><code>getId</code></h3>
+                    <div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
 
     
         <span class="paren">()</span>
     
 
     
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-        </span>
-    
 
     
 
@@ -700,6 +748,8 @@ span of the bounding box along the I and J axis, respectively.</p>
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     
@@ -717,7 +767,7 @@ span of the bounding box along the I and J axis, respectively.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l94"><code>src\Stage.js:94</code></a>
+        <a href="../files/src_AppCache.js.html#l115"><code>src\AppCache.js:115</code></a>
         
         </p>
 
@@ -728,55 +778,41 @@ span of the bounding box along the I and J axis, respectively.</p>
     </div>
 
     <div class="description">
-        <p>Returns the numeric ID of the entity.</p>
+        <p>Invokes the application cache download process.
+This method is a no-operation if the application cache is not supported.</p>
 
     </div>
 
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-                    
-                    <p>The numeric ID of the entity.</p>
-
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_getProperties" class="method item">
-    <h3 class="name"><code>getProperties</code></h3>
+            </div>
+        
 
-    
-        <span class="paren">()</span>
-    
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
 
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
+                
+                    <div id="property_CHECKING" class="property item">
+    <h3 class="name"><code>CHECKING</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
 
     
 
     
-
+        <span class="flag final">final</span>
     
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -790,10 +826,9 @@ span of the bounding box along the I and J axis, respectively.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l104"><code>src\Stage.js:104</code></a>
+        <a href="../files/src_AppCache.js.html#l188"><code>src\AppCache.js:188</code></a>
         
         </p>
-
 
         
 
@@ -801,60 +836,33 @@ span of the bounding box along the I and J axis, respectively.</p>
     </div>
 
     <div class="description">
-        <p>Returns the entity&#39;s custom properties as set in the Canvace
-Development Environment.</p>
-<p>The original <code>properties</code> object is returned, so that modifications
-actually affect the entity&#39;s properties.</p>
+        <p>This status indicates that the browser is currently checking for a cache
+update.</p>
 
     </div>
 
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    <p>The entity&#39;s <code>properties</code> field containing the
-custom properties the user set in the Canvace Development
-Environment.</p>
-
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_isPhysicsEnabled" class="method item">
-    <h3 class="name"><code>isPhysicsEnabled</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-        </span>
-    
+                    <div id="property_DOWNLOADING" class="property item">
+    <h3 class="name"><code>DOWNLOADING</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
 
     
 
     
-
+        <span class="flag final">final</span>
     
 
     
-
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -868,10 +876,9 @@ Environment.</p>
             
         
         
-        <a href="../files/src_Stage.js.html#l120"><code>src\Stage.js:120</code></a>
+        <a href="../files/src_AppCache.js.html#l199"><code>src\AppCache.js:199</code></a>
         
         </p>
-
 
         
 
@@ -879,34 +886,213 @@ Environment.</p>
     </div>
 
     <div class="description">
-        <p>Indicates whether physics is enabled for this entity.</p>
-<p>Instances of entities that have physics enabled are automatically
-&quot;ticked&quot; when the whole stage is ticked. &quot;Ticking&quot; an entity instance
-means calling its <code>tick</code> method (see <code>Canvace.Stage.Instance.tick</code>),
-while &quot;ticking&quot; the whole stage means calling the <code>Stage.tick</code>
-method.</p>
-<p>Physics in entities can be enabled or disabled in the Canvace
-Development Environment.</p>
+        <p>This status indicates that the browser is currently downloading an updated
+version of the application cache.</p>
 
     </div>
 
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                    
-                    <p><code>true</code> if physics is enabled for this entity,
-<code>false</code> otherwise.</p>
+    
+</div>
 
                 
-            </div>
-        </div>
+                    <div id="property_IDLE" class="property item">
+    <h3 class="name"><code>IDLE</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_AppCache.js.html#l177"><code>src\AppCache.js:177</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This status indicates that no update to the application cache is
+available.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_OBSOLETE" class="property item">
+    <h3 class="name"><code>OBSOLETE</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_AppCache.js.html#l221"><code>src\AppCache.js:221</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This status indicates that the application cache currently in use is
+obsolete (and will be deleted). This typically happens when the cache
+manifest cannot be correctly retrieved (HTTP 404 or 410).</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_UNCACHED" class="property item">
+    <h3 class="name"><code>UNCACHED</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_AppCache.js.html#l167"><code>src\AppCache.js:167</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This status indicates that no application cache is present.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_UPDATEREADY" class="property item">
+    <h3 class="name"><code>UPDATEREADY</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_AppCache.js.html#l210"><code>src\AppCache.js:210</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This status indicates that the browser has downloaded a more recent version
+of the application cache.</p>
+
+    </div>
+
+    
+
     
 
     
@@ -914,8 +1100,6 @@ Development Environment.</p>
 
                 
             </div>
-        
-
         
 
         

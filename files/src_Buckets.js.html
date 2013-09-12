@@ -68,6 +68,8 @@
             
                 <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
             
+                <li><a href="../classes/Canvace.AppCache.html">Canvace.AppCache</a></li>
+            
                 <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
             
                 <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
@@ -733,7 +735,8 @@ Canvace.Buckets = function (view, data) {
 				(element.p[0] + element.width &gt;= -origin.x) &amp;&amp;
 				(element.p[1] + element.height &gt;= -origin.y))
 			{
-				action(element.p[0], element.p[1], element.getFrame(timestamp - element.timeOffset));
+				var frame = element.getFrame(timestamp - element.timeOffset);
+				action(element.p[0], element.p[1], frame.id, frame.x, frame.y, frame.width, frame.height);
 			}
 		}
 

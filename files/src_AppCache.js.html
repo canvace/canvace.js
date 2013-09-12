@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\DebugEffect.js - API reference</title>
+    <title>Canvace &bull; src\AppCache.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\DebugEffect.js</h1>
+                            <h1 class="file-heading">File: src\AppCache.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -201,241 +201,217 @@
  */
 
 /**
- * This effect draws some overlays useful for diagnostic purposes during the
- * post-processing rendering stage.
+ * Gives access to the &#x60;window.applicationCache&#x60; object, if supported.
  *
- * The effect may be disabled and reenabled using the provided
- * {{#crossLink &quot;Canvace.DebugEffect/disable&quot;}}{{/crossLink}},
- * {{#crossLink &quot;Canvace.DebugEffect/enable&quot;}}{{/crossLink}} or
- * {{#crossLink &quot;Canvace.DebugEffect/toggle&quot;}}{{/crossLink}} methods, and is
- * initially enabled.
- *
- * @class Canvace.DebugEffect
- * @constructor
- * @param stage {Canvace.Stage} The stage being rendered.
- * @param options {Object} An options object specifying what overlays must be
- * drawn and their drawing style.
- * @param [options.drawBoundingBoxes=false] {Boolean} Indicates whether
- * entities&#x27; bounding boxes must be drawn. Only entities with physics enabled
- * are taken into account.
- * @param [options.boundingBoxStyle=&#x27;red&#x27;] {Mixed} Indicates the CSS color to
- * draw the bounding boxes.
- * @param [options.drawVelocity=false] {Boolean} Indicates whether velocity
- * vectors must be drawn. Only entities with physics enabled are taken into
- * account.
- * @param [options.velocityStyle=&#x27;red&#x27;] {Mixed} Indicates the CSS color to draw
- * velocity vectors.
- * @param [options.drawUniformVelocity=false] {Boolean} Indicates whether
- * uniform velocity vectors must be drawn. Only entities with physics enabled
- * are taken into account.
- * @param [options.uniformVelocityStyle=&#x27;red&#x27;] {Mixed} Indicates the CSS color
- * to draw uniform velocity vectors.
- * @param [options.drawAcceleration=false] {Boolean} Indicates whether
- * acceleration vectors must be drawn. Only entities with physics enabled are
- * taken into account.
- * @param [options.accelerationStyle=&#x27;red&#x27;] {Mixed} Indicates the CSS color to
- * draw acceleration vectors.
- * @param [options.drawSolidMap=false] {Boolean} When set to &#x60;true&#x60; causes solid
- * blocks to be drawn over solid tiles.
- * @param [options.solidMapStyle=&#x27;red&#x27;] {Mixed} Indicates the CSS color to draw
- * the solid map.
- * @example
- *	var stage = new Canvace.Stage(data, canvas);
- *	stage.getRenderer().addEffect(new Canvace.DebugEffect(stage, {
- *		drawVelocity: true,
- *		velocityStyle: &#x27;#00FF00&#x27;,
- *		drawSolidMap: true
- *	}));
+ * @class Canvace.AppCache
+ * @static
  */
-Canvace.DebugEffect = function (stage, options) {
-	var enabled = true;
-	var view = stage.getView();
-
-	/**
-	 * Enables the effect.
-	 *
-	 * @method enable
-	 */
-	this.enable = function () {
-		enabled = true;
+Canvace.AppCache = new function () {
+	var handlers = {
+		cached: new Canvace.MultiSet(),
+		checking: new Canvace.MultiSet(),
+		downloading: new Canvace.MultiSet(),
+		progress: new Canvace.MultiSet(),
+		error: new Canvace.MultiSet(),
+		updateready: new Canvace.MultiSet(),
+		noupdate: new Canvace.MultiSet(),
+		obsolete: new Canvace.MultiSet()
 	};
 
-	/**
-	 * Disables the effect.
-	 *
-	 * The effect can then be reenabled using the
-	 * {{#crossLink &quot;Canvace.DebugEffect/enable&quot;}}{{/crossLink}} method.
-	 *
-	 * @method disable
-	 */
-	this.disable = function () {
-		enabled = false;
-	};
-
-	/**
-	 * Toggles the effect and returns a boolean value indicating whether the
-	 * effect was enabled or disabled.
-	 *
-	 * @method toggle
-	 * @param {Boolean} [on] When specified, the effect is enabled or disabled
-	 * depending on the specified boolean value (respectively &#x60;true&#x60; or
-	 * &#x60;false&#x60;).
-	 *
-	 * When not specified, the effect&#x27;s enable status is inverted.
-	 * @return {Boolean} &#x60;true&#x60; if the effect has been enabled, &#x60;false&#x60;
-	 * otherwise.
-	 */
-	this.toggle = function (on) {
-		if (arguments.length &lt; 1) {
-			return enabled = !enabled;
-		} else {
-			return enabled = !!on;
+	if (window.applicationCache) {
+		for (var eventName in handlers) {
+			applicationCache.addEventListener(eventName, (function (handlers) {
+				return function (e) {
+					handlers.fastForEach(function (handler) {
+						handler(e);
+					});
+				};
+			})(handlers[eventName]), false);
 		}
-	};
-
-	/**
-	 * Indicates whether the effect is currently enabled.
-	 *
-	 * @method isEnabled
-	 * @return {Boolean} &#x60;true&#x60; if the effect is enabled, &#x60;false&#x60; otherwise.
-	 */
-	this.isEnabled = function () {
-		return enabled;
-	};
-
-	/**
-	 * Returns the current value for the specified option.
-	 *
-	 * See the constructor reference for more details about the available
-	 * options.
-	 *
-	 * @method getOption
-	 * @param name {String} The option name.
-	 * @return {Any} The current value for the option.
-	 */
-	this.getOption = function (name) {
-		return options[name];
-	};
-
-	/**
-	 * Sets the specified option.
-	 *
-	 * See the constructor reference for more details about the available
-	 * options.
-	 *
-	 * @method setOption
-	 * @param name {String} The name of the option to set.
-	 * @param value {Any} The new value for the option.
-	 */
-	this.setOption = function (name, value) {
-		options[name] = value;
-	};
-
-	/**
-	 * Returns &#x60;false&#x60;.
-	 *
-	 * @method isOver
-	 * @return {Boolean} &#x60;false&#x60;.
-	 */
-	this.isOver = function () {
-		return false;
-	};
-
-	function drawQuadrilateral(context, i0, j0, k, iSpan, jSpan) {
-		var points = [
-			view.project(i0, j0, k),
-			view.project(i0 + iSpan, j0, k),
-			view.project(i0 + iSpan, j0 + jSpan, k),
-			view.project(i0, j0 + jSpan, k)
-		];
-		context.moveTo(points[0][0], points[0][1]);
-		context.lineTo(points[1][0], points[1][1]);
-		context.lineTo(points[2][0], points[2][1]);
-		context.lineTo(points[3][0], points[3][1]);
-		context.lineTo(points[0][0], points[0][1]);
-	}
-
-	function drawVector(context, origin, vector) {
-		var p0 = view.project(origin.i, origin.j, origin.k);
-		var p1 = view.project(origin.i + vector.i, origin.j + vector.j, origin.k + vector.k);
-		context.moveTo(p0[0], p0[1]);
-		context.lineTo(p1[0], p1[1]);
-		// TODO draw arrow tip
 	}
 
 	/**
-	 * Draws the enabled overlay elements.
+	 * Registers an handler for the specified event. If the event name is
+	 * not known, this method throws an exception (see the supported event
+	 * names in the description of the &#x60;eventName&#x60; parameter).
 	 *
-	 * @method postProcess
-	 * @param context {CanvasRenderingContext2D} the rendering context of the
-	 * HTML5 canvas.
+	 * @method on
+	 * @static
+	 * @param eventName {String} The name of the event for which to listen.
+	 * Can be one of:
+	 *
+	 * - cached
+	 * - checking
+	 * - downloading
+	 * - progress
+	 * - error
+	 * - updateready
+	 * - noupdate
+	 * - obsolete
+	 *
+	 * @param handler {Function} The handler function.
+	 * @return {Function} A function which can be used to unregister the
+	 *  event handler.
+	 * @example
+	 *	Canvace.AppCache.on(&#x27;updateready&#x27;, function () {
+	 *		var prompt = &#x27;An update is available. &#x27; +
+	 *			&#x27;Do you want to reload the page now?&#x27;;
+	 *		if (window.confirm(prompt)) {
+	 *			window.location.reload();
+	 *		}
+	 *	});
 	 */
-	this.postProcess = function (context) {
-		if (enabled) {
-			context.save();
-			context.globalAlpha = 1;
-			context.globalCompositeOperation = &#x27;source-over&#x27;;
-			context.lineWidth = 1;
-			context.lineCap = &#x27;butt&#x27;;
-			context.shadowOffsetX = 0;
-			context.shadowOffsetY = 0;
-			context.shadowBlur = 0;
-			context.shadowColor = &#x27;transparent&#x27;;
-			if (options.drawBoundingBoxes) {
-				context.strokeStyle = options.boundingBoxStyle || &#x27;#FF0000&#x27;;
-				context.beginPath();
-				stage.forEachInstance(function (instance) {
-					var position = instance.getPosition();
-					var box = instance.getEntity().getBoundingBox();
-					drawQuadrilateral(context, position.i + box.i0, position.j + box.j0, position.k, box.iSpan, box.jSpan);
-				});
-				context.stroke();
-			}
-			if (options.drawVelocity) {
-				context.strokeStyle = options.velocityStyle || &#x27;#FF0000&#x27;;
-				context.beginPath();
-				stage.forEachInstance(function (instance) {
-					if (instance.isPhysicsEnabled()) {
-						drawVector(context, instance.getPosition(), instance.getVelocity());
-					}
-				});
-				context.stroke();
-			}
-			if (options.drawUniformVelocity) {
-				context.strokeStyle = options.uniformVelocityStyle || &#x27;#FF0000&#x27;;
-				context.beginPath();
-				stage.forEachInstance(function (instance) {
-					if (instance.isPhysicsEnabled()) {
-						drawVector(context, instance.getPosition(), instance.getUniformVelocity());
-					}
-				});
-				context.stroke();
-			}
-			if (options.drawAcceleration) {
-				context.strokeStyle = options.accelerationStyle || &#x27;#FF0000&#x27;;
-				context.beginPath();
-				stage.forEachInstance(function (instance) {
-					if (instance.isPhysicsEnabled()) {
-						drawVector(context, instance.getPosition(), instance.getAcceleration());
-					}
-				});
-				context.stroke();
-			}
-			if (options.drawSolidMap) {
-				var map = stage.getTileMap();
-				context.fillStyle = options.solidMapStyle || &#x27;#FF0000&#x27;;
-				context.beginPath();
-				map.forEachTile(function (i, j, k) {
-					if (view.intersects(i, j, k, 1, 1, 1) &amp;&amp; !map.getTile(map.getAt(i, j, k)).isWalkable()) {
-						drawQuadrilateral(context, i, j, k, 1, 1);
-					}
-				});
-				context.fill();
-			}
-			context.restore();
+	this.on = function (eventName, handler) {
+		if (eventName in handlers) {
+			return handlers[eventName].add(handler);
 		}
+
+		throw (&#x27;no such event &quot;&#x27; + eventName + &#x27;&quot;&#x27;);
 	};
 };
+
+/**
+ * Returns the current cache status. This is &#x60;undefined&#x60;, if the browser has
+ * no support for the application cache, or it can be one of the following
+ * values:
+ *
+ * - &#x60;Canvace.AppCache.UNCACHED&#x60;
+ * - &#x60;Canvace.AppCache.IDLE&#x60;
+ * - &#x60;Canvace.AppCache.CHECKING&#x60;
+ * - &#x60;Canvace.AppCache.DOWNLOADING&#x60;
+ * - &#x60;Canvace.AppCache.UPDATEREADY&#x60;
+ * - &#x60;Canvace.AppCache.OBSOLETE&#x60;
+ *
+ * See this class&#x27;s properties for a deeper explanation of these values.
+ *
+ * @method getStatus
+ * @static
+ * @return {Mixed} The current cache status value, or &#x60;undefined&#x60;.
+ */
+Canvace.AppCache.getStatus = function () {
+	if (window.applicationCache) {
+		return applicationCache.status;
+	}
+};
+
+/**
+ * Invokes the application cache download process.
+ * This method is a no-operation if the application cache is not supported.
+ *
+ * @method update
+ * @static
+ */
+Canvace.AppCache.update = function () {
+	if (window.applicationCache) {
+		return applicationCache.update();
+	}
+};
+
+/**
+ * Cancels the application cache download process.
+ * This method is a no-operation if the application cache is not supported.
+ *
+ * @method abort
+ * @static
+ */
+Canvace.AppCache.abort = function () {
+	if (window.applicationCache) {
+		return applicationCache.abort();
+	}
+};
+
+/**
+ * Switches to the most recent application cache, if there is a newer one.
+ * If there isn&#x27;t, throws an &#x60;InvalidStateError&#x60; exception.
+ * This method is a no-operation if the application cache is not supported.
+ *
+ * You can use this method only when the cache status is
+ * &#x60;Canvace.AppCache.UPDATEREADY&#x60;: the adviced way of using this method is
+ * thus by using it inside an &#x60;updateready&#x60; event handler.
+ *
+ * Since all the resources that have been fetched _before_ the invocation of
+ * this method will not be refreshed, it&#x27;s sometimes simpler to just reload
+ * the entire page.
+ *
+ * @method swapCache
+ * @static
+ * @example
+ *	Canvace.AppCache.on(&#x27;updateready&#x27;, function () {
+ *		Canvace.AppCache.swapCache();
+ *	});
+ */
+Canvace.AppCache.swapCache = function () {
+	if (window.applicationCache) {
+		return applicationCache.swapCache();
+	}
+};
+
+/**
+ * This status indicates that no application cache is present.
+ *
+ * @property UNCACHED
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.UNCACHED = 0;
+
+/**
+ * This status indicates that no update to the application cache is
+ * available.
+ *
+ * @property IDLE
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.IDLE = 1;
+
+/**
+ * This status indicates that the browser is currently checking for a cache
+ * update.
+ *
+ * @property CHECKING
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.CHECKING = 2;
+
+/**
+ * This status indicates that the browser is currently downloading an updated
+ * version of the application cache.
+ *
+ * @property DOWNLOADING
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.DOWNLOADING = 3;
+
+/**
+ * This status indicates that the browser has downloaded a more recent version
+ * of the application cache.
+ *
+ * @property UPDATEREADY
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.UPDATEREADY = 4;
+
+/**
+ * This status indicates that the application cache currently in use is
+ * obsolete (and will be deleted). This typically happens when the cache
+ * manifest cannot be correctly retrieved (HTTP 404 or 410).
+ *
+ * @property OBSOLETE
+ * @type Number
+ * @static
+ * @final
+ */
+Canvace.AppCache.OBSOLETE = 5;
+
 
     </pre>
 </div>

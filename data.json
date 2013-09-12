@@ -28,6 +28,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\AppCache.js": {
+            "name": "src\\AppCache.js",
+            "modules": {},
+            "classes": {
+                "Canvace.AppCache": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\Astar.js": {
             "name": "src\\Astar.js",
             "modules": {},
@@ -284,6 +293,7 @@
                 "Canvace.Ajax.Request": 1,
                 "Canvace.Animator": 1,
                 "Canvace.Animator.Easing": 1,
+                "Canvace.AppCache": 1,
                 "Canvace.Astar": 1,
                 "Canvace.Astar.Node": 1,
                 "Canvace.Audio": 1,
@@ -474,6 +484,20 @@
             "file": "src\\Animator.js",
             "line": 406,
             "description": "Static object holding various predefined easing functions ready to use with\nthe `interpolateXxx` methods of\n{{#crossLink \"Canvace.Animator\"}}{{/crossLink}}.",
+            "static": 1
+        },
+        "Canvace.AppCache": {
+            "name": "Canvace.AppCache",
+            "shortname": "Canvace.AppCache",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Canvace",
+            "file": "src\\AppCache.js",
+            "line": 21,
+            "description": "Gives access to the `window.applicationCache` object, if supported.",
             "static": 1
         },
         "Canvace.Astar": {
@@ -779,7 +803,7 @@
             "extension_for": [],
             "module": "Canvace",
             "file": "src\\Loader.js",
-            "line": 21,
+            "line": 26,
             "description": "Helper class that eases the asynchronous loading of the stage data exported\nby the Canvace Development Environment.",
             "is_constructor": 1,
             "params": [
@@ -2002,6 +2026,143 @@
             "class": "Canvace.Animator.Easing"
         },
         {
+            "file": "src\\AppCache.js",
+            "line": 51,
+            "description": "Registers an handler for the specified event. If the event name is\nnot known, this method throws an exception (see the supported event\nnames in the description of the `eventName` parameter).",
+            "itemtype": "method",
+            "name": "on",
+            "static": 1,
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event for which to listen.\nCan be one of:\n\n- cached\n- checking\n- downloading\n- progress\n- error\n- updateready\n- noupdate\n- obsolete",
+                    "type": "String"
+                },
+                {
+                    "name": "handler",
+                    "description": "The handler function.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A function which can be used to unregister the\n event handler.",
+                "type": "Function"
+            },
+            "example": [
+                "\n\tCanvace.AppCache.on('updateready', function () {\n\t\tvar prompt = 'An update is available. ' +\n\t\t\t'Do you want to reload the page now?';\n\t\tif (window.confirm(prompt)) {\n\t\t\twindow.location.reload();\n\t\t}\n\t});"
+            ],
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 91,
+            "description": "Returns the current cache status. This is `undefined`, if the browser has\nno support for the application cache, or it can be one of the following\nvalues:\n\n- `Canvace.AppCache.UNCACHED`\n- `Canvace.AppCache.IDLE`\n- `Canvace.AppCache.CHECKING`\n- `Canvace.AppCache.DOWNLOADING`\n- `Canvace.AppCache.UPDATEREADY`\n- `Canvace.AppCache.OBSOLETE`\n\nSee this class's properties for a deeper explanation of these values.",
+            "itemtype": "method",
+            "name": "getStatus",
+            "static": 1,
+            "return": {
+                "description": "The current cache status value, or `undefined`.",
+                "type": "Mixed"
+            },
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 115,
+            "description": "Invokes the application cache download process.\nThis method is a no-operation if the application cache is not supported.",
+            "itemtype": "method",
+            "name": "update",
+            "static": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 128,
+            "description": "Cancels the application cache download process.\nThis method is a no-operation if the application cache is not supported.",
+            "itemtype": "method",
+            "name": "abort",
+            "static": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 141,
+            "description": "Switches to the most recent application cache, if there is a newer one.\nIf there isn't, throws an `InvalidStateError` exception.\nThis method is a no-operation if the application cache is not supported.\n\nYou can use this method only when the cache status is\n`Canvace.AppCache.UPDATEREADY`: the adviced way of using this method is\nthus by using it inside an `updateready` event handler.\n\nSince all the resources that have been fetched _before_ the invocation of\nthis method will not be refreshed, it's sometimes simpler to just reload\nthe entire page.",
+            "itemtype": "method",
+            "name": "swapCache",
+            "static": 1,
+            "example": [
+                "\n\tCanvace.AppCache.on('updateready', function () {\n\t\tCanvace.AppCache.swapCache();\n\t});"
+            ],
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 167,
+            "description": "This status indicates that no application cache is present.",
+            "itemtype": "property",
+            "name": "UNCACHED",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 177,
+            "description": "This status indicates that no update to the application cache is\navailable.",
+            "itemtype": "property",
+            "name": "IDLE",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 188,
+            "description": "This status indicates that the browser is currently checking for a cache\nupdate.",
+            "itemtype": "property",
+            "name": "CHECKING",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 199,
+            "description": "This status indicates that the browser is currently downloading an updated\nversion of the application cache.",
+            "itemtype": "property",
+            "name": "DOWNLOADING",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 210,
+            "description": "This status indicates that the browser has downloaded a more recent version\nof the application cache.",
+            "itemtype": "property",
+            "name": "UPDATEREADY",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
+            "file": "src\\AppCache.js",
+            "line": 221,
+            "description": "This status indicates that the application cache currently in use is\nobsolete (and will be deleted). This typically happens when the cache\nmanifest cannot be correctly retrieved (HTTP 404 or 410).",
+            "itemtype": "property",
+            "name": "OBSOLETE",
+            "type": "Number",
+            "static": 1,
+            "final": 1,
+            "class": "Canvace.AppCache"
+        },
+        {
             "file": "src\\Astar.js",
             "line": 116,
             "description": "A unique ID assigned to the node. Different nodes in the graph must have\ndifferent IDs.",
@@ -2456,7 +2617,7 @@
         },
         {
             "file": "src\\Buckets.js",
-            "line": 568,
+            "line": 569,
             "description": "Prerenders the \"static\" parts of the stage to internal canvases so as to\nspeed up the final rendering: after calling this method, the\n{{#crossLink \"Canvace.Buckets/forEachElement\"}}{{/crossLink}} method will\nreturn less elements in that some of them will have been joined, and less\n`drawImage` calls will be required by the\n{{#crossLink \"Canvace.Buckets/forEachElement\"}}forEachElement{{/crossLink}}\ncaller.\n\nOnly static tiles whose animations include only one frame are considered\n\"static\" parts of the stage and taken into account for prerendering.\n\nCall this method _after_ adding _all_ the various elements with the\n{{#crossLink \"Canvace.Buckets/addEntity\"}}{{/crossLink}} and\n{{#crossLink \"Canvace.Buckets/addTile\"}}{{/crossLink}} methods.",
             "itemtype": "method",
             "name": "prerender",
@@ -3033,7 +3194,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 210,
+            "line": 231,
             "description": "Loads an image from the exported image set.",
             "itemtype": "method",
             "name": "getImage",
@@ -3058,7 +3219,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 307,
+            "line": 328,
             "description": "Returns a `Canvace.Audio.SourceNode` representing the audio asset\nidentified by the specified name. This name corresponds to one of the\nnames specified to the `loadAssets` method. This method must be called\nafter the sounds have been loaded by the `loadAssets` method.",
             "itemtype": "method",
             "name": "getSound",
@@ -3077,7 +3238,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 325,
+            "line": 346,
             "description": "Asynchronously loads all the images associated with the given Canvace\nstage and all the given sounds.",
             "itemtype": "method",
             "name": "loadAssets",
@@ -3103,7 +3264,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 404,
+            "line": 425,
             "description": "Asynchronously loads all the images associated with the given Canvace\nstage and all the given sounds. This function takes care of loading the\nJSON data from the server with an HTTP `GET` request and instantiating\na {{#crossLink \"Canvace.Stage\"}}Stage{{/crossLink}} for the specified\ncanvas.\n\nWhen using this method, the registered completion handler will receive\ntwo parameters: this loader instance, and a\n{{#crossLink \"Canvace.Stage\"}}Stage{{/crossLink}} object.",
             "itemtype": "method",
             "name": "loadStage",
@@ -3133,7 +3294,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 455,
+            "line": 476,
             "description": "TODO",
             "itemtype": "method",
             "name": "guessMimeType",
@@ -3156,7 +3317,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 488,
+            "line": 509,
             "description": "TODO",
             "itemtype": "method",
             "name": "getSourceInfo",
@@ -3179,7 +3340,7 @@
         },
         {
             "file": "src\\Loader.js",
-            "line": 513,
+            "line": 534,
             "description": "Plays a sound represented by an audio asset previously loaded by the\nloader. The audio asset is identified by the `name` argument, that must\ncorrespond to a name passed to the\n{{#crossLink \"Canvace.Loader/loadAssets\"}}{{/crossLink}} method.\n\nThis method only _starts_ playing the sound, and immediately returns. It\nworks by simply calling the\n{{#crossLink \"Canvace.Audio.SourceNode/play\"}}Audio.SourceNode.play{{/crossLink}}\nmethod.\n\nThis method has no effect if the sound is already playing.\n\nThe sound can optionally be looped: when `true` is specified to the\noptional `loop` argument, the sound will play continuously.",
             "itemtype": "method",
             "name": "playSound",
@@ -3507,8 +3668,8 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 51,
-            "description": "Inserts an element into the container in amortized constant time. The\nelement can be of any type (numbers, strings, objects, etc.) and can be\ninserted many times.\n\nThe {{#crossLink \"Canvace.MultiSet/add}}{{/crossLink}} method returns a\nfunction that removes the element. The returned function is idempotent:\nit does not have any effect when called again after the first time.\n\nExample:\n\n\tvar ms = new Canvace.MultiSet(1, 2);\n\tvar remove = ms.add(3); // ms now contains three elements: 1, 2 and 3\n\tremove(); // ms now contains two elements: 1 and 2\n\tremove(); // no effect, ms still contains 1 and 2\n\nThe returned function returns a boolean value indicating whether the\nelement was present and could be removed or not. `false` indicates the\nelement was not present because it had already been removed by a previous\ncall.\n\nExample:\n\n\tvar ms = new Canvace.MultiSet();\n\tvar remove = ms.add(3);\n\tif (remove()) {\n\t\talert('removed!');\n\t}\n\tif (remove()) {\n\t\talert('this is never alerted');\n\t}",
+            "line": 52,
+            "description": "Inserts an element into the container in amortized constant time. The\nelement can be of any type (numbers, strings, objects, etc.) and can be\ninserted many times.\n\nThe {{#crossLink \"Canvace.MultiSet/add\"}}{{/crossLink}} method returns a\nfunction that removes the element. The returned function is idempotent:\nit does not have any effect when called again after the first time.\n\nExample:\n\n\tvar ms = new Canvace.MultiSet(1, 2);\n\tvar remove = ms.add(3); // ms now contains three elements: 1, 2 and 3\n\tremove(); // ms now contains two elements: 1 and 2\n\tremove(); // no effect, ms still contains 1 and 2\n\nThe returned function returns a boolean value indicating whether the\nelement was present and could be removed or not. `false` indicates the\nelement was not present because it had already been removed by a previous\ncall.\n\nExample:\n\n\tvar ms = new Canvace.MultiSet();\n\tvar remove = ms.add(3);\n\tif (remove()) {\n\t\talert('removed!');\n\t}\n\tif (remove()) {\n\t\talert('this is never alerted');\n\t}",
             "itemtype": "method",
             "name": "add",
             "params": [
@@ -3527,7 +3688,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 103,
+            "line": 109,
             "description": "Inserts zero or more elements into the container in amortized constant time.\nThe elements can be of any type (numbers, strings, objects, etc.) and can be\ninserted many times.\n\nThis method is faster than\n{{#crossLink \"Canvace.MultiSet/add\"}}{{/crossLink}} because it doesn't\ngenerate any closures; infact it doesn't return anything.",
             "itemtype": "method",
             "name": "fastAdd",
@@ -3547,7 +3708,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 126,
+            "line": 132,
             "description": "Iterates over the container and calls the specified function `action` for\neach iterated element.\n\nThe `action` function receives two arguments: the element and a function\nthat removes it if called. The removing function stays valid forever,\neven after the whole `forEach` call is over, and is idempotent: it does\nnot have any effects after it is called once.\n\nThe following example inserts some numbers into the container and then\nremoves only the numbers equal to 3:\n\n\tvar ms = new Canvace.MultiSet(1, 3, 7, 6, 3, 4, 3, 3, 5);\n\tms.forEach(function (element, remove) {\n\t\tif (element === 3) {\n\t\t\tremove();\n\t\t}\n\t});\n\t// ms now contains 1, 7, 6, 4, 5\n\nElements with repetitions are iterated as many times as they are\nrepeated. For example, in the previous snippet the number 3 is iterated\n(and removed) four times.\n\nNote that the order of iteration is undefined as it depends on the order\nof iteration over object properties implemented by the underlying\nJavaScript engine. This is typically the insertion order, which means\n{{#crossLink \"Canvace.MultiSet/forEach\"}}{{/crossLink}} enumerates the\nelements in the same order they are inserted by\n{{#crossLink \"Canvace.MultiSet/add\"}}{{/crossLink}}, but you must not\ndepend on that assumption.\n\nThe iteration is interrupted if the `action` function returns `false`.\nThe following example adds some numbers to the container, then iterates\nover it and interrupts when it encounters the number 3:\n\n\tvar ms = new Canvace.MultiSet(1, 2, 3, 4);\n\tms.forEach(function (element) {\n\t\tif (element === 3) {\n\t\t\treturn false;\n\t\t}\n\t});\n\nThe number 4 is not enumerated.\n\n{{#crossLink \"Canvace.MultiSet/forEach\"}}{{/crossLink}} returns `false`\nif the iteration completed and `true` if it was interrupted, which is\nsuitable for implementing finding algorithms.",
             "itemtype": "method",
             "name": "forEach",
@@ -3567,7 +3728,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 204,
+            "line": 215,
             "description": "Iterates over the container and calls the specified function `action` for\neach iterated element.\n\nThe `action` function receives one argument, the current element. Any\nreturn value is ignored.\n\nThis method is similar to the\n{{#crossLink \"Canvace.MultiSet/forEach\"}}{{/crossLink}} method except it\ncan be faster on some browsers because it does not generate a closure\n(the element's removal function) at each iterated element and does not\nanalyze the return value of the callback function. Infact, the iterated\nelements cannot be removed and the iteration cannot be interrupted.\n\nYou usually use the\n{{#crossLink \"Canvace.MultiSet/forEach\"}}{{/crossLink}} method, but you\nmay also use {{#crossLink \"Canvace.MultiSet/fastForEach\"}}{{/crossLink}}\nif your callback function does not use its second argument (the removal\nfunction) and never returns `false`.\n\nNote that the order of iteration is undefined as it depends on the order\nof iteration over object properties implemented by the underlying\nJavaScript engine. This is typically the insertion order, which means\n{{#crossLink \"Canvace.MultiSet/fastForEach\"}}{{/crossLink}} enumerates\nthe elements in the same order they are inserted by\n{{#crossLink \"Canvace.MultiSet/add\"}}{{/crossLink}}, but you must not\nrely on that assumption.",
             "itemtype": "method",
             "name": "fastForEach",
@@ -3583,7 +3744,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 245,
+            "line": 256,
             "description": "Returns the number of elements currently contained.\n\nIf an element is inserted more than once, it counts as many times as it\nis inserted.\n\nThis method operates in constant time.",
             "itemtype": "method",
             "name": "count",
@@ -3599,7 +3760,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 263,
+            "line": 274,
             "description": "Indicates whether the container is empty or not.",
             "itemtype": "method",
             "name": "isEmpty",
@@ -3612,7 +3773,7 @@
         },
         {
             "file": "src\\MultiSet.js",
-            "line": 273,
+            "line": 284,
             "description": "Empties the container: every element is removed and the count is reset to\nzero.\n\nThis method operates in constant time.",
             "itemtype": "method",
             "name": "clear",
@@ -5151,7 +5312,7 @@
         },
         {
             "file": "src\\TileMap.js",
-            "line": 401,
+            "line": 403,
             "description": "Puts the specified tile in the specified position of the map. If a\nmutable tile is already present in that position, it is first removed. If\na non-mutable tile is present, the operation fails.\n\nA boolean value is returned indicating whether the operation succeeded or\nnot.",
             "itemtype": "method",
             "name": "putAt",
@@ -5186,7 +5347,7 @@
         },
         {
             "file": "src\\TileMap.js",
-            "line": 476,
+            "line": 478,
             "description": "This method uses the `findPath` method of the\n{{#crossLink \"Canvace.Astar\"}}{{/crossLink}} class to compute a suitable\npath from the starting node to the destination node.\n\nThe only difference between this method and the `findPath` method of the\n{{#crossLink \"Canvace.Astar\"}}{{/crossLink}} class is the way the\ncomputed path is returned to the caller.",
             "itemtype": "method",
             "name": "findPath",
@@ -5226,7 +5387,7 @@
         },
         {
             "file": "src\\TileMap.js",
-            "line": 512,
+            "line": 514,
             "description": "Constructs an object that satisfies the `Astar.Node` requirements and\nrepresents a tile of the map as a node of a graph. The returned object\nallows to traverse a graph where each node represents a solid tile and\neach edge allows to walk from a tile to another adjacent tile.\n\nThe returned graph is characterized by a _target node_ and each node also\nprovides a heuristic estimate of the distance between the target node and\nitself. This makes the graph usable with the `Astar` class.\n\nThe target node is the tile identified by the coordinates `i1`, `j1` and\n`k`.",
             "itemtype": "method",
             "name": "getGraphNode",
@@ -5266,7 +5427,7 @@
         },
         {
             "file": "src\\TileMap.js",
-            "line": 585,
+            "line": 587,
             "description": "Detects collisions between a rectangular area and solid tiles of a\nspecified map layer.\n\nA vector is returned indicating two I and J values that must be added to\nthe coordinates of the rectangular area in order to resume a regular\nconfiguration where the area does not collide with the tiles.\n\nIn case there is not any collision, the returned vector is `(0, 0)`.\n\nThe rectangular area is specified by the `i`, `j`, `di` and `dj`\narguments.\n\nThe implementation of this method assumes the rectangular area represents\na moving entity (though not necessarily a Canvace entity). The collision\nalgorithm assumes the moving entity cannot have compenetrated a tile\nalong the I or J axis more than specified amounts `Di` and `Dj`,\nrespectively; this is necessary in order to obtain a functional physics\nalgorithm.\n\nThis method can be used to implement in-layer, bounding box based, entity\nvs. tiles collisions. If the rectangular area represents the bounding box\nof an entity, its origin's `i` and `j` coordinates can be obtained using\nthe `Stage.Instance.getPosition` method, while the `di` and `dj` span\nvalues are usually per-entity constant and must be arbitrarily determined\nby the developer.\n\nIf the rectangular area actually is the bounding box of a Canvace entity,\nyou can specify the distance the entity has gone along the I and J axes\nsince the last step as values for the `Di` and `Dj` arguments; you can do\nthat by caching the values of the `i` and `j` components of the entity's\nposition and subtracting them to their respective values of the current\nposition at each step. This is actually what the `testTileCollision`\nmethod of the `Stage.Instance` class does.",
             "itemtype": "method",
             "name": "rectangleCollision",
@@ -5322,7 +5483,7 @@
         },
         {
             "file": "src\\TileMap.js",
-            "line": 743,
+            "line": 745,
             "description": "TODO",
             "itemtype": "method",
             "name": "translatePath",

@@ -68,6 +68,8 @@
             
                 <li><a href="../classes/Canvace.Animator.Easing.html">Canvace.Animator.Easing</a></li>
             
+                <li><a href="../classes/Canvace.AppCache.html">Canvace.AppCache</a></li>
+            
                 <li><a href="../classes/Canvace.Astar.html">Canvace.Astar</a></li>
             
                 <li><a href="../classes/Canvace.Astar.Node.html">Canvace.Astar.Node</a></li>
@@ -225,6 +227,7 @@ Canvace.MultiSet = function () {
 	this.elements = {};
 	this.nextId = 0;
 	this.count = 0;
+	this.resetCount = 0;
 	this.fastAdd.apply(this, arguments);
 };
 
@@ -233,7 +236,7 @@ Canvace.MultiSet = function () {
  * element can be of any type (numbers, strings, objects, etc.) and can be
  * inserted many times.
  *
- * The {{#crossLink &quot;Canvace.MultiSet/add}}{{/crossLink}} method returns a
+ * The {{#crossLink &quot;Canvace.MultiSet/add&quot;}}{{/crossLink}} method returns a
  * function that removes the element. The returned function is idempotent:
  * it does not have any effect when called again after the first time.
  *
@@ -269,13 +272,18 @@ Canvace.MultiSet.prototype.add = function (element) {
 	var id = this.nextId++;
 	this.elements[id] = element;
 	this.count++;
+	var resetCount = this.resetCount;
 	return function () {
-		if (this.elements.hasOwnProperty(id)) {
-			delete this.elements[id];
-			this.count--;
-			return true;
-		} else {
+		if (resetCount &lt; this.resetCount) {
 			return false;
+		} else {
+			if (this.elements.hasOwnProperty(id)) {
+				delete this.elements[id];
+				this.count--;
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}.bind(this);
 };
@@ -364,13 +372,18 @@ Canvace.MultiSet.prototype.forEach = function (action) {
 	for (var id in this.elements) {
 		if (this.elements.hasOwnProperty(id)) {
 			if (action(this.elements[id], function (id) {
+				var resetCount = this.resetCount;
 				return function () {
-					if (this.elements.hasOwnProperty(id)) {
-						delete this.elements[id];
-						this.count--;
-						return true;
-					} else {
+					if (resetCount &lt; this.resetCount) {
 						return false;
+					} else {
+						if (this.elements.hasOwnProperty(id)) {
+							delete this.elements[id];
+							this.count--;
+							return true;
+						} else {
+							return false;
+						}
 					}
 				}.bind(this);
 			}.call(this, id)) === false) {
@@ -465,6 +478,7 @@ Canvace.MultiSet.prototype.isEmpty = function () {
 Canvace.MultiSet.prototype.clear = function () {
 	this.elements = {};
 	this.count = 0;
+	this.resetCount++;
 };
 
     </pre>
