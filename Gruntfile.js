@@ -11,8 +11,7 @@ module.exports = function (grunt) {
 					'Canvace Srl */\n',
 
 			header: 'var Canvace = (function () {\n' +
-					'\t\'use strict\';\n' +
-					'\tvar Canvace = {};\n',
+					'\t\'use strict\';\n',
 
 			footer: '\treturn Canvace;\n' +
 					'}());'
