@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Module.js - API reference</title>
+    <title>Canvace &bull; src/Module.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Module.js</h1>
+                            <h1 class="file-heading">File: src/Module.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -200,12 +200,135 @@
  *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
  */
 
+if (typeof Array.prototype.forEach !== &#x27;function&#x27;) {
+	Array.prototype.forEach = function (fn, scope) {
+		for (var i = 0, length = this.length; i &lt; length; ++i) {
+			fn.call(scope, this[i], i, this);
+		}
+	};
+}
+
+if (typeof Array.isArray !== &#x27;function&#x27;) {
+	Array.isArray = function (arg) {
+		return (Object.prototype.toString.call(arg) === &#x27;[object Array]&#x27;);
+	};
+}
+
 /**
  * The main namespace object of Canvace&#x27;s Javascript client library is named
  * &#x60;Canvace&#x60;. Every Canvace class must be accessed from that object.
  *
+ * The &#x60;Canvace&#x60; name also represents function that can be used to retrieve
+ * DOM elements from a CSS selector string.
+ *
+ * @example
+ *	(function ($) {
+ *		// Inside this anonymous function, &quot;Canvace&quot; is aliased as &quot;$&quot;
+ *		$(&#x27;#play-button&#x27;).addEventListener(&#x27;click&#x27;, function () {
+ *			window.alert(&#x27;You clicked on the &quot;Play&quot; button!&#x27;);
+ *		}, false);
+ *	})(Canvace);
+ *
  * @module Canvace
+ * @param [param] {Mixed} A &#x60;String&#x60; representing a valid CSS selector,
+ * or a DOM element.
+ * @return {Mixed} Returns &#x60;null&#x60; if &#x60;param&#x60; is a &#x60;String&#x60; which corresponds
+ * to no element in the document, or returns the (first) corresponding element
+ * otherwise. If &#x60;param&#x60; is already a DOM element, it&#x27;s returned as is.
+ * If &#x60;param&#x60; is completely missing, it returns &#x60;undefined&#x60;.
  */
+function Canvace() {
+	if (arguments.length !== 0) {
+		var param = arguments[0];
+		if (param.tagName) {
+			return param;
+		}
+		return document.querySelector(param);
+	}
+}
+
+/**
+ * Performes a deep-copy of the properties owned by the source
+ * object to the destination object.
+ *
+ * This method is a no-operation if the specified source parameter
+ * is not an &#x60;Object&#x60; (i.e., returns the destination object as is).
+ *
+ * @method mixin
+ * @for Canvace
+ * @param dest {Object} The destination object.
+ * @param source {Object} The source object.
+ * @return {Object} The object &#x60;dest&#x60;.
+ */
+Canvace.mixin = function (dest, source) {
+	if (typeof source === &#x27;object&#x27;) {
+		for (var property in source) {
+			if (source.hasOwnProperty(property)) {
+				dest[property] = Canvace.clone(source[property]);
+			}
+		}
+	}
+	return dest;
+};
+
+/**
+ * Clones the given source object along with all of its properties.
+ * The properties are deep-copied.
+ *
+ * This method is a no-operation if the specified source parameter
+ * is not an &#x60;Object&#x60; or an &#x60;Array&#x60; (i.e., returns the source
+ * object as is).
+ *
+ * @method clone
+ * @for Canvace
+ * @param source {Object} The source object.
+ * @return {Object} A clone of the source object.
+ */
+Canvace.clone = function (source) {
+	var clone;
+	if (typeof source === &#x27;object&#x27;) {
+		if (Object.getPrototypeOf(source)) {
+			clone = Object.create(Object.getPrototypeOf(source));
+		} else {
+			clone = {};
+		}
+		Canvace.mixin(clone, source);
+		return clone;
+	} else if (Array.isArray(source)) {
+		clone = [];
+		for (var i = 0; i &lt; source.length; ++i) {
+			clone[i] = Canvace.clone(source[i]);
+		}
+		return clone;
+	}
+	return source;
+};
+
+/**
+ * Extends the given source object with the properties owned by
+ * all the subsequently specified objects.
+ *
+ * The returned object is a new one: the given source object is
+ * not modified.
+ *
+ * If no arguments are passed after the source object, this method
+ * reduces to {{#crossLink &quot;Canvace/clone&quot;}}{{/crossLink}}.
+ *
+ * @method extend
+ * @for Canvace
+ * @param source {Object} The source object.
+ * @param [args...] {Object} The extending objects.
+ * @return {Object} A new object, containing all the properties
+ * owned by &#x60;source&#x60; and by all of the specified &#x60;args&#x60;.
+ */
+Canvace.extend = function (source) {
+	var clone = Canvace.clone(source);
+	for (var i = 1; i &lt; arguments.length; ++i) {
+		Canvace.mixin(clone, arguments[i]);
+	}
+	return clone;
+};
+
 
     </pre>
 </div>

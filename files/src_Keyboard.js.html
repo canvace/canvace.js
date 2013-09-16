@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Keyboard.js - API reference</title>
+    <title>Canvace &bull; src/Keyboard.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Keyboard.js</h1>
+                            <h1 class="file-heading">File: src/Keyboard.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -392,11 +392,15 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 			} else {
 				var removers = [];
 				for (var i in keyCode) {
-					removers.push(register(keyCode[i], handler));
+					if (keyCode.hasOwnProperty(i)) {
+						removers.push(register(keyCode[i], handler));
+					}
 				}
 				return function () {
 					for (var i in removers) {
-						removers[i]();
+						if (removers.hasOwnProperty(i)) {
+							removers[i]();
+						}
 					}
 				};
 			}
@@ -572,8 +576,10 @@ Canvace.Keyboard = function (element, preventDefaultActions) {
 		if (typeof keyCode !== &#x27;number&#x27;) {
 			return keyUpHandlers.register(keyCode, function () {
 				for (var i in keyCode) {
-					if (keys[keyCode[i]]) {
-						return;
+					if (keyCode.hasOwnProperty(i)) {
+						if (keys[keyCode[i]]) {
+							return;
+						}
 					}
 				}
 				return handler.apply(this, arguments);

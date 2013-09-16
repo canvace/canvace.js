@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Loader.js - API reference</title>
+    <title>Canvace &bull; src/Loader.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Loader.js</h1>
+                            <h1 class="file-heading">File: src/Loader.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -344,13 +344,17 @@ Canvace.Loader = function (options) {
 						updateFrames(data.entities);
 					}(function (descriptors) {
 						for (var i in descriptors) {
-							for (var j in descriptors[i].frames) {
-								var frame = descriptors[i].frames[j];
-								if (!frame.hasOwnProperty(&#x27;x&#x27;)) {
-									frame.x = 0;
-									frame.y = 0;
-									frame.width = imageset[frame.id].width;
-									frame.height = imageset[frame.id].height;
+							if (descriptors.hasOwnProperty(i)) {
+								for (var j in descriptors[i].frames) {
+									if (descriptors[i].frames.hasOwnProperty(j)) {
+										var frame = descriptors[i].frames[j];
+										if (!frame.hasOwnProperty(&#x27;x&#x27;)) {
+											frame.x = 0;
+											frame.y = 0;
+											frame.width = imageset[frame.id].width;
+											frame.height = imageset[frame.id].height;
+										}
+									}
 								}
 							}
 						}
@@ -386,25 +390,31 @@ Canvace.Loader = function (options) {
 
 		function batchImages(descriptor) {
 			for (var i in descriptor.frames) {
-				(function (id, progress) {
-					if (id in imageset) {
-						progress();
-					} else {
-						var image = new Image();
-						imageset[id] = image;
-						image.addEventListener(&#x27;load&#x27;, progress, false);
-						image.src = [options.imagesPath, id].join(&#x27;/&#x27;);
-					}
-				}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
+				if (descriptor.frames.hasOwnProperty(i)) {
+					(function (id, progress) {
+						if (id in imageset) {
+							progress();
+						} else {
+							var image = new Image();
+							imageset[id] = image;
+							image.addEventListener(&#x27;load&#x27;, progress, false);
+							image.src = [options.imagesPath, id].join(&#x27;/&#x27;);
+						}
+					}(descriptor.frames[i].id, bindProgress(descriptor.frames[i].id)));
+				}
 			}
 		}
 
 		for (id in data.tiles) {
-			batchImages(data.tiles[id]);
+			if (data.tiles.hasOwnProperty(id)) {
+				batchImages(data.tiles[id]);
+			}
 		}
 
 		for (id in data.entities) {
-			batchImages(data.entities[id]);
+			if (data.entities.hasOwnProperty(id)) {
+				batchImages(data.entities[id]);
+			}
 		}
 
 		return thisObject;
@@ -475,14 +485,16 @@ Canvace.Loader = function (options) {
 
 		function getSuitableSource(sourceList) {
 			for (var i in sourceList) {
-				try {
-					var info = Canvace.Loader.getSourceInfo(sourceList[i]);
+				if (sourceList.hasOwnProperty(i)) {
+					try {
+						var info = Canvace.Loader.getSourceInfo(sourceList[i]);
 
-					if (audio.canPlayType(info.mimeType)) {
-						return [options.soundsPath, info.url].join(&#x27;/&#x27;);
+						if (audio.canPlayType(info.mimeType)) {
+							return [options.soundsPath, info.url].join(&#x27;/&#x27;);
+						}
+					} catch (e) {
+						return false;
 					}
-				} catch (e) {
-					return false;
 				}
 			}
 
@@ -490,16 +502,18 @@ Canvace.Loader = function (options) {
 		}
 
 		for (var i in sources) {
-			if (i in soundset) {
-				progress();
-			} else {
-				var source = getSuitableSource(sources[i]);
-
-				if (false === source) {
-					loadError(i);
+			if (sources.hasOwnProperty(i)) {
+				if (i in soundset) {
 					progress();
 				} else {
-					soundset[i] = audio.load(source, progress, triggerError(i));
+					var source = getSuitableSource(sources[i]);
+
+					if (false === source) {
+						loadError(i);
+						progress();
+					} else {
+						soundset[i] = audio.load(source, progress, triggerError(i));
+					}
 				}
 			}
 		}
@@ -681,8 +695,10 @@ Canvace.Loader.guessMimeType = function (source) {
 		}
 	];
 	for (var i in mimeMap) {
-		if (mimeMap[i].pattern.test(source)) {
-			return mimeMap[i].mime;
+		if (mimeMap.hasOwnProperty(i)) {
+			if (mimeMap[i].pattern.test(source)) {
+				return mimeMap[i].mime;
+			}
 		}
 	}
 	throw &#x27;Couldn\&#x27;t guess the MIME type from the resource URL&#x27;;

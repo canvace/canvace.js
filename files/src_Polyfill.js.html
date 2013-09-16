@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Polyfill.js - API reference</title>
+    <title>Canvace &bull; src/Polyfill.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Polyfill.js</h1>
+                            <h1 class="file-heading">File: src/Polyfill.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -200,20 +200,6 @@
  *	along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
  */
 
-if (typeof Array.prototype.forEach !== &#x27;function&#x27;) {
-	Array.prototype.forEach = function (fn, scope) {
-		for (var i = 0, length = this.length; i &lt; length; ++i) {
-			fn.call(scope, this[i], i, this);
-		}
-	};
-}
-
-if (typeof Array.isArray !== &#x27;function&#x27;) {
-	Array.isArray = function (arg) {
-		return (Object.prototype.toString.call(arg) === &#x27;[object Array]&#x27;);
-	};
-}
-
 /**
  * Static class which provides utility methods to eliminate the differences
  * across browsers.
@@ -228,9 +214,11 @@ Canvace.Polyfill = (function () {
 		var capitalName = name.charAt(0).toUpperCase() + name.substr(1);
 
 		for (var i in prefixes) {
-			var prefixedName = prefixes[i] + capitalName;
-			if (prefixedName in object) {
-				return object[prefixedName];
+			if (prefixes.hasOwnProperty(i)) {
+				var prefixedName = prefixes[i] + capitalName;
+				if (prefixedName in object) {
+					return object[prefixedName];
+				}
 			}
 		}
 

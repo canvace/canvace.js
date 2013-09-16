@@ -184,7 +184,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_Visibility.js.html#l21"><code>src\Visibility.js:21</code></a>
+            Defined in: <a href="../files/src_Visibility.js.html#l21"><code>src&#x2F;Visibility.js:21</code></a>
         </div>
     
 
@@ -196,9 +196,24 @@
 <div class="box intro">
     <p>The main namespace object of Canvace&#39;s Javascript client library is named
 <code>Canvace</code>. Every Canvace class must be accessed from that object.</p>
+<p>The <code>Canvace</code> name also represents function that can be used to retrieve
+DOM elements from a CSS selector string.</p>
 
 </div>
 
+
+    <div class="example">
+        <h4>Example:</h4>
+        <div class="example-content">
+            <pre class="code prettyprint"><code>(function ($) {
+    // Inside this anonymous function, &quot;Canvace&quot; is aliased as &quot;$&quot;
+    $(&#39;#play-button&#39;).addEventListener(&#39;click&#39;, function () {
+        window.alert(&#39;You clicked on the &quot;Play&quot; button!&#39;);
+    }, false);
+})(Canvace);</code></pre>
+
+        </div>
+    </div>
 
 
 <div class="yui3-g">

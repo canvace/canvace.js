@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Stage.js - API reference</title>
+    <title>Canvace &bull; src/Stage.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Stage.js</h1>
+                            <h1 class="file-heading">File: src/Stage.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -1290,33 +1290,35 @@ Canvace.Stage = function (data, canvas) {
 	(function () {
 		map = new Canvace.TileMap(data, buckets);
 		for (var id in data.instances) {
-			var instance = data.instances[id];
-			instance.position = {
-				i: instance.i,
-				j: instance.j,
-				k: instance.k
-			};
-			instance.previousPosition = {
-				i: instance.i,
-				j: instance.j,
-				k: instance.k
-			};
-			instance.velocity = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			instance.uniformVelocity = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			instance.acceleration = {
-				i: 0,
-				j: 0,
-				k: 0
-			};
-			new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
+			if (data.instances.hasOwnProperty(id)) {
+				var instance = data.instances[id];
+				instance.position = {
+					i: instance.i,
+					j: instance.j,
+					k: instance.k
+				};
+				instance.previousPosition = {
+					i: instance.i,
+					j: instance.j,
+					k: instance.k
+				};
+				instance.velocity = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				instance.uniformVelocity = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				instance.acceleration = {
+					i: 0,
+					j: 0,
+					k: 0
+				};
+				new Instance(parseInt(id, 10), buckets.addEntity(instance.id, instance.i, instance.j, instance.k));
+			}
 		}
 	}());
 

@@ -184,7 +184,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_MultiSet.js.html#l21"><code>src\MultiSet.js:21</code></a>
+            Defined in: <a href="../files/src_MultiSet.js.html#l21"><code>src&#x2F;MultiSet.js:21</code></a>
         </div>
     
 
@@ -260,7 +260,7 @@ ms.add(3);</code></pre>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l21"><code>src\MultiSet.js:21</code></a>
+        <a href="../files/src_MultiSet.js.html#l21"><code>src&#x2F;MultiSet.js:21</code></a>
         
         </p>
 
@@ -444,7 +444,7 @@ ms.add(3);</code></pre>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l52"><code>src\MultiSet.js:52</code></a>
+        <a href="../files/src_MultiSet.js.html#l52"><code>src&#x2F;MultiSet.js:52</code></a>
         
         </p>
 
@@ -458,7 +458,7 @@ ms.add(3);</code></pre>
         <p>Inserts an element into the container in amortized constant time. The
 element can be of any type (numbers, strings, objects, etc.) and can be
 inserted many times.</p>
-<p>The <a href="..\classes\Canvace.MultiSet.html#method_add" class="crosslink">add</a> method returns a
+<p>The <a href="../classes/Canvace.MultiSet.html#method_add" class="crosslink">add</a> method returns a
 function that removes the element. The returned function is idempotent:
 it does not have any effect when called again after the first time.</p>
 <p>Example:</p>
@@ -498,7 +498,7 @@ if (remove()) {
 
                     <div class="param-description">
                         <p>The element to be inserted in the
-<a href="..\classes\Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
+<a href="../classes/Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
 
                     </div>
 
@@ -561,7 +561,7 @@ if (remove()) {
             
         
         
-        <a href="../files/src_MultiSet.js.html#l284"><code>src\MultiSet.js:284</code></a>
+        <a href="../files/src_MultiSet.js.html#l286"><code>src&#x2F;MultiSet.js:286</code></a>
         
         </p>
 
@@ -633,7 +633,7 @@ alert(ms.count()); // alerts 0</code></pre>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l256"><code>src\MultiSet.js:256</code></a>
+        <a href="../files/src_MultiSet.js.html#l258"><code>src&#x2F;MultiSet.js:258</code></a>
         
         </p>
 
@@ -725,7 +725,7 @@ alert(ms.count()); // alerts 5</code></pre>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l109"><code>src\MultiSet.js:109</code></a>
+        <a href="../files/src_MultiSet.js.html#l109"><code>src&#x2F;MultiSet.js:109</code></a>
         
         </p>
 
@@ -740,7 +740,7 @@ alert(ms.count()); // alerts 5</code></pre>
 The elements can be of any type (numbers, strings, objects, etc.) and can be
 inserted many times.</p>
 <p>This method is faster than
-<a href="..\classes\Canvace.MultiSet.html#method_add" class="crosslink">add</a> because it doesn&#39;t
+<a href="../classes/Canvace.MultiSet.html#method_add" class="crosslink">add</a> because it doesn&#39;t
 generate any closures; infact it doesn&#39;t return anything.</p>
 
     </div>
@@ -762,7 +762,7 @@ generate any closures; infact it doesn&#39;t return anything.</p>
 
                     <div class="param-description">
                         <p>Zero or more elements to insert in the
-<a href="..\classes\Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
+<a href="../classes/Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
 
                     </div>
 
@@ -831,7 +831,7 @@ ms.fastAdd(3, 4); // ms now contains four elements: 1, 2, 3 and 4</code></pre>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l215"><code>src\MultiSet.js:215</code></a>
+        <a href="../files/src_MultiSet.js.html#l217"><code>src&#x2F;MultiSet.js:217</code></a>
         
         </p>
 
@@ -847,22 +847,22 @@ each iterated element.</p>
 <p>The <code>action</code> function receives one argument, the current element. Any
 return value is ignored.</p>
 <p>This method is similar to the
-<a href="..\classes\Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> method except it
+<a href="../classes/Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> method except it
 can be faster on some browsers because it does not generate a closure
 (the element&#39;s removal function) at each iterated element and does not
 analyze the return value of the callback function. Infact, the iterated
 elements cannot be removed and the iteration cannot be interrupted.</p>
 <p>You usually use the
-<a href="..\classes\Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> method, but you
-may also use <a href="..\classes\Canvace.MultiSet.html#method_fastForEach" class="crosslink">fastForEach</a>
+<a href="../classes/Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> method, but you
+may also use <a href="../classes/Canvace.MultiSet.html#method_fastForEach" class="crosslink">fastForEach</a>
 if your callback function does not use its second argument (the removal
 function) and never returns <code>false</code>.</p>
 <p>Note that the order of iteration is undefined as it depends on the order
 of iteration over object properties implemented by the underlying
 JavaScript engine. This is typically the insertion order, which means
-<a href="..\classes\Canvace.MultiSet.html#method_fastForEach" class="crosslink">fastForEach</a> enumerates
+<a href="../classes/Canvace.MultiSet.html#method_fastForEach" class="crosslink">fastForEach</a> enumerates
 the elements in the same order they are inserted by
-<a href="..\classes\Canvace.MultiSet.html#method_add" class="crosslink">add</a>, but you must not
+<a href="../classes/Canvace.MultiSet.html#method_add" class="crosslink">add</a>, but you must not
 rely on that assumption.</p>
 
     </div>
@@ -947,7 +947,7 @@ The return value is ignored.</p>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l132"><code>src\MultiSet.js:132</code></a>
+        <a href="../files/src_MultiSet.js.html#l134"><code>src&#x2F;MultiSet.js:134</code></a>
         
         </p>
 
@@ -979,9 +979,9 @@ repeated. For example, in the previous snippet the number 3 is iterated
 <p>Note that the order of iteration is undefined as it depends on the order
 of iteration over object properties implemented by the underlying
 JavaScript engine. This is typically the insertion order, which means
-<a href="..\classes\Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> enumerates the
+<a href="../classes/Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> enumerates the
 elements in the same order they are inserted by
-<a href="..\classes\Canvace.MultiSet.html#method_add" class="crosslink">add</a>, but you must not
+<a href="../classes/Canvace.MultiSet.html#method_add" class="crosslink">add</a>, but you must not
 depend on that assumption.</p>
 <p>The iteration is interrupted if the <code>action</code> function returns <code>false</code>.
 The following example adds some numbers to the container, then iterates
@@ -993,7 +993,7 @@ ms.forEach(function (element) {
     }
 });</code></pre>
 <p>The number 4 is not enumerated.</p>
-<p><a href="..\classes\Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> returns <code>false</code>
+<p><a href="../classes/Canvace.MultiSet.html#method_forEach" class="crosslink">forEach</a> returns <code>false</code>
 if the iteration completed and <code>true</code> if it was interrupted, which is
 suitable for implementing finding algorithms.</p>
 
@@ -1017,7 +1017,7 @@ suitable for implementing finding algorithms.</p>
                         <p>The callback function that gets called for each
 element of the multiset. It receives the current element and a callback
 function suitable for deleting it from the
-<a href="..\classes\Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
+<a href="../classes/Canvace.MultiSet.html" class="crosslink">MultiSet</a>.</p>
 
                     </div>
 
@@ -1085,7 +1085,7 @@ not and all the elements were enumerated.</p>
             
         
         
-        <a href="../files/src_MultiSet.js.html#l274"><code>src\MultiSet.js:274</code></a>
+        <a href="../files/src_MultiSet.js.html#l276"><code>src&#x2F;MultiSet.js:276</code></a>
         
         </p>
 

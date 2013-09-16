@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\AppCache.js - API reference</title>
+    <title>Canvace &bull; src/AppCache.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\AppCache.js</h1>
+                            <h1 class="file-heading">File: src/AppCache.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -220,13 +220,15 @@ Canvace.AppCache = new function () {
 
 	if (window.applicationCache) {
 		for (var eventName in handlers) {
-			applicationCache.addEventListener(eventName, (function (handlers) {
-				return function (e) {
-					handlers.fastForEach(function (handler) {
-						handler(e);
-					});
-				};
-			})(handlers[eventName]), false);
+			if (handlers.hasOwnProperty(eventName)) {
+				applicationCache.addEventListener(eventName, (function (handlers) {
+					return function (e) {
+						handlers.fastForEach(function (handler) {
+							handler(e);
+						});
+					};
+				})(handlers[eventName]), false);
+			}
 		}
 	}
 
@@ -262,7 +264,7 @@ Canvace.AppCache = new function () {
 	 *	});
 	 */
 	this.on = function (eventName, handler) {
-		if (eventName in handlers) {
+		if (handlers.hasOwnProperty(eventName)) {
 			return handlers[eventName].add(handler);
 		}
 
@@ -411,7 +413,6 @@ Canvace.AppCache.UPDATEREADY = 4;
  * @final
  */
 Canvace.AppCache.OBSOLETE = 5;
-
 
     </pre>
 </div>

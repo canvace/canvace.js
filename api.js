@@ -47,7 +47,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Canvace",
             "name": "Canvace",
-            "description": "The main namespace object of Canvace's Javascript client library is named\n`Canvace`. Every Canvace class must be accessed from that object."
+            "description": "The main namespace object of Canvace's Javascript client library is named\n`Canvace`. Every Canvace class must be accessed from that object.\n\nThe `Canvace` name also represents function that can be used to retrieve\nDOM elements from a CSS selector string."
         }
     ]
 } };

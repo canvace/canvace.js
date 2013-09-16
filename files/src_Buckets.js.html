@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Canvace &bull; src\Buckets.js - API reference</title>
+    <title>Canvace &bull; src/Buckets.js - API reference</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
 	<link href="http://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -176,7 +176,7 @@
                 <div class="apidocs">
                     <div id="docs-main">
                         <div class="content">
-                            <h1 class="file-heading">File: src\Buckets.js</h1>
+                            <h1 class="file-heading">File: src/Buckets.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -236,10 +236,14 @@ Canvace.Buckets = function (view, data) {
 	(function () {
 		var id;
 		for (id in data.tiles) {
-			frameTable.registerTile(id);
+			if (data.tiles.hasOwnProperty(id)) {
+				frameTable.registerTile(id);
+			}
 		}
 		for (id in data.entities) {
-			frameTable.registerEntity(id);
+			if (data.entities.hasOwnProperty(id)) {
+				frameTable.registerEntity(id);
+			}
 		}
 	}());
 
@@ -407,7 +411,9 @@ Canvace.Buckets = function (view, data) {
 	 */
 	Element.prototype.remove = function remove() {
 		for (var index in this.removers) {
-			this.removers[index]();
+			if (this.removers.hasOwnProperty(index)) {
+				this.removers[index]();
+			}
 		}
 		this.removers = [];
 		return this.removed = true;
