@@ -137,7 +137,11 @@ Canvace.Audio = function () {
 
 					var remaining = (bufferData.duration - currentTime);
 					noteOnAt = context.currentTime;
-					sourceNode.noteGrainOn(0, currentTime, remaining);
+					if (sourceNode.start) {
+						sourceNode.start(0, currentTime, remaining);
+					} else if (sourceNode.noteGrainOn) {
+						sourceNode.noteGrainOn(0, currentTime, remaining);
+					}
 				}
 				return thisObject;
 			};
@@ -150,7 +154,11 @@ Canvace.Audio = function () {
 			 */
 			this.pause = function () {
 				if (sourceNode) {
-					sourceNode.noteOff(0);
+					if (sourceNode.stop) {
+						sourceNode.stop(0);
+					} else if (sourceNode.nodeOff) {
+						sourceNode.noteOff(0);
+					}
 					sourceNode.disconnect();
 
 					currentTime += (context.currentTime - noteOnAt) % bufferData.duration;
